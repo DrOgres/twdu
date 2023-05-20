@@ -1,0 +1,40 @@
+{
+    "id": "twdu",
+    "title": "The Walking Dead Universe RPG",
+    "description": "Official Walking Dead Universe RPG System for Foundry VTT",
+    "authors": [{ "name": "DrOgres" }],
+    "url": "https://github.com/drogres/twdu",
+    "flags": {},
+    "relationships": {
+      "systems": [{ "id": "twdu" }]
+    },
+    "version": "0.0.1",
+    "compatibility": {
+      "minimum": "10",
+      "verified": "10",
+      "maximum": "11"
+    },
+    "minimumCoreVersion": "10",
+    "compatibleCoreVersion": "11",
+    "scripts": [],
+    "esmodules": ["module/twdu.js"],
+    "styles": ["styles/twdu.css"],
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
+    "packs": [],
+    "socket": true,
+    "manifest": "",
+    "download": "",
+    "protected": false,
+    "initiative": "1d10",
+    "gridDistance": 1,
+    "gridUnits": "m",
+    "primaryTokenAttribute": "health",
+    "secondaryTokenAttribute": "stress"
+  }
+  

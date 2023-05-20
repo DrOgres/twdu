@@ -1,0 +1,100 @@
+{
+    "Actor": {
+        "types": [
+            "character",
+            "vehicle",
+            "territory"
+        ],
+        "character":{
+            "health": {
+                "value": 3,
+                "label": "Health",
+                "max": 3
+            },
+            "NPC": {
+                "value": false,
+                "label": "NPC"
+            },
+            "attributes": {
+                "str": {
+                    "value": 0,
+                    "label": "Strength"
+                },
+                "agl": {
+                    "value": 0,
+                    "label": "Agility"
+                },
+                "wit": {
+                    "value": 0,
+                    "label": "Wits"
+                },
+                "emp": {
+                    "value": 0,
+                    "label": "Empathy"
+                }
+            },
+            "skills": {
+                "closeCombat": {
+                    "value": 0,
+                    "label": "Close Combat",
+                    "attribute": "str"
+                },
+                "force": {
+                    "value": 0,
+                    "label": "Force",
+                    "attribute": "str"
+                },
+                "endure": {
+                    "value": 0,
+                    "label": "Endure",
+                    "attribute": "str"
+                },
+                "mobility": {
+                    "value": 0,
+                    "label": "Mobility",
+                    "attribute": "agl"
+                },
+                "rangedCombat": {
+                    "value": 0,
+                    "label": "Ranged Combat",
+                    "attribute": "agl"
+                },
+                "stealth": {
+                    "value": 0,
+                    "label": "Stealth",
+                    "attribute": "agl"
+                },
+                "scout": {
+                    "value": 0,
+                    "label": "Scout",
+                    "attribute": "wit"
+                },
+                "survival": {
+                    "value": 0,
+                    "label": "Survival",
+                    "attribute": "wit"
+                },
+                "tech": {
+                    "value": 0,
+                    "label": "Tech",
+                    "attribute": "wit"
+                },
+                "leadership": {
+                    "value": 0,
+                    "label": "Leadership",
+                    "attribute": "emp"
+                },
+                "manipulation": {
+                    "value": 0,
+                    "label": "Manipulation",
+                    "attribute": "emp"
+                },
+                "medicine": {
+                    "value": 0,
+                    "label": "Medicine",
+                    "attribute": "emp"
+                }
+            }
+        }
+    }
+}
