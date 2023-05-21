@@ -2,8 +2,8 @@
     "Actor": {
         "types": [
             "character",
-            "vehicle",
-            "territory"
+            "challenge",
+            "haven"
         ],
         "character":{
             "health": {
@@ -11,9 +11,10 @@
                 "label": "Health",
                 "max": 3
             },
-            "NPC": {
-                "value": false,
-                "label": "NPC"
+            "stress": {
+                "value": 0,
+                "label": "Stress",
+                "max": 5
             },
             "attributes": {
                 "str": {
@@ -95,6 +96,69 @@
                     "attribute": "emp"
                 }
             }
+        },
+        "challenge": {
+
+        },
+        "haven": {
+
         }
+    },
+    "Item": {
+        "types": [
+            "weapon",
+            "armor",
+            "gear",
+            "tinyItem",
+            "project",
+            "talent",
+            "criticalInjury"
+        ],
+        "templates": {
+            "itemEquiped": {
+              "isEquiped": false
+            }
+          },
+          "weapon": {
+            "templates": ["itemEquiped"],
+            "damage": 0,
+            "range": "",
+            "bonus": 0,
+            "availability": 0,
+            "skill": ""
+          },
+          "armor": {
+            "templates": ["itemEquiped"],
+            "protection": 0,
+            "agility": 0,
+            "availability": 0
+          },
+          "talent": {
+            "description": ""
+          },
+          "gear": {
+            "bonus": 0,
+            "availability": 0,
+            "effect": "",
+            "description": "",
+            "risk": "",
+            "quantity": ""
+          },
+          "criticalInjury": {
+            "type": "",
+            "fatal": "",
+            "timeLimit": "",
+            "effect": "",
+            "permanent": false
+          },
+          "tinyItem": {
+            "description": ""
+          },
+          "project": {
+            "description": "",
+            "effect": "",
+            "workforce": "",
+            "finishDate": ""
+          }
     }
 }
