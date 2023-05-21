@@ -6,9 +6,17 @@
             "haven"
         ],
         "character":{
+            "name": "New Character",
+            "archetype": "",
+            "description": "",
+            "pc_anchor": "",
+            "npc_anchor": "",
+            "notes": "",
+            "drive": "",
+            "issues": "",
             "health": {
                 "value": 3,
-                "label": "Health",
+                "label": "HEALTH",
                 "max": 3
             },
             "stress": {
@@ -19,25 +27,25 @@
             "attributes": {
                 "str": {
                     "value": 0,
-                    "label": "Strength"
+                    "label": "STRENGTH"
                 },
                 "agl": {
                     "value": 0,
-                    "label": "Agility"
+                    "label": "AGILITY"
                 },
                 "wit": {
                     "value": 0,
-                    "label": "Wits"
+                    "label": "WITS"
                 },
                 "emp": {
                     "value": 0,
-                    "label": "Empathy"
+                    "label": "EMPATHY"
                 }
             },
             "skills": {
                 "closeCombat": {
                     "value": 0,
-                    "label": "Close Combat",
+                    "label": "closeCombat",
                     "attribute": "str"
                 },
                 "force": {
@@ -57,7 +65,7 @@
                 },
                 "rangedCombat": {
                     "value": 0,
-                    "label": "Ranged Combat",
+                    "label": "RangedCombat",
                     "attribute": "agl"
                 },
                 "stealth": {
