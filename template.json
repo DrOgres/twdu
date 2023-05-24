@@ -9,8 +9,8 @@
             "name": "New Character",
             "archetype": "",
             "description": "",
-            "pc_anchor": "",
-            "npc_anchor": "",
+            "pcAnchor": "",
+            "npcAnchor": "",
             "notes": "",
             "drive": "",
             "issues": "",
@@ -21,8 +21,16 @@
             },
             "stress": {
                 "value": 0,
-                "label": "Stress",
+                "label": "STRESS",
                 "max": 5
+            },
+            "experience": {
+                "value": 0,
+                "label": "EXPERIENCE"            
+            },
+            "encumbrance": {
+                "value": 0,
+                "label": "ENCUMBRANCE"
             },
             "attributes": {
                 "str": {
@@ -50,57 +58,57 @@
                 },
                 "force": {
                     "value": 0,
-                    "label": "Force",
+                    "label": "force",
                     "attribute": "str"
                 },
                 "endure": {
                     "value": 0,
-                    "label": "Endure",
+                    "label": "endure",
                     "attribute": "str"
                 },
                 "mobility": {
                     "value": 0,
-                    "label": "Mobility",
+                    "label": "mobility",
                     "attribute": "agl"
                 },
                 "rangedCombat": {
                     "value": 0,
-                    "label": "RangedCombat",
+                    "label": "rangedCombat",
                     "attribute": "agl"
                 },
                 "stealth": {
                     "value": 0,
-                    "label": "Stealth",
+                    "label": "stealth",
                     "attribute": "agl"
                 },
                 "scout": {
                     "value": 0,
-                    "label": "Scout",
+                    "label": "scout",
                     "attribute": "wit"
                 },
                 "survival": {
                     "value": 0,
-                    "label": "Survival",
+                    "label": "survival",
                     "attribute": "wit"
                 },
                 "tech": {
                     "value": 0,
-                    "label": "Tech",
+                    "label": "tech",
                     "attribute": "wit"
                 },
                 "leadership": {
                     "value": 0,
-                    "label": "Leadership",
+                    "label": "leadership",
                     "attribute": "emp"
                 },
                 "manipulation": {
                     "value": 0,
-                    "label": "Manipulation",
+                    "label": "manipulation",
                     "attribute": "emp"
                 },
                 "medicine": {
                     "value": 0,
-                    "label": "Medicine",
+                    "label": "medicine",
                     "attribute": "emp"
                 }
             }
