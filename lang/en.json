@@ -45,7 +45,8 @@
         "unharmed": "Unharmed",
         "bruised": "Bruised",
         "battered": "Battered",
-        "broken": "Broken"
+        "broken": "Broken",
+        "none": "None"
 
     }
 }

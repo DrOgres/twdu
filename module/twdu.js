@@ -1,0 +1,13 @@
+import TWDUItemSheet from "./sheet/TWDUItemSheet.js";
+import {twdu} from "../module/config.js";
+
+Hooks.once("init", ()=> {
+    console.log("TWDU | Initializing TWDU");
+
+    CONFIG.twdu = twdu;
+
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
+    
+});
+    

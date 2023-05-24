@@ -1,0 +1,11 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="item-header sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" class="item-img" height="64" width="64" />
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+    <div class="weapon">
+        {{localize "twdu.damage"}} : <input name="damage" type="text" value="{{item.damage}}" placeholder="0" />
+        {{localize "twdu.range"}} : <input name="range" type="text" value="{{item.range}}" placeholder="close" />
+    </div>  
+
+</form>

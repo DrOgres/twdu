@@ -133,30 +133,33 @@
         "templates": {
             "itemEquiped": {
               "isEquiped": false
+            },
+            "itemCommonProperties" : {
+                "description": "",
+                "notes": "",
+                "weight": 0,
+                "bonus": 0,
+                "availability": 0
             }
+
           },
           "weapon": {
-            "templates": ["itemEquiped"],
+            "templates": ["itemEquiped", "itemCommonProperties"],
             "damage": 0,
             "range": "",
-            "bonus": 0,
-            "availability": 0,
             "skill": ""
           },
           "armor": {
-            "templates": ["itemEquiped"],
+            "templates": ["itemEquiped", "itemCommonProperties"],
             "protection": 0,
-            "agility": 0,
-            "availability": 0
+            "agility": 0
           },
           "talent": {
             "description": ""
           },
           "gear": {
-            "bonus": 0,
-            "availability": 0,
+            "templates": ["itemEquiped", "itemCommonProperties"],
             "effect": "",
-            "description": "",
             "risk": "",
             "quantity": ""
           },
