@@ -4,8 +4,22 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
     </header>
     <div class="weapon">
-        {{localize "twdu.damage"}} : <input name="damage" type="text" value="{{item.damage}}" placeholder="0" />
-        {{localize "twdu.range"}} : <input name="range" type="text" value="{{item.range}}" placeholder="close" />
+        {{localize "twdu.damage"}} : <input name="system.damage" type="text" value="{{data.system.damage}}" placeholder="0" data-dtype="Number" />
+        {{localize "twdu.range"}} : <input name="system.range" type="text" value="{{data.system.range}}" placeholder="close" />
+
+        <h3>{{localize "twdu.skill"}}: &nbsp;</h3>
+          <select name="system.skill">
+            {{#select data.system.skill}}
+              <option value="force">{{localize "twdu.force"}}</option>
+              <option value="closeCombat">{{localize
+                  "twdu.closeCombat"
+                }}</option>
+              <option value="rangedCombat">{{localize
+                  "twdu.rangedCombat"
+                }}</option>
+            {{/select}}
+          </select>
+       
     </div>  
 
 </form>
