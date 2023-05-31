@@ -155,7 +155,10 @@
             "agility": 0
           },
           "talent": {
-            "description": ""
+            "description": "",
+            "notes": "",
+            "archetype": ""
+            
           },
           "gear": {
             "templates": ["itemEquiped", "itemCommonProperties"],

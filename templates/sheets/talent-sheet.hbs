@@ -1,50 +1,41 @@
-<form class="{{cssClass}}" style="min-height: 489px" autocomplete="off">
-  <header class="vehicle-header">
-    <img class="profile-img" src="{{img}}" data-edit="img" title="{{img}}" />
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  {{! Item Sheet Header }}
+  <div>
+    <div class="dl-border w-fc h-100">
+      <img
+        class="w-100p border-none br-5"
+        src="{{item.img}}"
+        data-edit="img"
+        title="{{item.name}}"
+      />
+    </div>
 
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{name}}" placeholder="{{localize " TWD.Name"}}" /></h1>
+    <div class="w-100 padding-sm">
+      <div class="flex-col flex-wrap magin-b-sm">
+        <h1 class="center">{{localize "twdu.talent"}}</h1>
+        <br />
+      </div>
+      <div class="grid grid-2col-fr center gap-sm h-100">
+        <div class="grid-span-2 grid-align-end">
+          <b>{{localize "twdu.name"}}:</b>
+          <span>
+            <input
+              class="light"
+              name="name"
+              type="text"
+              value="{{item.name}}"
+              style="width: 99%;"
+            />
+          </span>
+        </div>
 
-      <div class="grid-weapon">
-        <h3 class="wItem2 resource-label">{{localize "TWD.Career"}}</h3>
-        <div class="wItem3">
-          <select class="select-css" name="system.general.career.value" data-dcareer="{{system.general.career.value}}">
-            {{#select system.general.career.value}}
-              <!-- <option value=""></option> -->
-              <option value="0"></option>
-              <option value="1">{{localize "TWD.GeneralTalent"}}</option>
-              <option value="2">{{localize "TWD.ColonialMarine"}}</option>
-              <option value="3">{{localize "TWD.ColonialMarshal"}}</option>
-              <option value="4">{{localize "TWD.CompanyAgent"}}</option>
-              <option value="5">{{localize "TWD.Kid"}}</option>
-              <option value="6">{{localize "TWD.Medic"}}</option>
-              <option value="7">{{localize "TWD.Mercenary"}}</option>
-              <option value="8">{{localize "TWD.Officer"}}</option>
-              <option value="9">{{localize "TWD.Pilot"}}</option>
-              <option value="10">{{localize "TWD.Roughneck"}}</option>
-              <option value="11">{{localize "TWD.Scientist"}}</option>
-            {{/select}}
-          </select>
+        <div class="grid-span-2">
+          <b>{{localize "twdu.description"}}</b>
+          <textarea
+            name="system.description"
+          >{{data.system.description}}</textarea>
         </div>
       </div>
     </div>
-  </header>
-
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="general">{{localize "TWD.General"}}</a>
-    <a class="item" data-tab="notes">{{localize "TWD.Notes"}}</a>
-  </nav>
-
-  {{!-- Sheet Body --}}
-  <section class="sheet-body" style="height: 275px">
-    {{!-- Attributes Tab --}}
-    <div class="tab general" data-group="primary" data-tab="general">
-      <h2 class="resource-label">{{localize "TWD.Description"}}</h2>
-      <div class="tab item" style="border: solid 1px; padding: 5px">{{editor system.general.comment.value target="system.general.comment.value" button=true owner=owner editable=true}}</div>
-    </div>
-
-    {{!-- Notes Tab --}}
-    <div class="tab item" data-group="primary" data-tab="notes">{{editor system.notes.notes target="system.notes.notes" button=true owner=owner editable=true}}</div>
-  </section>
+  </div>
 </form>

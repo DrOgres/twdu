@@ -47,7 +47,9 @@
         "bruised": "Bruised",
         "battered": "Battered",
         "broken": "Broken",
-        "none": "None"
+        "none": "None",
+        "details": "Details",
+        "talent": "Talent"
 
     }
 }
