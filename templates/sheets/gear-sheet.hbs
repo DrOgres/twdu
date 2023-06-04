@@ -1,0 +1,67 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  <div class="bg-offwhite flex-row flex-start">
+    <div class="dl-border w-fc h-100">
+      <img
+        class="w-100p border-none br-5"
+        src="{{item.img}}"
+        data-edit="img"
+        title="{{item.name}}"
+      />
+    </div>
+
+    <div class="w-100 padding-sm">
+      <div class="flex-col flex-wrap magin-b-sm">
+        <h1 class="center">{{localize "GEAR.NAME"}}</h1>
+        <br /><img class="border-none center w-90" src="systems/vaesen/asset/h-rule.png"  />
+      </div>
+
+      <div class="grid grid-2col-fr center gap-sm h-100">
+
+        <div class="grid-align-end" >
+          <h3>{{localize "NAME"}}:&nbsp;</h3>
+          <input class="light"  name="name" type="text" value="{{item.name}}" />
+        </div>
+
+        <div class="grid-align-end">
+          <h3>{{localize "GEAR.BONUS"}}</h3>
+          <input
+            class="light"
+            name="system.bonus"
+            type="text"
+            value="{{data.system.bonus}}"
+          />
+        </div>
+        <div class="grid-align-end" >
+          <h3>{{localize "GEAR.AVAILABILITY"}}</h3>
+          <input
+            class="light"
+            name="system.availability"
+            type="text"
+            value="{{data.system.availability}}"
+          />
+        </div>
+        <div class="grid-align-end" >
+          <h3>{{localize "GEAR.EFFECT"}}</h3>
+          <input
+            class="light"
+            name="system.effect"
+            type="text"
+            value="{{data.system.effect}}"
+          />
+        </div>
+        <div class="grid-span-2 grid-align-end" >
+          <h3>{{localize "GEAR.DESCRIPTION"}}</h3>
+          <textarea
+            name="system.description"
+          >{{data.system.description}}</textarea>
+        </div>
+        <div class="grid-span-2 grid-align-end">
+          <h3>{{localize "GEAR.RISK"}}</h3>
+          <textarea name="system.risk">{{data.system.risk}}</textarea>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</form>
