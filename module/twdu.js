@@ -8,6 +8,9 @@ Hooks.once("init", ()=> {
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
+
+    Actors.unregisterSheet("core", ActorSheet);
+    Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
     
 });
     
