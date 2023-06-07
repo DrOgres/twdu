@@ -15,6 +15,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
     getData() { 
         const data = super.getData();
+        console.log('TWDU | getData()', this.actor.system.skills);
         data.config = CONFIG.twdu;
         return data;
     }

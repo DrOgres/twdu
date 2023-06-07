@@ -24,14 +24,21 @@
             <h2>{{localize 'twdu.headerAttributes'}}</h2>
           </div>
            {{#each actor.system.attributes as |attr key|}}
-          <div class="attribute">
-           
+           <div class="att-group">
+            <div class="attribute">
             <h3>{{localize (TWDUconcat 'twdu.' attr.label )}}</h3>
-            <input type="text" name="system.attributes.{{key}}.value" value="{{attr.value}}" data-dtype="Number" />
-          </div>
-          {{/each}}
+            <input type="text" name="system.attributes.{{attr.key}}.value" value="{{attr.value}}" data-dtype="Number" />
+            </div>
 
+            {{#skillBlock key ../actor.system.skills}}
+            {{/skillBlock}}
 
+            
+            </div>
+
+            {{/each}}
+
+            </div>
 
         </div>
       </div>
