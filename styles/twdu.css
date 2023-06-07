@@ -1,1 +1,11 @@
-/*# sourceMappingURL=twdu.css.map */
+.grid {
+  display: grid;
+}
+
+.four-col {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.span-4 {
+  grid-column: span 4;
+}/*# sourceMappingURL=twdu.css.map */

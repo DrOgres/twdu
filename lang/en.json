@@ -49,7 +49,8 @@
         "broken": "Broken",
         "none": "None",
         "details": "Details",
-        "talent": "Talent"
+        "talent": "Talent",
+        "health": "Health"
 
     }
 }

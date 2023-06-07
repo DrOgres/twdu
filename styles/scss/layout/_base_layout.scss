@@ -1,0 +1,20 @@
+
+//layout options
+.grid{
+    display: grid;
+}
+
+
+
+// grid column options
+.four-col{
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+// span and gap options
+
+.span-4{
+    grid-column: span 4;
+}
+
