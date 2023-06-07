@@ -1,4 +1,5 @@
 import TWDUItemSheet from "./sheet/TWDUItemSheet.js";
+import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
 import {twdu} from "../module/config.js";
 
 Hooks.once("init", ()=> {
