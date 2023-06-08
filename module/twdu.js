@@ -17,7 +17,7 @@ Hooks.once('init', async function () {
  //  preloadHandlebarsTemplates(); define in templates.js once we have our tabs defined
 
   Handlebars.registerHelper('TWDUconcat', function () {
-    console.log('TWDU | TWDUconcat');
+    console.log('TWDU | TWDUconcat: ' + arguments[0] + ' : ' + arguments[1]);
     let outStr = '';
     for (let arg in arguments) {
       if (typeof arguments[arg] != 'object') {
