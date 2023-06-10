@@ -1,6 +1,8 @@
 import TWDUItemSheet from "./sheet/TWDUItemSheet.js";
 import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
+import { preloadHandlebarsTemplates } from "./util/templates.js";
 import {twdu} from "../module/config.js";
+
 
 Hooks.once('init', async function () {
     console.log("TWDU | Initializing TWDU");
@@ -14,7 +16,7 @@ Hooks.once('init', async function () {
     Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
 
       // Preload Handlebars Templates
- //  preloadHandlebarsTemplates(); define in templates.js once we have our tabs defined
+  preloadHandlebarsTemplates();
 
   Handlebars.registerHelper('TWDUconcat', function () {
     console.log('TWDU | TWDUconcat: ' + arguments[0] + ' : ' + arguments[1]);

@@ -6,6 +6,13 @@ export default class TWDUActorSheet extends ActorSheet {
           width: 750,
           height: 800 - 'min-content',
           resizable: true,
+          tabs: [
+            {
+              navSelector: ".sheet-tabs",
+              contentSelector: ".sheet-body",
+              initial: "main",
+            },
+          ],
         });
       }
 
