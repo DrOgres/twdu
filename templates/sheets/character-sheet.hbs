@@ -42,7 +42,7 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="main">{{localize 'twdu.general'}}</a>
     <a class="item" data-tab="inventory">{{localize 'twdu.inventory'}}</a>
-    <a class="item" data-tab="description">{{localize 'twdu.description'}}</a>
+    <a class="item" data-tab="bioNotes">{{localize 'twdu.bioNotes'}}</a>
   </nav>
 
 
@@ -55,12 +55,14 @@
 
 
     {{!-- Biography Tab --}}
-    <div class="tab biog-full " data-group="primary" data-tab="description">{{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}</div>
-    {{!-- Owned Items Tab --}}
+    <div class="tab biog-full " data-group="primary" data-tab="bioNotes">
+      {{> systems/twdu/templates/sheets/parts/character-notes.hbs}}
+    </div>
+  
     <!-- INVENTORY -->
-    <div class="tab inventory" data-group="primary" data-tab="inventory"></div>
-
-
+    <div class="tab inventory" data-group="primary" data-tab="inventory">
+      {{> systems/twdu/templates/sheets/parts/character-inventory.hbs}}
+    </div>
 
   </section>
 </form>

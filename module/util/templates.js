@@ -8,6 +8,7 @@ export const preloadHandlebarsTemplates = async function () {
     const templatePaths = [
       // Actor Sheet Partials
       'systems/twdu/templates/sheets/parts/character-inventory.hbs',
+      'systems/twdu/templates/sheets/parts/character-notes.hbs',
       'systems/twdu/templates/sheets/parts/character-main.hbs',
     ];
   

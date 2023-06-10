@@ -51,7 +51,9 @@
         "details": "Details",
         "talent": "Talent",
         "health": "Health",
-        "general": "General"
+        "general": "General",
+        "bioNotes": "Bio & Notes",
+        "inventory": "Inventory"
 
     }
 }
