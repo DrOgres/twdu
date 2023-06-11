@@ -30,4 +30,8 @@
 
 .gap-lg {
   grid-gap: 2rem;
+}
+
+.editor {
+  min-height: 150px;
 }/*# sourceMappingURL=twdu.css.map */

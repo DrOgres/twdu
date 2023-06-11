@@ -1,4 +1,14 @@
-      <div class="notes">
-        <h3>{{localize "twdu.notes"}}</h3>
-        {{editor actor.system.notes target="system.notes" button=true owner=owner editable=true}}
-      </div>
+<div class="notes-container">
+
+  <h3>{{localize "twdu.notes"}}</h3>
+  <div class="notes">
+    {{editor
+      notesHTML
+      target="system.notes"
+      button=true
+      editable=editable
+      engine="prosemirror"
+      collaborate=false
+    }}
+  </div>
+</div>
