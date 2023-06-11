@@ -53,7 +53,7 @@
         "health": "Health",
         "general": "General",
         "bioNotes": "Bio & Notes",
-        "inventory": "Inventory"
-
+        "inventory": "Inventory",
+        "equipedGear": "Equiped Gear"
     }
 }

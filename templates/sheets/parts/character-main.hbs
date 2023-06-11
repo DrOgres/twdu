@@ -1,55 +1,68 @@
 <div>
   <h3>Main Tab</h3>
-
-  <div class="resources grid grid-actor">
-    {{! Health and Stress }}
-    <h2
-      for="actor.system.health.value"
-      class="resource-label gaItem1"
-    >{{localize "twdu.health"}}</h2>
-    <div class="resource-content gaItem2">
-      <button type="button" class="minus-btn" data-pmbut="minusHealth"><i
-          class="fas fa-minus-square fa-xs"
-          title="Minus"
-        ></i></button>
-      <input
-        type="text"
-        class="maxboxsize minHealth"
-        name="actor.system.header.health.value"
-        value="{{actor.system.header.health.value}}"
-        data-dtype="Number"
-      />
-      <button type="button" class="plus-btn" data-pmbut="plusHealth"><i
-          class="fas fa-plus-square fa-xs"
-          title="Plus"
-        ></i></button>
+  <div class="grid col-60-40">
+    <div class="item-group">
+      <div class="group-header flex-row w-100">
+        <h3>
+        {{localize "twdu.equipedGear"}}
+        </h3>
+        <div>{{localize "twdu.encumbrance"}}
+          <span class="value">value</span>
+        </div>
+      </div>
+      <div class="weapons">Weapons</div>
+      <div class="armor">Armor</div>
+      <div class="gear">Gear</div>
     </div>
-    <h2
-      for="actor.system.header.stress.value"
-      class="resource-label gaItem3"
-      title="{{localize 'TWD.RollPanic'}}"
-      data-panicroll="{{actor.system.header.stress.value}}"
-      data-mod="{{actor.system.header.stress.mod}}"
-      data-label="{{localize 'TWD.Stress'}}"
-    >{{localize "TWD.Stress"}}</h2>
-    <div class="resource-content gaItem4">
-      <button type="button" class="minus-btn" data-pmbut="minusStress"><i
-          class="fas fa-minus-square fa-xs"
-          title="Minus"
-        ></i></button>
-      <input
-        type="text"
-        class="maxboxsize minStress"
-        name="actor.system.header.stress.value"
-        value="{{actor.system.header.stress.value}}"
-        data-dtype="Number"
-      />
-      <button type="button" class="plus-btn" data-pmbut="plusStress"><i
-          class="fas fa-plus-square fa-xs"
-          title="Plus"
-        ></i></button>
+    <div class="resources grid">
+      {{! Health and Stress }}
+      <h2
+        for="actor.system.health.value"
+        class="resource-label gaItem1"
+      >{{localize "twdu.health"}}</h2>
+      <div class="resource-content gaItem2">
+        <button type="button" class="minus-btn" data-pmbut="minusHealth"><i
+            class="fas fa-minus-square fa-xs"
+            title="Minus"
+          ></i></button>
+        <input
+          type="text"
+          class="maxboxsize minHealth"
+          name="actor.system.header.health.value"
+          value="{{actor.system.header.health.value}}"
+          data-dtype="Number"
+        />
+        <button type="button" class="plus-btn" data-pmbut="plusHealth"><i
+            class="fas fa-plus-square fa-xs"
+            title="Plus"
+          ></i></button>
+      </div>
+      <h2
+        for="actor.system.header.stress.value"
+        class="resource-label gaItem3"
+        title="{{localize 'TWD.RollPanic'}}"
+        data-panicroll="{{actor.system.header.stress.value}}"
+        data-mod="{{actor.system.header.stress.mod}}"
+        data-label="{{localize 'TWD.Stress'}}"
+      >{{localize "TWD.Stress"}}</h2>
+      <div class="resource-content gaItem4">
+        <button type="button" class="minus-btn" data-pmbut="minusStress"><i
+            class="fas fa-minus-square fa-xs"
+            title="Minus"
+          ></i></button>
+        <input
+          type="text"
+          class="maxboxsize minStress"
+          name="actor.system.header.stress.value"
+          value="{{actor.system.header.stress.value}}"
+          data-dtype="Number"
+        />
+        <button type="button" class="plus-btn" data-pmbut="plusStress"><i
+            class="fas fa-plus-square fa-xs"
+            title="Plus"
+          ></i></button>
+      </div>
+
     </div>
 
-  </div>
-
-</div>
+  </div></div>
