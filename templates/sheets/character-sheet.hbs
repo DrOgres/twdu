@@ -1,42 +1,116 @@
 <form class="{{cssClass}}" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="actor-header flex-row gap-sm">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" style="width: 175px; height: 175px;" />
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
+      style="width: 175px; height: 175px;" />
     <div class="group flex-col">
-    <h1 class="input name"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'twdu.name'}}" /></h1>
-    <h2 class="flex-row"><label>{{localize 'twdu.archetype'}}</label><input name="archetype" type="text" value="{{actor.system.archetype}}" placeholder="{{localize 'twdu.archetype'}}" /> </h2>
-    <h2 class="flex-row"><label>{{localize 'twdu.description'}}</label><textarea name="description" value="{{actor.system.description}}"></textarea> </h2>
-    
+      <h1 class="input name"><input name="name" type="text" value="{{actor.name}}"
+          placeholder="{{localize 'twdu.name'}}" /></h1>
+      <h2 class="flex-row"><label>{{localize 'twdu.archetype'}}</label><input name="system.archetype" type="text"
+          value="{{system.archetype}}" placeholder="{{localize 'twdu.archetype'}}" /> </h2>
+      <h2 class="flex-row"><label>{{localize 'twdu.description'}}</label><textarea name="system.description"
+          value="{{system.description}}"></textarea> </h2>
+
     </div>
     <div class="group flex-col">
-      <h3><label>{{localize 'twdu.pcAnchor'}}</label><input name="pcAnchor" type="text" value="{{actor.system.pcAnchor}}" placeholder="{{localize 'twdu.pcAnchor'}}" /> </h3>
-      <h3><label>{{localize 'twdu.npcAnchor'}}</label><input name="npcAnchor" type="text" value="{{actor.system.npcAnchor}}" placeholder="{{localize 'twdu.npcAnchor'}}" /> </h3>
-      <h3><label>{{localize 'twdu.drive'}}</label><input name="pcAnchor" type="text" value="{{actor.system.drive}}" placeholder="{{localize 'twdu.drive'}}" /> 
-                  <input type="checkbox" value="{{actor.system.driveUsed}}" /></h3>
-      
-    </div>    
-    
+      <h3><label>{{localize 'twdu.pcAnchor'}}</label><input name="system.pcAnchor" type="text"
+          value="{{system.pcAnchor}}" placeholder="{{localize 'twdu.pcAnchor'}}" /> </h3>
+      <h3><label>{{localize 'twdu.npcAnchor'}}</label><input name="system.npcAnchor" type="text"
+          value="{{system.npcAnchor}}" placeholder="{{localize 'twdu.npcAnchor'}}" /> </h3>
+      <h3><label>{{localize 'twdu.drive'}}</label><input name="system.drive" type="text"
+          value="{{system.drive}}" placeholder="{{localize 'twdu.drive'}}" />
+        <input type="checkbox" name="system.driveUsed" value="{{system.driveUsed}}" />
+      </h3>
+
+    </div>
+
   </header>
+  {{!-- Attributes and Skills --}}
+  <div class="abilities grid four-col">
+    <div class="header span-4">
+      <h2>{{localize 'twdu.headerAttributes'}}</h2>
+    </div>
 
-
-        {{!-- Attributes and Skills --}}
-        <div class="abilities grid four-col">
-          <div class="header span-4">
-            <h2>{{localize 'twdu.headerAttributes'}}</h2>
-          </div>
-           {{#each actor.system.attributes as |attr key|}}
-            {{#if key}}
-            <div class="att-group group" id="{{key}}">
-            <div class="attribute">
-            <h3>{{localize (TWDUconcat 'twdu.' attr.label )}}</h3>
-            <input type="text" name="system.attributes.{{key}}.value" value="{{attr.value}}" data-dtype="Number" />
-            </div>
-            {{#skillBlock key ../actor.system.skills}}
-            {{/skillBlock}}
-            </div>
-            {{/if}}
-          {{/each}}
+    {{!-- Str and Skills --}}
+    <div class="attr-group group" id="str">
+      <div class="attribute flex-row" data-key="str">
+        <b class="header">{{localize 'twdu.STRENGTH'}}</b>
+        <input type="text" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}"
+          data-dtype="Number" />
+      </div>
+      {{!-- skillblock --}}
+      <div class="skill-group flex-col">
+        {{#each system.skills as |skill key|}}
+        {{#if skill.hasStrength}}
+        <div class="skill flex-row align-center" data-key="{{key}}">
+          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+          <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    {{!-- Agility and skills --}}
+    <div class="attr-group group" id="agl">
+      <div class="attribute flex-row" data-key="agl">
+        <b class="header">{{localize 'twdu.AGILITY'}}</b>
+        <input type="text" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}"
+          data-dtype="Number" />
+      </div>
+      {{!-- skillblock --}}
+      <div class="skill-group flex-col">
+        {{#each system.skills as |skill key|}}
+        {{#if skill.hasAgility}}
+        <div class="skill flex-row align-center" data-key="{{key}}">
+          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+          <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    {{!-- Wits and SKills --}}
+    <div class="attr-group group" id="wit">
+      <div class="attribute flex-row" data-key="wit">
+        <b class="header">{{localize 'twdu.WITS'}}</b>
+        <input type="text" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}"
+          data-dtype="Number" />
+      </div>
+      {{!-- skillblock --}}
+      <div class="skill-group flex-col">
+        {{#each system.skills as |skill key|}}
+        {{#if skill.hasWits}}
+        <div class="skill flex-row align-center" data-key="{{key}}">
+          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+          <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    {{!-- Empathy and Skills --}}
+    <div class="attr-group group" id="emp">
+      <div class="attribute flex-row" data-key="emp">
+        <b class="header">{{localize 'twdu.EMPATHY'}}</b>
+        <input type="text" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}"
+          data-dtype="Number" />
+      </div>
+      {{!-- skillblock --}}
+      <div class="skill-group flex-col">
+        {{#each system.skills as |skill key|}}
+        {{#if skill.hasEmpathy}}
+        <div class="skill flex-row align-center" data-key="{{key}}">
+          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+          <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
@@ -48,7 +122,7 @@
 
   {{!-- Sheet Body --}}
   <section class="sheet-body">
-    
+
     <div class="tab" data-group="primary" data-tab="main">
       {{> systems/twdu/templates/sheets/parts/character-main.hbs}}
     </div>
@@ -58,7 +132,7 @@
     <div class="tab biog-full " data-group="primary" data-tab="bioNotes">
       {{> systems/twdu/templates/sheets/parts/character-notes.hbs}}
     </div>
-  
+
     <!-- INVENTORY -->
     <div class="tab inventory" data-group="primary" data-tab="inventory">
       {{> systems/twdu/templates/sheets/parts/character-inventory.hbs}}

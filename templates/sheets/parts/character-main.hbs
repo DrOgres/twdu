@@ -4,13 +4,13 @@
     <div class="item-group">
       <div class="group-header flex-row w-100">
         <h3>
-        {{localize "twdu.equipedGear"}}
+          {{localize "twdu.equipedGear"}}
         </h3>
         <div>{{localize "twdu.encumbrance"}}
           <span class="value">value</span>
         </div>
       </div>
-      <div class="weapons">Weapons
+      <div class="weapons"><h4>Weapons</h4>
         <div class="flex-col">
           <div class="group-header">
             <span class="icon">Icon</span>
@@ -23,8 +23,31 @@
         </div>
       </div>
 
-      <div class="armor">Armor</div>
-      <div class="gear">Gear</div>
+      <div class="armor"><h4>Armor</h4>
+        <div class="flex-col">
+          <div class="group-header">
+            <span class="icon">Icon</span>
+            <span class="group-name">Name</span>
+            <span class="group-qty">Qty</span>
+            <span class="group-weight">Weight</span>
+            <span class="bonus">Bonus</span>
+            <span class="equip">Equip/Store</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gear"><h4>Gear</h4>
+        <div class="flex-col">
+          <div class="group-header">
+            <span class="icon">Icon</span>
+            <span class="group-name">Name</span>
+            <span class="group-qty">Qty</span>
+            <span class="group-weight">Weight</span>
+            <span class="bonus">Bonus</span>
+            <span class="equip">Equip/Store</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="resources grid">
       {{! Health and Stress }}
@@ -40,7 +63,7 @@
         <input
           type="text"
           class="maxboxsize minHealth"
-          name="actor.system.header.health.value"
+          name="actor.system.health.value"
           value="{{actor.system.health.value}}"
           data-dtype="Number"
         />
@@ -77,4 +100,5 @@
 
     </div>
 
-  </div></div>
+  </div>
+</div>

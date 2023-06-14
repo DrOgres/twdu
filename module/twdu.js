@@ -47,26 +47,4 @@ Hooks.once("init", async function () {
     return outStr;
   });
 
-  Handlebars.registerHelper("skillBlock", function () {
-    console.log("TWDU | skillBlock " + arguments[0] + " : " + arguments[1]);
-    let arg = arguments[0];
-    let outStr = "";
-    for (let skill in arguments[1]) {
-      if (arguments[1][skill].attribute == arg) {
-        console.log(
-          "TWDU | skillBlock found " + arg + " : " + arguments[1][skill].label
-        );
-        outStr +=
-          `<div>` +
-          game.i18n.localize("twdu." + arguments[1][skill].label) +
-          `</div> <input type="text" name="system.skills.` +
-          arguments[1][skill].name +
-          `" value="` +
-          arguments[1][skill].value +
-          `">`;
-      }
-    }
-
-    return outStr;
-  });
 });
