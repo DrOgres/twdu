@@ -20,11 +20,8 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   async getData() {
-   
     const source = this.actor.toObject();
     const actorData = this.actor.toObject(false);
-
-    
 
     const context = {
       actor: actorData,
@@ -50,7 +47,6 @@ export default class TWDUActorSheet extends ActorSheet {
     return context;
   }
 
-  
   computeSkills(context) {
     console.log("TWDU | computeSkills: " + context.system.skills);
     for (let skill of Object.values(context.system.skills)) {
@@ -61,9 +57,8 @@ export default class TWDUActorSheet extends ActorSheet {
     }
   }
 
-
   computeItems(data) {
-    for(let item of Object.values(data.items)) {
+    for (let item of Object.values(data.items)) {
       item.isWeapon = item.type === "weapon";
       item.isArmor = item.type === "armor";
       item.isGear = item.type === "gear";
@@ -71,9 +66,32 @@ export default class TWDUActorSheet extends ActorSheet {
       item.isTalent = item.type === "talent";
       item.isCriticalInjury = item.type === "criticalInjury";
       item.isProject = item.type === "project";
-
     }
-}
+  }
 
-}
+  activateListeners(html) {
+    if (this.isEditable) {
+      html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
+    }
+  }
 
+  _onToggleClick(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const path = element.dataset.path;
+    console.log("TWDU | _onToggleClick: " + path);
+    switch (path) {
+      case "driveUsed":
+        {
+          console.log("TWDU | _onToggleClick: ", this.actor.system.driveUsed);
+          const value = this.actor.system.driveUsed;
+          this.actor.update({ "system.driveUsed": !value });
+        }
+        break;
+    }
+
+    console.log("TWDU | _onToggleClick: ", this.actor);
+
+    console.log("TWDU | _onToggleClick: ", this.actor.system.driveUsed);
+  }
+}

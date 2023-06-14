@@ -17,9 +17,19 @@
           value="{{system.pcAnchor}}" placeholder="{{localize 'twdu.pcAnchor'}}" /> </h3>
       <h3><label>{{localize 'twdu.npcAnchor'}}</label><input name="system.npcAnchor" type="text"
           value="{{system.npcAnchor}}" placeholder="{{localize 'twdu.npcAnchor'}}" /> </h3>
-      <h3><label>{{localize 'twdu.drive'}}</label><input name="system.drive" type="text"
-          value="{{system.drive}}" placeholder="{{localize 'twdu.drive'}}" />
-        <input type="checkbox" name="system.driveUsed" value="{{system.driveUsed}}" />
+      <h3><label>{{localize 'twdu.drive'}}</label><input name="system.drive" type="text" value="{{system.drive}}"
+          placeholder="{{localize 'twdu.drive'}}" />
+
+        {{#unless system.driveUsed}}
+        <img class="toggle-boolean" data-path="driveUsed" src="systems/twdu/assets/images/box_not_checked.png"
+          height="18px" width="18px">
+        {{/unless}}
+
+        {{#if system.driveUsed}}
+        <img class="toggle-boolean" data-path="driveUsed" src="systems/twdu/assets/images/box_checked.png"
+          height="18px" width="18px">
+        {{/if}}
+
       </h3>
 
     </div>
