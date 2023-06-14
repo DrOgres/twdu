@@ -8,8 +8,8 @@
           placeholder="{{localize 'twdu.name'}}" /></h1>
       <h2 class="flex-row"><label>{{localize 'twdu.archetype'}}</label><input name="system.archetype" type="text"
           value="{{system.archetype}}" placeholder="{{localize 'twdu.archetype'}}" /> </h2>
-      <h2 class="flex-row"><label>{{localize 'twdu.description'}}</label><textarea name="system.description"
-          value="{{system.description}}"></textarea> </h2>
+      <h2 class="flex-row"><label>{{localize 'twdu.description'}}</label><textarea
+          name="system.description">{{actor.system.description}}</textarea> </h2>
 
     </div>
     <div class="group flex-col">
@@ -26,8 +26,8 @@
         {{/unless}}
 
         {{#if system.driveUsed}}
-        <img class="toggle-boolean" data-path="driveUsed" src="systems/twdu/assets/images/box_checked.png"
-          height="18px" width="18px">
+        <img class="toggle-boolean" data-path="driveUsed" src="systems/twdu/assets/images/box_checked.png" height="18px"
+          width="18px">
         {{/if}}
 
       </h3>

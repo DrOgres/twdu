@@ -79,19 +79,14 @@ export default class TWDUActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const path = element.dataset.path;
-    console.log("TWDU | _onToggleClick: " + path);
+
     switch (path) {
       case "driveUsed":
         {
-          console.log("TWDU | _onToggleClick: ", this.actor.system.driveUsed);
           const value = this.actor.system.driveUsed;
           this.actor.update({ "system.driveUsed": !value });
         }
         break;
     }
-
-    console.log("TWDU | _onToggleClick: ", this.actor);
-
-    console.log("TWDU | _onToggleClick: ", this.actor.system.driveUsed);
   }
 }
