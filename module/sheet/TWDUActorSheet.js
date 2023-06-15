@@ -41,8 +41,16 @@ export default class TWDUActorSheet extends ActorSheet {
     };
     console.log("TWDU | context: " + context);
     context.config = CONFIG.twdu;
+    
+    context.noteHTML = await TextEditor.enrichHTML(context.system.notes, {
+      secrets: this.actor.owner,
+      async: true,
+    });
+    
     this.computeItems(context);
     this.computeSkills(context);
+
+
 
     return context;
   }
@@ -79,7 +87,7 @@ export default class TWDUActorSheet extends ActorSheet {
     event.preventDefault();
     const element = event.currentTarget;
     const path = element.dataset.path;
-
+    console.log("TWDU | _onToggleClick: " + this.actor);
     switch (path) {
       case "driveUsed":
         {

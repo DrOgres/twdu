@@ -75,11 +75,11 @@
       <h2
         for="actor.system.header.stress.value"
         class="resource-label gaItem3"
-        title="{{localize 'TWD.RollPanic'}}"
-        data-panicroll="{{actor.system.header.stress.value}}"
-        data-mod="{{actor.system.header.stress.mod}}"
-        data-label="{{localize 'TWD.Stress'}}"
-      >{{localize "TWD.Stress"}}</h2>
+        title="{{localize 'twdu.rollStress'}}"
+        data-panicroll="{{actor.system.stress.value}}"
+        data-mod="{{actor.system.header.stress}}"
+        data-label="{{localize 'twdu.STRESS'}}"
+      >{{localize "twdu.STRESS"}}</h2>
       <div class="resource-content gaItem4">
         <button type="button" class="minus-btn" data-pmbut="minusStress"><i
             class="fas fa-minus-square fa-xs"
@@ -88,8 +88,8 @@
         <input
           type="text"
           class="maxboxsize minStress"
-          name="actor.system.header.stress.value"
-          value="{{actor.system.header.stress.value}}"
+          name="actor.system.stress.value"
+          value="{{actor.system.stress.value}}"
           data-dtype="Number"
         />
         <button type="button" class="plus-btn" data-pmbut="plusStress"><i

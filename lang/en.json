@@ -54,6 +54,7 @@
         "general": "General",
         "bioNotes": "Bio & Notes",
         "inventory": "Inventory",
-        "equipedGear": "Equiped Gear"
+        "equipedGear": "Equiped Gear",
+        "rollStress": "Roll Stress"
     }
 }

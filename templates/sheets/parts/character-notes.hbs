@@ -1,14 +1,7 @@
 <div class="notes-container">
 
   <h3>{{localize "twdu.notes"}}</h3>
-  <div class="notes">
-    {{editor
-      notesHTML
-      target="system.notes"
-      button=true
-      editable=editable
-      engine="prosemirror"
-      collaborate=false
-    }}
+  <div class="notes full-size">
+    {{editor noteHTML content=system.notes target="system.notes" engine='prosemirror' rollData=rollData button=true owner=owner editable=editable}}
   </div>
 </div>

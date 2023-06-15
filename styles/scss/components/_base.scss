@@ -1,5 +1,32 @@
-
+@use "../abstracts" as *;
 
 .editor {
   min-height: 150px;
+}
+
+
+.notes {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  flex: 1;
+
+  &.full-size {
+      display: block;
+      padding: 0;
+
+      label {
+          display: block;
+          border-bottom: 1px solid red;
+          padding: 0.2rem 0.5rem;
+      }
+
+      .editor {
+          height: 250px;
+
+          &-content {
+              padding: 0 0.5rem;
+          }
+      }
+  }
 }

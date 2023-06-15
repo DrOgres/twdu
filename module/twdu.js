@@ -37,7 +37,6 @@ Hooks.once("init", async function () {
   });
 
   Handlebars.registerHelper("TWDUconcat", function () {
-    console.log("TWDU | TWDUconcat: " + arguments[0] + " : " + arguments[1]);
     let outStr = "";
     for (let arg in arguments) {
       if (typeof arguments[arg] != "object") {
