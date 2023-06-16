@@ -38,6 +38,21 @@
           <span class="bonus">Bonus</span>
           <span class="equip">Equip/Store</span>
          </div>
+          {{#each items as |item|}}
+      {{#if item.isArmor}}
+        <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
+          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" /></span>
+          <span class="name">{{item.name}}</span>
+          <span class="damage">{{item.system.damage}}</span>
+          <span class="range">{{item.system.range}}</span>
+          <span class="bonus">{{item.system.bonus}}</span>
+          <span class="weight">{{item.system.weight}}</span>
+          <span class="equip"><input type="checkbox" name="data.equipped" value="{{item.system.equipped}}" /></span>
+
+
+        </div>
+      {{/if}}
+      {{/each}}
         </div>
   <div class="gear">
     <h3>Gear</h3>
@@ -50,6 +65,21 @@
         <span class="bonus">Bonus</span>
         <span class="equip">Equip/Store</span>
       </div>
+       {{#each items as |item|}}
+      {{#if item.isGear}}
+        <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
+          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" /></span>
+          <span class="name">{{item.name}}</span>
+          <span class="damage">{{item.system.damage}}</span>
+          <span class="range">{{item.system.range}}</span>
+          <span class="bonus">{{item.system.bonus}}</span>
+          <span class="weight">{{item.system.weight}}</span>
+          <span class="equip"><input type="checkbox" name="data.equipped" value="{{item.system.equipped}}" /></span>
+
+
+        </div>
+      {{/if}}
+      {{/each}}
     </div>
   </div>
 </div>
