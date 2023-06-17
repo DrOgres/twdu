@@ -39,6 +39,7 @@ export default class TWDUActorSheet extends ActorSheet {
       isHaven: this.actor.type === "haven",
       isChallenge: this.actor.type === "challenge",
       isNPC: this.actor.type === "npc",
+      encumbrance: 0,
     };
     console.log("TWDU | context: ", context);
     console.log("TWDU | context.system.notes: ", context.system.notes);
@@ -64,6 +65,7 @@ export default class TWDUActorSheet extends ActorSheet {
     this.computeItems(context);
     if (context.isPlayer) {
       this.computeSkills(context);
+      context.encumbrance = this.computeEncumbrance(context);
     }
     return context;
   }
@@ -90,9 +92,25 @@ export default class TWDUActorSheet extends ActorSheet {
     }
   }
 
+  computeEncumbrance(data) {
+    // get the equiped items and sum their weight
+
+    let encumbrance = 0;
+    for(let item of Object.values(data.items)) {
+      console.log("TWDU | item: ", item);
+      if(item.system.isEquipped) {
+        encumbrance += item.system.weight;
+      }
+    }
+
+    console.log("TWDU | encumbrance: ", encumbrance);
+    return encumbrance;
+  }
+
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
+    html.find(".equip").click(this._onEquipClick.bind(this));
   }
 
   _onToggleClick(event) {
@@ -107,5 +125,18 @@ export default class TWDUActorSheet extends ActorSheet {
         }
         break;
     }
+  }
+
+  _onEquipClick(event) {
+    event.preventDefault();
+    console.log("TWDU | _onEquipClick: ", event);
+    const div = $(event.currentTarget).parents(".item");
+    const item = this.actor.items.get(div.data("itemId"));
+    // get the item id from the data attribute
+    //const itemId = element.dataset.itemId;
+    console.log("TWDU | item: ", item);
+    //item.system.isEquipped = !item.system.isEquipped;
+    item.update({ "system.isEquipped": !item.system.isEquipped });
+
   }
 }
