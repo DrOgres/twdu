@@ -2,6 +2,9 @@
 
   <h3>{{localize "twdu.notes"}}</h3>
   <div class="notes full-size">
-    {{editor noteHTML content=system.notes target="system.notes" engine='prosemirror' rollData=rollData button=true owner=owner editable=editable}}
+     {{editor notesHTML target="system.notes.value" button=true owner=owner editable=editable }}
+
+
+   
   </div>
 </div>

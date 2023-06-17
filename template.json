@@ -11,10 +11,12 @@
             "description": "",
             "pcAnchor": "",
             "npcAnchor": "",
-            "notes": "Notes",
+            "notes":{
+                "value": "Notes"
+            },
             "drive": "",
             "driveUsed": false,
-            "issues": "",
+            "issues": ["Issue"],
             "health": {
                 "value": 3,
                 "label": "HEALTH",
@@ -118,6 +120,9 @@
 
         },
         "haven": {
+            "notes":{
+                "value": "Haven Notes"
+            }
 
         }
     },

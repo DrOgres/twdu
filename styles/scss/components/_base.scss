@@ -1,8 +1,17 @@
 @use "../abstracts" as *;
 
-.editor {
-  min-height: 150px;
+// Force proper height
+.app.sheet .editor {
+  min-height: 55px;
+  height: 100%;
 }
+
+
+.editor-content {
+  padding: 0.5rem;
+  min-height: 50px;
+}
+
 
 
 .notes {

@@ -27,6 +27,7 @@ export default class TWDUActorSheet extends ActorSheet {
       actor: actorData,
       source: source.system,
       system: actorData.system,
+      flags: this.actor.flags,
       items: actorData.items,
       effects: actorData.effects,
       owner: this.actor.isOwner,
@@ -39,24 +40,36 @@ export default class TWDUActorSheet extends ActorSheet {
       isChallenge: this.actor.type === "challenge",
       isNPC: this.actor.type === "npc",
     };
-    console.log("TWDU | context: " + context);
+    console.log("TWDU | context: ", context);
+    console.log("TWDU | context.system.notes: ", context.system.notes);
     context.config = CONFIG.twdu;
-    
-    context.noteHTML = await TextEditor.enrichHTML(context.system.notes, {
-      secrets: this.actor.owner,
-      async: true,
-    });
-    
+
+    if (context.isPlayer) {
+      console.log("TWDU | Enriching HTML");
+      context.notesHTML = await TextEditor.enrichHTML(
+        context.system.notes.value,
+        {
+          async: true,
+        }
+      );
+    }
+
+    if (context.isHaven) {
+      context.havenNotes = await TextEditor.enrichHTML(
+        context.system.notes.value,
+        { async: true }
+      );
+    }
+
     this.computeItems(context);
-    this.computeSkills(context);
-
-
-
+    if (context.isPlayer) {
+      this.computeSkills(context);
+    }
     return context;
   }
 
   computeSkills(context) {
-    console.log("TWDU | computeSkills: " + context.system.skills);
+    console.log("TWDU | computeSkills: ", context.system.skills);
     for (let skill of Object.values(context.system.skills)) {
       skill.hasStrength = skill.attribute === "str";
       skill.hasAgility = skill.attribute === "agl";
@@ -78,16 +91,14 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   activateListeners(html) {
-    if (this.isEditable) {
-      html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
-    }
+    super.activateListeners(html);
+    html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
   }
 
   _onToggleClick(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const path = element.dataset.path;
-    console.log("TWDU | _onToggleClick: " + this.actor);
     switch (path) {
       case "driveUsed":
         {
