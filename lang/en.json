@@ -18,6 +18,8 @@
         "medicine": "Medicine",
         "headerAttributes": "Attributes & Skills",
         "skill": "Skill",
+        "Skills": "Skills",
+        "talent": "Talent",
         "talents": "Talents",
         "HEALTH": "Health",
         "STRESS": "Stress",
@@ -49,12 +51,19 @@
         "broken": "Broken",
         "none": "None",
         "details": "Details",
-        "talent": "Talent",
         "health": "Health",
         "general": "General",
         "bioNotes": "Talents & Notes",
         "inventory": "Inventory",
         "equipedGear": "Equiped Gear",
-        "rollStress": "Roll Stress"
+        "rollStress": "Roll Stress",
+
+
+
+        "icon": "Icon",
+
+        "ui.add": "Add",
+        "ui.delete": "Delete",
+        "ui.chat": "Chat"
     }
 }
