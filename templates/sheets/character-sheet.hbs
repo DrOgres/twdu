@@ -10,6 +10,18 @@
           value="{{system.archetype}}" placeholder="{{localize 'twdu.archetype'}}" /> </h2>
       <h2 class="flex-row"><label>{{localize 'twdu.description'}}</label><textarea
           name="system.description">{{actor.system.description}}</textarea> </h2>
+      <div class="flex-col scrollable">
+        <h2>{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item"> &#43;</a></h2>
+        <div class="issue-list">
+          {{#each system.issues as |issue key|}}
+          <div class="issue flex-row"><input name="system.issues.{{key}}" type="text" value="{{issue}}"
+              placeholder="{{localize 'twdu.issues'}}" /> <a class="item-control item-delete"
+              title='{{localize  "twdu.ui.delete"}}'><i class="fas fa-trash"></i></a>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
 
     </div>
     <div class="group flex-col">

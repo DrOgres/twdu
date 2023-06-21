@@ -60,10 +60,11 @@
 
 
 
-        "icon": "Icon",
-
-        "ui.add": "Add",
+        "ui.icon": "Icon",
+        "ui.equip": "Equip/Store",
+        "ui.add": "Add New",
         "ui.delete": "Delete",
-        "ui.chat": "Chat"
+        "ui.chat": "Chat",
+        "ui.edit": "Edit"
     }
 }

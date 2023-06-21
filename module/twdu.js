@@ -48,4 +48,15 @@ Hooks.once("init", async function () {
     return outStr;
   });
 
+  
+  Handlebars.registerHelper("times", function(n, content) {
+    let result = "";
+    for (let i = 0; i < n; ++i){
+        content.data.index = i + 1;
+        result = result + content.fn(i);
+    }
+    
+    return result;
+});
+
 });

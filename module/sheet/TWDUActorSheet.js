@@ -111,6 +111,9 @@ export default class TWDUActorSheet extends ActorSheet {
     super.activateListeners(html);
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
     html.find(".equip").click(this._onEquipClick.bind(this));
+    html
+    .find(".exp-boxes")
+    .on("click contextmenu", this._onExpChange.bind(this));
   }
 
   _onToggleClick(event) {
@@ -138,5 +141,19 @@ export default class TWDUActorSheet extends ActorSheet {
     //item.system.isEquipped = !item.system.isEquipped;
     item.update({ "system.isEquipped": !item.system.isEquipped });
 
+  }
+
+  _onExpChange(event) {
+    event.preventDefault();
+
+    let actor = this.actor;
+    let currentCount = actor.system.experience.value;
+
+    let newCount =
+      event.type == "click"
+        ? Math.min(currentCount + 1, 10)
+        : Math.max(currentCount - 1, 0);
+
+    actor.update({ "system.experience.value": newCount });
   }
 }
