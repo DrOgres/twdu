@@ -26,14 +26,14 @@
           {{#each items as |item|}}
           {{#if item.isWeapon}}
           {{#if item.system.isEquipped}}
-          <div class="favorite item armor flex row center align-center" data-item-id="{{item._id}}">
+          <div class="item armor flex row center align-center" data-item-id="{{item._id}}">
             <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
             <div class="button">
               <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-              <a class="item-control fav-togle" title='{{localize  "twdu.ui.equip"}}'><i class="fas fa-star"></i></a>
+              <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
               <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
             </div>
           </div>
@@ -59,14 +59,14 @@
           {{#each items as |item|}}
           {{#if item.isArmor}}
           {{#if item.system.isEquipped}}
-          <div class="favorite item armor flex row center align-center" data-item-id="{{item._id}}">
+          <div class="item armor flex row center align-center" data-item-id="{{item._id}}">
             <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
             <div class="button">
               <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-              <a class="item-control fav-togle" title='{{localize  "twdu.ui.equip"}}'><i class="fas fa-star"></i></a>
+              <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
               <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
             </div>
           </div>
@@ -92,14 +92,14 @@
           {{#each items as |item|}}
           {{#if item.isGear}}
           {{#if item.system.isEquipped}}
-          <div class="favorite item armor flex row center align-center" data-item-id="{{item._id}}">
+          <div class="item armor flex row center align-center" data-item-id="{{item._id}}">
             <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
             <div class="button">
               <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-              <a class="item-control fav-togle" title='{{localize  "twdu.ui.equip"}}'><i class="fas fa-star"></i></a>
+              <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
               <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
             </div>
           </div>

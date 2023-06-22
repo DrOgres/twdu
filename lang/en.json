@@ -61,7 +61,8 @@
 
 
         "ui.icon": "Icon",
-        "ui.equip": "Equip/Store",
+        "ui.equip": "Equip Item",
+        "ui.store": "Store Item",
         "ui.add": "Add New",
         "ui.delete": "Delete",
         "ui.chat": "Chat",

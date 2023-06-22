@@ -27,13 +27,11 @@
             </div>
         <span class="equip" data-item-id="{{item.id}}">
              {{#unless item.system.isEquipped}}
-              <img class="equip-toggle" src="systems/twdu/assets/images/box_not_checked.png"
-                height="18px" width="18px" title='{{localize  "twdu.ui.equip"}}'>
+               <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
               {{/unless}}
 
               {{#if item.system.isEquipped}}
-              <img class="equip-toggle" src="systems/twdu/assets/images/box_checked.png"
-                height="18px" width="18px" title='{{localize  "twdu.ui.equip"}}'>
+              <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>  
               {{/if}}
         </span>
 
@@ -69,13 +67,11 @@
             </div>
           <span class="equip" data-item-id="{{item.id}}">
              {{#unless item.system.isEquipped}}
-              <img class="equip-toggle"  src="systems/twdu/assets/images/box_not_checked.png"
-                height="18px" width="18px" title='{{localize  "twdu.ui.equip"}}'>
+               <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
               {{/unless}}
 
               {{#if item.system.isEquipped}}
-              <img class="equip-toggle" src="systems/twdu/assets/images/box_checked.png"
-                height="18px" width="18px" title='{{localize  "twdu.ui.equip"}}'>
+              <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>  
               {{/if}}
           </span>
 
@@ -111,13 +107,11 @@
               <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
             </div>
               {{#unless item.system.isEquipped}}
-              <img class="equip-toggle" src="systems/twdu/assets/images/box_not_checked.png"
-                height="18px" width="18px" title='{{localize  "twdu.ui.equip"}}'>
+              <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
               {{/unless}}
 
               {{#if item.system.isEquipped}}
-              <img class="equip-toggle"  src="systems/twdu/assets/images/box_checked.png"
-                height="18px" width="18px" title='{{localize  "twdu.ui.equip"}}'>
+              <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>  
               {{/if}}
             </span>
 
