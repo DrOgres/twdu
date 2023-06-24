@@ -114,7 +114,33 @@ export default class TWDUActorSheet extends ActorSheet {
     html
     .find(".exp-boxes")
     .on("click contextmenu", this._onExpChange.bind(this));
+    html.find(".add-item").click(this._onItemCreate.bind(this));
   }
+
+  _onItemCreate(event) {
+    event.preventDefault();
+    console.log("TWDU | _onItemCreate: ", event);
+
+    // determine the item type from the dataset
+    const type = event.currentTarget.dataset.type;
+    console.log("TWDU | type: ", type);
+
+    // create and add the item to the actor
+    switch (type) {
+      case "issue":
+        {
+          // add a new string to the system.issues array
+          console.log("TWDU | Adding an issue");
+          const issues = this.actor.system.issues;
+          let length = Object.keys(issues).length;
+          const newIssues = {...issues, [length]: "New" }; //TODO localize this string
+          this.actor.update({ "system.issues": newIssues });
+
+        }
+        break;
+      }
+  }
+
 
   _onToggleClick(event) {
     event.preventDefault();
