@@ -115,6 +115,14 @@ export default class TWDUActorSheet extends ActorSheet {
     .find(".exp-boxes")
     .on("click contextmenu", this._onExpChange.bind(this));
     html.find(".add-item").click(this._onItemCreate.bind(this));
+    html.find(".item-delete").click(this._onItemDelete.bind(this));
+  }
+
+  _onItemDelete(event) {
+    event.preventDefault();
+    console.log("TWDU | _onItemDelete: ", event);
+    const key = event.currentTarget.dataset.key;
+    console.log("TWDU | key: ", key);
   }
 
   _onItemCreate(event) {

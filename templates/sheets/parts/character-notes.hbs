@@ -1,13 +1,13 @@
 <div class="container flex-row">
 
-  <div class="flex column heavy-border wrapper" style="width: 99%;">
-    <b class="title" style="width: 85%; margin: auto;">{{localize "twdu.talents"}}</b>
-    <div class="talents flex column margin grow">
-      <div class="talent grid grid-4col-fr center light-border w-100">
+  <div class="flex-col w-300p" >
+    <b class="title" >{{localize "twdu.talents"}}</b>
+    <div class="talents flex-row margin grow">
+      <div class="talent grid four-col center light-border w-100">
         <b class="icon">{{localize "twdu.ui.icon"}}</b>
         <b class="name">{{localize "twdu.talent"}}</b>
         <b class="description">{{localize "twdu.description"}}</b>
-        <a class="button item-create" title='{{localize  "twdu.ui.add"}}' data-type="talent"><i
+        <a class="button add-item" title='{{localize  "twdu.ui.add"}}' data-type="talent"><i
             class="fas fa-plus"></i></a>
       </div>
       <div class="scrollable">
@@ -28,9 +28,9 @@
       </div>
     </div>
   </div>
-  <div class="notes flex-col">
+  <div class="flex-col w-100">
     <h3>{{localize "twdu.notes"}}</h3>
-    <div class="notes full-size">
+    <div class="full-size">
       {{editor notesHTML target="system.notes.value" button=true owner=owner editable=editable }}
     </div>
   </div>
