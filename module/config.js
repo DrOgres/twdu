@@ -7,3 +7,11 @@ twdu.combatSkills = {
     close: "twdu.closeCombat",
 
 }
+
+
+twdu.ranges = {
+    short: "twdu.short",
+    long: "twdu.long",
+    extreme: "twdu.extreme",
+}
+

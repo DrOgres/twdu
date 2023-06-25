@@ -20,6 +20,14 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.five-col {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.six-col {
+  grid-template-columns: repeat(6, 1fr);
+}
+
 .col-60-40 {
   grid-template-columns: 60% 40%;
 }
@@ -76,18 +84,19 @@
   padding: 0.2rem 0.5rem;
   flex: 1;
 }
-.notes.full-size {
+
+.full-size {
   display: block;
   padding: 0;
 }
-.notes.full-size label {
+.full-size label {
   display: block;
   border-bottom: 1px solid red;
   padding: 0.2rem 0.5rem;
 }
-.notes.full-size .editor {
+.full-size .editor {
   height: 250px;
 }
-.notes.full-size .editor-content {
+.full-size .editor-content {
   padding: 0 0.5rem;
 }/*# sourceMappingURL=twdu.css.map */

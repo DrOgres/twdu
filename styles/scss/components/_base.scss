@@ -14,28 +14,32 @@
 
 
 
+
+
 .notes {
   display: flex;
   gap: 0.3rem;
   padding: 0.2rem 0.5rem;
   flex: 1;
 
-  &.full-size {
+  
+}
+
+.full-size {
+  display: block;
+  padding: 0;
+
+  label {
       display: block;
-      padding: 0;
+      border-bottom: 1px solid red;
+      padding: 0.2rem 0.5rem;
+  }
 
-      label {
-          display: block;
-          border-bottom: 1px solid red;
-          padding: 0.2rem 0.5rem;
-      }
+  .editor {
+      height: 250px;
 
-      .editor {
-          height: 250px;
-
-          &-content {
-              padding: 0 0.5rem;
-          }
+      &-content {
+          padding: 0 0.5rem;
       }
   }
 }

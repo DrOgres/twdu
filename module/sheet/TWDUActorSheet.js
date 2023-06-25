@@ -116,6 +116,18 @@ export default class TWDUActorSheet extends ActorSheet {
     .on("click contextmenu", this._onExpChange.bind(this));
     html.find(".add-item").click(this._onItemCreate.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
+    html.find(".item-edit").click(this._onItemEdit.bind(this));
+    html.find(".to-chat").click(this._onItemToChat.bind(this));
+  }
+
+  _onItemToChat(event) {
+    event.preventDefault();
+    console.log("TWDU | _onItemToChat: ", event);
+  }
+
+  _onItemEdit(event) {
+    event.preventDefault();
+    console.log("TWDU | _onItemEdit: ", event);
   }
 
   _onItemDelete(event) {
