@@ -128,13 +128,41 @@ export default class TWDUActorSheet extends ActorSheet {
   _onItemEdit(event) {
     event.preventDefault();
     console.log("TWDU | _onItemEdit: ", event);
+    const div = $(event.currentTarget).parents(".item");
+    const item = this.actor.items.get(div.data("itemId"));
+    item.sheet.render(true);
   }
 
   _onItemDelete(event) {
     event.preventDefault();
     console.log("TWDU | _onItemDelete: ", event);
     const key = event.currentTarget.dataset.key;
+    const type = event.currentTarget.dataset.type;
     console.log("TWDU | key: ", key);
+    console.log("TWDU | type: ", type);
+
+    // Embeded documents
+    if (type === "item"){
+      const div = $(event.currentTarget).parents(".item");
+      this.actor.deleteEmbeddedDocuments("Item", [div.data("itemId")]);
+      div.slideUp(200, () => this.render(false));
+    }
+
+    // issues
+    if (type === "issue") {
+      const issues = this.actor.system.issues;
+      console.log("TWDU | issues: ", issues);
+      const newIssues = Object.keys(issues)
+        .filter((k) => k !== key)
+        .reduce((obj, k) => {
+          obj[k] = issues[k];
+          return obj;
+        }, {});
+      console.log("TWDU | newIssues: ", newIssues);
+      this.actor.update({ "system.issues": '' });
+      this.actor.update({ "system.issues": newIssues });
+      console.log("TWDU | issues: ", this.actor.system.issues);
+    }
   }
 
   _onItemCreate(event) {
@@ -153,6 +181,7 @@ export default class TWDUActorSheet extends ActorSheet {
           console.log("TWDU | Adding an issue");
           const issues = this.actor.system.issues;
           let length = Object.keys(issues).length;
+          //TODO  generate a uniqe key
           const newIssues = {...issues, [length]: "New" }; //TODO localize this string
           this.actor.update({ "system.issues": newIssues });
 

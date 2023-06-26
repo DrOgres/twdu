@@ -16,7 +16,7 @@
           {{#each system.issues as |issue key|}}
           <div class="issue flex-row"><input name="system.issues.{{key}}" type="text" value="{{issue}}"
               placeholder="{{localize 'twdu.issues'}}" /> <a class="item-control item-delete"
-              title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"><i class="fas fa-trash"></i></a>
+              title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}" data-type="issue"><i class="fas fa-trash"></i></a>
           </div>
           {{/each}}
         </div>
