@@ -17,7 +17,6 @@ export const buildChatCard = function (type, data) {
   console.log("TWDU | buildChatCard: ", type, data);
 
   let message = "";
-  let chatData = {};
   let token = "";
   const actor = game.actors.get(ChatMessage.getSpeaker().actor);
   if (actor) {
@@ -29,15 +28,88 @@ export const buildChatCard = function (type, data) {
   switch (type) {
     case "weapon":
       console.log("TWDU | weapon: ", data);
+      let skill = "";
+      if (data.system.skill == "closeCombat") {
+        skill = game.i18n.localize("SKILL.CLOSE_COMBAT");
+      } else if (data.system.skill == "rangedCombat") {
+        skill = game.i18n.localize("SKILL.RANGED_COMBAT");
+      } else {
+        skill = game.i18n.localize("SKILL.FORCE");
+      }
+      message =
+        `<div class="card-holder" style="position: relative;">
+            <img src="` +
+        token +
+        `" width="45" height="45" class="roll-token" />
+            <div class='chat-flavor'>` +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='chat-item-info flex column'>" +
+        "<b>" +
+        game.i18n.localize("WEAPON.DAMAGE") +
+        ": </b>" +
+        data.system.damage +
+        "</br>" +
+        "<b>" +
+        game.i18n.localize("WEAPON.RANGE") +
+        ": </b>" +
+        data.system.range +
+        "</br>" +
+        "<b>" +
+        game.i18n.localize("WEAPON.BONUS") +
+        ": </b>" +
+        data.system.bonus +
+        "</br>" +
+        "<b>" +
+        game.i18n.localize("WEAPON.AVAILABILITY") +
+        ": </b>" +
+        data.system.availability +
+        "</br>" +
+        "<b>" +
+        game.i18n.localize("WEAPON.SKILL") +
+        ": </b>" +
+        skill +
+        "</br>" +
+        `</div></div>`;
       break;
     case "armor":
       console.log("TWDU | armor: ", data);
+      message =
+        `<div class="card-holder" style="position: relative;">
+              <img src="` +
+        token +
+        `" width="45" height="45" class="roll-token" />
+              <div class='chat-flavor'>` +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='chat-item-info flex column'>" +
+        "<div><b>" +
+        game.i18n.localize("ARMOR.PROTECTION") +
+        ": </b>" +
+        data.system.protection +
+        "</div>" +
+        "<div><b>" +
+        game.i18n.localize("ARMOR.AGILITY") +
+        ": </b>" +
+        data.system.agility +
+        "</div>" +
+        "<div><b>" +
+        game.i18n.localize("ARMOR.AVAILABILITY") +
+        ": </b>" +
+        data.system.availability +
+        "</div>" +
+        `</div></div>`;
       break;
     case "gear":
       console.log("TWDU | gear: ", data);
       let description = "";
       let risk = "";
-
       if (data.system.description != "") {
         description =
           "<b>" +
@@ -97,9 +169,68 @@ export const buildChatCard = function (type, data) {
       break;
     case "talent":
       console.log("TWDU | talent: ", data);
+      message =
+        `<div class="card-holder" style="position: relative;">
+          <img src="` +
+        token +
+        `" width="45" height="45" class="roll-token" />
+          <div class='chat-flavor'>` +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='chat-item-info flex column'>" +
+        "<b>" +
+        game.i18n.localize("TALENT.DESCRIPTION") +
+        ": </b>" +
+        data.system.description +
+        "</br>" +
+        `</div></div>`;
       break;
     case "criticalInjury":
       console.log("TWDU | criticalInjury: ", data);
+      let timeLimit = "";
+      if (data.system.timeLimit != "") {
+        timeLimit =
+          "<b>" +
+          game.i18n.localize("CRITICAL_INJURY.TIME_LIMIT") +
+          ": </b>" +
+          data.system.timeLimit +
+          "</br>";
+      }
+
+      message =
+        `<div class="card-holder" style="position: relative;">
+            <img src="` +
+        token +
+        `" width="45" height="45" class="roll-token" />
+            <div class='chat-flavor'>` +
+        game.i18n.localize("CRITICAL_INJURY.NAME") +
+        ": " +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='chat-item-info flex column'>" +
+        "<b>" +
+        game.i18n.localize("CRITICAL_INJURY.TYPE") +
+        `: </b><span class="title-case">` +
+        data.system.type +
+        "</span></br>" +
+        "<b>" +
+        game.i18n.localize("CRITICAL_INJURY.FATAL") +
+        ": </b>" +
+        data.system.fatal +
+        "</br>" +
+        timeLimit +
+        "<b>" +
+        game.i18n.localize("CRITICAL_INJURY.EFFECT") +
+        ": </b>" +
+        data.system.effect +
+        "</br>" +
+        `</div></div>`;
       break;
     case "project":
       console.log("TWDU | project: ", data);
@@ -109,5 +240,12 @@ export const buildChatCard = function (type, data) {
       break;
   }
 
-    return chatData;
+  let chatData = {
+    speaker: ChatMessage.getSpeaker(),
+    user: game.user.id,
+    rollMode: game.settings.get("core", "rollMode"),
+    content: message,
+  };
+
+  return chatData;
 };
