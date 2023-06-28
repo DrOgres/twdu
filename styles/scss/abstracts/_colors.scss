@@ -1,21 +1,21 @@
-$white: #fff;
-$black: #000;
+$white: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 0%);
 
-$neutral-1: #191813;
-$neutral-2: #c9c7b8;
-$neutral-3: #b5b3a4;
-$neutral-4: #444;
+$neutral-1: hsl(50, 14%, 9%);
+$neutral-2: hsl(53, 14%, 75%);
+$neutral-3: hsl(53, 10%, 68%);
+$neutral-4: hsl(0, 0%, 27%);
 
-$highlight-1: rgb(112, 43, 51);
-$highlight-2: rgb(122, 37, 44);
-$highlight-3: rgb(188, 146, 151);
+$highlight-1: hsl(353, 45%, 30%);
+$highlight-2: hsl(355, 53%, 31%);
+$highlight-3: hsl(353, 24%, 65%);
 
-$shadow-1: rgba(112, 43, 51, 0.3);
-
-
-$green-1: rgb(32, 149, 73);
+$shadow-1: hsla(353, 45%, 30%, 0.3);
 
 
+$green-1: hsl(141, 65%, 35%);
 
-$header-1: rgba(170, 92, 63, 0.214);
-$header-2: rgba(214, 136, 107, 0.116);
+
+
+$header-1: hsla(16, 46%, 46%, 0.214);
+$header-2: hsla(16, 57%, 63%, 0.116);

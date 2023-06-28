@@ -1,3 +1,6 @@
+import { buildChatCard } from "../util/chat.js";
+
+
 export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -123,6 +126,11 @@ export default class TWDUActorSheet extends ActorSheet {
   _onItemToChat(event) {
     event.preventDefault();
     console.log("TWDU | _onItemToChat: ", event);
+    const div = $(event.currentTarget).parents(".item");
+    const item = this.actor.items.get(div.data("itemId"));
+    let type = item.type;
+    let chatData = buildChatCard(type, item);
+    ChatMessage.create(chatData, {});
   }
 
   _onItemEdit(event) {
