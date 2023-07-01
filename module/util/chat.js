@@ -1,5 +1,5 @@
 export const hideChatActionButtons = function (message, html, data) {
-  const card = html.find(".vaesen.chat-card");
+  const card = html.find(".twdu.chat-card");
 
   if (card.length > 0) {
     let user = game.actors.get(card.attr("data-owner-id"));
@@ -237,9 +237,10 @@ export const buildChatCard = function (type, data) {
       break;
     default:
       console.log("TWDU | default: ", data);
+      console.error("TWDU | buildChatCard: we should not be here");
       break;
   }
-
+  console.log("TWDU | message: ", message);
   let chatData = {
     speaker: ChatMessage.getSpeaker(),
     user: game.user.id,

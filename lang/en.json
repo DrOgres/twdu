@@ -1,9 +1,16 @@
 {
     "twdu": {
+        "name": "Name",
+        "archetype": "Archetype",
+        "description": "Description",
+        "pcAnchor": "PC Anchor",
+        "npcAnchor": "NPC Anchor",
+
         "AGILITY": "Agility",
         "STRENGTH": "Strength",
         "WITS": "Wits",
         "EMPATHY": "Empathy",
+        
         "closeCombat": "Close Combat",
         "endure": "Endure",
         "force": "Force",
@@ -16,6 +23,7 @@
         "leadership": "Leadership", 
         "manipulation": "Manipulation",
         "medicine": "Medicine",
+
         "headerAttributes": "Attributes & Skills",
         "skill": "Skill",
         "Skills": "Skills",
@@ -23,12 +31,8 @@
         "talents": "Talents",
         "HEALTH": "Health",
         "STRESS": "Stress",
-        "name": "Name",
-        "archetype": "Archetype",
-        "description": "Description",
-        "pcAnchor": "PC Anchor",
-        "npcAnchor": "NPC Anchor",
-        "notes": "Notes",
+
+
         "drive": "Drive",
         "issues": "Issues",
         "experience": "Experience",
@@ -54,6 +58,7 @@
         "health": "Health",
         "general": "General",
         "bioNotes": "Talents & Notes",
+        "notes": "Notes",
         "inventory": "Inventory",
         "equipedGear": "Equiped Gear",
         "rollStress": "Roll Stress",

@@ -16,7 +16,7 @@
             },
             "drive": "",
             "driveUsed": false,
-            "issues": ["Issue"],
+            "issues": [{"0": "Issue"}],
             "health": {
                 "value": 3,
                 "label": "HEALTH",
@@ -134,7 +134,8 @@
             "tinyItem",
             "project",
             "talent",
-            "criticalInjury"
+            "criticalInjury",
+            "vehicle"
         ],
         "templates": {
             "itemEquiped": {
@@ -187,6 +188,14 @@
             "effect": "",
             "workforce": "",
             "finishDate": ""
+          },
+          "vehicle": {
+            "templates": ["itemCommonProperties"],
+            "maneuverability": "",
+            "damage": "",
+            "armor": "", 
+            "hull": "",
+            "issue": ""
           }
     }
 }

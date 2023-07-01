@@ -1,0 +1,56 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="item-header sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" class="item-img" height="64" width="64" />
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+    <div class="vehicle">
+        <div class="grid-align-end">
+          <h3>{{localize "twdu.maneuverability"}}</h3>
+          <input
+            class="light"
+            name="system.bonus"
+            type="text"
+            value="{{data.system.maneuverability}}"
+          />
+        </div>
+        <div class="grid-align-end">
+          <h3>{{localize "twdu.damage"}}</h3>
+          <input
+            class="light"
+            name="system.bonus"
+            type="text"
+            value="{{data.system.damage}}"
+          />
+        </div>
+        <div class="grid-align-end">
+          <h3>{{localize "twdu.hull"}}</h3>
+          <input
+            class="light"
+            name="system.bonus"
+            type="text"
+            value="{{data.system.hull}}"
+          />
+        </div>
+        <div class="grid-align-end">
+          <h3>{{localize "twdu.armor"}}</h3>
+          <input
+            class="light"
+            name="system.bonus"
+            type="text"
+            value="{{data.system.armor}}"
+          />
+        </div>
+        <div class="grid-align-end">
+          <h3>{{localize "twdu.issue"}}</h3>
+          <input
+            class="light"
+            name="system.bonus"
+            type="text"
+            value="{{data.system.issue}}"
+          />
+        </div>
+
+    </div>
+
+
+</form>

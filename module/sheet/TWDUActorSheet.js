@@ -43,6 +43,7 @@ export default class TWDUActorSheet extends ActorSheet {
       isChallenge: this.actor.type === "challenge",
       isNPC: this.actor.type === "npc",
       encumbrance: 0,
+      maxEncumbrance: this.actor.system.attributes.str.value + 2,
     };
     console.log("TWDU | context: ", context);
     console.log("TWDU | context.system.notes: ", context.system.notes);
@@ -97,15 +98,13 @@ export default class TWDUActorSheet extends ActorSheet {
 
   computeEncumbrance(data) {
     // get the equiped items and sum their weight
-
     let encumbrance = 0;
     for(let item of Object.values(data.items)) {
       console.log("TWDU | item: ", item);
       if(item.system.isEquipped) {
-        encumbrance += item.system.weight;
+        encumbrance += Number(item.system.weight);
       }
     }
-
     console.log("TWDU | encumbrance: ", encumbrance);
     return encumbrance;
   }
@@ -159,7 +158,7 @@ export default class TWDUActorSheet extends ActorSheet {
     // issues
     if (type === "issue") {
       const issues = this.actor.system.issues;
-      console.log("TWDU | issues: ", issues);
+      console.log("TWDU | delete Item issues: ", Object(this.actor.system.issues));
       const newIssues = Object.keys(issues)
         .filter((k) => k !== key)
         .reduce((obj, k) => {
@@ -168,8 +167,11 @@ export default class TWDUActorSheet extends ActorSheet {
         }, {});
       console.log("TWDU | newIssues: ", newIssues);
       this.actor.update({ "system.issues": '' });
-      this.actor.update({ "system.issues": newIssues });
+      this.actor.system.issues = newIssues;
+      
       console.log("TWDU | issues: ", this.actor.system.issues);
+      this.actor.update({ "system.issues": newIssues});
+      console.log("TWDU | actor: ", this.actor.system);
     }
   }
 

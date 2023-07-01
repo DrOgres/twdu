@@ -13,10 +13,10 @@
       <div class="flex-col scrollable">
         <h2 >{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue"> &#43;</a></h2>
         <div class="issue-list">
-          {{#each system.issues as |issue key|}}
-          <div class="issue flex-row"><input name="system.issues.{{key}}" type="text" value="{{issue}}"
+          {{#each system.issues as |issue index|}}
+          <div class="issue flex-row"><input name="system.issues.{{index}}" type="text" value="{{issue}}"
               placeholder="{{localize 'twdu.issues'}}" /> <a class="item-control item-delete"
-              title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}" data-type="issue"><i class="fas fa-trash"></i></a>
+              title='{{localize  "twdu.ui.delete"}}' data-key="{{index}}" data-type="issue"><i class="fas fa-trash"></i></a>
           </div>
           {{/each}}
         </div>
