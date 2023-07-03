@@ -135,7 +135,8 @@
             "project",
             "talent",
             "criticalInjury",
-            "vehicle"
+            "vehicle",
+            "issue"
         ],
         "templates": {
             "itemEquiped": {
@@ -196,6 +197,10 @@
             "armor": "", 
             "hull": "",
             "issue": ""
-          }
+          },
+            "issue": {
+                "description": "",
+                "notes": ""
+            }
     }
 }

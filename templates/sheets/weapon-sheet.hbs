@@ -5,7 +5,10 @@
     </header>
     <div class="weapon">
         {{localize "twdu.damage"}} : <input name="system.damage" type="text" value="{{data.system.damage}}" placeholder="0" data-dtype="Number" />
+        {{!-- Range should be set up as a select  --}}
         {{localize "twdu.range"}} : <input name="system.range" type="text" value="{{data.system.range}}" placeholder="close" />
+        {{!-- weight should be set up as a select --}}
+         {{localize "twdu.weight"}} : <input name="system.weight" type="text" value="{{data.system.weight}}" placeholder="close" />
 
         <h3>{{localize "twdu.skill"}}: &nbsp;</h3>
           <select name="system.skill">
@@ -19,7 +22,5 @@
                 }}</option>
             {{/select}}
           </select>
-       
     </div>  
-
 </form>
