@@ -3,28 +3,35 @@
   <header class="actor-header flex-row gap-sm">
     <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
       style="width: 175px; height: 175px;" />
-    <div class="group flex-col">
-      <h1 class="input name"><input name="name" type="text" value="{{actor.name}}"
+    <div class="grid two-col">
+      <h1 class="input name span-2"><input name="name" type="text" value="{{actor.name}}"
           placeholder="{{localize 'twdu.name'}}" /></h1>
+
+
       <h2 class="flex-row"><label>{{localize 'twdu.archetype'}}</label><input name="system.archetype" type="text"
           value="{{system.archetype}}" placeholder="{{localize 'twdu.archetype'}}" /> </h2>
+
       <h2 class="flex-row"><label>{{localize 'twdu.description'}}</label><textarea
           name="system.description">{{actor.system.description}}</textarea> </h2>
+
       <div class="flex-col scrollable">
-        <h2 >{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue"> &#43;</a></h2>
+        <h2>{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue">
+            &#43;</a></h2>
         <div class="issue-list">
           {{#each system.issues as |issue index|}}
           <div class="issue flex-row"><input name="system.issues.{{index}}" type="text" value="{{issue}}"
               placeholder="{{localize 'twdu.issues'}}" /> <a class="item-control item-delete"
-              title='{{localize  "twdu.ui.delete"}}' data-key="{{index}}" data-type="issue"><i class="fas fa-trash"></i></a>
+              title='{{localize  "twdu.ui.delete"}}' data-key="{{index}}" data-type="issue"><i
+                class="fas fa-trash"></i></a>
           </div>
           {{/each}}
         </div>
       </div>
 
 
-    </div>
-    <div class="group flex-col">
+
+
+
       <h3><label>{{localize 'twdu.pcAnchor'}}</label><input name="system.pcAnchor" type="text"
           value="{{system.pcAnchor}}" placeholder="{{localize 'twdu.pcAnchor'}}" /> </h3>
       <h3><label>{{localize 'twdu.npcAnchor'}}</label><input name="system.npcAnchor" type="text"

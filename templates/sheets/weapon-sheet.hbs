@@ -13,13 +13,9 @@
         <h3>{{localize "twdu.skill"}}: &nbsp;</h3>
           <select name="system.skill">
             {{#select data.system.skill}}
-              <option value="force">{{localize "twdu.force"}}</option>
-              <option value="closeCombat">{{localize
-                  "twdu.closeCombat"
-                }}</option>
-              <option value="rangedCombat">{{localize
-                  "twdu.rangedCombat"
-                }}</option>
+              {{#each config.combatSkills as |skill|}}
+                <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}</option>
+              {{/each}}
             {{/select}}
           </select>
     </div>  

@@ -1,3 +1,5 @@
+
+
 export default class TWDUItemSheet extends ItemSheet {
 
     get template() {
@@ -7,6 +9,7 @@ export default class TWDUItemSheet extends ItemSheet {
     getData() { 
         const data = super.getData();
         data.config = CONFIG.twdu;
+        console.log("TWDU | data: ", data);
         return data;
     }
 

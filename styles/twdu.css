@@ -1,3 +1,17 @@
+.window-app .window-content {
+  background: url(/systems/twdu/assets/images/background.webp) no-repeat;
+  background-size: cover;
+}
+
+.chat-message {
+  background: url(/systems/twdu/assets/images/background.webp) no-repeat;
+  background-size: cover;
+}
+
+img {
+  border: none;
+}
+
 .grid {
   display: grid;
 }
@@ -30,6 +44,10 @@
 
 .col-60-40 {
   grid-template-columns: 60% 40%;
+}
+
+.span-2 {
+  grid-column: span 2;
 }
 
 .span-4 {

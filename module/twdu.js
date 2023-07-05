@@ -10,6 +10,8 @@ Hooks.once("init", async function () {
   console.log("TWDU | Initializing TWDU");
 
   CONFIG.twdu = twdu;
+  console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
+
   CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
     {
       pattern: /@RAW\[(.+?)\]/gm,
@@ -58,5 +60,20 @@ Hooks.once("init", async function () {
     
     return result;
 });
+
+  Handlebars.registerHelper("TWDUinvert", function () {
+      let keys = Object.keys(arguments[0]);
+      keys.sort(function(a, b){return b-a});
+      let sorted = [];
+      for (let i = 0; i < keys.length; i++) {
+          let k = keys[i];
+          sorted.push(arguments[0][k]);
+      }
+      return sorted;
+    });
+
+    Handlebars.registerHelper("subtract", function () {
+      return arguments[0] - arguments[1];
+    });
 
 });

@@ -42,6 +42,10 @@
 
 // span and gap options
 
+.span-2{
+    grid-column: span 2;
+}
+
 .span-4{
     grid-column: span 4;
 }
