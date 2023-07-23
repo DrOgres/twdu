@@ -11,6 +11,32 @@
     background-size: cover;
 }
 
+a:hover {
+    text-shadow: 1px 1px 2px $shadow-1;
+}
+
+#sidebar .tabs {
+    color: $neutral-3;
+    
+    a:hover {
+        text-shadow: 1px 1px 3px black;
+    }
+}
+
+.tabs{
+    background-color: $header-bg-2;
+    font: 1.5em 'Ash', sans-serif;
+    color: $header-1;
+    text-transform: uppercase;
+    font-weight: normal;
+
+    .item.active{
+        color: $highlight-1;
+        text-shadow: 1px 1px 2px $shadow-1;
+        background-color: $header-bg-1;
+    }
+}
+
 img{
     border: none;
 }

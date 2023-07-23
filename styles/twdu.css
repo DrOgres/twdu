@@ -61,6 +61,30 @@
   background-size: cover;
 }
 
+a:hover {
+  text-shadow: 1px 1px 2px hsla(353, 45%, 30%, 0.3);
+}
+
+#sidebar .tabs {
+  color: hsl(53, 10%, 68%);
+}
+#sidebar .tabs a:hover {
+  text-shadow: 1px 1px 3px black;
+}
+
+.tabs {
+  background-color: hsla(36, 11%, 53%, 0.3);
+  font: 1.5em "Ash", sans-serif;
+  color: hsl(57, 15%, 26%);
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.tabs .item.active {
+  color: hsl(353, 45%, 30%);
+  text-shadow: 1px 1px 2px hsla(353, 45%, 30%, 0.3);
+  background-color: hsla(36, 11%, 43%, 0.5);
+}
+
 img {
   border: none;
 }
@@ -132,7 +156,7 @@ h2 {
   font-weight: normal;
   text-transform: uppercase;
   color: hsl(57, 15%, 26%);
-  background-color: hsla(0, 13%, 29%, 0.342);
+  background-color: hsla(36, 11%, 43%, 0.5);
 }
 
 .grid {
