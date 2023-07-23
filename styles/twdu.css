@@ -1,3 +1,56 @@
+@font-face {
+  font-family: "Blue Highway";
+  src: url("../assets/fonts/BlueHighway-bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Ash";
+  src: url("../assets/fonts/DCC - Ash.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Impact";
+  src: url("../assets/fonts/impact.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Minion Pro";
+  src: url("../assets/fonts/MinionPro-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Minion Pro";
+  src: url("../assets/fonts/MinionPro-it.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Nu Gothic";
+  src: url("../assets/fonts/nu_century_gothic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sabon";
+  src: url("../assets/fonts/SabonLTStd-Italic.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Zapf Dingbats";
+  src: url("../assets/fonts/ZapfDingbatsStd.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+.ash-font {
+  font-family: "Ash", sans-serif;
+  font-weight: bolder;
+}
+
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
@@ -68,6 +121,20 @@ img {
   padding: 1.5rem;
 }
 
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Ash", sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: hsl(57, 15%, 26%);
+  background-color: hsla(0, 13%, 29%, 0.342);
+}
+
 .grid {
   display: grid;
 }
@@ -111,15 +178,15 @@ img {
 }
 
 .gap-sm {
-  grid-gap: 0.5rem;
+  gap: 0.5rem;
 }
 
 .gap-med {
-  grid-gap: 1rem;
+  gap: 1rem;
 }
 
 .gap-lg {
-  grid-gap: 2rem;
+  gap: 2rem;
 }
 
 .w-100 {
@@ -181,4 +248,8 @@ img {
 }
 .full-size .editor-content {
   padding: 0 0.5rem;
+}
+
+.label {
+  font-family: "Nu Gothic", sans-serif;
 }/*# sourceMappingURL=twdu.css.map */

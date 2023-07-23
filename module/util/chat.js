@@ -22,7 +22,7 @@ export const buildChatCard = function (type, data) {
   if (actor) {
     token = actor.img;
   } else {
-    token = "systems/twdu/assets/info.png";
+    token = "systems/twdu/assets/images/info.png";
   }
 
   switch (type) {
