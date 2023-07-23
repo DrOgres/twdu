@@ -145,6 +145,7 @@
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="main">{{localize 'twdu.general'}}</a>
     <a class="item" data-tab="inventory">{{localize 'twdu.inventory'}}</a>
+    <a class="item" data-tab="talents">{{localize 'twdu.talents'}}</a>
     <a class="item" data-tab="bioNotes">{{localize 'twdu.bioNotes'}}</a>
   </nav>
 
@@ -156,6 +157,10 @@
       {{> systems/twdu/templates/sheets/parts/character-main.hbs}}
     </div>
 
+    {{!-- Talents Tab --}}
+    <div class="tab" data-group="primary" data-tab="talents">
+      {{> systems/twdu/templates/sheets/parts/character-talents.hbs}}
+    </div>
 
     {{!-- Biography Tab --}}
     <div class="tab" data-group="primary" data-tab="bioNotes">

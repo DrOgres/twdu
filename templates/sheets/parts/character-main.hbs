@@ -1,8 +1,7 @@
 <div>
-  <h3>Main Tab</h3>
   <div class="grid col-60-40">
-    <div class="item-group">
-      <div class="group-header flex-row w-100">
+    <div class="item-group p-1">
+      <div class="group-header flex-row w-100 justify m-1 p-1">
         <h3>
           {{localize "twdu.equipedGear"}}
         </h3>
@@ -26,7 +25,7 @@
           {{#each items as |item|}}
           {{#if item.isWeapon}}
           {{#if item.system.isEquipped}}
-          <div class="item armor flex row center align-center" data-item-id="{{item._id}}">
+          <div class="item armor flex-row center" data-item-id="{{item._id}}">
             <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
@@ -60,7 +59,7 @@
           {{#each items as |item|}}
           {{#if item.isArmor}}
           {{#if item.system.isEquipped}}
-          <div class="item armor flex row center align-center" data-item-id="{{item._id}}">
+          <div class="item armor flex-row center" data-item-id="{{item._id}}">
             <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
@@ -94,7 +93,7 @@
           {{#each items as |item|}}
           {{#if item.isGear}}
           {{#if item.system.isEquipped}}
-          <div class="item armor flex row center align-center" data-item-id="{{item._id}}">
+          <div class="item armor flex-row center" data-item-id="{{item._id}}">
             <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
@@ -112,18 +111,40 @@
         </div>
       </div>
     </div>
-    <div class="resources grid">
+    <div class="resources grid p-1">
       {{! Health and Stress }}
-      <h2>{{localize "twdu.health"}}</h2>
-      <div>
-        <select name="system.health.value" id="health">
-        {{#select actor.system.health.value}}
-        {{#each (TWDUinvert config.healthStates) as |state|}}
-        <option value="{{subtract 3 @index}}" {{#if (eq @index ../actor.system.health.value)}}selected{{/if}}>{{subtract 3 @index}} - {{localize
-          state}}</option>
-        {{/each}}
-        {{/select}}
-        </select>
+      <div class="health-stress-block flex-row">
+        <div class="health-group m-1 p-1">
+          <h2>{{localize "twdu.health"}}</h2>
+          <div class="health-select">
+            <select name="system.health.value" id="health">
+              {{#select actor.system.health.value}}
+              {{#each (TWDUinvert config.healthStates) as |state|}}
+              <option value="{{subtract 3 @index}}" {{#if (eq @index ../actor.system.health.value)}}selected{{/if}}>
+                {{subtract 3 @index}} - {{localize
+                state}}</option>
+              {{/each}}
+              {{/select}}
+            </select>
+
+          </div>
+        </div>
+        <div class="stress-group m-1 p-1">
+          <h2 for="actor.system.header.stress.value" class="resource-label gaItem3"
+            title="{{localize 'twdu.rollStress'}}" data-panicroll="{{actor.system.stress.value}}"
+            data-mod="{{actor.system.header.stress}}" data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}
+          </h2>
+          <div class="flex-row">
+            <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs"
+                title="Minus"></i></button>
+            <input type="text" class="maxboxsize minStress" name="actor.system.stress.value"
+              value="{{actor.system.stress.value}}" data-dtype="Number" />
+            <button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs"
+                title="Plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="crit-block">
         <h3>{{localize "twdu.criticalInjuries"}}</h3>
         {{#each items as |item|}}
         {{#if item.isCriticalInjury}}
@@ -135,36 +156,15 @@
         {{/if}}
         {{/each}}
       </div>
-      <h2 for="actor.system.header.stress.value" class="resource-label gaItem3" title="{{localize 'twdu.rollStress'}}"
-        data-panicroll="{{actor.system.stress.value}}" data-mod="{{actor.system.header.stress}}"
-        data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}</h2>
-      <div class="resource-content gaItem4">
-        <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs"
-            title="Minus"></i></button>
-        <input type="text" class="maxboxsize minStress" name="actor.system.stress.value"
-          value="{{actor.system.stress.value}}" data-dtype="Number" />
-        <button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs"
-            title="Plus"></i></button>
-      </div>
-      <div class="tiny-items">
-        <h3>{{localize "twdu.tinyItems"}}</h3>
-        {{#each items as |item|}}
-        {{#if item.isTinyItem}}
-        <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
-          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
-              height="36" /></span>
-          <span class="name">{{item.name}}</span>
-        </div>
-        {{/if}}
-        {{/each}}
-      </div>
+
+      
       <div class="experience-group">
         <div class="section-header experience">
           {{localize "twdu.experience"}}
         </div>
 
         <div class="exp-boxes flexrow" title="{{localize " twdu.addexp"}}">
-          {{#times 10}}
+          {{#times 15}}
           <div class="exp-box">
             <div class="img-container">
               {{#if (gte ../actor.system.experience.value @index)}}

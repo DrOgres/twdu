@@ -43,13 +43,15 @@ export default class TWDUActorSheet extends ActorSheet {
       isChallenge: this.actor.type === "challenge",
       isNPC: this.actor.type === "npc",
       encumbrance: 0,
-      maxEncumbrance: this.actor.system.attributes.str.value + 2,
+      maxEncumbrance: 0,
     };
     console.log("TWDU | context: ", context);
     console.log("TWDU | context.system.notes: ", context.system.notes);
     context.config = CONFIG.twdu;
 
     if (context.isPlayer) {
+
+      context.maxEncumbrance = context.system.attributes.str.value + 2;
       console.log("TWDU | Enriching HTML");
       context.notesHTML = await TextEditor.enrichHTML(
         context.system.notes.value,
