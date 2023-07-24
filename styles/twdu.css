@@ -69,7 +69,7 @@ a:hover {
   color: hsl(53, 10%, 68%);
 }
 #sidebar .tabs a:hover {
-  text-shadow: 1px 1px 3px black;
+  text-shadow: 1px 1px 1px black;
 }
 
 .tabs {
