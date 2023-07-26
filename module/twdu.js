@@ -3,6 +3,7 @@ import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
 import { preloadHandlebarsTemplates } from "./util/templates.js";
 import { twdu } from "../module/config.js";
 import FoundryOverrides from "./util/overrides.js";
+import { YearZeroRollManager } from './util/yzur.js';
 
 Hooks.once("init", async function () {
 
@@ -11,6 +12,13 @@ Hooks.once("init", async function () {
 
   CONFIG.twdu = twdu;
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
+
+  //yzur init
+  YearZeroRollManager.register('<twdu>', {
+    'ROLL.chatTemplate': 'systems/twdu/templates/dice/roll.hbs',
+    'ROLL.tooltipTemplate': 'systems/twdu/templates/dice/tooltip.hbs',
+    'ROLL.infosTemplate': 'systems/twdu/templates/dice/infos.hbs',
+  });
 
   CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
     {
