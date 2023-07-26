@@ -1,4 +1,5 @@
 import { buildChatCard } from "../util/chat.js";
+import { prepareRollDialog } from "../util/roll.js";
 
 
 export default class TWDUActorSheet extends ActorSheet {
@@ -111,6 +112,7 @@ export default class TWDUActorSheet extends ActorSheet {
     return encumbrance;
   }
 
+  //TODO break out specific listeners to files for each type of sheet
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
@@ -122,6 +124,42 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".to-chat").click(this._onItemToChat.bind(this));
+    html.find(".rollable").click(this._onRoll.bind(this));
+  }
+
+  _onRoll(event) {
+    event.preventDefault();
+    console.log("TWDU | _onRoll: ", event);
+    let target = event.currentTarget;
+    let key = target.dataset.key;
+
+    // determine the roll type from key
+    switch (key) {
+      case "attribute":
+        {
+          let attribute = target.dataset.attribute;
+          console.log("TWDU | attribute: ", attribute);
+        }
+        break;
+      case "skill":
+        {
+          let skill = target.dataset.skill;
+          console.log("TWDU | skill: ", skill);
+        }
+        break;
+      }
+
+    let options = {
+      sheet: this,
+      testName: "Test", 
+      attributeDefault: 0,
+      skillDefault: 0,
+      bonusDefault: 0,
+      damageDefault: 0,
+      attName: "Attribute",
+      skillName: "Skill",
+    };
+    prepareRollDialog(options);
   }
 
   _onItemToChat(event) {

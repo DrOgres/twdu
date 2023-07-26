@@ -276,4 +276,8 @@ h2 {
 
 .label {
   font-family: "Nu Gothic", sans-serif;
+}
+
+.rollable {
+  cursor: pointer;
 }/*# sourceMappingURL=twdu.css.map */
