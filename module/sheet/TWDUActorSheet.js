@@ -132,33 +132,63 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | _onRoll: ", event);
     let target = event.currentTarget;
     let key = target.dataset.key;
-
-    // determine the roll type from key
-    switch (key) {
-      case "attribute":
-        {
-          let attribute = target.dataset.attribute;
-          console.log("TWDU | attribute: ", attribute);
-        }
-        break;
-      case "skill":
-        {
-          let skill = target.dataset.skill;
-          console.log("TWDU | skill: ", skill);
-        }
-        break;
-      }
-
+    console.log("TWDU | sheet: ", this  );
     let options = {
       sheet: this,
-      testName: "Test", 
+      testName: "", 
       attributeDefault: 0,
       skillDefault: 0,
       bonusDefault: 0,
       damageDefault: 0,
-      attName: "Attribute",
-      skillName: "Skill",
+      attName: "",
+      skillName: "",
     };
+
+    options.testName = game.i18n.localize(target.dataset.test);
+    // determine the roll type from key
+    switch (key) {
+      case "attribute":
+        {
+          options.attName = target.dataset.attribute;
+          options.attributeDefault = this.actor.system.attributes[options.attName].value;
+          console.log("TWDU | attribute: ", options.attName);
+        }
+        break;
+      case "skill":
+        {
+          options.skillName = target.dataset.skill;
+          options.skillDefault = this.actor.system.skills[options.skillName].value;
+          // get the attribute for the skill and set the default and name
+          console.log("TWDU | skill attribute: ", this.actor.system.skills[options.skillName].attribute);
+          options.attName = this.actor.system.skills[options.skillName].attribute;
+          options.attributeDefault = this.actor.system.attributes[options.attName].value;
+          console.log("TWDU | skill: ", options.skillName);
+        }
+        break;
+      case "weapon":
+        {
+          console.log("TWDU | weapon: ", target.dataset.weapon);
+          const item = this.actor.items.get(target.dataset.itemId);
+          console.log("TWDU | item: ", item);
+          options.testName = target.dataset.test;
+          options.skillName = item.system.skill;
+          options.skillDefault = this.actor.system.skills[options.skillName].value;
+          options.attName = this.actor.system.skills[options.skillName].attribute;
+          options.attributeDefault = this.actor.system.attributes[options.attName].value;
+          options.damageDefault = item.system.damage;
+
+        }
+        break;
+        case "armor":
+          {
+            console.log("TWDU | armor: ", target.dataset.armor);
+            let proection = target.dataset.protection;
+            console.log("TWDU | proection: ", proection);
+          }
+          break;
+      }
+      console.log("TWDU | options", options);
+   
     prepareRollDialog(options);
   }
 

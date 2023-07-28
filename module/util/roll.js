@@ -11,12 +11,21 @@ export function prepareRollDialog(options){
     // damageDefault = the damage of the weapon or attack being used
     // attName - the name of the attribute being used
     // skillName - the name of the skill being used
+    
     //TODO build dialog and show it
 
+    let actorID = options.sheet.object.id;
+    let actor = game.actors.get(actorID);
+    console.log("TWDU | actor: ", actor);
+
+    console.log("TWDU | dialog sheet: ", options.sheet);
     let attributeHtml = buildHTMLDialog(options.attName, options.attributeDefault, "attribute");
     let skillHtml = buildHTMLDialog(options.skillName, options.skillDefault, "skill");
     //TODO localize this
     let bonusHtml = buildInputDialog("Bonus", options.bonusDefault, "bonus");
+
+    let stressDice = actor.system.stress.value;
+    console.log("TWDU | stressDice: ", stressDice);
 }
 
 

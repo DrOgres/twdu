@@ -26,7 +26,12 @@
           {{#if item.isWeapon}}
           {{#if item.system.isEquipped}}
           <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
+            <img class="rollable" 
+              data-key="weapon" 
+              data-weapon="{{item.name}}" 
+              data-item-id="{{item._id}}"
+              data-test="{{item.name}}"
+              data-skill="{{item.system.skill}}" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
@@ -60,7 +65,11 @@
           {{#if item.isArmor}}
           {{#if item.system.isEquipped}}
           <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
+            <img class="rollable" 
+              data-key="armor"
+              data-armor="{{item.name}}"
+              data-protection="{{item.system.protection}}"
+            src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
@@ -137,7 +146,7 @@
           <div class="flex-row">
             <button type="button" class="minus-btn" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs"
                 title="Minus"></i></button>
-            <input type="text" class="maxboxsize minStress" name="actor.system.stress.value"
+            <input type="text" class="maxboxsize minStress" name="system.stress.value"
               value="{{actor.system.stress.value}}" data-dtype="Number" />
             <button type="button" class="plus-btn" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs"
                 title="Plus"></i></button>

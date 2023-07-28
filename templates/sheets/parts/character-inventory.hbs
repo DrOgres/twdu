@@ -1,4 +1,4 @@
-<div class="inv scrollable" >
+<div class="inv scrollable">
   <div class="weapons">
     <h3>Weapons</h3>
     <div class="flex-col">
@@ -13,8 +13,15 @@
       {{#each items as |item key|}}
       {{#if item.isWeapon}}
       <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
-        <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
-            height="36" /></span>
+        <span class="icon rollable" 
+              data-key="weapon" 
+              data-weapon="{{item.name}}" 
+              data-item-id="{{item._id}}"
+              data-test="{{item.name}}"
+              data-skill="{{item.system.skill}}"
+              >
+        >
+          <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" /></span>
         <span class="name">{{item.name}}</span>
         <span class="damage">{{item.system.damage}}</span>
         <span class="range">{{item.system.range}}</span>
@@ -163,15 +170,15 @@
     </div>
   </div>
   <div class="tiny-items">
-        <h3>{{localize "twdu.tinyItems"}}</h3>
-        {{#each items as |item|}}
-        {{#if item.isTinyItem}}
-        <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
-          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
-              height="36" /></span>
-          <span class="name">{{item.name}}</span>
-        </div>
-        {{/if}}
-        {{/each}}
-      </div>
+    <h3>{{localize "twdu.tinyItems"}}</h3>
+    {{#each items as |item|}}
+    {{#if item.isTinyItem}}
+    <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
+      <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
+          height="36" /></span>
+      <span class="name">{{item.name}}</span>
+    </div>
+    {{/if}}
+    {{/each}}
+  </div>
 </div>

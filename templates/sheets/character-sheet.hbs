@@ -62,7 +62,7 @@
 
     {{!-- Str and Skills --}}
     <div class="attr-group group" id="str">
-      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="str">
+      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="str" data-test="twdu.STRENGTH">
         <b class="header">{{localize 'twdu.STRENGTH'}}</b>
         <input type="text" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}"
           data-dtype="Number" />
@@ -71,7 +71,7 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasStrength}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}">
+        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
           <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
@@ -82,7 +82,7 @@
 
     {{!-- Agility and skills --}}
     <div class="attr-group group" id="agl">
-      <div class="attribute flex-row rollable" data-key="attribute"  data-attribute="agl">
+      <div class="attribute flex-row rollable" data-key="attribute"  data-attribute="agl" data-test="twdu.AGILITY">
         <b class="header">{{localize 'twdu.AGILITY'}}</b>
         <input type="text" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}"
           data-dtype="Number" />
@@ -91,7 +91,7 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasAgility}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}">
+        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
           <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
@@ -102,7 +102,7 @@
 
     {{!-- Wits and SKills --}}
     <div class="attr-group group" id="wit">
-      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="wit">
+      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="wit" data-test="twdu.WITS">
         <b class="header">{{localize 'twdu.WITS'}}</b>
         <input type="text" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}"
           data-dtype="Number" />
@@ -111,7 +111,7 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasWits}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}">
+        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
           <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
@@ -122,7 +122,7 @@
 
     {{!-- Empathy and Skills --}}
     <div class="attr-group group" id="emp">
-      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="emp">
+      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="emp" data-test="twdu.EMPATHY">
         <b class="header">{{localize 'twdu.EMPATHY'}}</b>
         <input type="text" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}"
           data-dtype="Number" />
@@ -131,7 +131,7 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasEmpathy}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}">
+        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
           <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
