@@ -3,6 +3,7 @@ import { YearZeroRoll } from "./yzur.js";
 export function prepareRollDialog(options){
     // create a dialog for the roll, 
     // options:
+    // type: "attribute", "skill", "weapon", "armor"
     // sheet - the sheet to use for the roll
     // testName - the name of the test
     // attributeDefault - the value of the attribute that is contributiong to the roll

@@ -134,6 +134,7 @@ export default class TWDUActorSheet extends ActorSheet {
     let key = target.dataset.key;
     console.log("TWDU | sheet: ", this  );
     let options = {
+      type: key,
       sheet: this,
       testName: "", 
       attributeDefault: 0,
@@ -182,8 +183,8 @@ export default class TWDUActorSheet extends ActorSheet {
         case "armor":
           {
             console.log("TWDU | armor: ", target.dataset.armor);
-            let proection = target.dataset.protection;
-            console.log("TWDU | proection: ", proection);
+            let protection = target.dataset.protection;
+            console.log("TWDU | protection: ", protection);
           }
           break;
       }
