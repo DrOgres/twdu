@@ -11,19 +11,19 @@
 
     <div class="w-100 padding-sm">
       <div class="flex-col flex-wrap magin-b-sm">
-        <h1 class="center">{{localize "GEAR.NAME"}}</h1>
+        <h1 class="center">{{localize "twdu.gear"}}</h1>
         <br /><img class="border-none center w-90" src="systems/vaesen/asset/h-rule.png"  />
       </div>
 
       <div class="grid grid-2col-fr center gap-sm h-100">
 
         <div class="grid-align-end" >
-          <h3>{{localize "NAME"}}:&nbsp;</h3>
+          <h3>{{localize "twdu.name"}}:&nbsp;</h3>
           <input class="light"  name="name" type="text" value="{{item.name}}" />
         </div>
 
         <div class="grid-align-end">
-          <h3>{{localize "GEAR.BONUS"}}</h3>
+          <h3>{{localize "twdu.bonus"}}</h3>
           <input
             class="light"
             name="system.bonus"
@@ -32,7 +32,7 @@
           />
         </div>
         <div class="grid-align-end">
-          <h3>{{localize "GEAR.WEIGHT"}}</h3>
+          <h3>{{localize "twdu.encSlots"}}</h3>
           <input
             class="light"
             name="system.weight"
@@ -40,33 +40,32 @@
             value="{{data.system.weight}}"
           />
         </div>
+{{!-- TODO   this should be a select element --}}
         <div class="grid-align-end" >
-          <h3>{{localize "GEAR.AVAILABILITY"}}</h3>
+          <h3>{{localize "twdu.skill"}}</h3>
           <input
             class="light"
-            name="system.availability"
+            name="system.skill"
             type="text"
-            value="{{data.system.availability}}"
+            value="{{data.system.skill}}"
           />
         </div>
-        <div class="grid-align-end" >
-          <h3>{{localize "GEAR.EFFECT"}}</h3>
-          <input
-            class="light"
-            name="system.effect"
-            type="text"
-            value="{{data.system.effect}}"
-          />
-        </div>
+       
         <div class="grid-span-2 grid-align-end" >
-          <h3>{{localize "GEAR.DESCRIPTION"}}</h3>
+          <h3>{{localize "twdu.description"}}</h3>
           <textarea
             name="system.description"
           >{{data.system.description}}</textarea>
         </div>
-        <div class="grid-span-2 grid-align-end">
-          <h3>{{localize "GEAR.RISK"}}</h3>
-          <textarea name="system.risk">{{data.system.risk}}</textarea>
+  {{!--TODO  put this on a tab --}}
+         <div class="grid-align-end" >
+          <h3>{{localize "twdu.notes"}}</h3>
+          <input
+            class="light"
+            name="system.notes"
+            type="text"
+            value="{{data.system.notes}}"
+          />
         </div>
 
       </div>

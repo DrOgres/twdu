@@ -51,3 +51,11 @@
 .rollable{
   cursor: pointer;
 }
+
+.header{
+  font-family: 'Nu Gothic', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $neutral-1;
+  text-transform: capitalize;
+}

@@ -10,6 +10,8 @@
         "STRENGTH": "Strength",
         "WITS": "Wits",
         "EMPATHY": "Empathy",
+        "HEALTH": "Health",
+        "STRESS": "Stress",
         
         "closeCombat": "Close Combat",
         "endure": "Endure",
@@ -26,17 +28,15 @@
 
         "headerAttributes": "Attributes & Skills",
         "skill": "Skill",
-        "Skills": "Skills",
+        "skills": "Skills",
         "talent": "Talent",
         "talents": "Talents",
-        "HEALTH": "Health",
-        "STRESS": "Stress",
-
 
         "drive": "Drive",
         "issues": "Issues",
         "experience": "Experience",
         "encumbrance": "Encumbrance",
+        "encSlots": "Encumbrance Slots",
         "gear": "Gear",
         "criticalInjuries": "Critical Injuries",
         "weapons": "Weapons",
@@ -71,6 +71,18 @@
         "ui.add": "Add New",
         "ui.delete": "Delete",
         "ui.chat": "Chat",
-        "ui.edit": "Edit"
+        "ui.edit": "Edit",
+
+        "CHAT.SUCCESS": "Successes",
+        "ROLL.BASE.POOL": "Base Dice Pool",
+        "ROLL.TEST" : "Test",
+        "ROLL.ROLL" : "Roll",
+        "ROLL.PUSH": "Push",
+        "ROLL.CANCEL" : "Cancel",
+        "ROLL.SKILL": "Skill",
+        "ROLL.PREC": "Physical Recovery",
+        "ROLL.MREC": "Mental Recovery",
+        "ROLL.BONUS": "Bonus Dice",
+        "ROLL.DAMAGE": "Damage"
     }
 }

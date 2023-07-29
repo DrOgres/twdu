@@ -147,15 +147,14 @@
                 "notes": "",
                 "weight": 0,
                 "bonus": 0,
-                "availability": 0
+                "skill": ""
             }
 
           },
           "weapon": {
             "templates": ["itemEquiped", "itemCommonProperties"],
             "damage": 0,
-            "range": "",
-            "skill": ""
+            "range": ""
           },
           "armor": {
             "templates": ["itemEquiped", "itemCommonProperties"],
@@ -170,8 +169,6 @@
           },
           "gear": {
             "templates": ["itemEquiped", "itemCommonProperties"],
-            "effect": "",
-            "risk": "",
             "quantity": ""
           },
           "criticalInjury": {

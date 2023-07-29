@@ -213,6 +213,11 @@ h2 {
   gap: 2rem;
 }
 
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
 .w-100 {
   width: 100%;
 }
@@ -280,4 +285,12 @@ h2 {
 
 .rollable {
   cursor: pointer;
+}
+
+.header {
+  font-family: "Nu Gothic", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: hsl(50, 14%, 9%);
+  text-transform: capitalize;
 }/*# sourceMappingURL=twdu.css.map */

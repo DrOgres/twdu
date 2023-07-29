@@ -7,7 +7,25 @@ twdu.combatSkills = {
     close: "twdu.closeCombat",
 }
 
+twdu.skills = {
+    none: "twdu.none",
+    force: "twdu.force",
+    ranged: "twdu.rangedCombat",
+    close: "twdu.closeCombat",
+    endure: "twdu.endure",
+    mobility: "twdu.mobility",
+    stealth: "twdu.stealth",
+    scout: "twdu.scout",
+    survival: "twdu.survival",
+    tech: "twdu.tech",
+    leadership: "twdu.leadership",
+    manipulation: "twdu.manipulation",
+    medicine: "twdu.medicine",
+}
+
 twdu.ranges = {
+    none: "twdu.none",
+    close: "twdu.close",
     short: "twdu.short",
     long: "twdu.long",
     extreme: "twdu.extreme",

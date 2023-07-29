@@ -30,9 +30,9 @@ export const buildChatCard = function (type, data) {
       console.log("TWDU | weapon: ", data);
       let skill = "";
       if (data.system.skill == "closeCombat") {
-        skill = game.i18n.localize("SKILL.CLOSE_COMBAT");
+        skill = game.i18n.localize("twdu.closeCombat");
       } else if (data.system.skill == "rangedCombat") {
-        skill = game.i18n.localize("SKILL.RANGED_COMBAT");
+        skill = game.i18n.localize("twdu.rangedCombat");
       } else {
         skill = game.i18n.localize("SKILL.FORCE");
       }
@@ -44,32 +44,32 @@ export const buildChatCard = function (type, data) {
             <div class='chat-flavor'>` +
         data.name.toUpperCase() +
         "</div>" +
-        "<div class='flex row center'><img src='" +
+        "<div class='flex-row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info flex column'>" +
+        "<div class='chat-item-info flex-col'>" +
         "<b>" +
-        game.i18n.localize("WEAPON.DAMAGE") +
+        game.i18n.localize("twdu.damage") +
         ": </b>" +
         data.system.damage +
         "</br>" +
         "<b>" +
-        game.i18n.localize("WEAPON.RANGE") +
+        game.i18n.localize("twdu.range") +
         ": </b>" +
         data.system.range +
         "</br>" +
         "<b>" +
-        game.i18n.localize("WEAPON.BONUS") +
+        game.i18n.localize("twdu.bonus") +
         ": </b>" +
         data.system.bonus +
         "</br>" +
         "<b>" +
-        game.i18n.localize("WEAPON.AVAILABILITY") +
+        game.i18n.localize("twdu.encSlots") +
         ": </b>" +
-        data.system.availability +
+        data.system.weight +
         "</br>" +
         "<b>" +
-        game.i18n.localize("WEAPON.SKILL") +
+        game.i18n.localize("twdu.skill") +
         ": </b>" +
         skill +
         "</br>" +
@@ -157,12 +157,7 @@ export const buildChatCard = function (type, data) {
         description +
         risk +
         `</div></div>`;
-      chatData = {
-        speaker: ChatMessage.getSpeaker(),
-        user: game.user.id,
-        rollMode: game.settings.get("core", "rollMode"),
-        content: message,
-      };
+      
       break;
     case "tinyItem":
       console.log("TWDU | tinyItem: ", data);
