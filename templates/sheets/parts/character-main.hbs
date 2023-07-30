@@ -26,12 +26,9 @@
           {{#if item.isWeapon}}
           {{#if item.system.isEquipped}}
           <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img class="rollable" 
-              data-key="weapon" 
-              data-weapon="{{item.name}}" 
-              data-item-id="{{item._id}}"
-              data-test="{{item.name}}"
-              data-skill="{{item.system.skill}}" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
+            <img class="rollable" data-key="weapon" data-weapon="{{item.name}}" data-item-id="{{item._id}}"
+              data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}" alt="{{item.name}}"
+              title="{{item.name}}" width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
@@ -65,11 +62,9 @@
           {{#if item.isArmor}}
           {{#if item.system.isEquipped}}
           <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img class="rollable" 
-              data-key="armor"
-              data-armor="{{item.name}}"
-              data-protection="{{item.system.protection}}"
-            src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
+            <img class="rollable" data-key="armor" data-armor="{{item.name}}"
+              data-protection="{{item.system.protection}}" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}"
+              width="36" height="36" />
             <div class="name">{{item.name}}</div>
             <div class="protection">{{item.system.protection}}</div>
 
@@ -135,7 +130,6 @@
               {{/each}}
               {{/select}}
             </select>
-
           </div>
         </div>
         <div class="stress-group m-1 p-1">
@@ -153,11 +147,14 @@
           </div>
         </div>
       </div>
-      <div class="crit-block">
+      <div class="crit-block flex-col pi-5">
+        <div class="flex-row justify">
         <h3>{{localize "twdu.criticalInjuries"}}</h3>
+        <p class="add">+</p>
+        </div>
         {{#each items as |item|}}
         {{#if item.isCriticalInjury}}
-        <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
+        <div class="item grow" data-item-id="{{item._id}}">
           <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
               height="36" /></span>
           <span class="name">{{item.name}}</span>
@@ -166,7 +163,7 @@
         {{/each}}
       </div>
 
-      
+
       <div class="experience-group">
         <div class="section-header experience">
           {{localize "twdu.experience"}}

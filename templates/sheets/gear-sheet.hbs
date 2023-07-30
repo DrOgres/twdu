@@ -1,7 +1,7 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   <div class="bg-offwhite flex-row flex-start">
-    <div class="dl-border w-fc h-100">
-      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    <div class="header w-150p">
+      <img class="border-none" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
     <div class="w-100 padding-sm">
@@ -9,8 +9,8 @@
         <h1 class="center">{{localize "twdu.gear"}}</h1>
 
         <nav class="sheet-tabs tabs" data-group="primary">
-          <a class="item" data-tab="main">{{localize 'twdu.general'}}</a>
-          <a class="item" data-tab="bioNotes">{{localize 'twdu.notes'}}</a>
+          <a class="item grow" data-tab="main">{{localize 'twdu.general'}}</a>
+          <a class="item grow" data-tab="bioNotes">{{localize 'twdu.notes'}}</a>
         </nav>
       </div>
       {{!-- Sheet Body --}}
@@ -30,12 +30,30 @@
             </div>
             <div class="grid-align-end">
               <h3>{{localize "twdu.encSlots"}}</h3>
-              <input class="light" name="system.weight" type="text" value="{{data.system.weight}}" />
+              <div class="weight-select">
+                <select name="system.weight" id="weight" data-dtype="Number">
+                  {{#select data.system.weight}}
+                  <option value="0">None</option>
+                  <option value="0.5">½</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  {{/select}}
+                </select>
+              </div>
             </div>
             {{!-- TODO this should be a select element --}}
             <div class="grid-align-end">
               <h3>{{localize "twdu.skill"}}</h3>
-              <input class="light" name="system.skill" type="text" value="{{data.system.skill}}" />
+              {{!-- <input class="light" name="system.skill" type="text" value="{{data.system.skill}}" /> --}}
+              <select name="system.skill">
+            {{#select data.system.skill}}
+              {{#each config.skills as |skill|}}
+                <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}</option>
+              {{/each}}
+            {{/select}}
+          </select>
+
             </div>
 
             <div class="span-2 grid-align-end">

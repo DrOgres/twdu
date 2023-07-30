@@ -10,9 +10,9 @@ twdu.combatSkills = {
 twdu.skills = {
     none: "twdu.none",
     force: "twdu.force",
-    ranged: "twdu.rangedCombat",
     close: "twdu.closeCombat",
     endure: "twdu.endure",
+    ranged: "twdu.rangedCombat",
     mobility: "twdu.mobility",
     stealth: "twdu.stealth",
     scout: "twdu.scout",
@@ -37,3 +37,4 @@ twdu.healthStates = {
     1: "twdu.battered",
     0: "twdu.broken"
 }
+

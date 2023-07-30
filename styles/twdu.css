@@ -89,6 +89,139 @@ img {
   border: none;
 }
 
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Ash", sans-serif;
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: hsl(57, 15%, 26%);
+  background-color: hsla(36, 11%, 43%, 0.5);
+}
+
+.grid {
+  display: grid;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.four-col {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.five-col {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.six-col {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.col-60-40 {
+  grid-template-columns: 60% 40%;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.gap-sm {
+  gap: 0.5rem;
+}
+
+.gap-med {
+  gap: 1rem;
+}
+
+.gap-lg {
+  gap: 2rem;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  border: 1px solid hsl(50, 14%, 9%);
+}
+
+.border-top {
+  border-top: 1px solid hsl(50, 14%, 9%);
+}
+
+.border-bottom {
+  border-bottom: 1px solid hsl(50, 14%, 9%);
+}
+
+.border-left {
+  border-left: 1px solid hsl(50, 14%, 9%);
+}
+
+.border-right {
+  border-right: 1px solid hsl(50, 14%, 9%);
+}
+
+.border-none {
+  border: none;
+}
+
+.br-5 {
+  border-radius: 5px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-150p {
+  width: 150px;
+}
+
+.w-200p {
+  width: 200px;
+}
+
+.w-250p {
+  width: 250px;
+}
+
+.w-300p {
+  width: 300px;
+}
+
+.justify {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 .m-0 {
   margin: 0;
 }
@@ -145,105 +278,60 @@ img {
   padding: 1.5rem;
 }
 
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
+.pi-0 {
+  padding-inline: 0;
 }
 
-h2 {
-  font-family: "Ash", sans-serif;
-  font-size: 1.5rem;
-  font-weight: normal;
-  text-transform: uppercase;
-  color: hsl(57, 15%, 26%);
-  background-color: hsla(36, 11%, 43%, 0.5);
+.pi-1 {
+  padding-inline: 0.25rem;
 }
 
-.grid {
-  display: grid;
+.pi-2 {
+  padding-inline: 0.5rem;
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
+.pi-3 {
+  padding-inline: 0.75rem;
 }
 
-.flex-col {
-  display: flex;
-  flex-direction: column;
+.pi-4 {
+  padding-inline: 1rem;
 }
 
-.two-col {
-  grid-template-columns: repeat(2, 1fr);
+.pi-5 {
+  padding-inline: 1.25rem;
 }
 
-.four-col {
-  grid-template-columns: repeat(4, 1fr);
+.pi-6 {
+  padding-inline: 1.5rem;
 }
 
-.five-col {
-  grid-template-columns: repeat(5, 1fr);
+.mi-0 {
+  margin-inline: 0;
 }
 
-.six-col {
-  grid-template-columns: repeat(6, 1fr);
+.mi-1 {
+  margin-inline: 0.25rem;
 }
 
-.col-60-40 {
-  grid-template-columns: 60% 40%;
+.mi-2 {
+  margin-inline: 0.5rem;
 }
 
-.span-2 {
-  grid-column: span 2;
+.mi-3 {
+  margin-inline: 0.75rem;
 }
 
-.span-4 {
-  grid-column: span 4;
+.mi-4 {
+  margin-inline: 1rem;
 }
 
-.gap-sm {
-  gap: 0.5rem;
+.mi-5 {
+  margin-inline: 1.25rem;
 }
 
-.gap-med {
-  gap: 1rem;
-}
-
-.gap-lg {
-  gap: 2rem;
-}
-
-.center {
-  justify-content: center;
-  align-items: center;
-}
-
-.w-100 {
-  width: 100%;
-}
-
-.w-150p {
-  width: 150px;
-}
-
-.w-200p {
-  width: 200px;
-}
-
-.w-250p {
-  width: 250px;
-}
-
-.w-300p {
-  width: 300px;
-}
-
-.justify {
-  justify-content: space-between;
-}
-
-.justify-center {
-  justify-content: center;
+.mi-6 {
+  margin-inline: 1.5rem;
 }
 
 .app.sheet .editor {
@@ -293,4 +381,5 @@ h2 {
   font-weight: bold;
   color: hsl(50, 14%, 9%);
   text-transform: capitalize;
+  background-color: hsla(36, 11%, 53%, 0.3);
 }/*# sourceMappingURL=twdu.css.map */

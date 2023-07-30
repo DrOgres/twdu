@@ -145,7 +145,7 @@
             "itemCommonProperties" : {
                 "description": "",
                 "notes": "",
-                "weight": 0,
+                "weight": "",
                 "bonus": 0,
                 "skill": ""
             }

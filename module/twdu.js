@@ -14,7 +14,7 @@ Hooks.once("init", async function () {
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
 
   //yzur init
-  YearZeroRollManager.register('<twdu>', {
+  YearZeroRollManager.register('twdu', {
     'ROLL.chatTemplate': 'systems/twdu/templates/dice/roll.hbs',
     'ROLL.tooltipTemplate': 'systems/twdu/templates/dice/tooltip.hbs',
     'ROLL.infosTemplate': 'systems/twdu/templates/dice/infos.hbs',

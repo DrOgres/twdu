@@ -62,8 +62,8 @@
 
     {{!-- Str and Skills --}}
     <div class="attr-group group" id="str">
-      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="str" data-test="twdu.STRENGTH">
-        <b class="header">{{localize 'twdu.STRENGTH'}}</b>
+      <div class="attribute flex-row ">
+        <b class="header rollable"  data-key="attribute" data-attribute="str" data-test="twdu.STRENGTH">{{localize 'twdu.STRENGTH'}}</b>
         <input type="text" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}"
           data-dtype="Number" />
       </div>
@@ -71,8 +71,8 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasStrength}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
-          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+        <div class="skill flex-row align-center " >
+          <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
         {{/if}}
@@ -82,8 +82,8 @@
 
     {{!-- Agility and skills --}}
     <div class="attr-group group" id="agl">
-      <div class="attribute flex-row rollable" data-key="attribute"  data-attribute="agl" data-test="twdu.AGILITY">
-        <b class="header">{{localize 'twdu.AGILITY'}}</b>
+      <div class="attribute flex-row " >
+        <b class="header rollable" data-key="attribute"  data-attribute="agl" data-test="twdu.AGILITY">{{localize 'twdu.AGILITY'}}</b>
         <input type="text" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}"
           data-dtype="Number" />
       </div>
@@ -91,8 +91,8 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasAgility}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
-          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+        <div class="skill flex-row align-center " >
+          <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
         {{/if}}
@@ -102,8 +102,8 @@
 
     {{!-- Wits and SKills --}}
     <div class="attr-group group" id="wit">
-      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="wit" data-test="twdu.WITS">
-        <b class="header">{{localize 'twdu.WITS'}}</b>
+      <div class="attribute flex-row " >
+        <b class="header rollable" data-key="attribute" data-attribute="wit" data-test="twdu.WITS">{{localize 'twdu.WITS'}}</b>
         <input type="text" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}"
           data-dtype="Number" />
       </div>
@@ -111,8 +111,8 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasWits}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
-          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+        <div class="skill flex-row align-center " >
+          <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
         {{/if}}
@@ -122,8 +122,8 @@
 
     {{!-- Empathy and Skills --}}
     <div class="attr-group group" id="emp">
-      <div class="attribute flex-row rollable" data-key="attribute" data-attribute="emp" data-test="twdu.EMPATHY">
-        <b class="header">{{localize 'twdu.EMPATHY'}}</b>
+      <div class="attribute flex-row ">
+        <b class="header rollable"  data-key="attribute" data-attribute="emp" data-test="twdu.EMPATHY">{{localize 'twdu.EMPATHY'}}</b>
         <input type="text" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}"
           data-dtype="Number" />
       </div>
@@ -131,8 +131,8 @@
       <div class="skill-group flex-col">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasEmpathy}}
-        <div class="skill flex-row align-center rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">
-          <b>{{localize (TWDUconcat "twdu." skill.label)}}</b>
+        <div class="skill flex-row align-center " >
+          <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</b>
           <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number" />
         </div>
         {{/if}}
@@ -143,10 +143,10 @@
 
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="main">{{localize 'twdu.general'}}</a>
-    <a class="item" data-tab="inventory">{{localize 'twdu.inventory'}}</a>
-    <a class="item" data-tab="talents">{{localize 'twdu.talents'}}</a>
-    <a class="item" data-tab="bioNotes">{{localize 'twdu.bioNotes'}}</a>
+    <a class="item grow" data-tab="main">{{localize 'twdu.general'}}</a>
+    <a class="item grow" data-tab="inventory">{{localize 'twdu.inventory'}}</a>
+    <a class="item grow" data-tab="talents">{{localize 'twdu.talents'}}</a>
+    <a class="item grow" data-tab="bioNotes">{{localize 'twdu.bioNotes'}}</a>
   </nav>
 
 

@@ -693,9 +693,9 @@ const YZUR = {
     diceSorting: ["base", "skill", "neg", "gear", "arto", "loc", "ammo"],
   },
   Roll: {
-    chatTemplate: "templates/dice/roll.html",
-    tooltipTemplate: "templates/dice/tooltip.html",
-    infosTemplate: "templates/dice/infos.hbs",
+    chatTemplate: "systems/twdu/templates/dice/roll.hbs",
+    tooltipTemplate: "systems/twdu/templates/dice/tooltip.hbs",
+    infosTemplate: "systems/twdu/templates/dice/infos.hbs",
   },
   Dice: {
     localizeDieTerms: true,
@@ -951,6 +951,7 @@ const YZUR = {
  * - `myz`: Mutant Year Zero
  * - `fbl`: Forbidden Lands
  * - `alien`: Alien RPG
+ * - `twdu`: The walked Dead
  * - `cor`: Coriolis The Third Horizon
  * - `tales`: Tales From the Loop & Things From the Flood
  * - `vae`: Vaesen
@@ -1803,13 +1804,13 @@ class YearZeroRoll extends Roll {
     }
     // MUTANT YEAR ZERO & FORBIDDEN LANDS
     // --------------------------------------------
-    else if (["myz", "fbl", "alien"].includes(this.game)) {
+    else if (["myz", "fbl", "alien", "twdu"].includes(this.game)) {
       // Modifies skill & neg dice.
       const skill = this.count("skill");
       const neg = Math.min(skill + mod, 0);
       await this.addDice(mod, "skill");
       if (neg < 0) {
-        if (this.game === "alien") {
+        if (this.game === "alien" || this.game === "twdu") {
           await this.addDice(neg, "stress");
         } else {
           await this.addDice(neg, "neg");
@@ -2361,7 +2362,7 @@ YearZeroRollManager.DIE_TERMS_MAP = {
   t2k: ["a", "b", "c", "d", "ammo", "loc"],
   // Blade Runner
   br: ["brD12", "brD10", "brD8", "brD6"],
-  // The Walking Dead
+  // TWDU The Walking Dead
   twdu: ["skill", "stress"],
 };
 

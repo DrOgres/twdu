@@ -23,25 +23,45 @@ export function prepareRollDialog(options) {
   //TODO check armor and apply modifiers to the pool
 
   let armor = actor.items.find((item) => item.type === "armor");
-    console.log("TWDU | armor: ", armor);
+  console.log("TWDU | armor: ", armor);
 
   let stressDice = actor.system.stress.value;
 
   console.log("TWDU | stressDice: ", stressDice);
   let dialogHtml = "";
   if (options.type === "weapon") {
-    dialogHtml = buildHTMLDialog(options.attName, options.attributeDefault, "attribute");
-    dialogHtml += buildHTMLDialog(options.skillName, options.skillDefault,"skill");
+    dialogHtml = buildHTMLDialog(
+      options.attName,
+      options.attributeDefault,
+      "attribute"
+    );
+    dialogHtml += buildHTMLDialog(
+      options.skillName,
+      options.skillDefault,
+      "skill"
+    );
     dialogHtml += buildHTMLDialog("Damage", options.damageDefault, "damage");
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
   }
   if (options.type === "attribute") {
-    dialogHtml = buildHTMLDialog(options.attName, options.attributeDefault, "attribute");
+    dialogHtml = buildHTMLDialog(
+      options.attName,
+      options.attributeDefault,
+      "attribute"
+    );
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
   }
   if (options.type === "skill") {
-    dialogHtml = buildHTMLDialog(options.attName, options.attributeDefault, "attribute");
-    dialogHtml += buildHTMLDialog(options.skillName, options.skillDefault,"skill");
+    dialogHtml = buildHTMLDialog(
+      options.attName,
+      options.attributeDefault,
+      "attribute"
+    );
+    dialogHtml += buildHTMLDialog(
+      options.skillName,
+      options.skillDefault,
+      "skill"
+    );
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
   }
   if (options.type === "armor") {
@@ -60,7 +80,7 @@ export function prepareRollDialog(options) {
       content: buildDivHtmlDialog(
         `
             <div class="roll-fields">
-            <h2>`+
+            <h2>` +
           game.i18n.localize("twdu.ROLL.TEST") +
           ": " +
           ` ${options.testName}</h2>
@@ -75,13 +95,17 @@ export function prepareRollDialog(options) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize("twdu.ROLL.ROLL"),
           callback: (html) => {
-            let attribute = html.find("#attribute")[0].value;
-            let skill = html.find("#skill")[0].value;
+            let attribute = options.attributeDefault;
+            console.log("TWDU | attribute: ", attribute);
+            let skill = options.skillDefault;
+            console.log("TWDU | skill: ", skill);
             let bonus = html.find("#bonus")[0].value;
-            let damage = html.find("#damage")[0].value;
+            console.log("TWDU | bonus: ", bonus);
+            let damage = options.damageDefault;
+            console.log("TWDU | damage: ", damage);
             roll(
-              sheet,
-              testName,
+              options.sheet,
+              options.testName,
               parseInt(attribute, 10),
               parseInt(skill, 10),
               parseInt(bonus, 10),
@@ -98,14 +122,27 @@ export function prepareRollDialog(options) {
       default: "roll",
       close: () => {},
     },
-    { width: "407",
-      height: "auto", }
+    { width: "407", height: "auto" }
   );
   d.render(true);
 }
 
-export function roll() {
+export function roll(sheet, testName, attribute, skill, bonus, damage) {
   // roll the dice
+  console.log(
+    "TWDU | roll: ",
+    sheet,
+    testName,
+    attribute,
+    skill,
+    bonus,
+    damage
+  );
+  sheet.roll = new YearZeroRoll();
+  sheet.lastTestName = testName;
+  sheet.lastDamage = damage;
+  let dicePool = attribute + skill + bonus;
+  rollDice(sheet, dicePool);
 }
 
 export function push() {
@@ -116,31 +153,72 @@ export function push() {
   // return the new roll
 }
 
-async function rollDice(options) {}
+async function rollDice(sheet, numberOfDice) {
+  console.log("TWDU | rollDice: ", sheet, numberOfDice);
+  let actor = game.actors.get(sheet.object._id);
+  let token = actor.prototypeToken.texture.src;
+  console.log("actor", actor);
+  console.log("token", token);
+  console.log("sheet", sheet);
+
+  if (numberOfDice <= 0) {
+    numberOfDice = 1;
+  }
+
+  let dice = {
+    term: "s",
+    number: numberOfDice,
+  };
+
+  let data = {
+    owner: actor.id,
+    name: sheet.lastTestName,
+    damage: sheet.lastDamage,
+  }
+
+  let options = {
+    name: sheet.lastTestName,
+    damage: sheet.lastDamage,
+  };
+
+  let r = YearZeroRoll.forge(
+    dice,
+    data,
+    options
+  );
+  console.log("forged roll", r);
+  
+  await r.toMessage({
+    speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
+  });
+  
+  console.log(r.getTerms("skill"));
+  sheet.roll = r.duplicate();
+}
 
 function showDice() {}
 
 function buildInputDialog(name, value, type) {
-    return (
-        `
+  return (
+    `
         <div class="flex row" style="flex-basis: 35%; justify-content: space-between;">
         <p style="text-transform: capitalize; white-space:nowrap;">` +
-        name +
-        `: </p>
+    name +
+    `: </p>
         <input id="` +
-        type +
-        `" style="text-align: center" type="text" value="` +
-        value +
-        `"/></div>`
-      );
-
-
+    type +
+    `" style="text-align: center" type="text" value="` +
+    value +
+    `"/></div>`
+  );
 }
 
 function buildHTMLDialog(diceName, diceValue, type) {
   return (
     `
-    <h4 class="header">` + type + `</h4>
+    <h4 class="header">` +
+    type +
+    `</h4>
     <div class="flex-row" style="flex-basis: 35%; justify-content: space-between;">
        <p style="text-transform: capitalize; white-space:nowrap;">` +
     diceName +
