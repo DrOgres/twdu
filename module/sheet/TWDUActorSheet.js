@@ -137,12 +137,12 @@ export default class TWDUActorSheet extends ActorSheet {
       type: key,
       sheet: this,
       testName: "", 
+      attName: "",
       attributeDefault: 0,
+      skillName: "",
       skillDefault: 0,
       bonusDefault: 0,
-      damageDefault: 0,
-      attName: "",
-      skillName: "",
+      damageDefault: 0
     };
 
     options.testName = game.i18n.localize(target.dataset.test);
@@ -157,11 +157,12 @@ export default class TWDUActorSheet extends ActorSheet {
         break;
       case "skill":
         {
-          options.skillName = target.dataset.skill;
-          options.skillDefault = this.actor.system.skills[options.skillName].value;
+          options.testName = game.i18n.localize(target.dataset.test);
+          options.skillName = game.i18n.localize(target.dataset.test);
+          options.skillDefault = this.actor.system.skills[target.dataset.skill].value;
           // get the attribute for the skill and set the default and name
-          console.log("TWDU | skill attribute: ", this.actor.system.skills[options.skillName].attribute);
-          options.attName = this.actor.system.skills[options.skillName].attribute;
+          console.log("TWDU | skill attribute: ", this.actor.system.skills[target.dataset.skill].attribute);
+          options.attName = this.actor.system.skills[target.dataset.skill].attribute;
           options.attributeDefault = this.actor.system.attributes[options.attName].value;
           console.log("TWDU | skill: ", options.skillName);
         }
@@ -172,9 +173,12 @@ export default class TWDUActorSheet extends ActorSheet {
           const item = this.actor.items.get(target.dataset.itemId);
           console.log("TWDU | item: ", item);
           options.testName = target.dataset.test;
-          options.skillName = item.system.skill;
-          options.skillDefault = this.actor.system.skills[options.skillName].value;
-          options.attName = this.actor.system.skills[options.skillName].attribute;
+          options.skillName = game.i18n.localize(item.system.skill);
+          
+          console.log("TWDU | skillName: ", item.system.skill.split("."));
+          let skill = item.system.skill.split(".")[1];
+          options.skillDefault = this.actor.system.skills[skill].value;
+          options.attName = this.actor.system.skills[skill].attribute;
           options.attributeDefault = this.actor.system.attributes[options.attName].value;
           options.damageDefault = item.system.damage;
 
@@ -255,6 +259,7 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | type: ", type);
 
     // create and add the item to the actor
+    //TODO replace this with the item rather than an array
     switch (type) {
       case "issue":
         {

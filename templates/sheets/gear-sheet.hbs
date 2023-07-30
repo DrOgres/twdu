@@ -1,74 +1,58 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   <div class="bg-offwhite flex-row flex-start">
     <div class="dl-border w-fc h-100">
-      <img
-        class="w-100p border-none br-5"
-        src="{{item.img}}"
-        data-edit="img"
-        title="{{item.name}}"
-      />
+      <img class="w-100p border-none br-5" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
     <div class="w-100 padding-sm">
       <div class="flex-col flex-wrap magin-b-sm">
         <h1 class="center">{{localize "twdu.gear"}}</h1>
-        <br /><img class="border-none center w-90" src="systems/vaesen/asset/h-rule.png"  />
+
+        <nav class="sheet-tabs tabs" data-group="primary">
+          <a class="item" data-tab="main">{{localize 'twdu.general'}}</a>
+          <a class="item" data-tab="bioNotes">{{localize 'twdu.notes'}}</a>
+        </nav>
       </div>
+      {{!-- Sheet Body --}}
+      <section class="sheet-body">
 
-      <div class="grid grid-2col-fr center gap-sm h-100">
+        <div class="tab" data-group="primary" data-tab="main">
+          <div class="grid two-col center gap-sm h-100">
 
-        <div class="grid-align-end" >
-          <h3>{{localize "twdu.name"}}:&nbsp;</h3>
-          <input class="light"  name="name" type="text" value="{{item.name}}" />
-        </div>
+            <div class="grid-align-end">
+              <h3>{{localize "twdu.name"}}:&nbsp;</h3>
+              <input class="light" name="name" type="text" value="{{item.name}}" />
+            </div>
 
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.bonus"}}</h3>
-          <input
-            class="light"
-            name="system.bonus"
-            type="text"
-            value="{{data.system.bonus}}"
-          />
-        </div>
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.encSlots"}}</h3>
-          <input
-            class="light"
-            name="system.weight"
-            type="text"
-            value="{{data.system.weight}}"
-          />
-        </div>
-{{!-- TODO   this should be a select element --}}
-        <div class="grid-align-end" >
-          <h3>{{localize "twdu.skill"}}</h3>
-          <input
-            class="light"
-            name="system.skill"
-            type="text"
-            value="{{data.system.skill}}"
-          />
-        </div>
-       
-        <div class="grid-span-2 grid-align-end" >
-          <h3>{{localize "twdu.description"}}</h3>
-          <textarea
-            name="system.description"
-          >{{data.system.description}}</textarea>
-        </div>
-  {{!--TODO  put this on a tab --}}
-         <div class="grid-align-end" >
-          <h3>{{localize "twdu.notes"}}</h3>
-          <input
-            class="light"
-            name="system.notes"
-            type="text"
-            value="{{data.system.notes}}"
-          />
-        </div>
+            <div class="grid-align-end">
+              <h3>{{localize "twdu.bonus"}}</h3>
+              <input class="light" name="system.bonus" type="text" value="{{data.system.bonus}}" />
+            </div>
+            <div class="grid-align-end">
+              <h3>{{localize "twdu.encSlots"}}</h3>
+              <input class="light" name="system.weight" type="text" value="{{data.system.weight}}" />
+            </div>
+            {{!-- TODO this should be a select element --}}
+            <div class="grid-align-end">
+              <h3>{{localize "twdu.skill"}}</h3>
+              <input class="light" name="system.skill" type="text" value="{{data.system.skill}}" />
+            </div>
 
-      </div>
+            <div class="span-2 grid-align-end">
+              <h3>{{localize "twdu.description"}}</h3>
+              <textarea name="system.description">{{data.system.description}}</textarea>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="tab" data-group="primary" data-tab="bioNotes">
+          <div class="full-size">
+            {{editor gearNotesHTML target="system.notes" button=true owner=owner editable=editable }}
+          </div>
+
+        </div>
+      </section>
 
     </div>
   </div>

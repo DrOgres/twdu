@@ -1,16 +1,39 @@
-
-
 export default class TWDUItemSheet extends ItemSheet {
+  static get defaultOptions() {
+    return mergeObject(super.defaultOptions, {
+      classes: ["twdu", "sheet", "item", "item-sheet"],
+      width: 675,
+      // height: 489 + 'max-content',
+      // height: 566 - 'max-content',
+      height: 370,
+      tabs: [
+        {
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "general",
+        },
+      ],
+    });
+  }
 
-    get template() {
-        return `systems/twdu/templates/sheets/${this.item.type}-sheet.hbs`;
-    }   
+  get template() {
+    return `systems/twdu/templates/sheets/${this.item.type}-sheet.hbs`;
+  }
 
-    getData() { 
-        const data = super.getData();
-        data.config = CONFIG.twdu;
-        console.log("TWDU | data: ", data);
-        return data;
+  async getData() {
+    const data = super.getData();
+    const source = this.item.toObject();
+    data.config = CONFIG.twdu;
+    data.source = source;
+    console.log("TWDU | data: ", data);
+    if (data.source.type == "gear") {
+      data.gearNotesHTML = await TextEditor.enrichHTML(
+        data.source.system.notes,
+        {
+          async: true,
+        }
+      );
+      return data;
     }
-
+  }
 }

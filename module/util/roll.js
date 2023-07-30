@@ -20,7 +20,13 @@ export function prepareRollDialog(options) {
   console.log("TWDU | actor: ", actor);
 
   console.log("TWDU | dialog sheet: ", options.sheet);
+  //TODO check armor and apply modifiers to the pool
+
+  let armor = actor.items.find((item) => item.type === "armor");
+    console.log("TWDU | armor: ", armor);
+
   let stressDice = actor.system.stress.value;
+
   console.log("TWDU | stressDice: ", stressDice);
   let dialogHtml = "";
   if (options.type === "weapon") {
