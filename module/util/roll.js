@@ -161,6 +161,10 @@ async function rollDice(sheet, numberOfDice) {
   console.log("token", token);
   console.log("sheet", sheet);
 
+  let stressDice = actor.system.stress.value;
+
+  let formula = numberOfDice + "ds" + " + " + stressDice + "dz";
+
   if (numberOfDice <= 0) {
     numberOfDice = 1;
   }
@@ -174,24 +178,26 @@ async function rollDice(sheet, numberOfDice) {
     owner: actor.id,
     name: sheet.lastTestName,
     damage: sheet.lastDamage,
-  }
+  };
 
   let options = {
     name: sheet.lastTestName,
     damage: sheet.lastDamage,
   };
 
-  let r = YearZeroRoll.forge(
-    dice,
-    data,
-    options
-  );
+  let r;
+
+  if (stressDice > 0) {
+    r = new YearZeroRoll(formula, data, options);
+  } else {
+    r = YearZeroRoll.forge(dice, data, options);
+  }
   console.log("forged roll", r);
-  
+
   await r.toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
   });
-  
+
   console.log(r.getTerms("skill"));
   sheet.roll = r.duplicate();
 }

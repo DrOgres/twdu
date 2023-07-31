@@ -28,10 +28,6 @@
         </div>
       </div>
 
-
-
-
-
       <h3><label>{{localize 'twdu.pcAnchor'}}</label><input name="system.pcAnchor" type="text"
           value="{{system.pcAnchor}}" placeholder="{{localize 'twdu.pcAnchor'}}" /> </h3>
       <h3><label>{{localize 'twdu.npcAnchor'}}</label><input name="system.npcAnchor" type="text"
@@ -48,9 +44,7 @@
         <img class="toggle-boolean" data-path="driveUsed" src="systems/twdu/assets/images/box_checked.png" height="18px"
           width="18px">
         {{/if}}
-
       </h3>
-
     </div>
 
   </header>
@@ -61,7 +55,7 @@
     </div>
 
     {{!-- Str and Skills --}}
-    <div class="attr-group group" id="str">
+    <div class="attr-group group m-1" id="str">
       <div class="attribute flex-row ">
         <b class="header rollable"  data-key="attribute" data-attribute="str" data-test="twdu.STRENGTH">{{localize 'twdu.STRENGTH'}}</b>
         <input type="text" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}"
@@ -81,7 +75,7 @@
     </div>
 
     {{!-- Agility and skills --}}
-    <div class="attr-group group" id="agl">
+    <div class="attr-group group m-1" id="agl">
       <div class="attribute flex-row " >
         <b class="header rollable" data-key="attribute"  data-attribute="agl" data-test="twdu.AGILITY">{{localize 'twdu.AGILITY'}}</b>
         <input type="text" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}"
@@ -101,7 +95,7 @@
     </div>
 
     {{!-- Wits and SKills --}}
-    <div class="attr-group group" id="wit">
+    <div class="attr-group group m-1" id="wit">
       <div class="attribute flex-row " >
         <b class="header rollable" data-key="attribute" data-attribute="wit" data-test="twdu.WITS">{{localize 'twdu.WITS'}}</b>
         <input type="text" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}"
@@ -121,7 +115,7 @@
     </div>
 
     {{!-- Empathy and Skills --}}
-    <div class="attr-group group" id="emp">
+    <div class="attr-group group m-1" id="emp">
       <div class="attribute flex-row ">
         <b class="header rollable"  data-key="attribute" data-attribute="emp" data-test="twdu.EMPATHY">{{localize 'twdu.EMPATHY'}}</b>
         <input type="text" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}"

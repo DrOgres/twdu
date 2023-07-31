@@ -33,7 +33,8 @@ export default class TWDUItemSheet extends ItemSheet {
           async: true,
         }
       );
-      return data;
+      
     }
+    return data;
   }
 }

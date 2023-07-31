@@ -13,14 +13,9 @@
       {{#each items as |item key|}}
       {{#if item.isWeapon}}
       <div class="weapon item flex-row center align-center" data-item-id="{{item._id}}">
-        <span class="icon rollable" 
-              data-key="weapon" 
-              data-weapon="{{item.name}}" 
-              data-item-id="{{item._id}}"
-              data-test="{{item.name}}"
-              data-skill="{{item.system.skill}}"
-              >
-        >
+        <span class="icon rollable" data-key="weapon" data-weapon="{{item.name}}" data-item-id="{{item._id}}"
+          data-test="{{item.name}}" data-skill="{{item.system.skill}}">
+
           <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" /></span>
         <span class="name">{{item.name}}</span>
         <span class="damage">{{item.system.damage}}</span>
@@ -30,7 +25,7 @@
         <div class="button">
           <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
           <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"><i
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}" data-type="item"><i
               class="fas fa-trash"></i></a>
         </div>
         <span class="equip" data-item-id="{{item.id}}">
@@ -55,9 +50,9 @@
       <div class="group-header">
         <span class="icon">{{localize "twdu.ui.icon"}}</span>
         <span class="group-name">Name</span>
-        <span class="group-qty">Qty</span>
-        <span class="group-weight">Weight</span>
-        <span class="bonus">Bonus</span>
+        
+        <span class="group-protection">Protection</span>
+        <span class="group-penalty">Mobility Penalty</span>
         <span class="equip">Equip/Store</span>
       </div>
       {{#each items as |item key|}}
@@ -66,14 +61,13 @@
         <span class="icon rollable"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
             height="36" /></span>
         <span class="name">{{item.name}}</span>
-        <span class="damage">{{item.system.damage}}</span>
-        <span class="range">{{item.system.range}}</span>
-        <span class="bonus">{{item.system.bonus}}</span>
-        <span class="weight">{{item.system.weight}}</span>
+        <span class="damage">{{item.system.protection}}</span>
+        <span class="agiltity">{{item.system.agility}}</span>
+        
         <div class="button">
           <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
           <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"><i
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-item-id="{{item._id}}" data-key="{{key}}" data-type="item"><i
               class="fas fa-trash"></i></a>
         </div>
         <span class="equip" data-item-id="{{item.id}}">

@@ -1,52 +1,26 @@
 <form class="{{cssClass}} flex-col color-brown-700 bg-offwhite " autocomplete="off">
   <div class="flex-row flex-start">
 
-    <div class="dl-border w-fc h-100">
-      <img
-        class="w-100p border-none br-5"
-        src="{{item.img}}"
-        data-edit="img"
-        title="{{item.name}}"
-      />
+    <div class="header w-150p">
+      <img class="border-none" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
     <div class="w-100 padding-sm">
-      <div class="flex-col flex-wrap magin-b-sm">
-        <h1 class="center">{{localize "twdu.name"}}</h1>
-        <br /><img
-          class="border-none center w-90"
-          src="systems/vaesen/asset/h-rule.png"
-        />
+      <div class="flex-col">
+        <h1 class="center">{{localize "twdu.name"}} :
+          <input class="light" name="name" type="text" value="{{item.name}}" />
+        </h1>
+        <br />
 
       </div>
       <div class="grid grid-3col-fr center gap-sm h-100">
-        <div class="grid-span-3 flex-row align-items-center">
-          <h3>{{localize "twdu.description"}}:&nbsp;</h3>
-          <div class="w-100"><input
-              class="light"
-              name="name"
-              type="text"
-              value="{{item.name}}"
-            /></div>
-        </div>
-
-        <div class="flex-col center">
+      <div class="flex-row center">
           <b>{{localize "twdu.protection"}}:&nbsp;</b>
-          <input
-            class="light"
-            name="system.protection"
-            type="text"
-            value="{{data.system.protection}}"
-          />
+          <input class="light" name="system.protection" type="text" value="{{data.system.protection}}" />
         </div>
-        <div class="flex-col center">
-          <b>{{localize "twdu.agility"}}</b>
-          <input
-            class="light"
-            name="system.agility"
-            type="text"
-            value="{{data.system.agility}}"
-          />
+        <div class="flex-row center">
+          <b>{{localize "twdu.agilityPenalty"}}</b>
+          <input class="light" name="system.agility" type="text" value="{{data.system.agility}}" />
         </div>
       </div>
     </div>
