@@ -183,6 +183,7 @@ async function rollDice(sheet, numberOfDice) {
   let options = {
     name: sheet.lastTestName,
     damage: sheet.lastDamage,
+    token: token,
   };
 
   let r;

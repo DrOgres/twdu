@@ -46,8 +46,10 @@ img{
 // headings
 
 h1 {
+    font-family: 'Ash', sans-serif;
     font-size: 2rem;
     font-weight: bold;
+    border: none;
 }
 
 h2 {
@@ -56,5 +58,15 @@ h2 {
     font-weight: normal;
     text-transform: uppercase;
     color: $header-1;
-    background-color: $header-bg-1;
+    border: none;
+}
+
+
+// form elements
+
+input[type="text"] {
+    border-radius: 0;
+    border: 1px solid $highlight-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+    background-color: transparent;
 }

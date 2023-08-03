@@ -12,7 +12,15 @@
   min-height: 50px;
 }
 
-
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
+  background: $header-bg-2;
+  color: $neutral-1;
+  border-radius: 0;
+  border: 2px solid $highlight-2;
+  border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+  
+}
 
 
 
@@ -59,4 +67,43 @@
   color: $neutral-1;
   text-transform: capitalize;
   background-color: $header-bg-2;
+}
+
+.subheader{
+  background-color: $header-bg-3;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: 'Nu Gothic', sans-serif;
+}
+
+.group{
+  border: 2px solid $highlight-2;
+  border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+}
+
+.skill:last-child{
+  border-bottom: none;
+
+}
+
+.walker{
+  height: 50px;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Ash', sans-serif;
+  text-transform: uppercase;
+  text-shadow: $header-bg-3 1px 0 10px;
+  font-size: 1.6rem;
+  color: transparent;
+  background-image: url(/systems/twdu/assets/images/walkers.png);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.roll-damage{
+  text-align: center;
+  font-family: 'Nu Gothic', sans-serif;
+  font-size: .9rem;
+  margin: 10px;
+  
 }

@@ -90,8 +90,10 @@ img {
 }
 
 h1 {
+  font-family: "Ash", sans-serif;
   font-size: 2rem;
   font-weight: bold;
+  border: none;
 }
 
 h2 {
@@ -100,7 +102,15 @@ h2 {
   font-weight: normal;
   text-transform: uppercase;
   color: hsl(57, 15%, 26%);
-  background-color: hsla(36, 11%, 43%, 0.5);
+  border: none;
+}
+
+input[type=text] {
+  border-radius: 0;
+  border: 1px solid hsl(353, 45%, 30%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  background-color: transparent;
 }
 
 .grid {
@@ -166,6 +176,11 @@ h2 {
   align-items: center;
 }
 
+.align-center {
+  align-items: center;
+  justify-content: center;
+}
+
 .border {
   border: 1px solid hsl(50, 14%, 9%);
 }
@@ -192,6 +207,10 @@ h2 {
 
 .br-5 {
   border-radius: 5px;
+}
+
+.skill-group {
+  margin-inline: -2px;
 }
 
 .w-100 {
@@ -344,6 +363,16 @@ h2 {
   min-height: 50px;
 }
 
+.dice-roll .dice-formula,
+.dice-roll .dice-total {
+  background: hsla(36, 11%, 53%, 0.3);
+  color: hsl(50, 14%, 9%);
+  border-radius: 0;
+  border: 2px solid hsl(355, 53%, 31%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+}
+
 .notes {
   display: flex;
   gap: 0.3rem;
@@ -382,4 +411,42 @@ h2 {
   color: hsl(50, 14%, 9%);
   text-transform: capitalize;
   background-color: hsla(36, 11%, 53%, 0.3);
+}
+
+.subheader {
+  background-color: hsla(36, 11%, 63%, 0.2);
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-family: "Nu Gothic", sans-serif;
+}
+
+.group {
+  border: 2px solid hsl(355, 53%, 31%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+}
+
+.skill:last-child {
+  border-bottom: none;
+}
+
+.walker {
+  height: 50px;
+  text-align: center;
+  padding: 20px;
+  font-family: "Ash", sans-serif;
+  text-transform: uppercase;
+  text-shadow: hsla(36, 11%, 63%, 0.2) 1px 0 10px;
+  font-size: 1.6rem;
+  color: transparent;
+  background-image: url(/systems/twdu/assets/images/walkers.png);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.roll-damage {
+  text-align: center;
+  font-family: "Nu Gothic", sans-serif;
+  font-size: 0.9rem;
+  margin: 10px;
 }/*# sourceMappingURL=twdu.css.map */

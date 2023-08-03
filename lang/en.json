@@ -75,12 +75,16 @@
         "ROLL.BASE.POOL": "Base Dice Pool",
         "ROLL.TEST" : "Test",
         "ROLL.ROLL" : "Roll",
-        "ROLL.PUSH": "Push",
+        "push": "Push",
         "ROLL.CANCEL" : "Cancel",
         "ROLL.SKILL": "Skill",
         "ROLL.PREC": "Physical Recovery",
         "ROLL.MREC": "Mental Recovery",
         "ROLL.BONUS": "Bonus Dice",
         "ROLL.DAMAGE": "Damage"
+    },
+    "YZUR": {
+        "DIETERMS.SkillDie": "Skill Dice",
+        "DIETERMS.StressDie": "Stress Dice"
     }
 }

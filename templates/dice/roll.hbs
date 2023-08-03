@@ -1,15 +1,18 @@
 
-<div class="card-holder" style="position: relative;">
-
- {{#if roll.token}} 
-<img src="{{roll.token}}" width="45" height="45" class="roll-token" />
+<div class="card-holder flex-row w-100" style="position: relative;">
+<div class="roll-token">
+ {{#if roll.options.token}} 
+<img src="{{roll.options.token}}" width="45" height="45" class="roll-token" />
 {{/if}}
-{{#unless roll.token}}
-<img src="systems/vaesen/asset/unkown_roller.svg" width="45" height="45" class="roll-token" />
+{{#unless roll.options.token}}
+<img src="systems/twdu/assets/images/unkown_roller.svg" width="45" height="45" class="roll-token" />
 {{/unless}}
-<div class="vaesen chat-card" data-owner-id="{{roll.owner}}">
-
+</div>
+<div class="chat-card grow p-1" data-owner-id="{{roll.owner}}">
   <div class="card-content borderimg">
+    {{#if (gt roll.panic 0)}}
+    <div class="walker center walker">You Messed Up!</div>
+    {{/if}}
     <div class="dice-roll">
       {{#if flavor}}
       <div class="dice-flavor">{{flavor}}</div>
@@ -19,10 +22,10 @@
         {{{tooltip}}}
 
         {{#if (gt success 0)}}
-        <h4 class="dice-total success">{{localize "CHAT.SUCCESS"}} : {{success}}</h4>
+        <h4 class="dice-total success">{{localize "twdu.CHAT.SUCCESS"}} : {{success}}</h4>
         {{/if}}
         {{#if (eq success 0)}}
-        <h4 class="dice-total failure"> {{localize "CHAT.SUCCESS"}} : {{success}}</h4>
+        <h4 class="dice-total failure"> {{localize "twdu.CHAT.SUCCESS"}} : {{success}}</h4>
         {{/if}}
       </div>
     </div>
@@ -33,7 +36,7 @@
     {{!-- Push button --}}
     {{#if pushable}}
     <div class="dice-buttons" data-owner-id="{{roll.owner}}">
-      <button class="dice-button push" data-action="push" data-owner-id="{{roll.owner}}">{{localize "YZUR.CHAT.ROLL.Push"}}</button>
+      <button class="dice-button push" data-action="push" data-owner-id="{{roll.owner}}">{{localize "twdu.push"}}</button>
     </div>
     {{/if}}
   </div>
