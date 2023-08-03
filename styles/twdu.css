@@ -404,6 +404,10 @@ input[type=text] {
   cursor: pointer;
 }
 
+.rollable:hover {
+  text-shadow: 1px 1px 2px hsl(353, 45%, 30%);
+}
+
 .header {
   font-family: "Nu Gothic", sans-serif;
   font-size: 1.5rem;

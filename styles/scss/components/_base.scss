@@ -60,6 +60,10 @@
   cursor: pointer;
 }
 
+.rollable:hover{
+  text-shadow: 1px 1px 2px $highlight-1;
+}
+
 .header{
   font-family: 'Nu Gothic', sans-serif;
   font-size: 1.5rem;
@@ -107,3 +111,4 @@
   margin: 10px;
   
 }
+
