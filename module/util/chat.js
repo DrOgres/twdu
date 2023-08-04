@@ -47,7 +47,7 @@ export const buildChatCard = function (type, data) {
         "<div class='flex-row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info flex-col'>" +
+        "<div class='chat-item-info grid two-col'>" +
         "<b>" +
         game.i18n.localize("twdu.damage") +
         ": </b>" +
@@ -88,7 +88,7 @@ export const buildChatCard = function (type, data) {
         "<div class='flex row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info flex column'>" +
+        "<div class='chat-item-info grid two-col'>" +
         "<div><b>" +
         game.i18n.localize("ARMOR.PROTECTION") +
         ": </b>" +
@@ -138,7 +138,7 @@ export const buildChatCard = function (type, data) {
         "<div class='flex row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info flex column'>" +
+        "<div class='chat-item-info grid two-col'>" +
         "<b>" +
         game.i18n.localize("GEAR.BONUS") +
         ": </b>" +
@@ -175,7 +175,7 @@ export const buildChatCard = function (type, data) {
         "<div class='flex row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info flex column'>" +
+        "<div class='chat-item-info grid two-col'>" +
         "<b>" +
         game.i18n.localize("TALENT.DESCRIPTION") +
         ": </b>" +
@@ -208,7 +208,7 @@ export const buildChatCard = function (type, data) {
         "<div class='flex row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info flex column'>" +
+        "<div class='chat-item-info grid two-col'>" +
         "<b>" +
         game.i18n.localize("CRITICAL_INJURY.TYPE") +
         `: </b><span class="title-case">` +
