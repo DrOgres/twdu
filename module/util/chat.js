@@ -47,7 +47,7 @@ export const buildChatCard = function (type, data) {
         "<div class='flex-row center'><img src='" +
         data.img +
         "' width=50 height=50/></div>" +
-        "<div class='chat-item-info grid two-col'>" +
+        "<div class='chat-item-info grid two-col justify'>" +
         "<b>" +
         game.i18n.localize("twdu.damage") +
         ": </b>" +
