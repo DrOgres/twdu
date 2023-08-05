@@ -3,22 +3,25 @@ import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
 import { preloadHandlebarsTemplates } from "./util/templates.js";
 import { twdu } from "../module/config.js";
 import FoundryOverrides from "./util/overrides.js";
-import { YearZeroRollManager } from './util/yzur.js';
+import { YearZeroRollManager } from "./util/yzur.js";
+import { decreaseThreatLevel, increaseThreatLevel, threatLevelDialog, ThreatLevel } from "./util/threat.js";
+import { registerGameSettings } from "./util/settings.js";
 
 Hooks.once("init", async function () {
-
-
   console.log("TWDU | Initializing TWDU");
 
   CONFIG.twdu = twdu;
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
 
   //yzur init
-  YearZeroRollManager.register('twdu', {
-    'ROLL.chatTemplate': 'systems/twdu/templates/dice/roll.hbs',
-    'ROLL.tooltipTemplate': 'systems/twdu/templates/dice/tooltip.hbs',
-    'ROLL.infosTemplate': 'systems/twdu/templates/dice/infos.hbs',
+  YearZeroRollManager.register("twdu", {
+    "ROLL.chatTemplate": "systems/twdu/templates/dice/roll.hbs",
+    "ROLL.tooltipTemplate": "systems/twdu/templates/dice/tooltip.hbs",
+    "ROLL.infosTemplate": "systems/twdu/templates/dice/infos.hbs",
   });
+
+  // Register custom system settings
+  registerGameSettings();
 
   CONFIG.TextEditor.enrichers = CONFIG.TextEditor.enrichers.concat([
     {
@@ -44,6 +47,9 @@ Hooks.once("init", async function () {
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
 
+  // Initialize the Threat Level
+  ThreatLevel.initialize();
+
   Handlebars.registerHelper("enrichHtmlHelper", function (rawText) {
     return TextEditor.enrichHTML(rawText, { async: true });
   });
@@ -58,30 +64,64 @@ Hooks.once("init", async function () {
     return outStr;
   });
 
-  
-  Handlebars.registerHelper("times", function(n, content) {
+  Handlebars.registerHelper("times", function (n, content) {
     let result = "";
-    for (let i = 0; i < n; ++i){
-        content.data.index = i + 1;
-        result = result + content.fn(i);
+    for (let i = 0; i < n; ++i) {
+      content.data.index = i + 1;
+      result = result + content.fn(i);
     }
-    
+
     return result;
-});
+  });
 
   Handlebars.registerHelper("TWDUinvert", function () {
-      let keys = Object.keys(arguments[0]);
-      keys.sort(function(a, b){return b-a});
-      let sorted = [];
-      for (let i = 0; i < keys.length; i++) {
-          let k = keys[i];
-          sorted.push(arguments[0][k]);
-      }
-      return sorted;
+    let keys = Object.keys(arguments[0]);
+    keys.sort(function (a, b) {
+      return b - a;
     });
+    let sorted = [];
+    for (let i = 0; i < keys.length; i++) {
+      let k = keys[i];
+      sorted.push(arguments[0][k]);
+    }
+    return sorted;
+  });
 
-    Handlebars.registerHelper("subtract", function () {
-      return arguments[0] - arguments[1];
-    });
+  Handlebars.registerHelper("subtract", function () {
+    return arguments[0] - arguments[1];
+  });
+});
 
+Hooks.on("getSceneControlButtons", (controls) => {
+  let group = controls.find((c) => c.name === "token");
+  group.tools.push(
+    {
+      name: "add",
+      // TODO localize this
+      title: "Increase Threat Level",
+      icon: "fas fa-plus",
+      buttons: true,
+      visible: game.user.isGM,
+      onClick: () => increaseThreatLevel(1),
+    },
+    {
+      name: "subtract",
+      // TODO localize this
+      title: "Decrease Threat Level",
+      icon: "fas fa-minus",
+      buttons: true,
+      visible: game.user.isGM,
+      onClick: () => decreaseThreatLevel(1),
+    },
+    {
+      name: "showInterface",
+      title: "Show Threat Interface",
+      icon: "fas fa-biohazard",
+      buttons: true,
+      visible: game.settings.get("twdu", "threatLevelVisibility")
+      ? true
+      : game.user.isGM,
+      onClick: () => {ThreatLevel.render()},
+    }
+  );
 });

@@ -71,6 +71,8 @@
         "ui.chat": "Chat",
         "ui.edit": "Edit",
 
+        "threatLevel": "Threat Level",
+
         "CHAT.SUCCESS": "Successes",
         "ROLL.BASE.POOL": "Base Dice Pool",
         "ROLL.TEST" : "Test",

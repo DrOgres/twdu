@@ -65,6 +65,10 @@ a:hover {
   text-shadow: 1px 1px 2px hsla(353, 45%, 30%, 0.3);
 }
 
+#sidebar h2 {
+  color: hsl(53, 10%, 68%);
+}
+
 #sidebar .tabs {
   color: hsl(53, 10%, 68%);
 }
