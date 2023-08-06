@@ -5,7 +5,7 @@
 export async function increaseThreatLevel(amount) {
   let threatLevel = getThreatLevel();
   if (threatLevel === undefined) {
-    threatLevel = 0;
+    threatLevel = 1;
     await setThreatLevel(threatLevel);
     return;
   }
@@ -24,13 +24,13 @@ export async function increaseThreatLevel(amount) {
 export async function decreaseThreatLevel(amount) {
   let threatLevel = getThreatLevel();
   if (threatLevel === undefined) {
-    threatLevel = 0;
+    threatLevel = 1;
     await setThreatLevel(threatLevel);
     return;
   }
 
-  if (threatLevel <= 0) {
-    await setThreatLevel(0);
+  if (threatLevel <= 1) {
+    await setThreatLevel(1);
     return;
   }
 
@@ -42,6 +42,7 @@ export async function decreaseThreatLevel(amount) {
 
 export async function setThreatLevel(threatLevel) {
   await game.settings.set("twdu", "threatLevel", threatLevel);
+  ThreatLevelDisplay.update();
 }
 
 export function getThreatLevel() {
@@ -67,13 +68,13 @@ export async function displayThreatLevel() {
 
 // show a UI dialog to allow the GM to set the threat level
 export async function threatLevelDialog() {
-    console.log("TWDU | threatLevelDialog: ", game.user.isGM);
-    ThreatLevel.render(true);
+  console.log("TWDU | threatLevelDialog: ", game.user.isGM);
+  ThreatLevel.render(true);
 }
 
-export class ThreatLevel extends Application {
+export class ThreatLevelDisplay extends Application {
   static initialize() {
-    this.threatLevel = new ThreatLevel();
+    this.threatLevel = new ThreatLevelDisplay();
   }
 
   static update() {
@@ -81,20 +82,24 @@ export class ThreatLevel extends Application {
   }
 
   static render() {
+    console.log("TWDU | ThreatLevel.render: ", this.threatLevel);
     this.threatLevel.render(true);
   }
 
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: "threat-level-display",
-      template: "systems/twdu/templates/ui/threat-level-display.html",
+      template: "/systems/twdu/templates/ui/threat-level-display.html",
       top: 100,
-      left: 100,
+      left: 120,
       height: 120,
-      popOut: false,
+      width: 200,
+      zIndex: 100,
+      popOut: true,
       resizable: false,
+      minimizable: false,
       title: "Threat Level",
-      background: "none",
+      background: "#000000",
     });
   }
 

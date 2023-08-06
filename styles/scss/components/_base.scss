@@ -67,7 +67,6 @@
   font-family: 'Nu Gothic', sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
-  color: $neutral-1;
   text-transform: capitalize;
   background-color: $header-bg-2;
 }
@@ -115,3 +114,28 @@
   background-color: $header-bg-3;
 }
 
+.window-app, .window-app .window-content{
+  color: $header-1
+}
+
+
+.twdu.threat-level-display{
+  margin: -8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.count {
+  font-family: 'Nu Gothic', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: $header-bg-2;
+  border: 2px solid $highlight-2;
+  border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  text-align: center;
+}

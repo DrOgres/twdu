@@ -145,6 +145,37 @@ export function roll(sheet, testName, attribute, skill, bonus, damage) {
   rollDice(sheet, dicePool);
 }
 
+Hooks.on('renderChatLog', (app, html, data) => {
+    html.on('click', '.dice-button.push', _onPush);
+  });
+  
+  async function _onPush(event) {
+    event.preventDefault();
+  
+    // Get the message.
+    let chatCard = event.currentTarget.closest('.chat-message');
+    let messageId = chatCard.dataset.messageId;
+    let message = game.messages.get(messageId);
+  
+    let actor = game.actors.get(message.speaker.actor);
+    console.log("TWDU | actor: ", actor);
+  
+    let newStress = actor.system.stress.value + 1;
+    await actor.update({ "system.stress.value": newStress });
+    
+    console.log("TWDU | message rolls: ", message.rolls);
+    // Copy the roll.
+    let roll = message.rolls[0].duplicate();
+  
+    // Delete the previous message.
+    await message.delete();
+  
+    // Push the roll and send it.
+    await roll.push({ async: true });
+    await roll.toMessage();
+  }
+  
+
 export function push() {
   // get the old roll
   // add stress to the character and add the stress dice to the roll

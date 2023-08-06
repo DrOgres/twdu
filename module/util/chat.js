@@ -246,25 +246,3 @@ export const buildChatCard = function (type, data) {
   return chatData;
 };
 
-Hooks.on('renderChatLog', (app, html, data) => {
-  html.on('click', '.dice-button.push', _onPush);
-});
-
-async function _onPush(event) {
-  event.preventDefault();
-
-  // Get the message.
-  let chatCard = event.currentTarget.closest('.chat-message');
-  let messageId = chatCard.dataset.messageId;
-  let message = game.messages.get(messageId);
-
-  // Copy the roll.
-  let roll = message.rolls[0].duplicate();
-
-  // Delete the previous message.
-  await message.delete();
-
-  // Push the roll and send it.
-  await roll.push({ async: true });
-  await roll.toMessage();
-}

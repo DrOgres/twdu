@@ -1,12 +1,14 @@
-
-<!-- TODO use the starter kit images to make a nice display with animated transitions -->
-
-<div class="twdu threat-level-display">
+<div class="twdu threat-level-display w-100 pi-1">
+    <div class="group w-100">
+  <h3 class="header m-0 center">{{localize "twdu.threatLevel"}}</h3>
+</div>
+  <div class="flex-row group w-100">
     {{#if gm}}
-    <button class="minus-button">-</button>
+    <button class="threat-level-down">-</button>
     {{/if}}
-    <span class="count">{{dp}}</span>
+    <span class="count">{{threatLevel}}</span>
     {{#if gm}}
-    <button class="plus-button">+</button>
+    <button class="threat-level-up">+</button>
     {{/if}}
   </div>
+</div>

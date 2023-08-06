@@ -51,6 +51,10 @@
   font-weight: bolder;
 }
 
+.app {
+  background: url(/systems/twdu/assets/images/denim075.png) repeat;
+}
+
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
@@ -59,6 +63,10 @@
 .chat-message {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+}
+
+.window-title, .header-button {
+  color: hsl(53, 10%, 68%);
 }
 
 a:hover {
@@ -121,10 +129,13 @@ h2 {
 
 input[type=text] {
   border-radius: 0;
-  border: 1px solid hsl(353, 45%, 30%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  border: none;
   background-color: transparent;
+  color: hsl(57, 15%, 16%);
+  border-bottom: 1px solid hsl(353, 24%, 65%);
+}
+input[type=text]:hover {
+  cursor: pointer;
 }
 
 .grid {
@@ -253,6 +264,10 @@ input[type=text] {
 
 .max-h-110p {
   max-height: 110px;
+}
+
+.max-h-150p {
+  max-height: 150px;
 }
 
 .max-h-250p {
@@ -450,7 +465,6 @@ input[type=text] {
   font-family: "Nu Gothic", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
-  color: hsl(50, 14%, 9%);
   text-transform: capitalize;
   background-color: hsla(36, 11%, 53%, 0.3);
 }
@@ -495,4 +509,30 @@ input[type=text] {
 
 .issue:nth-child(odd) {
   background-color: hsla(36, 11%, 63%, 0.2);
+}
+
+.window-app, .window-app .window-content {
+  color: hsl(57, 15%, 26%);
+}
+
+.twdu.threat-level-display {
+  margin: -8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.count {
+  font-family: "Nu Gothic", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: hsla(36, 11%, 53%, 0.3);
+  border: 2px solid hsl(355, 53%, 31%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  text-align: center;
 }/*# sourceMappingURL=twdu.css.map */

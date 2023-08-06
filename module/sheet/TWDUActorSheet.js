@@ -125,6 +125,9 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".to-chat").click(this._onItemToChat.bind(this));
     html.find(".rollable").click(this._onRoll.bind(this));
+    // stress buttons
+    html.find(".stress-up").click(this._onStressUp.bind(this));
+    html.find(".stress-down").click(this._onStressDown.bind(this));
   }
 
   _onRoll(event) {
@@ -316,5 +319,21 @@ export default class TWDUActorSheet extends ActorSheet {
         : Math.max(currentCount - 1, 0);
 
     actor.update({ "system.experience.value": newCount });
+  }
+
+  _onStressUp(event) {
+    event.preventDefault();
+    console.log("TWDU | _onStressUp: ", event);
+    let actor = this.actor;
+    let newCount = actor.system.stress.value + 1;
+    actor.update({ "system.stress.value": newCount });
+  }
+
+  _onStressDown(event) {
+    event.preventDefault();
+    console.log("TWDU | _onStressDown: ", event);
+    let actor = this.actor;
+    let newCount = Math.max(actor.system.stress.value - 1, 0);
+    actor.update({ "system.stress.value": newCount });
   }
 }

@@ -5,7 +5,7 @@ import { twdu } from "../module/config.js";
 import FoundryOverrides from "./util/overrides.js";
 import { increaseThreatLevel, decreaseThreatLevel } from "./util/threat.js";
 import { YearZeroRollManager } from "./util/yzur.js";
-import { ThreatLevel } from "./util/threat.js";
+import { ThreatLevelDisplay } from "./util/threat.js";
 import { registerGameSettings } from "./util/settings.js";
 
 Hooks.once("init", async function () {
@@ -49,7 +49,7 @@ Hooks.once("init", async function () {
   preloadHandlebarsTemplates();
 
   // Initialize the Threat Level
-  ThreatLevel.initialize();
+  ThreatLevelDisplay.initialize();
 
   Handlebars.registerHelper("enrichHtmlHelper", function (rawText) {
     return TextEditor.enrichHTML(rawText, { async: true });
@@ -122,7 +122,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
       visible: game.settings.get("twdu", "threatLevelVisibility")
       ? true
       : game.user.isGM,
-      onClick: () => {ThreatLevel.render()},
+      onClick: () => {ThreatLevelDisplay.render()},
     }
   );
 });

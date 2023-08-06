@@ -4,30 +4,23 @@
     <header class="actor-header flex-row gap-sm">
       <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
         style="width: 175px; height: 175px; padding-top:10px; padding-left:5px;" />
-      <div class="character-info w-100">
+      <div class="character-info w-100 group">
         
         <h1 class="input name w-100 group pi-1"><input name="name" type="text" value="{{actor.name}}"
             placeholder="{{localize 'twdu.name'}}" /></h1>
 
-        <div class="grid two-col gap-sm pi-1 group">
-          <div class="flex-col label ">
-            <label for="archetype">{{localize 'twdu.archetype'}}:</label>
-            <input name="system.archetype" id="archetype" type="text" value="{{system.archetype}}"
-              placeholder="{{localize 'twdu.archetype'}}" />
-          </div>
-
-          <div class="flex-col">
-            <label>{{localize 'twdu.description'}}:</label>
-            <textarea name="system.description">{{actor.system.description}}</textarea>
-          </div>
-        </div>
-
-        {{!--TODO change this for issue items --}}
         <div class="grid two-col">
           <div class="flex-col">
+            <div class="archetype group flex-row center">
+            <span for="archetype">{{localize 'twdu.archetype'}}:</span>
+            <input name="system.archetype" id="archetype" type="text" value="{{system.archetype}}"
+              placeholder="{{localize 'twdu.archetype'}}" />
+            </div>
+
+            <div class="flex-col">
             <h2 class="header group pi-1">{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue">
                 &#43;</a></h2>
-            <div class="issue-list scrollable max-h-110p">
+            <div class="issue-list scrollable max-h-150p">
               {{#each system.issues as |issue index|}}
               <div class="issue flex-row group pi-2"><input name="system.issues.{{index}}" type="text" value="{{issue}}"
                   placeholder="{{localize 'twdu.issues'}}" /> <a class="item-control item-delete"
@@ -37,8 +30,15 @@
               {{/each}}
             </div>
           </div>
+          </div>
 
           <div class="flex-col">
+            <div class="description group flex-col">
+            <label>{{localize 'twdu.description'}}:</label>
+            <textarea name="system.description">{{actor.system.description}}</textarea>
+            </div>
+
+            <div class="flex-col">
             <div class="flex-col anchor group pi-1">
               <label>{{localize 'twdu.pcAnchor'}}:</label>
               <input name="system.pcAnchor" type="text" value="{{system.pcAnchor}}"
@@ -51,7 +51,7 @@
             </div>
             <div class="group pi-1">
               <label>{{localize 'twdu.drive'}}:</label>
-              <div class="flex-row">
+              <div class="flex-row center">
                 <input name="system.drive" type="text" value="{{system.drive}}"
                   placeholder="{{localize 'twdu.drive'}}" />
 
@@ -67,6 +67,15 @@
               </div>
             </div>
           </div>
+
+          </div>
+        </div>
+
+        {{!--TODO change this for issue items --}}
+        <div class="grid two-col">
+          
+
+          
 
         </div>
 

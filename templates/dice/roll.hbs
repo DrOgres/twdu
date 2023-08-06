@@ -34,11 +34,13 @@
     {{{infos}}}
     {{/if}}
     {{!-- Push button --}}
+    {{#unless (gt roll.panic 0)}}
     {{#if pushable}}
     <div class="dice-buttons" data-owner-id="{{roll.owner}}">
       <button class="dice-button push" data-action="push" data-owner-id="{{roll.owner}}">{{localize "twdu.push"}}</button>
     </div>
     {{/if}}
+    {{/unless}}
   </div>
 </div>
 </div>
