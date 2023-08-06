@@ -3,8 +3,9 @@ import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
 import { preloadHandlebarsTemplates } from "./util/templates.js";
 import { twdu } from "../module/config.js";
 import FoundryOverrides from "./util/overrides.js";
+import { increaseThreatLevel, decreaseThreatLevel } from "./util/threat.js";
 import { YearZeroRollManager } from "./util/yzur.js";
-import { decreaseThreatLevel, increaseThreatLevel, threatLevelDialog, ThreatLevel } from "./util/threat.js";
+import { ThreatLevel } from "./util/threat.js";
 import { registerGameSettings } from "./util/settings.js";
 
 Hooks.once("init", async function () {

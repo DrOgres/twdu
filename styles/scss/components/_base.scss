@@ -23,7 +23,6 @@
 }
 
 
-
 .notes {
   display: flex;
   gap: 0.3rem;
@@ -110,5 +109,9 @@
   font-size: .9rem;
   margin: 10px;
   
+}
+
+.issue:nth-child(odd){
+  background-color: $header-bg-3;
 }
 
