@@ -52,6 +52,7 @@ export function prepareRollDialog(options) {
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
   }
   if (options.type === "skill") {
+    // TODO check for Mobility and adjust for armor.
     dialogHtml = buildHTMLDialog(
       options.attName,
       options.attributeDefault,
@@ -62,6 +63,19 @@ export function prepareRollDialog(options) {
       options.skillDefault,
       "skill"
     );
+    if (options.skillName === "Mobility") {
+      //get the armor of the character that is equipped
+      let armor = actor.items.find((item) => item.type === "armor" && item.system.isEquipped );
+      console.log("TWDU | armor: ", armor);
+      if (armor) {
+        dialogHtml += buildHTMLDialog(
+          "Armor Penalty",
+          (0 - armor.system.agility),
+          "armor"
+        );
+      }
+    }
+
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
   }
   if (options.type === "armor") {
@@ -166,10 +180,13 @@ Hooks.on('renderChatLog', (app, html, data) => {
     console.log("TWDU | message rolls: ", message.rolls);
     // Copy the roll.
     let roll = message.rolls[0].duplicate();
+
   
     // Delete the previous message.
     await message.delete();
-  
+
+    // add the stress dice to the roll
+    await roll.addDice(1, 'stress');
     // Push the roll and send it.
     await roll.push({ async: true });
     await roll.toMessage();

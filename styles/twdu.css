@@ -130,12 +130,19 @@ h2 {
 input[type=text] {
   border-radius: 0;
   border: none;
+  border-bottom: 2px solid hsl(57, 15%, 26%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
   background-color: transparent;
-  color: hsl(57, 15%, 16%);
-  border-bottom: 1px solid hsl(353, 24%, 65%);
+  color: hsl(57, 15%, 6%);
 }
 input[type=text]:hover {
   cursor: pointer;
+}
+input[type=text].box {
+  border: 2px solid hsl(355, 53%, 31%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .grid {

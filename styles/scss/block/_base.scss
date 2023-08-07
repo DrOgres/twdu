@@ -94,10 +94,19 @@ h2 {
 input[type="text"] {
     border-radius: 0;
     border: none;
+    border-bottom: 2px solid $header-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
     background-color: transparent;
     color: $header-0;
-    border-bottom: 1px solid $highlight-3;
+  
     &:hover {
         cursor: pointer;
     }
+
+    &.box{
+        border: 2px solid $highlight-2;
+        border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+    }
 }
+
+

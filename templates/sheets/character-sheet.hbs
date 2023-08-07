@@ -3,8 +3,8 @@
   <div class="sheet-container" style="margin:-2px;">
     <header class="actor-header flex-row gap-sm">
       <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
-        style="width: 175px; height: 175px; padding-top:10px; padding-left:5px;" />
-      <div class="character-info w-100 group">
+        style="width: 175px; height: 245px; padding-top:10px; padding-left:10px;" />
+      <div class="character-info w-100">
         
         <h1 class="input name w-100 group pi-1"><input name="name" type="text" value="{{actor.name}}"
             placeholder="{{localize 'twdu.name'}}" /></h1>
@@ -71,15 +71,6 @@
           </div>
         </div>
 
-        {{!--TODO change this for issue items --}}
-        <div class="grid two-col">
-          
-
-          
-
-        </div>
-
-
       </div>
 
     </header>
@@ -94,7 +85,7 @@
         <div class="subheader attribute flex-row p-1 justify">
           <b class=" rollable m-1" data-key="attribute" data-attribute="str" data-test="twdu.STRENGTH">{{localize
             'twdu.STRENGTH'}}</b>
-          <input type="text" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}"
+          <input class="box" type="text" name="system.attributes.str.value" value="{{actor.system.attributes.str.value}}"
             data-dtype="Number" style="width: 50px; text-align:right;" />
         </div>
         {{!-- skillblock --}}
@@ -104,7 +95,7 @@
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable pi-1" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize
               (TWDUconcat "twdu." skill.label)}}</b>
-            <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
+            <input class="box"  type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
               style="width: 50px; text-align:right;" />
           </div>
           {{/if}}
@@ -117,7 +108,7 @@
         <div class="subheader attribute flex-row p-1 justify">
           <b class="rollable m-1" data-key="attribute" data-attribute="agl" data-test="twdu.AGILITY">{{localize
             'twdu.AGILITY'}}</b>
-          <input type="text" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}"
+          <input class="box"  type="text" name="system.attributes.agl.value" value="{{actor.system.attributes.agl.value}}"
             data-dtype="Number" style="width: 50px; text-align:right;" />
         </div>
         {{!-- skillblock --}}
@@ -127,7 +118,7 @@
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat
               "twdu." skill.label)}}</b>
-            <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
+            <input class="box"  type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
               style="width: 50px; text-align:right;" />
           </div>
           {{/if}}
@@ -140,7 +131,7 @@
         <div class="subheader attribute flex-row p-1 justify">
           <b class="rollable m-1" data-key="attribute" data-attribute="wit" data-test="twdu.WITS">{{localize
             'twdu.WITS'}}</b>
-          <input type="text" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}"
+          <input class="box" type="text" name="system.attributes.wit.value" value="{{actor.system.attributes.wit.value}}"
             data-dtype="Number" style="width: 50px; text-align:right;" />
         </div>
         {{!-- skillblock --}}
@@ -150,7 +141,7 @@
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat
               "twdu." skill.label)}}</b>
-            <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
+            <input class="box" type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
               style="width: 50px; text-align:right;" />
           </div>
           {{/if}}
@@ -163,7 +154,7 @@
         <div class="subheader attribute flex-row p-1 justify">
           <b class="rollable m-1" data-key="attribute" data-attribute="emp" data-test="twdu.EMPATHY">{{localize
             'twdu.EMPATHY'}}</b>
-          <input type="text" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}"
+          <input class="box" type="text" name="system.attributes.emp.value" value="{{actor.system.attributes.emp.value}}"
             data-dtype="Number" style="width: 50px; text-align:right;" />
         </div>
         {{!-- skillblock --}}
@@ -173,7 +164,7 @@
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat
               "twdu." skill.label)}}</b>
-            <input type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
+            <input class="box" type="text" name="system.skills.{{key}}.value" value="{{skill.value}}" data-dtype="Number"
               style="width: 50px; text-align:right;" />
           </div>
           {{/if}}

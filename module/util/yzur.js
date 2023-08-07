@@ -1810,7 +1810,7 @@ class YearZeroRoll extends Roll {
       const neg = Math.min(skill + mod, 0);
       await this.addDice(mod, "skill");
       if (neg < 0) {
-        if (this.game === "alien") {
+        if (this.game === "alien" || this.game === "twdu") {
           await this.addDice(neg, "stress");
         } else {
           await this.addDice(neg, "neg");
