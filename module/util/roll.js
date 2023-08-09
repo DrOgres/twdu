@@ -73,6 +73,8 @@ export function prepareRollDialog(options) {
           (0 - armor.system.agility),
           "armor"
         );
+
+        options.armorPenalty = (0 - armor.system.agility);
       }
     }
 
@@ -123,7 +125,8 @@ export function prepareRollDialog(options) {
               parseInt(attribute, 10),
               parseInt(skill, 10),
               parseInt(bonus, 10),
-              parseInt(damage, 10)
+              parseInt(damage, 10),
+              options.armorPenalty
             );
           },
         },
@@ -141,7 +144,7 @@ export function prepareRollDialog(options) {
   d.render(true);
 }
 
-export function roll(sheet, testName, attribute, skill, bonus, damage) {
+export function roll(sheet, testName, attribute, skill, bonus, damage, armorPenalty) {
   // roll the dice
   console.log(
     "TWDU | roll: ",
@@ -150,12 +153,13 @@ export function roll(sheet, testName, attribute, skill, bonus, damage) {
     attribute,
     skill,
     bonus,
-    damage
+    damage,
+    (armorPenalty || 0)
   );
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
   sheet.lastDamage = damage;
-  let dicePool = attribute + skill + bonus;
+  let dicePool = attribute + skill + bonus + (armorPenalty || 0);
   rollDice(sheet, dicePool);
 }
 
