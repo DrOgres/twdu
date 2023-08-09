@@ -13,6 +13,8 @@ export const hideChatActionButtons = function (message, html, data) {
   }
 };
 
+//TODO templateize the various chat cards
+
 export const buildChatCard = function (type, data) {
   console.log("TWDU | buildChatCard: ", type, data);
 
@@ -40,7 +42,7 @@ export const buildChatCard = function (type, data) {
         `<div class="card-holder" style="position: relative;">
             <img src="` +
         token +
-        `" width="45" height="45" class="roll-token" />
+        `" width="45" class="roll-token" />
             <div class='chat-flavor'>` +
         data.name.toUpperCase() +
         "</div>" +
@@ -81,7 +83,7 @@ export const buildChatCard = function (type, data) {
         `<div class="card-holder" style="position: relative;">
               <img src="` +
         token +
-        `" width="45" height="45" class="roll-token" />
+        `" width="45"  class="roll-token" />
               <div class='chat-flavor'>` +
         data.name.toUpperCase() +
         "</div>" +
@@ -90,21 +92,16 @@ export const buildChatCard = function (type, data) {
         "' width=50 height=50/></div>" +
         "<div class='chat-item-info grid two-col'>" +
         "<div><b>" +
-        game.i18n.localize("ARMOR.PROTECTION") +
+        game.i18n.localize("twdu.protection") +
         ": </b>" +
         data.system.protection +
         "</div>" +
         "<div><b>" +
-        game.i18n.localize("ARMOR.AGILITY") +
+        game.i18n.localize("twdu.agilityPenalty") +
         ": </b>" +
         data.system.agility +
         "</div>" +
-        "<div><b>" +
-        game.i18n.localize("ARMOR.AVAILABILITY") +
-        ": </b>" +
-        data.system.availability +
-        "</div>" +
-        `</div></div>`;
+        `</div>`;
       break;
     case "gear":
       console.log("TWDU | gear: ", data);
@@ -131,7 +128,7 @@ export const buildChatCard = function (type, data) {
         `<div class="card-holder" style="position: relative;">
                   <img src="` +
         token +
-        `" width="45" height="45" class="roll-token" />
+        `" width="45"  class="roll-token" />
                   <div class='chat-flavor'>` +
         data.name.toUpperCase() +
         "</div>" +
@@ -168,7 +165,7 @@ export const buildChatCard = function (type, data) {
         `<div class="card-holder" style="position: relative;">
           <img src="` +
         token +
-        `" width="45" height="45" class="roll-token" />
+        `" width="45" class="roll-token" />
           <div class='chat-flavor'>` +
         data.name.toUpperCase() +
         "</div>" +
@@ -199,7 +196,7 @@ export const buildChatCard = function (type, data) {
         `<div class="card-holder" style="position: relative;">
             <img src="` +
         token +
-        `" width="45" height="45" class="roll-token" />
+        `" width="45"  class="roll-token" />
             <div class='chat-flavor'>` +
         game.i18n.localize("CRITICAL_INJURY.NAME") +
         ": " +

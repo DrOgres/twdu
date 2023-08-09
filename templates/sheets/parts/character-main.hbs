@@ -1,5 +1,5 @@
-<div>
-  <div class="grid col-60-40 gap-sm">
+
+  <div class="grid col-60-40">
     <div class="item-group p-1">
       <div class="group-header flex-row w-100 justify m-1 p-1">
         <h3>
@@ -115,12 +115,12 @@
         </div>
       </div>
     </div>
-    <div class="resources grid p-1">
+    <div class="resources grid group fit-content-rows">
       {{! Health and Stress }}
       <div class="health-stress-block flex-row">
-        <div class="health-group m-1 p-1">
-          <h2>{{localize "twdu.health"}}</h2>
-          <div class="health-select">
+        <div class="health border-bottom border-right" >
+          <h2 class="subheader m-0 p-1">{{localize "twdu.health"}}</h2>
+          <div class="health-select p-2">
             <select name="system.health.value" id="health">
               {{#select actor.system.health.value}}
               {{#each (TWDUinvert config.healthStates) as |state|}}
@@ -132,31 +132,30 @@
             </select>
           </div>
         </div>
-        <div class="stress-group m-1 p-1">
-          <h2 for="actor.system.header.stress.value" class="resource-label gaItem3"
+        <div class="stress border-bottom" >
+          <h2 for="actor.system.header.stress.value" class="subheader m-0 p-1"
             title="{{localize 'twdu.rollStress'}}" data-panicroll="{{actor.system.stress.value}}"
             data-mod="{{actor.system.header.stress}}" data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}
           </h2>
-          <div class="flex-row">
-            <button type="button" class="minus-btn stress-down" data-pmbut="minusStress"><i class="fas fa-minus-square fa-xs"
-                title="Minus"></i></button>
-            <input type="text" class="maxboxsize minStress" name="system.stress.value"
+          <div class="flex-row center">
+            <a  class="stress-down mi-3 p-2 center" data-pmbut="minusStress"><i class="fas fa-minus"
+                title="Minus"></i></a>
+            <input type="text" class="box min-w-50p" style="text-align:center;" name="system.stress.value"
               value="{{actor.system.stress.value}}" data-dtype="Number" />
-            <button type="button" class="plus-btn stress-up" data-pmbut="plusStress"><i class="fas fa-plus-square fa-xs"
-                title="Plus"></i></button>
+            <a type="button" class="stress-up mi-3 p-2 center" data-pmbut="plusStress"><i class="fas fa-plus"
+                title="Plus"></i></a>
           </div>
         </div>
       </div>
-      <div class="crit-block flex-col pi-5">
-        <div class="flex-row justify">
-        <h3>{{localize "twdu.criticalInjuries"}}</h3>
-        <p class="add">+</p>
-        </div>
+      <div class="crit-block flex-col"> 
+        <h2 class="subheader m-0 p-1 text-justify">{{localize "twdu.criticalInjuries"}}
+        <a class="add-item" data-type="critical"><i class="fas fa-plus"
+                title="Plus"></i></a></h2>
+        
         {{#each items as |item|}}
         {{#if item.isCriticalInjury}}
-        <div class="item grow" data-item-id="{{item._id}}">
-          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36"
-              height="36" /></span>
+        <div class="item grow border-bottom" data-item-id="{{item._id}}">
+          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" /></span>
           <span class="name">{{item.name}}</span>
         </div>
         {{/if}}
@@ -164,12 +163,12 @@
       </div>
 
 
-      <div class="experience-group pi-5">
-        <div class="section-header experience">
+      <div class="experience-block flex-col">
+        <h2 class="subheader m-0 p-1 experience">
           {{localize "twdu.experience"}}
-        </div>
+        </h2>
 
-        <div class="exp-boxes flex-row" title="{{localize " twdu.addexp"}}">
+        <div class="exp-boxes flex-row p-3 border-bottom" title="{{localize " twdu.addexp"}}">
           {{#times 15}}
           <div class="exp-box">
             <div class="img-container">
@@ -188,4 +187,3 @@
 
 
   </div>
-</div>

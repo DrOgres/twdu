@@ -46,7 +46,7 @@
         "storedGear": "Stored Gear",
         "location": "Location",
         "protection": "Protection",
-        "penalty": "Penalty",
+        "agilityPenalty": "Mobility Penalty",
         "damage": "Damage",
         "bonus": "Bonus",
         "range": "Range",

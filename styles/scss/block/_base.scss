@@ -38,6 +38,12 @@ a:hover {
     }
 }
 
+.sheet nav.sheet-tabs{
+    margin : 0px;
+    border-top: 1px solid $highlight-1;
+    border-bottom: 1px solid $highlight-1;
+}
+
 .tabs{
     background-color: $header-bg-2;
     font: 1.5em 'Ash', sans-serif;
@@ -104,6 +110,7 @@ input[type="text"] {
     }
 
     &.box{
+        min-width: 50px;
         border: 2px solid $highlight-2;
         border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
     }

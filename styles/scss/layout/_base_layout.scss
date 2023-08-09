@@ -40,6 +40,11 @@
     grid-template-columns: 60% 40%;
 }
 
+//grid row options
+.fit-content-rows{
+    grid-auto-rows: minmax(min-content, max-content);
+}
+
 //flexbox options
 .grow{
     flex-grow: 1;
@@ -74,33 +79,40 @@
 .center{
     justify-content: center;
     align-items: center;
+    place-items: center;
 }
 
 .align-center{
     align-items: center;
     justify-content: center;
+    
 }
 
 
 // border options
 .border{
-    border: 1px solid $neutral-1;
+    border: 2px solid $neutral-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
 }
 
 .border-top{
-    border-top: 1px solid $neutral-1;
+    border-top: 2px solid $neutral-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
 }
 
 .border-bottom{
-    border-bottom: 1px solid $neutral-1;
+    border-bottom: 2px solid $neutral-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
 }
 
 .border-left{
-    border-left: 1px solid $neutral-1;
+    border-left: 2px solid $neutral-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
 }
 
 .border-right{
-    border-right: 1px solid $neutral-1;
+    border-right: 2px solid $neutral-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
 }
 
 .border-none{

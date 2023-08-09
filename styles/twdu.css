@@ -84,6 +84,12 @@ a:hover {
   text-shadow: 1px 1px 1px black;
 }
 
+.sheet nav.sheet-tabs {
+  margin: 0px;
+  border-top: 1px solid hsl(353, 45%, 30%);
+  border-bottom: 1px solid hsl(353, 45%, 30%);
+}
+
 .tabs {
   background-color: hsla(36, 11%, 53%, 0.3);
   font: 1.5em "Ash", sans-serif;
@@ -140,6 +146,7 @@ input[type=text]:hover {
   cursor: pointer;
 }
 input[type=text].box {
+  min-width: 50px;
   border: 2px solid hsl(355, 53%, 31%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
@@ -179,6 +186,10 @@ input[type=text].box {
   grid-template-columns: 60% 40%;
 }
 
+.fit-content-rows {
+  grid-auto-rows: minmax(min-content, max-content);
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -206,6 +217,7 @@ input[type=text].box {
 .center {
   justify-content: center;
   align-items: center;
+  place-items: center;
 }
 
 .align-center {
@@ -214,23 +226,33 @@ input[type=text].box {
 }
 
 .border {
-  border: 1px solid hsl(50, 14%, 9%);
+  border: 2px solid hsl(50, 14%, 9%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-top {
-  border-top: 1px solid hsl(50, 14%, 9%);
+  border-top: 2px solid hsl(50, 14%, 9%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-bottom {
-  border-bottom: 1px solid hsl(50, 14%, 9%);
+  border-bottom: 2px solid hsl(50, 14%, 9%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-left {
-  border-left: 1px solid hsl(50, 14%, 9%);
+  border-left: 2px solid hsl(50, 14%, 9%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-right {
-  border-right: 1px solid hsl(50, 14%, 9%);
+  border-right: 2px solid hsl(50, 14%, 9%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-none {
@@ -253,6 +275,14 @@ input[type=text].box {
   width: 100%;
 }
 
+.w-50p {
+  width: 50px;
+}
+
+.w-100p {
+  width: 100px;
+}
+
 .w-150p {
   width: 150px;
 }
@@ -267,6 +297,30 @@ input[type=text].box {
 
 .w-300p {
   width: 300px;
+}
+
+.min-w-50p {
+  min-width: 50px;
+}
+
+.min-w-100p {
+  min-width: 100px;
+}
+
+.min-w-150p {
+  min-width: 150px;
+}
+
+.min-w-200p {
+  min-width: 200px;
+}
+
+.min-w-250p {
+  min-width: 250px;
+}
+
+.min-w-300p {
+  min-width: 300px;
 }
 
 .max-h-110p {
@@ -299,6 +353,10 @@ input[type=text].box {
 
 .text-right {
   text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .m-0 {
