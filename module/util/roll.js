@@ -193,13 +193,6 @@ Hooks.on('renderChatLog', (app, html, data) => {
   }
   
 
-export function push() {
-  // get the old roll
-  // add stress to the character and add the stress dice to the roll
-  // re-roll all dice that are not 6 while keeping the 6s
-  // add the new dice to the old dice
-  // return the new roll
-}
 
 async function rollDice(sheet, numberOfDice) {
   console.log("TWDU | rollDice: ", sheet, numberOfDice);
