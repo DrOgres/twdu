@@ -1,28 +1,28 @@
 <form class="{{cssClass}} group" autocomplete="off" style="margin: -4px;">
   {{!-- Sheet Header --}}
   <div class="sheet-container" style="margin:-2px;">
-    <header class="actor-header flex-row gap-sm">
+    <header class="actor-header flex-row">
       <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
-        style="width: 175px; height: 245px; padding-top:10px; padding-left:10px;" />
+        style="width: 175px; max-height: 250px; padding:5px;" />
       <div class="character-info w-100">
         
         <h1 class="input name w-100 group pi-1"><input name="name" type="text" value="{{actor.name}}"
             placeholder="{{localize 'twdu.name'}}" /></h1>
 
         <div class="grid two-col">
-          <div class="flex-col">
-            <div class="archetype group flex-row center">
-            <span for="archetype">{{localize 'twdu.archetype'}}:</span>
+          <div class="flex-col ">
+            <div class="archetype m-0 p-1 border-left flex-row center">
+            <b for="archetype" class="pi-1">{{localize 'twdu.archetype'}}:</b>
             <input name="system.archetype" id="archetype" type="text" value="{{system.archetype}}"
               placeholder="{{localize 'twdu.archetype'}}" />
             </div>
 
             <div class="flex-col">
-            <h2 class="header group pi-1">{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue">
+            <h2 class="subheader border-top border-bottom border-left t m-0 p-1">{{localize 'twdu.issues'}} <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue">
                 &#43;</a></h2>
-            <div class="issue-list scrollable max-h-150p">
+            <div class="issue-list scrollable max-h-150p  border-left">
               {{#each system.issues as |issue index|}}
-              <div class="issue flex-row group pi-2"><input name="system.issues.{{index}}" type="text" value="{{issue}}"
+              <div class="issue flex-row pi-2 border-bottom"><input name="system.issues.{{index}}" type="text" value="{{issue}}"
                   placeholder="{{localize 'twdu.issues'}}" /> <a class="item-control item-delete"
                   title='{{localize  "twdu.ui.delete"}}' data-key="{{index}}" data-type="issue"><i
                     class="fas fa-trash"></i></a>
@@ -33,24 +33,24 @@
           </div>
 
           <div class="flex-col">
-            <div class="description group flex-col">
-            <label>{{localize 'twdu.description'}}:</label>
-            <textarea name="system.description">{{actor.system.description}}</textarea>
+            <div class="description border-right border-left border-bottom p-1 flex-col">
+            <b>{{localize 'twdu.description'}}:</b>
+            <textarea name="system.description" style="resize: none;">{{actor.system.description}}</textarea>
             </div>
 
             <div class="flex-col">
-            <div class="flex-col anchor group pi-1">
-              <label>{{localize 'twdu.pcAnchor'}}:</label>
+            <div class="flex-col anchor border-bottom border-right border-left pi-1">
+              <b>{{localize 'twdu.pcAnchor'}}:</b>
               <input name="system.pcAnchor" type="text" value="{{system.pcAnchor}}"
                 placeholder="{{localize 'twdu.pcAnchor'}}" />
             </div>
-            <div class="group pi-1">
-              <label>{{localize 'twdu.npcAnchor'}}:</label>
+            <div class="border-bottom border-right border-left pi-1">
+              <b>{{localize 'twdu.npcAnchor'}}:</b>
               <input name="system.npcAnchor" type="text" value="{{system.npcAnchor}}"
                 placeholder="{{localize 'twdu.npcAnchor'}}" />
             </div>
-            <div class="group pi-1">
-              <label>{{localize 'twdu.drive'}}:</label>
+            <div class="border-right border-left pi-1">
+              <b>{{localize 'twdu.drive'}}:</b>
               <div class="flex-row center">
                 <input name="system.drive" type="text" value="{{system.drive}}"
                   placeholder="{{localize 'twdu.drive'}}" />
@@ -76,8 +76,8 @@
     </header>
     {{!-- Attributes and Skills --}}
     <div class="abilities grid four-col">
-      <div class="header span-4 group">
-        <h2>{{localize 'twdu.headerAttributes'}}</h2>
+      <div class="header span-4 group middle">
+        <h2 class="m-0 pi-1">{{localize 'twdu.headerAttributes'}}</h2>
       </div>
 
       {{!-- Str and Skills --}}

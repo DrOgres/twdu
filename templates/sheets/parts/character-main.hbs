@@ -1,189 +1,198 @@
+<div class="grid col-60-40">
+  <div class="item-group">
+    <div class="subheader flex-row w-100 justify m-0 p-1 center border-bottom border-top">
+      <h2 class="m-0 subheader" style="background: transparent;">
+        {{localize "twdu.equipedGear"}}
+      </h2>
+      <div>{{localize "twdu.encumbrance"}}
+        <span class="value">{{encumbrance}} of {{maxEncumbrance}}</span>
+      </div>
+    </div>
+    <div class="weapons p-1 border-bottom">
+      <h4 class="border-bottom m-0 pi-2 subsubheader">Weapons</h4>
+      <div class="flex-col">
+        <div class="group-header grid six-col justify pi-1">
+          <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
+          <span class="group-name">Name</span>
+          <span class="bonus justify-self-center">Damage</span>
+          <span class="group-weight justify-self-center">Weight</span>
 
-  <div class="grid col-60-40">
-    <div class="item-group p-1">
-      <div class="group-header flex-row w-100 justify m-1 p-1">
-        <h3>
-          {{localize "twdu.equipedGear"}}
-        </h3>
-        <div>{{localize "twdu.encumbrance"}}
-          <span class="value">{{encumbrance}} of {{maxEncumbrance}}</span>
+          <span class="eq-store justify-self-center">Store</span>
+          <span class="buttons justify-self-end">&nbsp;</span>
         </div>
       </div>
-      <div class="weapons">
-        <h4>Weapons</h4>
-        <div class="flex-col">
-          <div class="group-header">
-            <span class="icon">{{localize "twdu.ui.icon"}}</span>
-            <span class="group-name">Name</span>
-            <span class="group-qty">Qty</span>
-            <span class="group-weight">Weight</span>
-            <span class="bonus">Bonus</span>
-            <span class="eq-store">Equip/Store</span>
-          </div>
-        </div>
-        <div class="scrollable flex-row">
-          {{#each items as |item|}}
-          {{#if item.isWeapon}}
-          {{#if item.system.isEquipped}}
-          <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img class="rollable" data-key="weapon" data-weapon="{{item.name}}" data-item-id="{{item._id}}"
-              data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}" alt="{{item.name}}"
-              title="{{item.name}}" width="36" height="36" />
-            <div class="name">{{item.name}}</div>
-            <div class="protection">{{item.system.protection}}</div>
+      <div class="scrollable flex-col">
+        {{#each items as |item|}}
+        {{#if item.isWeapon}}
+        {{#if item.system.isEquipped}}
+        <div class="item weapon grid six-col center" data-item-id="{{item._id}}">
+          <img class="rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
+            data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}"
+            alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
+          <div class="name justify-self-start">{{item.name}}</div>
+          <div class="damage justify-self-center">{{item.system.damage}}</div>
+          <div class="weight justify-self-center">{{item.system.weight}}</div>
 
-            <div class="button">
-              <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-              <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i
-                  class="fa-solid fa-box-open"></i></a>
-              <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            </div>
+
+          <a class="item-control equip-toggle equip justify-self-center" title='{{localize  "twdu.ui.store"}}'>
+            <i class="fa-solid fa-box-open"></i>
+          </a>
+          <div class="buttons justify-self-end">
+            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
           </div>
-          {{/if}}
-          {{/if}}
-          {{/each}}
+
+        </div>
+        {{/if}}
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="armor p-1 border-bottom">
+      <h4 class="border-bottom m-0 pi-2 subsubheader">Armor</h4>
+      <div class="flex-col">
+        <div class="group-header grid six-col center pi-1">
+          <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
+          <span class="group-name">Name</span>
+          <span class="bonus">Level</span>
+          <span class="group-weight">Penalty</span>
+
+          <span class="eq-store">Store</span>
+          <span class="buttons">&nbsp;</span>
         </div>
       </div>
+      <div class="scrollable flex-col">
+        {{#each items as |item|}}
+        {{#if item.isArmor}}
+        {{#if item.system.isEquipped}}
+        <div class="item armor grid six-col center" data-item-id="{{item._id}}">
+          <img class="rollable justify-self-start" data-key="armor" data-armor="{{item.name}}" data-protection="{{item.system.protection}}"
+            src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
+          <div class="name">{{item.name}}</div>
+          <div class="protection">{{item.system.protection}}</div>
+          <div class="mobility">{{item.system.agility}}</div>
+          <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i
+              class="fa-solid fa-box-open"></i></a>
 
-      <div class="armor">
-        <h4>Armor</h4>
-        <div class="flex-col">
-          <div class="group-header">
-            <span class="icon">{{localize "twdu.ui.icon"}}</span>
-            <span class="group-name">Name</span>
-            <span class="group-qty">Qty</span>
-            <span class="group-weight">Slots</span>
-            <span class="bonus">Bonus</span>
-            <span class="eq-store">Equip/Store</span>
+
+          <div class="button justify-self-end" >
+            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
           </div>
         </div>
-        <div class="scrollable flex-row">
-          {{#each items as |item|}}
-          {{#if item.isArmor}}
-          {{#if item.system.isEquipped}}
-          <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img class="rollable" data-key="armor" data-armor="{{item.name}}"
-              data-protection="{{item.system.protection}}" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}"
-              width="36" height="36" />
-            <div class="name">{{item.name}}</div>
-            <div class="protection">{{item.system.protection}}</div>
+        {{/if}}
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
 
-            <div class="button">
-              <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-              <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i
-                  class="fa-solid fa-box-open"></i></a>
-              <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            </div>
-          </div>
-          {{/if}}
-          {{/if}}
-          {{/each}}
+    <div class="gear p-1 border-bottom">
+      <h4 class="border-bottom m-0 pi-2 subsubheader">Gear</h4>
+      <div class="flex-col">
+        <div class="group-header grid six-col center pi-1">
+          <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
+          <span class="group-name">Name</span>
+          <span class="group-weight">Weight</span>
+          <span class="bonus">Bonus</span>
+          <span class="eq-store">Store</span>
+          <span class="buttons justiify-self-end">&nbsp;</span>
         </div>
       </div>
-
-      <div class="gear">
-        <h4>Gear</h4>
-        <div class="flex-col">
-          <div class="group-header">
-            <span class="icon">{{localize "twdu.ui.icon"}}</span>
-            <span class="group-name">Name</span>
-            <span class="group-qty">Qty</span>
-            <span class="group-weight">Weight</span>
-            <span class="bonus">Bonus</span>
-            <span class="eq-store">Equip/Store</span>
+      <div class="scrollable flex-col">
+        {{#each items as |item|}}
+        {{#if item.isGear}}
+        {{#if item.system.isEquipped}}
+        <div class="item gear grid six-col center" data-item-id="{{item._id}}">
+          <img class="justify-self-start" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
+          <div class="name">{{item.name}}</div>
+          <div class="protection">{{item.system.weight}}</div>
+          <div class="bonus">{{item.system.bonus}}</div>
+          <a class="item-control equip-toggle equip " title='{{localize  "twdu.ui.store"}}'><i
+                class="fa-solid fa-box-open"></i></a>
+          <div class="button justify-self-end">
+            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+            
+            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
           </div>
         </div>
-        <div class="scrollable flex-row">
-          {{#each items as |item|}}
-          {{#if item.isGear}}
-          {{#if item.system.isEquipped}}
-          <div class="item armor flex-row center" data-item-id="{{item._id}}">
-            <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="36" height="36" />
-            <div class="name">{{item.name}}</div>
-            <div class="protection">{{item.system.protection}}</div>
+        {{/if}}
+        {{/if}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
 
-            <div class="button">
-              <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-              <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i
-                  class="fa-solid fa-box-open"></i></a>
-              <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            </div>
-          </div>
-          {{/if}}
-          {{/if}}
-          {{/each}}
+
+  <div class="resources grid group fit-content-rows">
+    {{! Health and Stress }}
+    <div class="health-stress-block flex-row">
+      <div class="health border-bottom border-right">
+        <h2 class="subheader m-0 p-1 border-bottom">{{localize "twdu.health"}}</h2>
+        <div class="health-select p-2">
+          <select name="system.health.value" id="health">
+            {{#select actor.system.health.value}}
+            {{#each (TWDUinvert config.healthStates) as |state|}}
+            <option value="{{subtract 3 @index}}" {{#if (eq @index ../actor.system.health.value)}}selected{{/if}}>
+              {{subtract 3 @index}} - {{localize
+              state}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+        </div>
+      </div>
+      <div class="stress border-bottom">
+        <h2 for="actor.system.header.stress.value" class="subheader m-0 p-1 border-bottom"
+          title="{{localize 'twdu.rollStress'}}" data-panicroll="{{actor.system.stress.value}}"
+          data-mod="{{actor.system.header.stress}}" data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}
+        </h2>
+        <div class="flex-row center">
+          <a class="stress-down mi-3 p-2 center" data-pmbut="minusStress"><i class="fas fa-minus" title="Minus"></i></a>
+          <input type="text" class="box min-w-50p" style="text-align:center;" name="system.stress.value"
+            value="{{actor.system.stress.value}}" data-dtype="Number" />
+          <a type="button" class="stress-up mi-3 p-2 center" data-pmbut="plusStress"><i class="fas fa-plus"
+              title="Plus"></i></a>
         </div>
       </div>
     </div>
-    <div class="resources grid group fit-content-rows">
-      {{! Health and Stress }}
-      <div class="health-stress-block flex-row">
-        <div class="health border-bottom border-right" >
-          <h2 class="subheader m-0 p-1">{{localize "twdu.health"}}</h2>
-          <div class="health-select p-2">
-            <select name="system.health.value" id="health">
-              {{#select actor.system.health.value}}
-              {{#each (TWDUinvert config.healthStates) as |state|}}
-              <option value="{{subtract 3 @index}}" {{#if (eq @index ../actor.system.health.value)}}selected{{/if}}>
-                {{subtract 3 @index}} - {{localize
-                state}}</option>
-              {{/each}}
-              {{/select}}
-            </select>
-          </div>
-        </div>
-        <div class="stress border-bottom" >
-          <h2 for="actor.system.header.stress.value" class="subheader m-0 p-1"
-            title="{{localize 'twdu.rollStress'}}" data-panicroll="{{actor.system.stress.value}}"
-            data-mod="{{actor.system.header.stress}}" data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}
-          </h2>
-          <div class="flex-row center">
-            <a  class="stress-down mi-3 p-2 center" data-pmbut="minusStress"><i class="fas fa-minus"
-                title="Minus"></i></a>
-            <input type="text" class="box min-w-50p" style="text-align:center;" name="system.stress.value"
-              value="{{actor.system.stress.value}}" data-dtype="Number" />
-            <a type="button" class="stress-up mi-3 p-2 center" data-pmbut="plusStress"><i class="fas fa-plus"
-                title="Plus"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="crit-block flex-col"> 
-        <h2 class="subheader m-0 p-1 text-justify">{{localize "twdu.criticalInjuries"}}
-        <a class="add-item" data-type="critical"><i class="fas fa-plus"
-                title="Plus"></i></a></h2>
-        
+    <div class="crit-block flex-col">
+      <h2 class="subheader m-0 p-1 text-justify">{{localize "twdu.criticalInjuries"}}
+        <a class="add-item" data-type="critical"><i class="fas fa-plus" title="Plus"></i></a>
+      </h2>
+      <div class="scrollable max-h-150p border-top border-bottom">
         {{#each items as |item|}}
         {{#if item.isCriticalInjury}}
-        <div class="item grow border-bottom" data-item-id="{{item._id}}">
+        <div class="critical grow border-bottom" data-item-id="{{item._id}}">
           <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" /></span>
           <span class="name">{{item.name}}</span>
         </div>
         {{/if}}
         {{/each}}
       </div>
-
-
-      <div class="experience-block flex-col">
-        <h2 class="subheader m-0 p-1 experience">
-          {{localize "twdu.experience"}}
-        </h2>
-
-        <div class="exp-boxes flex-row p-3 border-bottom" title="{{localize " twdu.addexp"}}">
-          {{#times 15}}
-          <div class="exp-box">
-            <div class="img-container">
-              {{#if (gte ../actor.system.experience.value @index)}}
-              <img src="systems/twdu/assets/images/box_checked.png" height="18px" width="18px">
-              {{/if}}
-              {{#unless (gte ../actor.system.experience.value @index)}}
-              <img src="systems/twdu/assets/images/box_not_checked.png" height="18px" width="18px">
-              {{/unless}}
-            </div>
-          </div>
-          {{/times}}
-        </div>
-      </div>
     </div>
 
 
+    <div class="experience-block flex-col">
+      <h2 class="subheader m-0 p-1 experience border-bottom">
+        {{localize "twdu.experience"}}
+      </h2>
+
+      <div class="exp-boxes flex-row p-3 border-bottom" title="{{localize " twdu.addexp"}}">
+        {{#times 15}}
+        <div class="exp-box">
+          <div class="img-container">
+            {{#if (gte ../actor.system.experience.value @index)}}
+            <img src="systems/twdu/assets/images/box_checked.png" height="18px" width="18px">
+            {{/if}}
+            {{#unless (gte ../actor.system.experience.value @index)}}
+            <img src="systems/twdu/assets/images/box_not_checked.png" height="18px" width="18px">
+            {{/unless}}
+          </div>
+        </div>
+        {{/times}}
+      </div>
+    </div>
   </div>
+
+
+</div>

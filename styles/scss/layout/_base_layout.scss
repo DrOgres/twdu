@@ -40,6 +40,10 @@
     grid-template-columns: 60% 40%;
 }
 
+.col-70-30{
+    grid-template-columns: 70% 30%;
+}
+
 //grid row options
 .fit-content-rows{
     grid-auto-rows: minmax(min-content, max-content);
@@ -86,6 +90,26 @@
     align-items: center;
     justify-content: center;
     
+}
+
+.justify-self-center{
+    justify-self: center;
+}
+
+.justify-self-start{
+    justify-self: start;
+}
+
+.justify-self-end{
+    justify-self: end;
+}
+
+.justify-self-stretch{
+    justify-self: stretch;
+}
+
+.middle{
+    align-items: center;
 }
 
 

@@ -88,6 +88,8 @@ a:hover {
   margin: 0px;
   border-top: 1px solid hsl(353, 45%, 30%);
   border-bottom: 1px solid hsl(353, 45%, 30%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .tabs {
@@ -98,9 +100,13 @@ a:hover {
   font-weight: normal;
 }
 .tabs .item.active {
-  color: hsl(353, 45%, 30%);
+  color: hsl(53, 14%, 15%);
   text-shadow: 1px 1px 2px hsla(353, 45%, 30%, 0.3);
   background-color: hsla(36, 11%, 43%, 0.5);
+  border-right: 1px solid hsl(353, 45%, 30%);
+  border-left: 1px solid hsl(353, 45%, 30%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 img {
@@ -152,6 +158,37 @@ input[type=text].box {
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
+textarea {
+  border-radius: 0;
+  border: 2px solid hsl(355, 53%, 31%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  background-color: transparent;
+  color: hsl(57, 15%, 26%);
+  font-family: "Nu Gothic", sans-serif;
+}
+
+select {
+  border: 1px solid hsl(355, 53%, 31%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  border-radius: 0;
+  font-family: "Nu Gothic", sans-serif;
+  color: hsl(57, 15%, 26%);
+  background: transparent;
+}
+
+select:focus {
+  box-shadow: 0 0 5px hsl(355, 53%, 31%);
+}
+
+option,
+optgroup {
+  color: hsl(57, 15%, 26%);
+  background: hsla(36, 11%, 53%, 0.3);
+  border-radius: 0;
+}
+
 .grid {
   display: grid;
 }
@@ -184,6 +221,10 @@ input[type=text].box {
 
 .col-60-40 {
   grid-template-columns: 60% 40%;
+}
+
+.col-70-30 {
+  grid-template-columns: 70% 30%;
 }
 
 .fit-content-rows {
@@ -225,32 +266,52 @@ input[type=text].box {
   justify-content: center;
 }
 
+.justify-self-center {
+  justify-self: center;
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-stretch {
+  justify-self: stretch;
+}
+
+.middle {
+  align-items: center;
+}
+
 .border {
-  border: 2px solid hsl(50, 14%, 9%);
+  border: 2px solid hsl(53, 14%, 15%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-top {
-  border-top: 2px solid hsl(50, 14%, 9%);
+  border-top: 2px solid hsl(53, 14%, 15%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-bottom {
-  border-bottom: 2px solid hsl(50, 14%, 9%);
+  border-bottom: 2px solid hsl(53, 14%, 15%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-left {
-  border-left: 2px solid hsl(50, 14%, 9%);
+  border-left: 2px solid hsl(53, 14%, 15%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
 .border-right {
-  border-right: 2px solid hsl(50, 14%, 9%);
+  border-right: 2px solid hsl(53, 14%, 15%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
@@ -484,7 +545,7 @@ input[type=text].box {
 .dice-roll .dice-formula,
 .dice-roll .dice-total {
   background: hsla(36, 11%, 53%, 0.3);
-  color: hsl(50, 14%, 9%);
+  color: hsl(53, 14%, 15%);
   border-radius: 0;
   border: 2px solid hsl(355, 53%, 31%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
@@ -541,10 +602,26 @@ input[type=text].box {
   font-family: "Nu Gothic", sans-serif;
 }
 
+.subsubheader {
+  background-color: hsla(36, 11%, 73%, 0.1);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: "Nu Gothic", sans-serif;
+}
+
 .group {
   border: 2px solid hsl(355, 53%, 31%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+}
+
+.group-header {
+  background: hsl(53, 14%, 15%);
+  color: hsl(53, 10%, 68%);
+  font-family: "Nu Gothic", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .skill:last-child {
@@ -572,7 +649,12 @@ input[type=text].box {
   margin: 10px;
 }
 
-.issue:nth-child(odd) {
+.issue:nth-child(even),
+.critical:nth-child(even),
+.weapon:nth-child(even),
+.armor:nth-child(even),
+.gear:nth-child(even),
+.tiny:nth-child(even) {
   background-color: hsla(36, 11%, 63%, 0.2);
 }
 

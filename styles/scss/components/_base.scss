@@ -78,9 +78,26 @@
   font-family: 'Nu Gothic', sans-serif;
 }
 
+.subsubheader{
+  background-color: $header-bg-4;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: 'Nu Gothic', sans-serif;
+}
+
 .group{
   border: 2px solid $highlight-2;
   border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+}
+
+.group-header{
+  background: $neutral-1;
+  color: $neutral-3;
+  font-family: 'Nu Gothic', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  
 }
 
 .skill:last-child{
@@ -110,7 +127,12 @@
   
 }
 
-.issue:nth-child(odd){
+.issue:nth-child(even),
+.critical:nth-child(even), 
+.weapon:nth-child(even), 
+.armor:nth-child(even),
+.gear:nth-child(even),
+.tiny:nth-child(even){
   background-color: $header-bg-3;
 }
 

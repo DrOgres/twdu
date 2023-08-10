@@ -42,6 +42,7 @@ a:hover {
     margin : 0px;
     border-top: 1px solid $highlight-1;
     border-bottom: 1px solid $highlight-1;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
 }
 
 .tabs{
@@ -52,9 +53,12 @@ a:hover {
     font-weight: normal;
 
     .item.active{
-        color: $highlight-1;
+        color: $neutral-1;
         text-shadow: 1px 1px 2px $shadow-1;
         background-color: $header-bg-1;
+        border-right: 1px solid $highlight-1;
+        border-left: 1px solid $highlight-1;
+        border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
     }
 }
 
@@ -116,4 +120,33 @@ input[type="text"] {
     }
 }
 
+textarea {
+    border-radius: 0;
+    border: 2px solid $highlight-2;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+    background-color: transparent;
+    color: $header-1;
+    font-family: 'Nu Gothic', sans-serif;
+}
 
+select {
+    border: 1px solid $highlight-2;
+    border-image: url('/systems/twdu/assets/images/box_not_checked.png') 10 stretch;
+    border-radius: 0;
+    font-family: 'Nu Gothic', sans-serif;
+    color: $header-1;
+    background: transparent;
+}
+
+select:focus {
+    box-shadow: 0 0 5px $highlight-2;
+}
+
+
+option,
+optgroup {
+    color: $header-1;
+    background: $header-bg-2;
+    border-radius: 0;
+
+}
