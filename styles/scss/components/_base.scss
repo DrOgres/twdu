@@ -55,12 +55,15 @@
   font-family: 'Nu Gothic', sans-serif;
 }
 
-.rollable{
+
+
+.show-details:hover{
   cursor: pointer;
 }
 
 .rollable:hover{
   text-shadow: 1px 1px 2px $highlight-1;
+  cursor: pointer;
 }
 
 .header{

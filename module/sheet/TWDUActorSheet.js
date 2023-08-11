@@ -128,6 +128,12 @@ export default class TWDUActorSheet extends ActorSheet {
     // stress buttons
     html.find(".stress-up").click(this._onStressUp.bind(this));
     html.find(".stress-down").click(this._onStressDown.bind(this));
+    html.find(".show-details").click(this._onShowDetails.bind(this));
+  }
+
+  _onShowDetails(event) {
+    event.preventDefault();
+    console.log("TWDU | _onShowDetails: ", event);
   }
 
   _onRoll(event) {

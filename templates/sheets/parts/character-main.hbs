@@ -29,7 +29,7 @@
           <img class="rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
             data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}"
             alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
-          <div class="name justify-self-start">{{item.name}}</div>
+          <div class="name justify-self-start show-details">{{item.name}}</div>
           <div class="damage justify-self-center">{{item.system.damage}}</div>
           <div class="weight justify-self-center">{{item.system.weight}}</div>
 
@@ -69,7 +69,7 @@
         <div class="item armor grid six-col center" data-item-id="{{item._id}}">
           <img class="rollable justify-self-start" data-key="armor" data-armor="{{item.name}}" data-protection="{{item.system.protection}}"
             src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
-          <div class="name">{{item.name}}</div>
+          <div class="name show-details">{{item.name}}</div>
           <div class="protection">{{item.system.protection}}</div>
           <div class="mobility">{{item.system.agility}}</div>
           <a class="item-control equip-toggle equip" title='{{localize  "twdu.ui.store"}}'><i
@@ -105,7 +105,7 @@
         {{#if item.system.isEquipped}}
         <div class="item gear grid six-col center" data-item-id="{{item._id}}">
           <img class="justify-self-start" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
-          <div class="name">{{item.name}}</div>
+          <div class="name show-details">{{item.name}}</div>
           <div class="protection">{{item.system.weight}}</div>
           <div class="bonus">{{item.system.bonus}}</div>
           <a class="item-control equip-toggle equip " title='{{localize  "twdu.ui.store"}}'><i
@@ -143,14 +143,13 @@
       </div>
       <div class="stress border-bottom">
         <h2 for="actor.system.header.stress.value" class="subheader m-0 p-1 border-bottom"
-          title="{{localize 'twdu.rollStress'}}" data-panicroll="{{actor.system.stress.value}}"
-          data-mod="{{actor.system.header.stress}}" data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}
+          title="{{localize 'twdu.rollStress'}}" data-label="{{localize 'twdu.STRESS'}}">{{localize "twdu.STRESS"}}
         </h2>
-        <div class="flex-row center">
-          <a class="stress-down mi-3 p-2 center" data-pmbut="minusStress"><i class="fas fa-minus" title="Minus"></i></a>
+        <div class="flex-row center pt-1">
+          <a class="stress-down mi-2 p-2 center" data-pmbut="minusStress"><i class="fas fa-minus" title="Minus"></i></a>
           <input type="text" class="box min-w-50p" style="text-align:center;" name="system.stress.value"
             value="{{actor.system.stress.value}}" data-dtype="Number" />
-          <a type="button" class="stress-up mi-3 p-2 center" data-pmbut="plusStress"><i class="fas fa-plus"
+          <a type="button" class="stress-up mi-2 p-2 center" data-pmbut="plusStress"><i class="fas fa-plus"
               title="Plus"></i></a>
         </div>
       </div>
@@ -162,9 +161,11 @@
       <div class="scrollable max-h-150p border-top border-bottom">
         {{#each items as |item|}}
         {{#if item.isCriticalInjury}}
-        <div class="critical grow border-bottom" data-item-id="{{item._id}}">
-          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" /></span>
-          <span class="name">{{item.name}}</span>
+        <div class="critical grow border-bottom grid auto-fr-fr" data-item-id="{{item._id}}">
+          <span class="icon justify-self-start p-1 show-details"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" /></span>
+          <span class="name justify-self-start p-1 align-self-center show-details">{{item.name}}</span>
+          <a class="item-control item-delete justify-self-end p-1" title='{{localize  "twdu.ui.delete"}}' data-key="{{item._id}}"
+              data-type="critical"><i class="fas fa-trash"></i></a>
         </div>
         {{/if}}
         {{/each}}
