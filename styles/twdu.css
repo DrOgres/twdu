@@ -309,36 +309,40 @@ optgroup {
 
 .border {
   border: 2px solid hsl(53, 14%, 15%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
 }
 
 .border-top {
-  border-top: 2px solid hsl(53, 14%, 15%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  border-top: 3px solid hsl(53, 14%, 15%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
 }
 
 .border-bottom {
-  border-bottom: 2px solid hsl(53, 14%, 15%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  border-bottom: 3px solid hsl(53, 14%, 15%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
 }
 
 .border-left {
-  border-left: 2px solid hsl(53, 14%, 15%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  border-left: 3px solid hsl(53, 14%, 15%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
 }
 
 .border-right {
-  border-right: 2px solid hsl(53, 14%, 15%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  border-right: 3px solid hsl(53, 14%, 15%);
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
 }
 
 .border-none {
   border: none;
+}
+
+.br-0 {
+  border-radius: 0px;
 }
 
 .br-5 {
@@ -347,6 +351,16 @@ optgroup {
 
 .scrollable {
   overflow-y: auto;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.max-w-200-hidden {
+  max-width: 200px;
+  overflow: hidden;
 }
 
 .skill-group {
@@ -581,6 +595,34 @@ optgroup {
   padding-top: 1.5rem;
 }
 
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: 0.2rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.26rem;
+}
+
 .app.sheet .editor {
   min-height: 55px;
   height: 100%;
@@ -661,8 +703,8 @@ optgroup {
 
 .group {
   border: 2px solid hsl(355, 53%, 31%);
-  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
-     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+  -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
+     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 repeat;
 }
 
 .group-header {

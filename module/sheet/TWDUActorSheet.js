@@ -96,6 +96,7 @@ export default class TWDUActorSheet extends ActorSheet {
       item.isTalent = item.type === "talent";
       item.isCriticalInjury = item.type === "criticalInjury";
       item.isProject = item.type === "project";
+      item.isIssue = item.type === "issue";
     }
   }
 
@@ -212,6 +213,7 @@ export default class TWDUActorSheet extends ActorSheet {
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
     let type = item.type;
+    console.log("TWDU | onItemToChat: ", div, item, type);
     let chatData = buildChatCard(type, item);
     ChatMessage.create(chatData, {});
   }
@@ -232,57 +234,27 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | key: ", key);
     console.log("TWDU | type: ", type);
 
-    // Embeded documents
-    if (type === "item"){
+
       const div = $(event.currentTarget).parents(".item");
       this.actor.deleteEmbeddedDocuments("Item", [div.data("itemId")]);
       div.slideUp(200, () => this.render(false));
     }
 
-    // issues
-    if (type === "issue") {
-      const issues = this.actor.system.issues;
-      console.log("TWDU | delete Item issues: ", Object(this.actor.system.issues));
-      const newIssues = Object.keys(issues)
-        .filter((k) => k !== key)
-        .reduce((obj, k) => {
-          obj[k] = issues[k];
-          return obj;
-        }, {});
-      console.log("TWDU | newIssues: ", newIssues);
-      this.actor.update({ "system.issues": '' });
-      this.actor.system.issues = newIssues;
-      
-      console.log("TWDU | issues: ", this.actor.system.issues);
-      this.actor.update({ "system.issues": newIssues});
-      console.log("TWDU | actor: ", this.actor.system);
-    }
-  }
 
   _onItemCreate(event) {
     event.preventDefault();
     console.log("TWDU | _onItemCreate: ", event);
+    let header = event.currentTarget;
+    let data = duplicate(header.dataset);
 
-    // determine the item type from the dataset
-    const type = event.currentTarget.dataset.type;
-    console.log("TWDU | type: ", type);
+    data["name"] = `New ${data.type.capitalize()}`;
 
-    // create and add the item to the actor
-    //TODO replace this with the item rather than an array
-    switch (type) {
-      case "issue":
-        {
-          // add a new string to the system.issues array
-          console.log("TWDU | Adding an issue");
-          const issues = this.actor.system.issues;
-          let length = Object.keys(issues).length;
-          //TODO  generate a uniqe key
-          const newIssues = {...issues, [length]: "New" }; //TODO localize this string
-          this.actor.update({ "system.issues": newIssues });
+    console.log("TWDU | item create data: ", data);
 
-        }
-        break;
-      }
+    this.actor.createEmbeddedDocuments("Item", [data]);
+
+    console.log(this.actor);
+
   }
 
 

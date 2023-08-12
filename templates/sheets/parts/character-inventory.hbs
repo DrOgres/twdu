@@ -1,174 +1,250 @@
 <div class="inv scrollable grid col-70-30">
   <div class="big-stuff">
+
+    {{!-- TODO hide empty sections based on count of types eqkuiped or not--}}
     <div class="weapons">
-      <h2 class="subheader border-bottom border-left t m-0 p-1">Weapons</h2>
-      <div class="flex-col">
-        <div class="group-header grid six-col justify pi-1">
-          <span class="icon">{{localize "twdu.ui.icon"}}</span>
-          <span class="group-name">{{localize "twdu.name"}}</span>
-          <span class="group-weight">Weight</span>
-          <span class="bonus">Skill</span>
-          <span class="equip">Equip/Store</span>
-          <span class="actions">Actions</span>
-        </div>
-        {{#each items as |item key|}}
-        {{#if item.isWeapon}}
-        <div class="weapon item grid six-col justify center align-center border-bottom" data-item-id="{{item._id}}">
-          <span class="icon rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}" data-item-id="{{item._id}}"
-            data-test="{{item.name}}" data-skill="{{item.system.skill}}">
-            <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" /></span>
-          <span class="name justify-self-start show-details">{{item.name}}</span>
-         <span class="weight justify-self-start">{{item.system.weight}}</span>
-          <span class="skill justify-self-start">{{localize item.system.skill}}</span>
-           <span class="equip justify-self-start" data-item-id="{{item.id}}">
-            {{#unless item.system.isEquipped}}
-            <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
-            {{/unless}}
-
-            {{#if item.system.isEquipped}}
-            <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
-            {{/if}}
-          </span>
-          <div class="button justify-self-start">
-            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
-              data-type="item"><i class="fas fa-trash"></i></a>
-          </div>
-         
-
-
-        </div>
-        {{/if}}
-        {{/each}}
+      <h2 class="subheader border-bottom border-left t m-0 p-1">Weapons <a
+                  title="{{localize " twdu.ui.add"}}" class="add-item" data-type="weapon">
+                  &#43;</a></h2>
+      <h4 class="group-header m-0 pi-1">Equiped Weapons</h4>
+      <div class="group-header grid six-col justify pi-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">{{localize "twdu.name"}}</span>
+        <span class="group-weight">Weight</span>
+        <span class="bonus">Skill</span>
+        <span class="equip">Equip/Store</span>
+        <span class="actions">Actions</span>
       </div>
+      {{#each items as |item key|}}
+      {{#if item.isWeapon}}
+      {{#if item.system.isEquipped}}
+      <div class="weapon item grid six-col justify center align-center border-bottom" data-item-id="{{item._id}}">
+        <span class="icon rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
+          data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}">
+          <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" /></span>
+        <span class="name justify-self-start show-details">{{item.name}}</span>
+        <span class="weight justify-self-start">{{item.system.weight}}</span>
+        <span class="skill justify-self-start">{{localize item.system.skill}}</span>
+        <span class="equip justify-self-start" data-item-id="{{item.id}}">
+          <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
+        </span>
+        <div class="button justify-self-start">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
+            data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{/each}}
+      <h4 class="group-header m-0 pi-1">Stored Weapons</h4>
+      <div class="group-header grid six-col justify pi-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">{{localize "twdu.name"}}</span>
+        <span class="group-weight">Weight</span>
+        <span class="bonus">Skill</span>
+        <span class="equip">Equip/Store</span>
+        <span class="actions">Actions</span>
+      </div>
+      {{#each items as |item key|}}
+      {{#if item.isWeapon}}
+      {{#unless item.system.isEquipped}}
+      <div class="weapon item grid six-col justify center align-center border-bottom" data-item-id="{{item._id}}">
+        <span class="icon rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
+          data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}">
+          <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" /></span>
+        <span class="name justify-self-start show-details">{{item.name}}</span>
+        <span class="weight justify-self-start">{{item.system.weight}}</span>
+        <span class="skill justify-self-start">{{localize item.system.skill}}</span>
+        <span class="equip justify-self-start" data-item-id="{{item.id}}">
+          <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
+        </span>
+        <div class="button justify-self-start">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
+            data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+      {{/unless}}
+      {{/if}}
+      {{/each}}
     </div>
+
     <div class="armor">
-      <h2 class="subheader border-bottom border-left t m-0 p-1">Armor</h2>
-      <div class="flex-col">
-        <div class="group-header grid six-col justify pi-1">
-          <span class="icon">{{localize "twdu.ui.icon"}}</span>
-          <span class="group-name">Name</span>
+      <h2 class="subheader border-bottom border-left t m-0 p-1">Armor <a
+                  title="{{localize " twdu.ui.add"}}" class="add-item" data-type="armor">
+                  &#43;</a></h2>
+      <h4 class="group-header m-0 pi-1">Equiped Armor</h4>
 
-          <span class="group-protection">Protection</span>
-          <span class="group-penalty">Penalty</span>
-          <span class="equip">Equip/Store</span>
-          <span class="actions">Actions</span>
-        </div>
-        {{#each items as |item key|}}
-        {{#if item.isArmor}}
-        <div class="armor item grid six-col justify align-center border-bottom" data-item-id="{{item._id}}">
-          <span class="icon rollable"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
-              height="25" /></span>
-          <span class="name show-details">{{item.name}}</span>
-          <span class="damage">{{item.system.protection}}</span>
-          <span class="agiltity">{{item.system.agility}}</span>
-          
-          <span class="equip" data-item-id="{{item.id}}">
-            {{#unless item.system.isEquipped}}
-            <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
-            {{/unless}}
-
-            {{#if item.system.isEquipped}}
-            <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
-            {{/if}}
-          </span>
-
-          <div class="button">
-            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-item-id="{{item._id}}"
-              data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
-          </div>
-
-
-        </div>
-        {{/if}}
-        {{/each}}
+      <div class="group-header grid six-col justify pi-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">Name</span>
+        <span class="group-protection">Protection</span>
+        <span class="group-penalty">Penalty</span>
+        <span class="equip">Equip/Store</span>
+        <span class="actions">Actions</span>
       </div>
+      {{#each items as |item key|}}
+      {{#if item.isArmor}}
+      {{#if item.system.isEquipped}}
+      <div class="armor item grid six-col justify align-center border-bottom" data-item-id="{{item._id}}">
+        <span class="icon rollable"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
+            height="25" /></span>
+        <span class="name show-details">{{item.name}}</span>
+        <span class="damage">{{item.system.protection}}</span>
+        <span class="agiltity">{{item.system.agility}}</span>
+
+        <span class="equip" data-item-id="{{item.id}}">
+          <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
+        </span>
+
+        <div class="button">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-item-id="{{item._id}}"
+            data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{/each}}
+
+      <h4 class="group-header m-0 pi-1">Stored Armor</h4>
+      <div class="group-header grid six-col justify pi-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">Name</span>
+
+        <span class="group-protection">Protection</span>
+        <span class="group-penalty">Penalty</span>
+        <span class="equip">Equip/Store</span>
+        <span class="actions">Actions</span>
+      </div>
+      {{#each items as |item key|}}
+      {{#if item.isArmor}}
+      {{#unless item.system.isEquipped}}
+      <div class="armor item grid six-col justify align-center border-bottom" data-item-id="{{item._id}}">
+        <span class="icon rollable"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
+            height="25" /></span>
+        <span class="name show-details">{{item.name}}</span>
+        <span class="damage">{{item.system.protection}}</span>
+        <span class="agiltity">{{item.system.agility}}</span>
+
+        <span class="equip" data-item-id="{{item.id}}">
+          <a class="equip-toggle" title='{{localize  "twdu.ui.equip"}}'> <i class="fa-solid fa-box"></i></a>
+        </span>
+
+        <div class="button">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-item-id="{{item._id}}"
+            data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+
+
+      </div>
+      {{/unless}}
+      {{/if}}
+      {{/each}}
+
+
+
+
+
     </div>
     <div class="gear">
-      <h2 class="subheader border-bottom border-left t m-0 p-1">Gear</h2>
+      <h2 class="subheader border-bottom border-left t m-0 p-1">Gear <a
+                  title="{{localize " twdu.ui.add"}}" class="add-item" data-type="gear">
+                  &#43;</a></h2>
       {{!-- TODO localize this stuff --}}
-      <h4 class="subsubheader m-0 pi-2 border-bottom">Equiped Gear</h4>
-      <div class="grid">
-        <div class="group-header grid six-col justify pi-1">
-          <span class="icon">{{localize "twdu.ui.icon"}}</span>
-          <span class="group-name">Name</span>
-          <span class="group-weight">Weight</span>
-          <span class="bonus">Bonus</span>
-          <span class="store">Equip/Store</span>
-          <span class="button">Actions</span>
-        </div>
-        {{#each items as |item key|}}
-        {{#if item.isGear }}
-        {{#if item.system.isEquipped}}
-        <div class="gear item grid six-col border-bottom" data-item-id="{{item._id}}">
-          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="24"
-              height="24" /></span>
-          <span class="name show-details">{{item.name}}</span>
-          <span class="weight">{{item.system.weight}}</span>
-          <span class="bonus">{{item.system.bonus}}</span>
-          <span class="store">
-            <a class="equip" title='{{localize  "twdu.ui.store"}}' data-item-id="{{item.id}}"><i
-                class="fa-solid fa-box-open"></i></a>
-          </span>
-          <div class="button">
-            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
-              data-type="item"><i class="fas fa-trash"></i></a>
-          </div>
-        </div>
-        {{/if}}
-        {{/if}}
-        {{/each}}
-      </div>
-      <h4 class="subsubheader m-0 pi-2 border-bottom">Stored Gear</h4>
-      <div class="grid">
-        <div class="group-header grid six-col justify pi-1">
-          <span class="icon">{{localize "twdu.ui.icon"}}</span>
-          <span class="group-name">Name</span>
-          <span class="group-weight">Weight</span>
-          <span class="bonus">Bonus</span>
-          <span class="store">Equip/Store</span>
-          <span class="button">Actions</span>
-        </div>
-        {{#each items as |item key|}}
-        {{#if item.isGear }}
-        {{#unless item.system.isEquipped}}
-        <div class="gear item grid six-col border-bottom" data-item-id="{{item._id}}">
-          <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="24"
-              height="24" /></span>
-          <span class="name show-details">{{item.name}}</span>
-          <span class="weight">{{item.system.weight}}</span>
-          <span class="bonus">{{item.system.bonus}}</span>
-          <span class="store">
-            <a class="equip" title='{{localize  "twdu.ui.equip"}}' data-item-id="{{item.id}}"> <i
-                class="fa-solid fa-box"></i></a>
-          </span>
-          <div class="button">
-            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-            <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
-              data-type="item"><i class="fas fa-trash"></i></a>
-          </div>
+      <h4 class="group-header m-0 pi-1">Equiped Gear</h4>
 
-        </div>
-        {{/unless}}
-        {{/if}}
-        {{/each}}
+      <div class="group-header grid six-col justify pi-2 pt-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">Name</span>
+        <span class="group-weight">Weight</span>
+        <span class="bonus">Bonus</span>
+        <span class="store">Equip/Store</span>
+        <span class="button">Actions</span>
       </div>
+      {{#each items as |item key|}}
+      {{#if item.isGear }}
+      {{#if item.system.isEquipped}}
+      <div class="gear item grid six-col border-bottom" data-item-id="{{item._id}}">
+        <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="24"
+            height="24" /></span>
+        <span class="name show-details">{{item.name}}</span>
+        <span class="weight">{{item.system.weight}}</span>
+        <span class="bonus">{{item.system.bonus}}</span>
+        <span class="store">
+          <a class="equip" title='{{localize  "twdu.ui.store"}}' data-item-id="{{item._id}}"><i
+              class="fa-solid fa-box-open"></i></a>
+        </span>
+        <div class="button">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
+            data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+      {{/if}}
+      {{/if}}
+      {{/each}}
+
+      <h4 class="group-header m-0 pi-1 ">Stored Gear</h4>
+
+      <div class="group-header grid six-col justify pi-2 pt-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">Name</span>
+        <span class="group-weight">Weight</span>
+        <span class="bonus">Bonus</span>
+        <span class="store">Equip/Store</span>
+        <span class="button">Actions</span>
+      </div>
+      {{#each items as |item key|}}
+      {{#if item.isGear }}
+      {{#unless item.system.isEquipped}}
+      <div class="gear item grid six-col border-bottom" data-item-id="{{item._id}}">
+        <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="24"
+            height="24" /></span>
+        <span class="name show-details">{{item.name}}</span>
+        <span class="weight">{{item.system.weight}}</span>
+        <span class="bonus">{{item.system.bonus}}</span>
+        <span class="store">
+          <a class="equip" title='{{localize  "twdu.ui.equip"}}' data-item-id="{{item._id}}"> <i
+              class="fa-solid fa-box"></i></a>
+        </span>
+        <div class="button">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
+            data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+
+      </div>
+      {{/unless}}
+      {{/if}}
+      {{/each}}
+
     </div>
   </div>
   <div class="tiny-itemsborder-left border-right border-left border-bottom">
-    <h2 class=" subheader m-0 p-1 border-bottom ">{{localize "twdu.tinyItems"}}</h2>
+    <h2 class=" subheader m-0 p-1 border-bottom ">{{localize "twdu.tinyItems"}} <a
+                  title="{{localize " twdu.ui.add"}}" class="add-item" data-type="tinyItem">
+                  &#43;</a></h2>
     {{#each items as |item|}}
     {{#if item.isTinyItem}}
-    <div class="tiny item flex-row border-bottom" data-item-id="{{item._id}}">
+    <div class="tiny item flex-row border-bottom middle" data-item-id="{{item._id}}">
       <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
           height="25" /></span>
       <span class="name">{{item.name}}</span>
+      <div class="button pi-1 grow text-right">
+        <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+        <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+        <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{@key}}"
+          data-type="item"><i class="fas fa-trash"></i></a>
+      </div>
     </div>
     {{/if}}
     {{/each}}

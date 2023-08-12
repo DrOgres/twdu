@@ -158,6 +158,45 @@ export const buildChatCard = function (type, data) {
       break;
     case "tinyItem":
       console.log("TWDU | tinyItem: ", data);
+      message =
+        `<div class="card-holder" style="position: relative;">
+      <img src="` +
+        token +
+        `" width="45" class="roll-token" />
+      <div class='chat-flavor'>` +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='chat-item-info grid two-col'>" +
+        "<b>" +
+        game.i18n.localize("twdu.description") +
+        ": </b>" +
+        data.system.description +
+        "</br>" +
+        `</div></div>`;
+      break;
+    case "issue":
+      console.log("TWDU | issue: ", data);
+      message =
+        `<div class="card-holder" style="position: relative;">
+      <img src="` +
+        token +
+        `" width="45" class="roll-token" />
+      <div class='chat-flavor'>` +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='chat-item-info grid two-col'>" +
+        "<b>" +
+        game.i18n.localize("twdu.description") +
+        ": </b>" +
+        data.system.description +
+        "</br>" +
+        `</div></div>`;
       break;
     case "talent":
       console.log("TWDU | talent: ", data);
@@ -242,4 +281,3 @@ export const buildChatCard = function (type, data) {
 
   return chatData;
 };
-
