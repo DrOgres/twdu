@@ -1,13 +1,12 @@
 import { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog } from "../util/roll.js";
 
-
 export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
       width: 750,
-      height: 800 - "min-content",
+      height: 750 ,
       resizable: true,
       tabs: [
         {
@@ -51,7 +50,6 @@ export default class TWDUActorSheet extends ActorSheet {
     context.config = CONFIG.twdu;
 
     if (context.isPlayer) {
-
       context.maxEncumbrance = context.system.attributes.str.value + 2;
       console.log("TWDU | Enriching HTML");
       context.notesHTML = await TextEditor.enrichHTML(
@@ -103,9 +101,9 @@ export default class TWDUActorSheet extends ActorSheet {
   computeEncumbrance(data) {
     // get the equiped items and sum their weight
     let encumbrance = 0;
-    for(let item of Object.values(data.items)) {
+    for (let item of Object.values(data.items)) {
       console.log("TWDU | item: ", item);
-      if(item.system.isEquipped) {
+      if (item.system.isEquipped) {
         encumbrance += Number(item.system.weight);
       }
     }
@@ -119,8 +117,8 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
     html.find(".equip").click(this._onEquipClick.bind(this));
     html
-    .find(".exp-boxes")
-    .on("click contextmenu", this._onExpChange.bind(this));
+      .find(".exp-boxes")
+      .on("click contextmenu", this._onExpChange.bind(this));
     html.find(".add-item").click(this._onItemCreate.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
@@ -142,17 +140,17 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | _onRoll: ", event);
     let target = event.currentTarget;
     let key = target.dataset.key;
-    console.log("TWDU | sheet: ", this  );
+    console.log("TWDU | sheet: ", this);
     let options = {
       type: key,
       sheet: this,
-      testName: "", 
+      testName: "",
       attName: "",
       attributeDefault: 0,
       skillName: "",
       skillDefault: 0,
       bonusDefault: 0,
-      damageDefault: 0
+      damageDefault: 0,
     };
 
     options.testName = game.i18n.localize(target.dataset.test);
@@ -161,7 +159,8 @@ export default class TWDUActorSheet extends ActorSheet {
       case "attribute":
         {
           options.attName = target.dataset.attribute;
-          options.attributeDefault = this.actor.system.attributes[options.attName].value;
+          options.attributeDefault =
+            this.actor.system.attributes[options.attName].value;
           console.log("TWDU | attribute: ", options.attName);
         }
         break;
@@ -169,11 +168,17 @@ export default class TWDUActorSheet extends ActorSheet {
         {
           options.testName = game.i18n.localize(target.dataset.test);
           options.skillName = game.i18n.localize(target.dataset.test);
-          options.skillDefault = this.actor.system.skills[target.dataset.skill].value;
+          options.skillDefault =
+            this.actor.system.skills[target.dataset.skill].value;
           // get the attribute for the skill and set the default and name
-          console.log("TWDU | skill attribute: ", this.actor.system.skills[target.dataset.skill].attribute);
-          options.attName = this.actor.system.skills[target.dataset.skill].attribute;
-          options.attributeDefault = this.actor.system.attributes[options.attName].value;
+          console.log(
+            "TWDU | skill attribute: ",
+            this.actor.system.skills[target.dataset.skill].attribute
+          );
+          options.attName =
+            this.actor.system.skills[target.dataset.skill].attribute;
+          options.attributeDefault =
+            this.actor.system.attributes[options.attName].value;
           console.log("TWDU | skill: ", options.skillName);
         }
         break;
@@ -184,26 +189,26 @@ export default class TWDUActorSheet extends ActorSheet {
           console.log("TWDU | item: ", item);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
-          
+
           console.log("TWDU | skillName: ", item.system.skill.split("."));
           let skill = item.system.skill.split(".")[1];
           options.skillDefault = this.actor.system.skills[skill].value;
           options.attName = this.actor.system.skills[skill].attribute;
-          options.attributeDefault = this.actor.system.attributes[options.attName].value;
+          options.attributeDefault =
+            this.actor.system.attributes[options.attName].value;
           options.damageDefault = item.system.damage;
-
         }
         break;
-        case "armor":
-          {
-            console.log("TWDU | armor: ", target.dataset.armor);
-            let protection = target.dataset.protection;
-            console.log("TWDU | protection: ", protection);
-          }
-          break;
-      }
-      console.log("TWDU | options", options);
-   
+      case "armor":
+        {
+          console.log("TWDU | armor: ", target.dataset.armor);
+          let protection = target.dataset.protection;
+          console.log("TWDU | protection: ", protection);
+        }
+        break;
+    }
+    console.log("TWDU | options", options);
+
     prepareRollDialog(options);
   }
 
@@ -234,12 +239,10 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | key: ", key);
     console.log("TWDU | type: ", type);
 
-
-      const div = $(event.currentTarget).parents(".item");
-      this.actor.deleteEmbeddedDocuments("Item", [div.data("itemId")]);
-      div.slideUp(200, () => this.render(false));
-    }
-
+    const div = $(event.currentTarget).parents(".item");
+    this.actor.deleteEmbeddedDocuments("Item", [div.data("itemId")]);
+    div.slideUp(200, () => this.render(false));
+  }
 
   _onItemCreate(event) {
     event.preventDefault();
@@ -254,9 +257,7 @@ export default class TWDUActorSheet extends ActorSheet {
     this.actor.createEmbeddedDocuments("Item", [data]);
 
     console.log(this.actor);
-
   }
-
 
   _onToggleClick(event) {
     event.preventDefault();
@@ -282,7 +283,6 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | item: ", item);
     //item.system.isEquipped = !item.system.isEquipped;
     item.update({ "system.isEquipped": !item.system.isEquipped });
-
   }
 
   _onExpChange(event) {

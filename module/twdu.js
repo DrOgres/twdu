@@ -71,7 +71,6 @@ Hooks.once("init", async function () {
       content.data.index = i + 1;
       result = result + content.fn(i);
     }
-
     return result;
   });
 
@@ -95,43 +94,53 @@ Hooks.once("init", async function () {
   // returns a count of the number of items in an array that match specified parameters
   // the arguments are [0] = array, up to length-1 = parameters to match
   Handlebars.registerHelper("TWDUEquippedCount", function () {
-
     let array = arguments[0];
     let count = 0;
     console.log("TWDU | array: ", array);
-
     console.log("TWDU | arguments[1]", arguments[1]);
     let parameter = arguments[1];
 
-   // select only items from the array that have the parameter parameter[N] as a true value
-
-   
     let filteredArray = array.filter(function (item) {
       console.log("TWDU | item: ", item);
-     
       return item[parameter];
     });
     console.log("TWDU | filteredArray: ", filteredArray);
-  
+
     console.log("TWDU | filteredArray.length: ", filteredArray.length);
-    for(let i = 0; i < filteredArray.length; i++){
+    for (let i = 0; i < filteredArray.length; i++) {
       console.log("TWDU | filteredArray[i]: ", filteredArray[i]);
       let test = filteredArray[i];
       console.log("TWDU | test: ", test);
-      if (test.system.isEquipped)
-      {
+      if (test.system.isEquipped) {
         count++;
       }
     }
+    return count;
+  });
 
+  Handlebars.registerHelper("TWDUunEquippedCount", function () {
+    let array = arguments[0];
+    let count = 0;
+    console.log("TWDU | array: ", array);
+    console.log("TWDU | arguments[1]", arguments[1]);
+    let parameter = arguments[1];
 
+    let filteredArray = array.filter(function (item) {
+      console.log("TWDU | item: ", item);
+      return item[parameter];
+    });
+    console.log("TWDU | filteredArray: ", filteredArray);
 
-     return count;
-
-
-    
-
-
+    console.log("TWDU | filteredArray.length: ", filteredArray.length);
+    for (let i = 0; i < filteredArray.length; i++) {
+      console.log("TWDU | filteredArray[i]: ", filteredArray[i]);
+      let test = filteredArray[i];
+      console.log("TWDU | test: ", test);
+      if (!test.system.isEquipped) {
+        count++;
+      }
+    }
+    return count;
   });
 });
 
@@ -162,9 +171,11 @@ Hooks.on("getSceneControlButtons", (controls) => {
       icon: "fas fa-biohazard",
       buttons: true,
       visible: game.settings.get("twdu", "threatLevelVisibility")
-      ? true
-      : game.user.isGM,
-      onClick: () => {ThreatLevelDisplay.render()},
+        ? true
+        : game.user.isGM,
+      onClick: () => {
+        ThreatLevelDisplay.render();
+      },
     }
   );
 });

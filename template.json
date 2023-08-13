@@ -122,6 +122,21 @@
         "haven": {
             "notes":{
                 "value": "Haven Notes"
+            },
+            "description": {
+                "overall": "",
+                "structures": "",
+                "surroundings": "",
+                "food": "",
+                "storedGear": ""
+            },
+            "capacity": {
+                "value": 0,
+                "label": "capacity"
+            },
+            "defense": {
+                "value": 0,
+                "label": "defense"
             }
 
         }

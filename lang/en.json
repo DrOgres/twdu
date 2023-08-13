@@ -6,6 +6,8 @@
         "pcAnchor": "PC Anchor",
         "npcAnchor": "NPC Anchor",
 
+        "none": "None",
+
         "AGILITY": "Agility",
         "STRENGTH": "Strength",
         "WITS": "Wits",
@@ -32,37 +34,60 @@
         "talent": "Talent",
         "talents": "Talents",
 
+        "capacity": "Capacity",
+        "defense": "Defense",
+
+        "overall": "Overall",
+        "structures": "Structures",
+        "surroundings": "Surroundings",
+        "foodSources": "Food Sources",
+
         "drive": "Drive",
         "issues": "Issues",
         "issue": "Issue",
         "experience": "Experience",
         "encumbrance": "Encumbrance",
         "encSlots": "Encumbrance Slots",
+        "equipStore": "Equip/Store",
+        "equip": "Equip",
+        "store": "Store",
+        "actions": "Actions",
+
         "gear": "Gear",
         "criticalInjuries": "Critical Injuries",
         "weapons": "Weapons",
         "armor": "Armor",
         "tinyItems": "Tiny Items",
-        "storedGear": "Stored Gear",
         "location": "Location",
         "protection": "Protection",
         "agilityPenalty": "Mobility Penalty",
+        "penalty": "Penalty",
         "damage": "Damage",
         "bonus": "Bonus",
         "range": "Range",
+
+        
         "unharmed": "Unharmed",
         "bruised": "Bruised",
         "battered": "Battered",
         "broken": "Broken",
-        "none": "None",
+        "weight": "Weight",
+        
         "details": "Details",
         "health": "Health",
         "general": "General",
         "bioNotes": "Notes",
         "notes": "Notes",
         "inventory": "Inventory",
-        "equipedGear": "Equiped Gear",
         "rollStress": "Roll Stress",
+
+        "equipedGear": "Equiped Gear",
+        "storedGear": "Stored Gear",
+        "equipedWeapons": "Equiped Weapons",
+        "storedWeapons": "Stored Weapons",
+        "equipedArmor": "Equiped Armor",
+        "storedArmor": "Stored Armor",
+
 
         "ui.icon": "Icon",
         "ui.equip": "Equip Item",

@@ -38,6 +38,10 @@
     grid-template-columns: repeat(6, 1fr);
 }
 
+.seven-col{
+    grid-template-columns: repeat(7, 1fr);
+}
+
 .col-60-40{
     grid-template-columns: 60% 40%;
 }
