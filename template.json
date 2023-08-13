@@ -139,8 +139,8 @@
             "issue"
         ],
         "templates": {
-            "itemEquiped": {
-              "isEquiped": false
+            "itemEquipped": {
+              "isEquipped": false
             },
             "itemCommonProperties" : {
                 "description": "",
@@ -152,12 +152,12 @@
 
           },
           "weapon": {
-            "templates": ["itemEquiped", "itemCommonProperties"],
+            "templates": ["itemEquipped", "itemCommonProperties"],
             "damage": 0,
             "range": ""
           },
           "armor": {
-            "templates": ["itemEquiped", "itemCommonProperties"],
+            "templates": ["itemEquipped", "itemCommonProperties"],
             "protection": 0,
             "agility": 0
           },
@@ -168,7 +168,7 @@
             
           },
           "gear": {
-            "templates": ["itemEquiped", "itemCommonProperties"],
+            "templates": ["itemEquipped", "itemCommonProperties"],
             "quantity": ""
           },
           "criticalInjury": {

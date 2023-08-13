@@ -91,6 +91,48 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("subtract", function () {
     return arguments[0] - arguments[1];
   });
+
+  // returns a count of the number of items in an array that match specified parameters
+  // the arguments are [0] = array, up to length-1 = parameters to match
+  Handlebars.registerHelper("TWDUEquippedCount", function () {
+
+    let array = arguments[0];
+    let count = 0;
+    console.log("TWDU | array: ", array);
+
+    console.log("TWDU | arguments[1]", arguments[1]);
+    let parameter = arguments[1];
+
+   // select only items from the array that have the parameter parameter[N] as a true value
+
+   
+    let filteredArray = array.filter(function (item) {
+      console.log("TWDU | item: ", item);
+     
+      return item[parameter];
+    });
+    console.log("TWDU | filteredArray: ", filteredArray);
+  
+    console.log("TWDU | filteredArray.length: ", filteredArray.length);
+    for(let i = 0; i < filteredArray.length; i++){
+      console.log("TWDU | filteredArray[i]: ", filteredArray[i]);
+      let test = filteredArray[i];
+      console.log("TWDU | test: ", test);
+      if (test.system.isEquipped)
+      {
+        count++;
+      }
+    }
+
+
+
+     return count;
+
+
+    
+
+
+  });
 });
 
 Hooks.on("getSceneControlButtons", (controls) => {

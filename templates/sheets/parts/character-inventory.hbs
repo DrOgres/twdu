@@ -158,6 +158,10 @@
                   title="{{localize " twdu.ui.add"}}" class="add-item" data-type="gear">
                   &#43;</a></h2>
       {{!-- TODO localize this stuff --}}
+
+      {{#if ( gt (TWDUEquippedCount items  'isGear' ) 0)}}
+      <div class="debug">more than 0</div>
+      {{/if}}
       <h4 class="group-header m-0 pi-1">Equiped Gear</h4>
 
       <div class="group-header grid six-col justify pi-2 pt-1">

@@ -1,5 +1,6 @@
-<div class="dice-tooltip">
+<div class="dice-tooltip {{this.type}}">
   {{#each parts}}
+  {{#unless (eq this.type '')}}
   <section class="tooltip-part {{this.type}}">
     <div class="dice">
       <header class="part-header flexrow">
@@ -28,5 +29,6 @@
       </ol>
     </div>
   </section>
+  {{/unless}}
   {{/each}}
 </div>
