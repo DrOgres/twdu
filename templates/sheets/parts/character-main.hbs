@@ -1,6 +1,6 @@
 <div class="grid col-60-40">
   <div class="item-group">
-    <div class="subheader flex-row w-100 justify m-0 p-1 center border-bottom border-top">
+    <div class="subheader flex-row w-100 justify m-0 p-1 center border-bottom">
       <h2 class="m-0 subheader" style="background: transparent;">
         {{localize "twdu.equipedGear"}}
       </h2>
@@ -123,7 +123,7 @@
   </div>
 
 
-  <div class="resources grid group fit-content-rows">
+  <div class="resources grid border-left fit-content-rows">
     {{! Health and Stress }}
     <div class="health-stress-block flex-row">
       <div class="health border-bottom border-right">
@@ -157,7 +157,7 @@
       <h2 class="subheader m-0 p-1 text-justify">{{localize "twdu.criticalInjuries"}}
         <a class="add-item" data-type="criticalInjury"><i class="fas fa-plus" title="Plus"></i></a>
       </h2>
-      <div class="scrollable max-h-150p border-top border-bottom">
+      <div class="scrollable max-h-150p border-top">
         {{#each items as |item|}}
         {{#if item.isCriticalInjury}}
         <div class="critical item grow border-bottom grid auto-fr-fr middle" data-item-id="{{item._id}}">

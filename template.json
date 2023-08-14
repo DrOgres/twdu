@@ -3,7 +3,8 @@
         "types": [
             "character",
             "challenge",
-            "haven"
+            "haven",
+            "npc"
         ],
         "character":{
             "name": "New Character",
@@ -16,7 +17,6 @@
             },
             "drive": "",
             "driveUsed": false,
-            "issues": [{"0": "Issue"}],
             "health": {
                 "value": 3,
                 "label": "HEALTH",
@@ -139,7 +139,83 @@
                 "label": "defense"
             }
 
+        },
+        "npc":{
+            "name": "NPC",
+            "background": "",
+            "description": "",
+            "notes":{
+                "value": "Notes"
+            },
+            "health": {
+                "value": 3,
+                "label": "HEALTH",
+                "max": 3
+            },
+            "skills": {
+                "closeCombat": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "force": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "endure": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "mobility": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "rangedCombat": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "stealth": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "scout": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "survival": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "tech": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "leadership": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "manipulation": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                },
+                "medicine": {
+                    "expert": false,
+                    "trained": false,
+                    "master": false
+                }
+            }
         }
+
     },
     "Item": {
         "types": [
