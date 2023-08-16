@@ -1,6 +1,6 @@
 import { TWDUActorSheet } from "./TWDUActorSheet.js";
 
-export default class TWDUActorSheet extends TWDUActorSheet {
+export  class TWDUNPCSheet extends TWDUActorSheet {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {

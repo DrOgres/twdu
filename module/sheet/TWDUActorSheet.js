@@ -6,7 +6,7 @@ export default class TWDUActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
       width: 750,
-      height: 750 ,
+      height: 750  - 'max-content',
       resizable: true,
       tabs: [
         {
