@@ -44,6 +44,10 @@ Hooks.once("init", async function () {
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
+  Actors.registerSheet("twdu", NpcCharacterSheet, {
+    types: ["npc"],
+    makeDefault: true,
+  });
 
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
