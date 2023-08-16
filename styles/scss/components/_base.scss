@@ -164,3 +164,68 @@
   margin: 0.5rem;
   text-align: center;
 }
+
+.radio-group{
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.radio-group input{
+    position: absolute;
+    top: .25rem;
+  right: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+ .radio-group input:checked ~ .radio {
+    background-color: $highlight-2;
+    border: 2px solid $highlight-2;
+  }
+
+ .radio-group input:checked ~ .radio:after {
+    display: block;
+  }
+
+.radio-group  .radio:after {
+    top: .125rem;
+   left: .125rem;
+   width: 8px;
+   height: 8px;
+   border-radius: 5%;
+   background: white;
+ }
+
+
+.radio-group:hover input ~ .radio {
+  background-color: $header-1;
+}
+
+.radio {
+  position: absolute;
+  top: .25rem;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  background-color: $header-bg-2;
+  border: 2px solid $highlight-2;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+
+.radio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+ 

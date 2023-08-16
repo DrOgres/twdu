@@ -235,6 +235,10 @@ optgroup {
   grid-template-columns: 70% 30%;
 }
 
+.col-80-20 {
+  grid-template-columns: 80% 20%;
+}
+
 .fr-auto-fr {
   grid-template-columns: 1fr auto 1fr;
 }
@@ -778,4 +782,65 @@ optgroup {
   padding: 0.5rem;
   margin: 0.5rem;
   text-align: center;
+}
+
+.radio-group {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.radio-group input {
+  position: absolute;
+  top: 0.25rem;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-group input:checked ~ .radio {
+  background-color: hsl(355, 53%, 31%);
+  border: 2px solid hsl(355, 53%, 31%);
+}
+
+.radio-group input:checked ~ .radio:after {
+  display: block;
+}
+
+.radio-group .radio:after {
+  top: 0.125rem;
+  left: 0.125rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 5%;
+  background: white;
+}
+
+.radio-group:hover input ~ .radio {
+  background-color: hsl(57, 15%, 26%);
+}
+
+.radio {
+  position: absolute;
+  top: 0.25rem;
+  right: 0;
+  height: 1rem;
+  width: 1rem;
+  background-color: hsla(36, 11%, 53%, 0.3);
+  border: 2px solid hsl(355, 53%, 31%);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.radio:after {
+  content: "";
+  position: absolute;
+  display: none;
 }/*# sourceMappingURL=twdu.css.map */
