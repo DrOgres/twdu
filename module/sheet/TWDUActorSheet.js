@@ -6,7 +6,7 @@ export default class TWDUActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
       width: 750,
-      height: 750  - 'max-content',
+      height: 750 - "max-content",
       resizable: true,
       tabs: [
         {
@@ -72,6 +72,11 @@ export default class TWDUActorSheet extends ActorSheet {
       this.computeSkills(context);
       context.encumbrance = this.computeEncumbrance(context);
     }
+
+    if (context.isNPC) {
+      this.computeSkills(context);
+    }
+
     return context;
   }
 
@@ -141,9 +146,11 @@ export default class TWDUActorSheet extends ActorSheet {
     let target = event.currentTarget;
     let key = target.dataset.key;
     console.log("TWDU | sheet: ", this);
+    console.log("TWDU | type: ", this.actor.type);
     let options = {
       type: key,
       sheet: this,
+      actorType: this.actor.type,
       testName: "",
       attName: "",
       attributeDefault: 0,
@@ -166,20 +173,40 @@ export default class TWDUActorSheet extends ActorSheet {
         break;
       case "skill":
         {
-          options.testName = game.i18n.localize(target.dataset.test);
-          options.skillName = game.i18n.localize(target.dataset.test);
-          options.skillDefault =
-            this.actor.system.skills[target.dataset.skill].value;
-          // get the attribute for the skill and set the default and name
-          console.log(
-            "TWDU | skill attribute: ",
-            this.actor.system.skills[target.dataset.skill].attribute
-          );
-          options.attName =
-            this.actor.system.skills[target.dataset.skill].attribute;
-          options.attributeDefault =
-            this.actor.system.attributes[options.attName].value;
-          console.log("TWDU | skill: ", options.skillName);
+          if (options.actorType === "npc") {
+            options.skillName = target.dataset.skill;
+            console.log("TWDU | skillName: ", options.skillName);
+            let skillLevel =
+              this.actor.system.skills[target.dataset.skill].level;
+            console.log("TWDU | skillLevel: ", skillLevel);
+            if (skillLevel == "base") {
+              options.skillDefault = 4;
+            }
+            if (skillLevel == "trained") {
+              options.skillDefault = 6;
+            }
+            if (skillLevel == "expert") {
+              options.skillDefault = 8;
+            }
+            if (skillLevel == "master") {
+              options.skillDefault = 10;
+            }
+          } else {
+            options.testName = game.i18n.localize(target.dataset.test);
+            options.skillName = game.i18n.localize(target.dataset.test);
+            options.skillDefault =
+              this.actor.system.skills[target.dataset.skill].value;
+            // get the attribute for the skill and set the default and name
+            console.log(
+              "TWDU | skill attribute: ",
+              this.actor.system.skills[target.dataset.skill].attribute
+            );
+            options.attName =
+              this.actor.system.skills[target.dataset.skill].attribute;
+            options.attributeDefault =
+              this.actor.system.attributes[options.attName].value;
+            console.log("TWDU | skill: ", options.skillName);
+          }
         }
         break;
       case "weapon":

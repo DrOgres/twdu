@@ -25,7 +25,10 @@ export function prepareRollDialog(options) {
   let armor = actor.items.find((item) => item.type === "armor");
   console.log("TWDU | armor: ", armor);
 
-  let stressDice = actor.system.stress.value;
+  let stressDice = 0;
+  if(actor.type === "character") {
+  stressDice = actor.system.stress.value;
+  }
 
   console.log("TWDU | stressDice: ", stressDice);
   let dialogHtml = "";
@@ -206,7 +209,10 @@ async function rollDice(sheet, numberOfDice) {
   console.log("token", token);
   console.log("sheet", sheet);
 
-  let stressDice = actor.system.stress.value;
+  let stressDice = 0;
+  if(actor.type === "character") {
+  stressDice = actor.system.stress.value;
+  }
 
   let formula = numberOfDice + "ds" + " + " + stressDice + "dz";
 
@@ -229,6 +235,9 @@ async function rollDice(sheet, numberOfDice) {
     name: sheet.lastTestName,
     damage: sheet.lastDamage,
     token: token,
+    owner: actor.id,
+    actorType: actor.type,
+    formula: formula,
   };
 
   let r;

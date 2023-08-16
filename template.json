@@ -154,64 +154,64 @@
             },
             "skills": {
                 "closeCombat": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "str",
+                    "label": "closeCombat"
                 },
                 "force": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "str",
+                    "label": "force"
                 },
                 "endure": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "str",
+                    "label": "endure"
                 },
                 "mobility": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "agl",
+                    "label": "mobility"
                 },
                 "rangedCombat": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "agl",
+                    "label": "rangedCombat"
                 },
                 "stealth": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "agl",
+                    "label": "stealth"
                 },
                 "scout": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "wit",
+                    "label": "scout"
                 },
                 "survival": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "wit",
+                    "label": "survival"
                 },
                 "tech": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "wit",
+                    "label": "tech"
                 },
                 "leadership": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "emp",
+                    "label": "leadership"
                 },
                 "manipulation": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "emp",
+                    "label": "manipulation"
                 },
                 "medicine": {
-                    "expert": false,
-                    "trained": false,
-                    "master": false
+                    "level" : "base",
+                    "attribute": "emp",
+                    "label": "medicine"
                 }
             }
         }

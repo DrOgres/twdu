@@ -2,6 +2,7 @@
     "twdu": {
         "name": "Name",
         "archetype": "Archetype",
+        "background": "Background",
         "description": "Description",
         "pcAnchor": "PC Anchor",
         "npcAnchor": "NPC Anchor",
@@ -27,6 +28,11 @@
         "leadership": "Leadership", 
         "manipulation": "Manipulation",
         "medicine": "Medicine",
+
+        "base": "Base",
+        "trained": "Trained",
+        "expert": "Expert",
+        "master": "Master",
 
         "headerAttributes": "Attributes & Skills",
         "skill": "Skill",

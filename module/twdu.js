@@ -143,6 +143,13 @@ Hooks.once("init", async function () {
     }
     return count;
   });
+
+  Handlebars.registerHelper("checked", function (value, test) {
+    console.log("TWDU checked helper| arguments: ", arguments);
+    console.log("TWDU checked helper| value: ", value);
+    if(value == undefined) return "";
+    return value == test ? "checked" : "";
+  });
 });
 
 Hooks.on("getSceneControlButtons", (controls) => {
