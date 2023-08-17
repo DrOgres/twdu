@@ -817,8 +817,8 @@ optgroup {
   left: 0.125rem;
   width: 8px;
   height: 8px;
-  border-radius: 5%;
-  background: white;
+  border-radius: 50%;
+  background: hsl(53, 14%, 75%);
 }
 
 .radio-group:hover input ~ .radio {
@@ -831,6 +831,7 @@ optgroup {
   right: 0;
   height: 1rem;
   width: 1rem;
+  border-radius: 50%;
   background-color: hsla(36, 11%, 53%, 0.3);
   border: 2px solid hsl(355, 53%, 31%);
   user-select: none;

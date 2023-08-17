@@ -10,40 +10,40 @@
             placeholder="{{localize 'twdu.name'}}" /></h1>
         <div class="grid col-70-30">
           <div class="flex-col">
-          <div class="archetype m-0 p-1 flex-row center">
-            <b for="archetype" class="pi-1">{{localize 'twdu.background'}}:</b>
-            <input name="system.backgorund" id="archetype" type="text" value="{{system.background}}"
-              placeholder="{{localize 'twdu.background'}}" />
-          </div>
-
-          <div class="description p-1 flex-col">
-            <b>{{localize 'twdu.description'}}:</b>
-            <textarea name="system.description" style="resize: none;">{{actor.system.description}}</textarea>
-          </div>
-        </div>
-        <div class="flex-col border-left">
-          <h2 class="subheader border-bottom t m-0 p-1">{{localize 'twdu.issues'}} <a
-              title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue">
-              &#43;</a></h2>
-              <div class="issue-list scrollable max-h-150p  border-left">
-            {{#each items as |item key|}}
-            {{#if item.isIssue}}
-            <div class="issue item grid two-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
-              <div class="name show-details">
-                {{item.name}}
-              </div>
-              <div class="button justify-self-end">
-                <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
-                <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
-                  data-type="item"><i class="fas fa-trash"></i></a>
-              </div>
+            <div class="archetype m-0 p-1 flex-row center">
+              <b for="archetype" class="pi-1">{{localize 'twdu.background'}}:</b>
+              <input name="system.backgorund" id="archetype" type="text" value="{{system.background}}"
+                placeholder="{{localize 'twdu.background'}}" />
             </div>
-            {{/if}}
-            {{/each}}
-          </div>
 
-        </div>
+            <div class="description p-1 flex-col">
+              <b>{{localize 'twdu.description'}}:</b>
+              <textarea name="system.description" style="resize: none;">{{actor.system.description}}</textarea>
+            </div>
+          </div>
+          <div class="flex-col border-left">
+            <h2 class="subheader border-bottom t m-0 p-1">{{localize 'twdu.issues'}} <a title="{{localize "
+                twdu.ui.add"}}" class="add-item" data-type="issue">
+                &#43;</a></h2>
+            <div class="issue-list scrollable max-h-150p  border-left">
+              {{#each items as |item key|}}
+              {{#if item.isIssue}}
+              <div class="issue item grid two-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                <div class="name show-details">
+                  {{item.name}}
+                </div>
+                <div class="button justify-self-end">
+                  <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+                  <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+                  <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
+                    data-type="item"><i class="fas fa-trash"></i></a>
+                </div>
+              </div>
+              {{/if}}
+              {{/each}}
+            </div>
+
+          </div>
         </div>
       </div>
 
@@ -66,22 +66,22 @@
           <div class="grid two-col w-100">
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.base">{{localize
               'twdu.base'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="base" {{checked level 'base'
+              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{checked level 'base'
                 }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.trained">{{localize
               'twdu.trained'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="trained" {{checked
+              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{checked
                 level 'trained' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.expert">{{localize
               'twdu.expert'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="expert" {{checked
+              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{checked
                 level 'expert' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.master">{{localize
               'twdu.master'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="master" {{checked
+              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{checked
                 level 'master' }} /><span class="radio"></span></label>
           </div>
         </div>
@@ -89,7 +89,7 @@
         {{/each}}
       </div>
 
-      {{!-- skillblock --}}
+      {{!--Agility skillblock --}}
       <div class=" flex-col pi-1 border-right">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasAgility}}
@@ -101,22 +101,23 @@
           <div class="grid two-col w-100">
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.base">{{localize
               'twdu.base'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="base" {{checked level 'base'
-                }} /><span class="radio"></span></label>
+              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{checked level 'base'}} />
+              <span class="radio"></span>
+              </label>
 
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.trained">{{localize
               'twdu.trained'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="trained" {{checked
+              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{checked
                 level 'trained' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.expert">{{localize
               'twdu.expert'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="expert" {{checked
+              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{checked
                 level 'expert' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="{{key}}.master">{{localize
               'twdu.master'}}
-              <input id="{{key}}" type="radio" name="system.skills.{{key}}.level" value="master" {{checked
+              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{checked
                 level 'master' }} /><span class="radio"></span></label>
           </div>
         </div>
@@ -124,7 +125,7 @@
         {{/each}}
       </div>
 
-      {{!-- skillblock --}}
+      {{!-- wits skillblock --}}
       <div class=" flex-col pi-1">
         {{#each system.skills as |skill key|}}
         {{#if skill.hasWits}}
@@ -164,8 +165,7 @@
         {{#if skill.hasEmpathy}}
         <div class="skill flex-col align-center justify ">
           <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="{{key}}"
-            data-test="twdu.{{key}}">{{localize (TWDUconcat
-            "twdu." skill.label)}}</div>
+            data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</div>
           <div class="grid two-col w-100">
             <label class="flex-row pi-2 justify middle border-right border-bottom radio-group" for="{{key}}">{{localize
               'twdu.base'}}
@@ -179,8 +179,8 @@
 
             <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
               for="{{key}}.expert">{{localize 'twdu.expert'}}
-              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{checked
-                level 'expert' }} /><span class="radio"></span></label>
+              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" 
+              {{checked level 'expert' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
               for="{{key}}.master">{{localize 'twdu.master'}}

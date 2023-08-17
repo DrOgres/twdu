@@ -5,7 +5,7 @@
 export async function increaseThreatLevel(amount) {
   let threatLevel = getThreatLevel();
   if (threatLevel === undefined) {
-    threatLevel = 1;
+    threatLevel = 0;
     await setThreatLevel(threatLevel);
     return;
   }
@@ -24,13 +24,13 @@ export async function increaseThreatLevel(amount) {
 export async function decreaseThreatLevel(amount) {
   let threatLevel = getThreatLevel();
   if (threatLevel === undefined) {
-    threatLevel = 1;
+    threatLevel = 0;
     await setThreatLevel(threatLevel);
     return;
   }
 
-  if (threatLevel <= 1) {
-    await setThreatLevel(1);
+  if (threatLevel <= 0) {
+    await setThreatLevel(0);
     return;
   }
 

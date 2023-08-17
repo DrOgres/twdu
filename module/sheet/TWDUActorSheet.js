@@ -75,6 +75,8 @@ export default class TWDUActorSheet extends ActorSheet {
 
     if (context.isNPC) {
       this.computeSkills(context);
+      // equip items
+
     }
 
     return context;
@@ -116,7 +118,7 @@ export default class TWDUActorSheet extends ActorSheet {
     return encumbrance;
   }
 
-  //TODO break out specific listeners to files for each type of sheet
+
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
@@ -142,11 +144,8 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onRoll(event) {
     event.preventDefault();
-    console.log("TWDU | _onRoll: ", event);
     let target = event.currentTarget;
     let key = target.dataset.key;
-    console.log("TWDU | sheet: ", this);
-    console.log("TWDU | type: ", this.actor.type);
     let options = {
       type: key,
       sheet: this,
@@ -216,13 +215,31 @@ export default class TWDUActorSheet extends ActorSheet {
           console.log("TWDU | item: ", item);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
-
           console.log("TWDU | skillName: ", item.system.skill.split("."));
           let skill = item.system.skill.split(".")[1];
+          console.log("TWDU | skill: ", skill);
+          if(!options.actorType === "npc"){
           options.skillDefault = this.actor.system.skills[skill].value;
+          } else {
+            let skillLevel = this.actor.system.skills[skill].level;
+            if (skillLevel == "base") {
+              options.skillDefault = 4;
+            }
+            if (skillLevel == "trained") {
+              options.skillDefault = 6;
+            }
+            if (skillLevel == "expert") {
+              options.skillDefault = 8;
+            }
+            if (skillLevel == "master") {
+              options.skillDefault = 10;
+            }
+          }
+          if(!options.actorType === "npc"){
           options.attName = this.actor.system.skills[skill].attribute;
           options.attributeDefault =
             this.actor.system.attributes[options.attName].value;
+          }
           options.damageDefault = item.system.damage;
         }
         break;

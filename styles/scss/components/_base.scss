@@ -198,8 +198,8 @@
    left: .125rem;
    width: 8px;
    height: 8px;
-   border-radius: 5%;
-   background: white;
+   border-radius: 50%;
+   background: $neutral-2;
  }
 
 
@@ -213,6 +213,7 @@
   right: 0;
   height: 1rem;
   width: 1rem;
+  border-radius: 50%;
   background-color: $header-bg-2;
   border: 2px solid $highlight-2;
   user-select: none;
