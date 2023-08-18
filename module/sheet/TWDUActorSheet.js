@@ -49,6 +49,8 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | context.system.notes: ", context.system.notes);
     context.config = CONFIG.twdu;
 
+    this.computeItems(context);
+
     if (context.isPlayer) {
       context.maxEncumbrance = context.system.attributes.str.value + 2;
       console.log("TWDU | Enriching HTML");
@@ -58,6 +60,8 @@ export default class TWDUActorSheet extends ActorSheet {
           async: true,
         }
       );
+      this.computeSkills(context);
+      context.encumbrance = this.computeEncumbrance(context);
     }
 
     if (context.isHaven) {
@@ -67,16 +71,11 @@ export default class TWDUActorSheet extends ActorSheet {
       );
     }
 
-    this.computeItems(context);
-    if (context.isPlayer) {
-      this.computeSkills(context);
-      context.encumbrance = this.computeEncumbrance(context);
-    }
+ 
 
     if (context.isNPC) {
       this.computeSkills(context);
-      // equip items
-
+      this.equipItems(context);
     }
 
     return context;
@@ -118,6 +117,23 @@ export default class TWDUActorSheet extends ActorSheet {
     return encumbrance;
   }
 
+  equipItems(data) {
+    console.log("TWDU | equipItems: ", data);
+    console.log("TWDU | equipItems: ", this.actor);
+    // this will equip all owned items for an NPC, this is primarily so that armor penalties on mobility can be calculated
+    let items = data.items;
+    console.log("TWDU | items: ", items);
+    items.forEach ((item) => {
+      console.log("TWDU | item: ", item);
+      this.actor.items.get(item._id).update({ "system.isEquiped":  true});
+   // item.update({ "system.isEquipped":  true});
+    });
+
+    console.log("TWDU | equipItems complete: ", items);
+    console.log("TWDU | equipItems complete: ", this.actor);
+  
+  }
+
 
   activateListeners(html) {
     super.activateListeners(html);
@@ -157,6 +173,7 @@ export default class TWDUActorSheet extends ActorSheet {
       skillDefault: 0,
       bonusDefault: 0,
       damageDefault: 0,
+      armorItem: "",
     };
 
     options.testName = game.i18n.localize(target.dataset.test);
@@ -251,6 +268,10 @@ export default class TWDUActorSheet extends ActorSheet {
         }
         break;
     }
+
+    options.armorItem = this.actor.items.find(
+      (item) => item.type === "armor" && item.system.isEquipped
+    );
     console.log("TWDU | options", options);
 
     prepareRollDialog(options);

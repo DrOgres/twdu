@@ -17,20 +17,12 @@ export function prepareRollDialog(options) {
 
   let actorID = options.sheet.object.id;
   let actor = game.actors.get(actorID);
-  console.log("TWDU | actor: ", actor);
-
-  console.log("TWDU | dialog sheet: ", options.sheet);
-  //TODO check armor and apply modifiers to the pool
-
-  let armor = actor.items.find((item) => item.type === "armor");
-  console.log("TWDU | armor: ", armor);
-
+ 
   let stressDice = 0;
   if(actor.type === "character") {
   stressDice = actor.system.stress.value;
   }
 
-  console.log("TWDU | stressDice: ", stressDice);
   let dialogHtml = "";
   if (options.type === "weapon") {
     dialogHtml = buildHTMLDialog(
@@ -55,33 +47,33 @@ export function prepareRollDialog(options) {
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
   }
   if (options.type === "skill") {
-    // TODO check for Mobility and adjust for armor.
+    console.log("TWDU | skill options: ", options);
+    if (options.attName){
     dialogHtml = buildHTMLDialog(
       options.attName,
       options.attributeDefault,
       "attribute"
     );
+    }
     dialogHtml += buildHTMLDialog(
       options.skillName,
       options.skillDefault,
       "skill"
     );
-    if (options.skillName === "Mobility") {
-      //get the armor of the character that is equipped
-      let armor = actor.items.find((item) => item.type === "armor" && item.system.isEquipped );
-      console.log("TWDU | armor: ", armor);
+    if (options.skillName === "Mobility" || options.skillName === "mobility") {
+      let armor = options.armorItem;
       if (armor) {
         dialogHtml += buildHTMLDialog(
           "Armor Penalty",
           (0 - armor.system.agility),
           "armor"
         );
-
         options.armorPenalty = (0 - armor.system.agility);
       }
     }
-
+    if (stressDice > 0  ){
     dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
+    }
   }
   if (options.type === "armor") {
     dialogHtml = buildHTMLDialog(
