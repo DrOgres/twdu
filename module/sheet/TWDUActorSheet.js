@@ -45,6 +45,7 @@ export default class TWDUActorSheet extends ActorSheet {
       isNPC: this.actor.type === "npc",
       encumbrance: 0,
       maxEncumbrance: 0,
+      maxpop: 0,
     };
     console.log("TWDU | context: ", context);
     context.config = CONFIG.twdu;
@@ -66,6 +67,7 @@ export default class TWDUActorSheet extends ActorSheet {
     }
 
     if (context.isHaven) {
+      context.maxpop = this.calculatePopulation(context);
       context.havenNotes = await TextEditor.enrichHTML(
         context.system.notes.value,
         { async: true }
@@ -80,6 +82,34 @@ export default class TWDUActorSheet extends ActorSheet {
     }
 
     return context;
+  }
+
+  calculatePopulation(context) {
+    
+    let maxpop = 0;
+    let capacity = context.system.capacity.value;
+    if (capacity === 0 ) {
+      maxpop = 0;
+    }
+    if (capacity === 1 ) {
+      maxpop = 10;
+    }
+    if (capacity === 2 ) {
+      maxpop = 20;
+    }
+    if (capacity === 3 ) {
+      maxpop = 50;
+    }
+    if (capacity === 4 ) {
+      maxpop = 80;
+    }
+    if (capacity === 5 ) {
+      maxpop = 200;
+    }
+    if (capacity === 6 ) {
+      maxpop = 500;
+    }
+    return maxpop;
   }
 
   computeSkills(context) {
@@ -135,6 +165,7 @@ export default class TWDUActorSheet extends ActorSheet {
       .on("click contextmenu", this._onExpChange.bind(this));
     html.find(".add-item").click(this._onItemCreate.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
+    html.find(".actor-delete").click(this._onActorDelete.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".actor-edit").click(this._onShowActor.bind(this));
     html.find(".to-chat").click(this._onItemToChat.bind(this));
@@ -244,7 +275,6 @@ export default class TWDUActorSheet extends ActorSheet {
         {
           console.log("TWDU | armor: ", target.dataset.armor);
           let protection = target.dataset.protection;
-          console.log("TWDU | protection: ", protection);
           options.armorItem = this.actor.items.find(
             (item) => item.type === "armor" && item.system.isEquipped
           );
@@ -282,6 +312,17 @@ export default class TWDUActorSheet extends ActorSheet {
     const actorID = event.currentTarget.dataset.actorId;
     const actor = game.actors.get(actorID);
     actor.sheet.render(true);
+  }
+
+  _onActorDelete(event) {
+    event.preventDefault();
+    const target = game.actors.get(this.object.id);
+    console.log("TWDU | _onActorDelete: ", event);
+    const actorID = event.currentTarget.dataset.actorId;
+    const survivors = this.actor.system.survivors;
+    survivors.npcs = survivors.npcs.filter((o) => o.id !== actorID);
+    target.update({ 'data.survivors.npcs': survivors.npcs });
+    target.update({ 'data.survivors.population': survivors.npcs.length });
   }
 
   _onItemDelete(event) {
@@ -358,24 +399,16 @@ export default class TWDUActorSheet extends ActorSheet {
     if (!survivor) return;
     if (survivor.type === 'haven' && survivor.type === 'haven') return ui.notifications.info('Havens cannot be dropped on a Havens');
     if (survivor.type !== 'character' && survivor.type !== 'npc') return;
-    if (actorData.type === 'haven') { 
-      console.log("TWDU | _dropSurvivor: ", survivor);    
-      //return this.actor.addVehicleOccupant(actorId);
+    if (actorData.type === 'haven') {    
       return this.addSurvivor(actorId);
     }
   }
 
   addSurvivor(ID) {
     console.log("TWDU | addSurvivor: ", ID);
-    console.log("TWDU | addSurvivor: ", this.object.id);
     const target = game.actors.get(this.object.id);
-    console.log("TWDU | addSurvivor: ", target);
     if (target.type !== 'haven') return;
-    console.log("TWDU | addSurvivor: ", ID);
     const data = target.system;
-    // if (!(data.crew.occupants instanceof Array)) {
-    //   data.crew.occupants = [];
-    // }
 
     const actor = game.actors.get(ID);
     const survivorType = actor.type;
@@ -399,7 +432,6 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | removeSurvivor: ", Id);
     const target = game.actors.get(this.object.id);
     if (target.type !== 'haven') return;
-    console.log("TWDU | removeSurvivor: ", target);
     const survivors = target.system.survivors;
     survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
     return survivors.npcs;
@@ -410,7 +442,6 @@ export default class TWDUActorSheet extends ActorSheet {
     async _onDropItemCreate(itemData) {
       const type = itemData.type;
       console.log("TWDU | drag and drop items", this);
-      console.log(twdu);
       const alwaysAllowedItems = twdu.physicalItems;
       const allowedItems = {
         haven: [

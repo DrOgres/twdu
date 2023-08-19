@@ -141,7 +141,8 @@
             },
             "survivors": {
                 "npcs": [], 
-                "maxInhabitants": 0
+                "maxInhabitants": 0,
+                "population": 0
             }
 
         },

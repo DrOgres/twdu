@@ -96,7 +96,7 @@
                 <div class="grid three-col">
                     {{!-- Survivors --}}
                     <div class="container border-left border-bottom flex-col">
-                        <h2 class="header border-bottom">{{localize 'twdu.survivors'}}</h2>
+                        <h2 class="header border-bottom">{{localize 'twdu.survivors'}} &nbsp; {{actor.system.survivors.population}} / {{maxpop}}</h2>
                         <div class="subheader border-bottom">Player Characters</div>
                         <div class="scrollable max-h-300p">
                             {{#each actor.system.survivors.npcs as |survivor key|}}
@@ -110,8 +110,8 @@
 
                                     <a class="item-control actor-edit" data-actor-id="{{id}}"
                                         title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
-                                        data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+                                    <a class="item-control actor-delete" title='{{localize  "twdu.ui.delete"}}'
+                                        data-key="{{key}}" data-actor-id="{{id}}" data-type="actor"><i class="fas fa-trash"></i></a>
 
                                 </div>
                             </div>
@@ -129,8 +129,8 @@
 
                                     <a class="item-control actor-edit" data-actor-id="{{id}}"
                                         title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
-                                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
-                                        data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+                                    <a class="item-control actor-delete" title='{{localize  "twdu.ui.delete"}}'
+                                        data-key="{{key}}" data-actor-id="{{id}}" data-type="npc"><i class="fas fa-trash"></i></a>
 
                                 </div>
                             </div>
