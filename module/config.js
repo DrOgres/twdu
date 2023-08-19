@@ -25,7 +25,6 @@ twdu.skills = {
 
 twdu.ranges = {
     none: "twdu.none",
-    close: "twdu.close",
     short: "twdu.short",
     long: "twdu.long",
     extreme: "twdu.extreme",
@@ -38,3 +37,14 @@ twdu.healthStates = {
     0: "twdu.broken"
 }
 
+
+twdu.encumbranceIncrements = {
+    none: 0,
+    half: 0.5,
+    one: 1,
+    two: 2,
+    three: 3,
+}
+
+
+twdu.physicalItems = [];

@@ -265,6 +265,38 @@ export const buildChatCard = function (type, data) {
       break;
     case "project":
       console.log("TWDU | project: ", data);
+      message =
+        `<div class="card-holder" style="position: relative;">
+      <img src="` +
+        token +
+        `" width="45"  class="roll-token" />
+      <div class='chat-flavor'>` +
+        game.i18n.localize("twdu.project") +
+        ": " +
+        data.name.toUpperCase() +
+        "</div>" +
+        "<div class='flex row center'><img src='" +
+        data.img +
+        "' width=50 height=50/></div>" +
+        "<div class='description'>" +
+        data.system.description +
+        "<div class='chat-item-info grid two-col'>" +
+        "<b>" +
+        game.i18n.localize("twdu.effect") +
+        `: </b><span class="title-case">` +
+        data.system.effect +
+        "</span></br>" +
+        "<b>" +
+        game.i18n.localize("twdu.workforce") +
+        ": </b>" +
+        data.system.workforce +
+        "</br> <b>" +
+        game.i18n.localize("twdu.finishDate") +
+        ": </b>" +
+        data.system.finishDate +
+        "</br>" +
+        `</div></div>`;
+
       break;
     default:
       console.log("TWDU | default: ", data);

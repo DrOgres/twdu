@@ -2,7 +2,6 @@
     "Actor": {
         "types": [
             "character",
-            "challenge",
             "haven",
             "npc"
         ],
@@ -132,11 +131,17 @@
             },
             "capacity": {
                 "value": 0,
+                "max": 6,
                 "label": "capacity"
             },
             "defense": {
                 "value": 0,
+                "max": 6,
                 "label": "defense"
+            },
+            "survivors": {
+                "npcs": [], 
+                "maxInhabitants": 0
             }
 
         },
@@ -245,7 +250,7 @@
           "weapon": {
             "templates": ["itemEquipped", "itemCommonProperties"],
             "damage": 0,
-            "range": ""
+            "range": "none"
           },
           "armor": {
             "templates": ["itemEquipped", "itemCommonProperties"],

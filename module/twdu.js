@@ -10,7 +10,6 @@ import { registerGameSettings } from "./util/settings.js";
 
 Hooks.once("init", async function () {
   console.log("TWDU | Initializing TWDU");
-
   CONFIG.twdu = twdu;
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
 
@@ -51,6 +50,13 @@ Hooks.once("init", async function () {
 
   // Initialize the Threat Level
   ThreatLevelDisplay.initialize();
+
+  Handlebars.registerHelper("parseActor", function (actorId, part) {
+    let actor = game.actors.get(actorId);
+    if(part === "name"){return actor.name;}
+    else {return actorId;}
+  
+  });
 
   Handlebars.registerHelper("enrichHtmlHelper", function (rawText) {
     return TextEditor.enrichHTML(rawText, { async: true });
@@ -97,21 +103,14 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("TWDUEquippedCount", function () {
     let array = arguments[0];
     let count = 0;
-    console.log("TWDU | array: ", array);
-    console.log("TWDU | arguments[1]", arguments[1]);
     let parameter = arguments[1];
 
-    let filteredArray = array.filter(function (item) {
-      console.log("TWDU | item: ", item);
+    let filteredArray = array.filter(function (item) {     
       return item[parameter];
     });
-    console.log("TWDU | filteredArray: ", filteredArray);
 
-    console.log("TWDU | filteredArray.length: ", filteredArray.length);
     for (let i = 0; i < filteredArray.length; i++) {
-      console.log("TWDU | filteredArray[i]: ", filteredArray[i]);
       let test = filteredArray[i];
-      console.log("TWDU | test: ", test);
       if (test.system.isEquipped) {
         count++;
       }
@@ -122,21 +121,13 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("TWDUunEquippedCount", function () {
     let array = arguments[0];
     let count = 0;
-    console.log("TWDU | array: ", array);
-    console.log("TWDU | arguments[1]", arguments[1]);
     let parameter = arguments[1];
 
     let filteredArray = array.filter(function (item) {
-      console.log("TWDU | item: ", item);
       return item[parameter];
     });
-    console.log("TWDU | filteredArray: ", filteredArray);
-
-    console.log("TWDU | filteredArray.length: ", filteredArray.length);
     for (let i = 0; i < filteredArray.length; i++) {
-      console.log("TWDU | filteredArray[i]: ", filteredArray[i]);
       let test = filteredArray[i];
-      console.log("TWDU | test: ", test);
       if (!test.system.isEquipped) {
         count++;
       }
@@ -184,4 +175,13 @@ Hooks.on("getSceneControlButtons", (controls) => {
       },
     }
   );
+});
+
+Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
+  // When dropping something on a vehicle sheet.
+  if (actor.type === 'haven') {
+    // When dropping an actor on a vehicle sheet.
+    let survivor = await fromUuid(data.uuid);
+    if (data.type === 'Actor') sheet._dropSurvivor(survivor.id);
+  }
 });

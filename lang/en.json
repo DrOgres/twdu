@@ -42,6 +42,8 @@
 
         "capacity": "Capacity",
         "defense": "Defense",
+        "projects": "Projects",
+        "survivors": "Survivors",
 
         "overall": "Overall",
         "structures": "Structures",
@@ -64,6 +66,9 @@
         "weapons": "Weapons",
         "armor": "Armor",
         "tinyItems": "Tiny Items",
+        "project": "Project",
+        
+
         "location": "Location",
         "protection": "Protection",
         "agilityPenalty": "Mobility Penalty",
@@ -77,8 +82,9 @@
         "bruised": "Bruised",
         "battered": "Battered",
         "broken": "Broken",
+
         "weight": "Weight",
-        
+        "effect": "Effect",
         "details": "Details",
         "health": "Health",
         "general": "General",
@@ -86,6 +92,8 @@
         "notes": "Notes",
         "inventory": "Inventory",
         "rollStress": "Roll Stress",
+        "workforce": "Workforce",
+        "finishDate": "Finish Date",
 
         "equipedGear": "Equiped Gear",
         "storedGear": "Stored Gear",
@@ -93,6 +101,7 @@
         "storedWeapons": "Stored Weapons",
         "equipedArmor": "Equiped Armor",
         "storedArmor": "Stored Armor",
+        "storedVehicles": "Stored Vehicles",
 
 
         "ui.icon": "Icon",
@@ -102,6 +111,7 @@
         "ui.delete": "Delete",
         "ui.chat": "Chat",
         "ui.edit": "Edit",
+        "ui.wrongItemType": "\"{type}\" items cannot be added to a {actor}!",
 
         "threatLevel": "Threat Level",
 
@@ -115,6 +125,7 @@
         "ROLL.PREC": "Physical Recovery",
         "ROLL.MREC": "Mental Recovery",
         "ROLL.BONUS": "Bonus Dice",
+        "ROLL.STRESS": "Stress Dice",
         "ROLL.DAMAGE": "Damage"
     },
     "YZUR": {

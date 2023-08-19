@@ -5,11 +5,26 @@
     </header>
     <div class="weapon">
         {{localize "twdu.damage"}} : <input name="system.damage" type="text" value="{{data.system.damage}}" placeholder="0" data-dtype="Number" />
-        {{!-- Range should be set up as a select  --}}
+        {{!-- Range should be set up as a select and used only if rangedCombat is the chosen skill  --}}
+        {{#if (eq data.system.skill "twdu.rangedCombat")}}
         {{localize "twdu.range"}} : <input name="system.range" type="text" value="{{data.system.range}}" placeholder="close" />
-        {{!-- weight should be set up as a select --}}
-         {{localize "twdu.encSlots"}} : <input name="system.weight" type="text" value="{{data.system.weight}}" placeholder="close" />
-
+        {{/if}}
+        
+        <div class="grid-align-end">
+              <h3>{{localize "twdu.encSlots"}}</h3>
+              <div class="weight-select">
+                <select name="system.weight" id="weight" data-dtype="Number">
+                  {{#select data.system.weight}}
+                  <option value="0">None</option>
+                  <option value="0.5">½</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  {{/select}}
+                </select>
+              </div>
+            </div>
+      
         <h3>{{localize "twdu.skill"}}: &nbsp;</h3>
           <select name="system.skill">
             {{#select data.system.skill}}

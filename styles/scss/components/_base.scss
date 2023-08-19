@@ -135,7 +135,9 @@
 .weapon:nth-child(even), 
 .armor:nth-child(even),
 .gear:nth-child(even),
-.tiny:nth-child(even){
+.tiny:nth-child(even),
+.name:nth-child(even),
+.project:nth-child(even){
   background-color: $header-bg-3;
 }
 

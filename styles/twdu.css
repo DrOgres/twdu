@@ -313,6 +313,7 @@ optgroup {
 
 .middle {
   align-items: center;
+  align-self: center;
 }
 
 .border {
@@ -437,6 +438,10 @@ optgroup {
 
 .max-h-250p {
   max-height: 250px;
+}
+
+.max-h-300p {
+  max-height: 300px;
 }
 
 .justify {
@@ -754,7 +759,9 @@ optgroup {
 .weapon:nth-child(even),
 .armor:nth-child(even),
 .gear:nth-child(even),
-.tiny:nth-child(even) {
+.tiny:nth-child(even),
+.name:nth-child(even),
+.project:nth-child(even) {
   background-color: hsla(36, 11%, 63%, 0.2);
 }
 

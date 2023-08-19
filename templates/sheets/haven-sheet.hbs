@@ -17,7 +17,7 @@
                         <div class="capacity flex-row">{{localize 'twdu.capacity'}}
                             <input name="system.capacity.value" type="text" value="{{actor.system.capacity.value}}"
                                 placeholder="0" data-dtype="Number" />
-                        </div> 
+                        </div>
                         <div class="defense flex-row"> {{localize 'twdu.defense'}}
                             <input name="system.defense.value" type="text" value="{{actor.system.defense.value}}"
                                 placeholder="0" data-dtype="Number" />
@@ -94,19 +94,89 @@
             {{!-- Main Tab --}}
             <div class="tab" data-group="primary" data-tab="main">
                 <div class="grid three-col">
-                    <div class="survivors">NPC survivors here</div>
-                    <div class="current-projects">Current Projects here</div>
-                    <div class="storage">
+                    {{!-- Survivors --}}
+                    <div class="container border-left border-bottom flex-col">
+                        <h2 class="header border-bottom">{{localize 'twdu.survivors'}}</h2>
+                        <div class="subheader border-bottom">Player Characters</div>
+                        <div class="scrollable max-h-300p">
+                            {{#each actor.system.survivors.npcs as |survivor key|}}
+                            {{# if (eq type 'character')}}
+                            <div class="survivors grid two-col border-bottom">
+                                <div class="name item" data-actor-id="{{id}}">
+                                    {{parseActor id 'name'}}
+
+                                </div>
+                                <div class="buttons justify-self-end middle">
+
+                                    <a class="item-control actor-edit" data-actor-id="{{id}}"
+                                        title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
+                                        data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{/each}}
+                            <div class="subheader border-bottom">NPCs</div>
+                            {{#each actor.system.survivors.npcs as |survivor key|}}
+                            {{# if (eq type 'npc')}}
+                            <div class="survivors grid two-col border-bottom">
+                                <div class="name item" data-actor-id="{{id}}">
+                                    {{parseActor id 'name'}}
+
+                                </div>
+                                <div class="buttons justify-self-end middle">
+
+                                    <a class="item-control actor-edit" data-actor-id="{{id}}"
+                                        title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
+                                        data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{!-- Projects --}}
+                    <div class="current-projects border-left border-bottom flex-col">
+                        <h2 class="header border-bottom">{{localize "twdu.projects"}}
+                            <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="project">
+                                &#43;</a>
+                        </h2>
+                        <div class="scrollable max-h-300p">
+                            {{#each items as |item key|}}
+                            {{#if item.isProject}}
+                            <div class="project item grid two-col border-bottom" data-item-id="{{item._id}}">
+                                <div class="name show-details">
+                                    {{item.name}}
+                                </div>
+                                <div class="button justify-self-end">
+                                    <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
+                                            class="fas fa-comment"></i></a>
+                                    <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
+                                            class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
+                                        data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{/each}}
+                        </div>
+
+                    </div>
+
+                    <div class="storage border-left border-right border-bottom">
                         {{!-- Stored stuff --}}
-                        <div class="gear flex-col">
-                            <h2 class="subheader border-top border-bottom border-left t m-0 p-1">{{localize
+                        <div class="gear flex-col ">
+                            <h2 class="subheader  border-bottom  t m-0 p-1">{{localize
                                 'twdu.storedGear'}}
                                 <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="gear">
                                     &#43;</a>
                             </h2>
                             {{#each items as |item key|}}
                             {{#if item.isGear}}
-                            <div class="issue item grid two-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                            <div class="gear item grid two-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
                                 <div class="name show-details">
                                     {{item.name}}
                                 </div>
@@ -124,7 +194,7 @@
                         </div>
 
                         <div class="weapons flex-col">
-                            <h2 class="subheader border-top border-bottom border-left t m-0 p-1">{{localize
+                            <h2 class="subheader border-top border-bottom  t m-0 p-1">{{localize
                                 'twdu.storedWeapons'}}
                                 <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="weapon">
                                     &#43;</a>
@@ -149,7 +219,7 @@
                         </div>
 
                         <div class="armor flex-col">
-                            <h2 class="subheader border-top border-bottom border-left t m-0 p-1">{{localize
+                            <h2 class="subheader border-top border-bottom  t m-0 p-1">{{localize
                                 'twdu.storedArmor'}}
                                 <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="armor">
                                     &#43;</a>
@@ -172,17 +242,43 @@
                             {{/if}}
                             {{/each}}
                         </div>
+                        <div class="vehicles flex-col">
+                            <h2 class="subheader border-top border-bottom  t m-0 p-1">{{localize
+                                'twdu.storedVehicles'}}
+                                <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="vehicle">
+                                    &#43;</a>
+                            </h2>
+                            {{#each items as |item key|}}
+                            {{#if item.isVehicle}}
+                            <div class="issue item grid two-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                                <div class="name show-details">
+                                    {{item.name}}
+                                </div>
+                                <div class="button justify-self-end">
+                                    <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
+                                            class="fas fa-comment"></i></a>
+                                    <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
+                                            class="fas fa-edit"></i></a>
+                                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
+                                        data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </div>
+                            {{/if}}
+                            {{/each}}
+                        </div>
                     </div>
                 </div>
+
             </div>
+    </div>
 
 
 
-            {{!-- Notes Tab --}}
-            <div class="tab" data-group="primary" data-tab="bioNotes">
-                {{editor havenNotes target="system.notes.value" button=true owner=owner editable=editable}}
-            </div>
+    {{!-- Notes Tab --}}
+    <div class="tab" data-group="primary" data-tab="bioNotes">
+        {{editor havenNotes target="system.notes.value" button=true owner=owner editable=editable}}
+    </div>
 
-        </section>
+    </section>
     </div>
 </form>

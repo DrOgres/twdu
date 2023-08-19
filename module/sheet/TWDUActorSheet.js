@@ -1,5 +1,6 @@
 import { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog } from "../util/roll.js";
+import { twdu } from "../config.js";
 
 export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -46,8 +47,8 @@ export default class TWDUActorSheet extends ActorSheet {
       maxEncumbrance: 0,
     };
     console.log("TWDU | context: ", context);
-    console.log("TWDU | context.system.notes: ", context.system.notes);
     context.config = CONFIG.twdu;
+    console.log("TWDU | context.config: ", context.config);
 
     this.computeItems(context);
 
@@ -82,7 +83,6 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   computeSkills(context) {
-    console.log("TWDU | computeSkills: ", context.system.skills);
     for (let skill of Object.values(context.system.skills)) {
       skill.hasStrength = skill.attribute === "str";
       skill.hasAgility = skill.attribute === "agl";
@@ -101,6 +101,7 @@ export default class TWDUActorSheet extends ActorSheet {
       item.isCriticalInjury = item.type === "criticalInjury";
       item.isProject = item.type === "project";
       item.isIssue = item.type === "issue";
+      item.isVehicle = item.type === "vehicle";
     }
   }
 
@@ -108,30 +109,20 @@ export default class TWDUActorSheet extends ActorSheet {
     // get the equiped items and sum their weight
     let encumbrance = 0;
     for (let item of Object.values(data.items)) {
-      console.log("TWDU | item: ", item);
       if (item.system.isEquipped) {
         encumbrance += Number(item.system.weight);
       }
     }
-    console.log("TWDU | encumbrance: ", encumbrance);
     return encumbrance;
   }
 
   equipItems(data) {
-    console.log("TWDU | equipItems: ", data);
-    console.log("TWDU | equipItems: ", this.actor);
     // this will equip all owned items for an NPC, this is primarily so that armor penalties on mobility can be calculated
     let items = data.items;
-    console.log("TWDU | items: ", items);
     items.forEach ((item) => {
-      console.log("TWDU | item: ", item);
       this.actor.items.get(item._id).update({ "system.isEquiped":  true});
    // item.update({ "system.isEquipped":  true});
     });
-
-    console.log("TWDU | equipItems complete: ", items);
-    console.log("TWDU | equipItems complete: ", this.actor);
-  
   }
 
 
@@ -145,6 +136,7 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".add-item").click(this._onItemCreate.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
+    html.find(".actor-edit").click(this._onShowActor.bind(this));
     html.find(".to-chat").click(this._onItemToChat.bind(this));
     html.find(".rollable").click(this._onRoll.bind(this));
     // stress buttons
@@ -184,17 +176,14 @@ export default class TWDUActorSheet extends ActorSheet {
           options.attName = target.dataset.attribute;
           options.attributeDefault =
             this.actor.system.attributes[options.attName].value;
-          console.log("TWDU | attribute: ", options.attName);
         }
         break;
       case "skill":
         {
           if (options.actorType === "npc") {
             options.skillName = target.dataset.skill;
-            console.log("TWDU | skillName: ", options.skillName);
             let skillLevel =
               this.actor.system.skills[target.dataset.skill].level;
-            console.log("TWDU | skillLevel: ", skillLevel);
             if (skillLevel == "base") {
               options.skillDefault = 4;
             }
@@ -213,28 +202,19 @@ export default class TWDUActorSheet extends ActorSheet {
             options.skillDefault =
               this.actor.system.skills[target.dataset.skill].value;
             // get the attribute for the skill and set the default and name
-            console.log(
-              "TWDU | skill attribute: ",
-              this.actor.system.skills[target.dataset.skill].attribute
-            );
             options.attName =
               this.actor.system.skills[target.dataset.skill].attribute;
             options.attributeDefault =
               this.actor.system.attributes[options.attName].value;
-            console.log("TWDU | skill: ", options.skillName);
           }
         }
         break;
       case "weapon":
         {
-          console.log("TWDU | weapon: ", target.dataset.weapon);
           const item = this.actor.items.get(target.dataset.itemId);
-          console.log("TWDU | item: ", item);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
-          console.log("TWDU | skillName: ", item.system.skill.split("."));
           let skill = item.system.skill.split(".")[1];
-          console.log("TWDU | skill: ", skill);
           if(!options.actorType === "npc"){
           options.skillDefault = this.actor.system.skills[skill].value;
           } else {
@@ -265,13 +245,15 @@ export default class TWDUActorSheet extends ActorSheet {
           console.log("TWDU | armor: ", target.dataset.armor);
           let protection = target.dataset.protection;
           console.log("TWDU | protection: ", protection);
+          options.armorItem = this.actor.items.find(
+            (item) => item.type === "armor" && item.system.isEquipped
+          );
+          options.testName = options.armorItem.name;
         }
         break;
     }
 
-    options.armorItem = this.actor.items.find(
-      (item) => item.type === "armor" && item.system.isEquipped
-    );
+    
     console.log("TWDU | options", options);
 
     prepareRollDialog(options);
@@ -279,11 +261,9 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onItemToChat(event) {
     event.preventDefault();
-    console.log("TWDU | _onItemToChat: ", event);
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
     let type = item.type;
-    console.log("TWDU | onItemToChat: ", div, item, type);
     let chatData = buildChatCard(type, item);
     ChatMessage.create(chatData, {});
   }
@@ -296,13 +276,18 @@ export default class TWDUActorSheet extends ActorSheet {
     item.sheet.render(true);
   }
 
+  _onShowActor(event) {
+    event.preventDefault();
+    console.log("TWDU | _onShowActor: ", event);
+    const actorID = event.currentTarget.dataset.actorId;
+    const actor = game.actors.get(actorID);
+    actor.sheet.render(true);
+  }
+
   _onItemDelete(event) {
     event.preventDefault();
-    console.log("TWDU | _onItemDelete: ", event);
     const key = event.currentTarget.dataset.key;
     const type = event.currentTarget.dataset.type;
-    console.log("TWDU | key: ", key);
-    console.log("TWDU | type: ", type);
 
     const div = $(event.currentTarget).parents(".item");
     this.actor.deleteEmbeddedDocuments("Item", [div.data("itemId")]);
@@ -311,17 +296,11 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onItemCreate(event) {
     event.preventDefault();
-    console.log("TWDU | _onItemCreate: ", event);
     let header = event.currentTarget;
     let data = duplicate(header.dataset);
 
     data["name"] = `New ${data.type.capitalize()}`;
-
-    console.log("TWDU | item create data: ", data);
-
     this.actor.createEmbeddedDocuments("Item", [data]);
-
-    console.log(this.actor);
   }
 
   _onToggleClick(event) {
@@ -340,13 +319,8 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onEquipClick(event) {
     event.preventDefault();
-    console.log("TWDU | _onEquipClick: ", event);
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
-    // get the item id from the data attribute
-    //const itemId = element.dataset.itemId;
-    console.log("TWDU | item: ", item);
-    //item.system.isEquipped = !item.system.isEquipped;
     item.update({ "system.isEquipped": !item.system.isEquipped });
   }
 
@@ -366,7 +340,6 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onStressUp(event) {
     event.preventDefault();
-    console.log("TWDU | _onStressUp: ", event);
     let actor = this.actor;
     let newCount = actor.system.stress.value + 1;
     actor.update({ "system.stress.value": newCount });
@@ -374,9 +347,110 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onStressDown(event) {
     event.preventDefault();
-    console.log("TWDU | _onStressDown: ", event);
     let actor = this.actor;
     let newCount = Math.max(actor.system.stress.value - 1, 0);
     actor.update({ "system.stress.value": newCount });
   }
+
+  _dropSurvivor(actorId) {
+    const survivor = game.actors.get(actorId);
+    const actorData = this.actor;
+    if (!survivor) return;
+    if (survivor.type === 'haven' && survivor.type === 'haven') return ui.notifications.info('Havens cannot be dropped on a Havens');
+    if (survivor.type !== 'character' && survivor.type !== 'npc') return;
+    if (actorData.type === 'haven') { 
+      console.log("TWDU | _dropSurvivor: ", survivor);    
+      //return this.actor.addVehicleOccupant(actorId);
+      return this.addSurvivor(actorId);
+    }
+  }
+
+  addSurvivor(ID) {
+    console.log("TWDU | addSurvivor: ", ID);
+    console.log("TWDU | addSurvivor: ", this.object.id);
+    const target = game.actors.get(this.object.id);
+    console.log("TWDU | addSurvivor: ", target);
+    if (target.type !== 'haven') return;
+    console.log("TWDU | addSurvivor: ", ID);
+    const data = target.system;
+    // if (!(data.crew.occupants instanceof Array)) {
+    //   data.crew.occupants = [];
+    // }
+
+    const actor = game.actors.get(ID);
+    const survivorType = actor.type;
+    const survivor = {
+      id: ID,
+      type: survivorType,
+    };
+    // Removes duplicates.
+    if (data.survivors.npcs.some((o) => o.id === ID)) this.removeSurvivor(ID);
+
+    // Adds the new survivor.
+    data.survivors.npcs.push(survivor);
+    target.update({ 'data.survivors.npcs': data.survivors.npcs });
+
+    target.update({ 'data.survivors.population': data.survivors.npcs.length });
+
+    return survivor;
+  }
+
+  removeSurvivor(Id) {
+    console.log("TWDU | removeSurvivor: ", Id);
+    const target = game.actors.get(this.object.id);
+    if (target.type !== 'haven') return;
+    console.log("TWDU | removeSurvivor: ", target);
+    const survivors = target.system.survivors;
+    survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
+    return survivors.npcs;
+  }
+
+
+    /** @override */
+    async _onDropItemCreate(itemData) {
+      const type = itemData.type;
+      console.log("TWDU | drag and drop items", this);
+      console.log(twdu);
+      const alwaysAllowedItems = twdu.physicalItems;
+      const allowedItems = {
+        haven: [
+        "weapon",
+        "armor",
+        "gear",
+        "project",
+        "vehicle",
+        "issue"],
+        character: [
+        "weapon",
+        "armor",
+        "gear",
+        "issue",
+        "criticalInjury",
+        "talent",
+        "tinyItem",
+        "vehicle"],
+        npc: [
+        "weapon",
+        "armor",
+        "gear",
+        "issue"],
+      };
+      let allowed = true;
+      if (!alwaysAllowedItems.includes(type)) {
+        if (!allowedItems[this.actor.type].includes(type)) {
+          allowed = false;
+        }
+      }
+  
+      if (!allowed) {
+        const msg = game.i18n.format('twdu.ui.wrongItemType', {
+          type: type,
+          actor: this.actor.type,
+        });
+        console.warn(`TWDU| ${msg}`);
+        ui.notifications.warn(msg);
+        return false;
+      }
+      return super._onDropItemCreate(itemData);
+    }
 }

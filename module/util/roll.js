@@ -35,8 +35,8 @@ export function prepareRollDialog(options) {
       options.skillDefault,
       "skill"
     );
-    dialogHtml += buildHTMLDialog("Damage", options.damageDefault, "damage");
-    dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
+    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.DAMAGE"), options.damageDefault, "damage");
+    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
   }
   if (options.type === "attribute") {
     dialogHtml = buildHTMLDialog(
@@ -44,7 +44,7 @@ export function prepareRollDialog(options) {
       options.attributeDefault,
       "attribute"
     );
-    dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
+    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
   }
   if (options.type === "skill") {
     console.log("TWDU | skill options: ", options);
@@ -72,7 +72,7 @@ export function prepareRollDialog(options) {
       }
     }
     if (stressDice > 0  ){
-    dialogHtml += buildHTMLDialog("stress", stressDice, "stress");
+    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
     }
   }
   if (options.type === "armor") {
@@ -83,7 +83,7 @@ export function prepareRollDialog(options) {
     );
   }
   //TODO localize this
-  let bonusHtml = buildInputDialog("Bonus", options.bonusDefault, "bonus");
+  let bonusHtml = buildInputDialog(game.i18n.localize("twdu.ROLL.BONUS"), options.bonusDefault, "bonus");
 
   let d = new Dialog(
     {
@@ -254,13 +254,13 @@ function showDice() {}
 function buildInputDialog(name, value, type) {
   return (
     `
-        <div class="flex row" style="flex-basis: 35%; justify-content: space-between;">
+        <div class="flex-row pi-1" style="flex-basis: 35%; justify-content: space-between;">
         <p style="text-transform: capitalize; white-space:nowrap;">` +
     name +
     `: </p>
         <input id="` +
     type +
-    `" style="text-align: center" type="text" value="` +
+    `" style="text-align: right" type="text" value="` +
     value +
     `"/></div>`
   );
