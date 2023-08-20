@@ -13,10 +13,15 @@ export function prepareRollDialog(options) {
   // attName - the name of the attribute being used
   // skillName - the name of the skill being used
 
-  //TODO build dialog and show it
+ 
 
   let actorID = options.sheet.object.id;
   let actor = game.actors.get(actorID);
+
+  //TODO get any critical injuries and subract their effect from the roll
+  let criticals = parseCriticalInjuries(actor);
+
+  options.criticalPenalty = (0 - criticals);
  
   let stressDice = 0;
   if(actor.type === "character") {
@@ -71,6 +76,12 @@ export function prepareRollDialog(options) {
         options.armorPenalty = (0 - armor.system.agility);
       }
     }
+
+      // add a field to show the critical penalty if there is one
+  if (criticals > 0) {
+    dialogHtml += buildHTMLDialog( game.i18n.localize("twdu.ROLL.CRITICAL"), options.criticalPenalty, "critical");    
+  }
+
     if (stressDice > 0  ){
     dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
     }
@@ -82,7 +93,9 @@ export function prepareRollDialog(options) {
       "armor"
     );
   }
-  //TODO localize this
+  
+  //TODO add a summary of the dice pool thus far to the dialog
+
   let bonusHtml = buildInputDialog(game.i18n.localize("twdu.ROLL.BONUS"), options.bonusDefault, "bonus");
 
   let d = new Dialog(
@@ -114,6 +127,8 @@ export function prepareRollDialog(options) {
             console.log("TWDU | bonus: ", bonus);
             let damage = options.damageDefault;
             console.log("TWDU | damage: ", damage);
+            let critPenalty = options.criticalPenalty;
+            console.log("TWDU | critPenalty: ", critPenalty);
             roll(
               options.sheet,
               options.testName,
@@ -137,6 +152,22 @@ export function prepareRollDialog(options) {
     { width: "407", height: "auto" }
   );
   d.render(true);
+}
+
+function parseCriticalInjuries(actor) {
+  console.log("TWDU | parseCriticalInjuries: ", actor);
+  let criticals = actor.items.filter((item) => item.type === "criticalInjury");
+  let total = 0;
+  console.log("TWDU | criticals: ", criticals);
+  // get the criticalInjury.effect value from each item in criticals
+  // add them together
+  for (let i = 0; i < criticals.length; i++) {
+    let critical = criticals[i];
+    console.log("TWDU | critical: ", critical);
+    total += critical.system.effect;
+  }
+  console.log("TWDU | total: ", total);
+  return total;
 }
 
 export function roll(sheet, testName, attribute, skill, bonus, damage, armorPenalty) {

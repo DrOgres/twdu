@@ -48,3 +48,12 @@ twdu.encumbranceIncrements = {
 
 
 twdu.physicalItems = [];
+
+
+twdu.recoveryTime = {
+    none: "twdu.none",
+    hours: "twdu.hours",
+    days: "twdu.days",
+    weeks: "twdu.weeks",
+    months: "twdu.months"
+}

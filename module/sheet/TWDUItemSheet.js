@@ -2,10 +2,10 @@ export default class TWDUItemSheet extends ItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "item", "item-sheet"],
-      width: 675,
+      width: 550,
       // height: 489 + 'max-content',
       // height: 566 - 'max-content',
-      height: 370,
+      height: 370 - "max-content",
       tabs: [
         {
           navSelector: ".sheet-tabs",

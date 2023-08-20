@@ -11,45 +11,14 @@
 
     <div class="w-100 padding-sm">
       <div class="flex-col flex-wrap magin-b-sm">
-        <h1 class="center">{{localize "CRITICAL_INJURY.NAME"}}</h1>
-        <br /><img
-          class="border-none center w-90"
-          src="systems/vaesen/asset/h-rule.png"
-        />
+        <h1 class="center">{{localize "twdu.criticalInjury"}}  <input class="light" name="name" type="text" value="{{item.name}}" /></h1>
+       
       </div>
       <div class="grid grid-4col-fr center gap-sm h-100">
+        
 
         <div class="grid-span-2 grid-align-end">
-          <h3>{{localize "NAME"}}:&nbsp;</h3>
-          <input class="light" name="name" type="text" value="{{item.name}}" />
-        </div>
-        <div class="flex-col center">
-          <b style="margin-right: 5px;">{{localize "CRITICAL_INJURY.TYPE"}}:
-          </b>
-          <select name="system.type">
-            {{#select data.system.type}}
-              <option value="physical">{{localize
-                  "CONDITION.PHYSICAL"
-                }}</option>
-              <option value="mental">{{localize "CONDITION.MENTAL"}}</option>
-            {{/select}}
-          </select>
-        </div>
-        <div class="flex-col center">
-          <b style="margin-right: 5px; margin-left:5px;">{{localize
-              "CRITICAL_INJURY.PERMANENT"
-            }}:
-          </b>
-          <select name="system.permanent">
-            {{#select data.system.permanent}}
-              <option value="No">{{localize "NO"}}</option>
-              <option value="Yes">{{localize "YES"}}</option>
-            {{/select}}
-          </select>
-        </div>
-
-        <div class="grid-span-2 grid-align-end">
-          <b>{{localize "CRITICAL_INJURY.FATAL"}}</b>
+          <b>{{localize "twdu.fatal"}}</b>
           <input
             class="light"
             name="system.fatal"
@@ -58,7 +27,7 @@
           />
         </div>
         <div class="grid-span-2 grid-align-end">
-          <b>{{localize "CRITICAL_INJURY.TIME_LIMIT"}}</b>
+          <b>{{localize "twdu.timeLimit"}}</b>
           <input
             class="light"
             name="system.timeLimit"
@@ -68,7 +37,7 @@
         </div>
 
         <div class="grid-span-4 grid-align-end">
-          <b>{{localize "CRITICAL_INJURY.EFFECT"}}</b>
+          <b>{{localize "twdu.penalty"}}</b>
           <input class="light" name="system.effect" type="text" value="{{data.system.effect}}" />
         </div>
       </div>

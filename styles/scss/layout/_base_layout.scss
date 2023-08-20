@@ -42,6 +42,10 @@
     grid-template-columns: repeat(7, 1fr);
 }
 
+.col-40-60{
+    grid-template-columns: 40% 60%;
+}
+
 .col-60-40{
     grid-template-columns: 60% 40%;
 }

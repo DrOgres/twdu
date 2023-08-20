@@ -74,8 +74,6 @@ export default class TWDUActorSheet extends ActorSheet {
       );
     }
 
- 
-
     if (context.isNPC) {
       this.computeSkills(context);
       this.equipItems(context);
@@ -85,28 +83,27 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   calculatePopulation(context) {
-    
     let maxpop = 0;
     let capacity = context.system.capacity.value;
-    if (capacity === 0 ) {
+    if (capacity === 0) {
       maxpop = 0;
     }
-    if (capacity === 1 ) {
+    if (capacity === 1) {
       maxpop = 10;
     }
-    if (capacity === 2 ) {
+    if (capacity === 2) {
       maxpop = 20;
     }
-    if (capacity === 3 ) {
+    if (capacity === 3) {
       maxpop = 50;
     }
-    if (capacity === 4 ) {
+    if (capacity === 4) {
       maxpop = 80;
     }
-    if (capacity === 5 ) {
+    if (capacity === 5) {
       maxpop = 200;
     }
-    if (capacity === 6 ) {
+    if (capacity === 6) {
       maxpop = 500;
     }
     return maxpop;
@@ -149,12 +146,11 @@ export default class TWDUActorSheet extends ActorSheet {
   equipItems(data) {
     // this will equip all owned items for an NPC, this is primarily so that armor penalties on mobility can be calculated
     let items = data.items;
-    items.forEach ((item) => {
-      this.actor.items.get(item._id).update({ "system.isEquiped":  true});
-   // item.update({ "system.isEquipped":  true});
+    items.forEach((item) => {
+      this.actor.items.get(item._id).update({ "system.isEquiped": true });
+      // item.update({ "system.isEquipped":  true});
     });
   }
-
 
   activateListeners(html) {
     super.activateListeners(html);
@@ -246,8 +242,8 @@ export default class TWDUActorSheet extends ActorSheet {
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
           let skill = item.system.skill.split(".")[1];
-          if(!options.actorType === "npc"){
-          options.skillDefault = this.actor.system.skills[skill].value;
+          if (!options.actorType === "npc") {
+            options.skillDefault = this.actor.system.skills[skill].value;
           } else {
             let skillLevel = this.actor.system.skills[skill].level;
             if (skillLevel == "base") {
@@ -263,10 +259,10 @@ export default class TWDUActorSheet extends ActorSheet {
               options.skillDefault = 10;
             }
           }
-          if(!options.actorType === "npc"){
-          options.attName = this.actor.system.skills[skill].attribute;
-          options.attributeDefault =
-            this.actor.system.attributes[options.attName].value;
+          if (!options.actorType === "npc") {
+            options.attName = this.actor.system.skills[skill].attribute;
+            options.attributeDefault =
+              this.actor.system.attributes[options.attName].value;
           }
           options.damageDefault = item.system.damage;
         }
@@ -283,7 +279,6 @@ export default class TWDUActorSheet extends ActorSheet {
         break;
     }
 
-    
     console.log("TWDU | options", options);
 
     prepareRollDialog(options);
@@ -321,8 +316,8 @@ export default class TWDUActorSheet extends ActorSheet {
     const actorID = event.currentTarget.dataset.actorId;
     const survivors = this.actor.system.survivors;
     survivors.npcs = survivors.npcs.filter((o) => o.id !== actorID);
-    target.update({ 'data.survivors.npcs': survivors.npcs });
-    target.update({ 'data.survivors.population': survivors.npcs.length });
+    target.update({ "data.survivors.npcs": survivors.npcs });
+    target.update({ "data.survivors.population": survivors.npcs.length });
   }
 
   _onItemDelete(event) {
@@ -397,9 +392,10 @@ export default class TWDUActorSheet extends ActorSheet {
     const survivor = game.actors.get(actorId);
     const actorData = this.actor;
     if (!survivor) return;
-    if (survivor.type === 'haven' && survivor.type === 'haven') return ui.notifications.info('Havens cannot be dropped on a Havens');
-    if (survivor.type !== 'character' && survivor.type !== 'npc') return;
-    if (actorData.type === 'haven') {    
+    if (survivor.type === "haven" && survivor.type === "haven")
+      return ui.notifications.info("Havens cannot be dropped on a Havens");
+    if (survivor.type !== "character" && survivor.type !== "npc") return;
+    if (actorData.type === "haven") {
       return this.addSurvivor(actorId);
     }
   }
@@ -407,7 +403,7 @@ export default class TWDUActorSheet extends ActorSheet {
   addSurvivor(ID) {
     console.log("TWDU | addSurvivor: ", ID);
     const target = game.actors.get(this.object.id);
-    if (target.type !== 'haven') return;
+    if (target.type !== "haven") return;
     const data = target.system;
 
     const actor = game.actors.get(ID);
@@ -421,9 +417,9 @@ export default class TWDUActorSheet extends ActorSheet {
 
     // Adds the new survivor.
     data.survivors.npcs.push(survivor);
-    target.update({ 'data.survivors.npcs': data.survivors.npcs });
+    target.update({ "data.survivors.npcs": data.survivors.npcs });
 
-    target.update({ 'data.survivors.population': data.survivors.npcs.length });
+    target.update({ "data.survivors.population": data.survivors.npcs.length });
 
     return survivor;
   }
@@ -431,27 +427,20 @@ export default class TWDUActorSheet extends ActorSheet {
   removeSurvivor(Id) {
     console.log("TWDU | removeSurvivor: ", Id);
     const target = game.actors.get(this.object.id);
-    if (target.type !== 'haven') return;
+    if (target.type !== "haven") return;
     const survivors = target.system.survivors;
     survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
     return survivors.npcs;
   }
 
-
-    /** @override */
-    async _onDropItemCreate(itemData) {
-      const type = itemData.type;
-      console.log("TWDU | drag and drop items", this);
-      const alwaysAllowedItems = twdu.physicalItems;
-      const allowedItems = {
-        haven: [
-        "weapon",
-        "armor",
-        "gear",
-        "project",
-        "vehicle",
-        "issue"],
-        character: [
+  /** @override */
+  async _onDropItemCreate(itemData) {
+    const type = itemData.type;
+    console.log("TWDU | drag and drop items", this);
+    const alwaysAllowedItems = twdu.physicalItems;
+    const allowedItems = {
+      haven: ["weapon", "armor", "gear", "project", "vehicle", "issue"],
+      character: [
         "weapon",
         "armor",
         "gear",
@@ -459,29 +448,26 @@ export default class TWDUActorSheet extends ActorSheet {
         "criticalInjury",
         "talent",
         "tinyItem",
-        "vehicle"],
-        npc: [
-        "weapon",
-        "armor",
-        "gear",
-        "issue"],
-      };
-      let allowed = true;
-      if (!alwaysAllowedItems.includes(type)) {
-        if (!allowedItems[this.actor.type].includes(type)) {
-          allowed = false;
-        }
+        "vehicle",
+      ],
+      npc: ["weapon", "armor", "gear", "issue"],
+    };
+    let allowed = true;
+    if (!alwaysAllowedItems.includes(type)) {
+      if (!allowedItems[this.actor.type].includes(type)) {
+        allowed = false;
       }
-  
-      if (!allowed) {
-        const msg = game.i18n.format('twdu.ui.wrongItemType', {
-          type: type,
-          actor: this.actor.type,
-        });
-        console.warn(`TWDU| ${msg}`);
-        ui.notifications.warn(msg);
-        return false;
-      }
-      return super._onDropItemCreate(itemData);
     }
+
+    if (!allowed) {
+      const msg = game.i18n.format("twdu.ui.wrongItemType", {
+        type: type,
+        actor: this.actor.type,
+      });
+      console.warn(`TWDU| ${msg}`);
+      ui.notifications.warn(msg);
+      return false;
+    }
+    return super._onDropItemCreate(itemData);
+  }
 }

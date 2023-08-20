@@ -227,6 +227,10 @@ optgroup {
   grid-template-columns: repeat(7, 1fr);
 }
 
+.col-40-60 {
+  grid-template-columns: 40% 60%;
+}
+
 .col-60-40 {
   grid-template-columns: 60% 40%;
 }
@@ -434,6 +438,10 @@ optgroup {
 
 .max-h-150p {
   max-height: 150px;
+}
+
+.max-h-180p {
+  max-height: 180px;
 }
 
 .max-h-250p {

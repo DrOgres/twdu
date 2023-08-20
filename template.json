@@ -269,11 +269,11 @@
             "quantity": ""
           },
           "criticalInjury": {
-            "type": "",
-            "fatal": "",
+            "fatal": false,
             "timeLimit": "",
-            "effect": "",
-            "permanent": false
+            "complexity": "basic",
+            "effect": 0,
+            "recovery": ""
           },
           "tinyItem": {
             "description": ""
