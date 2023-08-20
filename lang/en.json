@@ -8,6 +8,17 @@
         "npcAnchor": "NPC Anchor",
 
         "none": "None",
+        "yes": "Yes",
+        "no": "No",
+        "a": "A",
+        "b": "B",
+        "hours": "Hours",
+        "days": "Days",
+        "weeks": "Weeks",
+        "months": "Months",
+        "advanced": "(A)dvanced",
+        "basic": "(B)asic",
+        "value": "Value",
 
         "AGILITY": "Agility",
         "STRENGTH": "Strength",
@@ -77,6 +88,10 @@
         "damage": "Damage",
         "bonus": "Bonus",
         "range": "Range",
+        "lethal": "Lethal",
+        "timeLimit": "Time Limit",
+        "recoveryTime": "Recovery Time",
+        
 
         
         "unharmed": "Unharmed",
@@ -95,6 +110,7 @@
         "rollStress": "Roll Stress",
         "workforce": "Workforce",
         "finishDate": "Finish Date",
+        "requirements": "Requirements",
 
         "equipedGear": "Equiped Gear",
         "storedGear": "Stored Gear",

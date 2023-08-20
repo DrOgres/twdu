@@ -1,79 +1,64 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   {{! Item Sheet Header }}
-  <div class="bg-offwhite flex-row flex-start">
-    <div class="dl-border w-fc h-100">
+  <div class="flex-row flex-start">
+    <div class="header w-150p group">
       <img
-        class="w-100p border-none br-5"
         src="{{item.img}}"
         data-edit="img"
         title="{{item.name}}"
       />
     </div>
 
-    <div class="w-100 padding-sm">
-
-      <div class="flex-col flex-wrap magin-b-sm">
-        <h1 class="center">{{localize "UPGRADE.NAME"}}</h1>
+    <div class="w-100">
+      <div class="flex-col group">
+        <h1 class="center">{{localize "twdu.project"}} <input class="light" name="name" type="text" value="{{item.name}}" /></h1>
       </div>
 
-      <div class="grid grid-4col-fr center gap-sm h-100">
-
-        <h3>
-          {{localize "NAME"}}:
-        </h3>
-        <div class="grid-align-end grid-span-3">
-          <input class="light" name="name" type="text" value="{{item.name}}" />
-        </div>
-
-        <div>
-          <h3>{{localize "UPGRADE.CATEGORY"}}</h3>
-          <select name="system.category">
-            {{#select data.system.category}}
-              <option value="facility">{{localize "UPGRADE.FACILITY"}}</option>
-              <option value="contact">{{localize "UPGRADE.CONTACT"}}</option>
-              <option value="personnel">{{localize
-                  "UPGRADE.PERSONNEL"
-                }}</option>
+      <div class="grid two-col">
+        <div class="flex-row middle group pi-1">
+          <h2 class="subsubheader m-0 pi-1">{{localize "twdu.effect"}}</h2>
+          <select name="system.effect.type">
+            {{#select data.system.effect.type}}
+              <option value="capacity">{{localize "twdu.capacity"}}</option>
+              <option value="defensxe">{{localize "twdu.defense"}}</option>
             {{/select}}
           </select>
+          <div class="effect-value flex-row middle m-0 pi-1">
+            <label for="effect-value">{{localize 'twdu.value'}}</label>
+          <input
+            id="effect-value"
+            class="light"
+            name="system.effect.value"
+            type="text"
+            value="{{data.system.effect.value}}" /></div>
         </div>
 
-        <div class="flex-row flex-wrap center">
-          <h3>{{localize "UPGRADE.COST"}}</h3>
+        <div class="flex-row middle group pi-1">
+          <h2 class="subsubheader m-0 pi-1">{{localize "twdu.finishDate"}}</h2>
           <input
             class="light"
-            name="system.cost"
+            name="system.finishDate"
             type="text"
-            value="{{data.system.cost}}"
+            value="{{data.system.finishDate}}"
           />
         </div>
-        <div class="flex-row flex-wrap grid-span-2">
-          <h3>{{localize "UPGRADE.PREREQUISITE"}}</h3>
-          <input
-            class="light"
-            name="system.prerequisite"
-            type="text"
-            value="{{data.system.prerequisite}}"
-          />
+        <div class="flex-col group pi-1 span-2">
+          <h3>{{localize "twdu.requirements"}}</h3>
+          <div class="tech">tech</div>
+          <div class="stuff">stuff</div>
+          <div class="workforce">workforce</div>
+          
         </div>
 
       </div>
-      <div class="item-notes">
+      <div class="item-notes pi-1 group">
 
-        <div class="function flex-row flex-wrap">
-          <b>{{localize "UPGRADE.FUNCTION"}}</b>
-          <textarea name="system.function">{{data.system.function}}</textarea>
-        </div>
-        <div class="asset flex-row flex-wrap">
-          <b>{{localize "UPGRADE.ASSET"}}</b>
-          <textarea name="system.asset">{{data.system.asset}}</textarea>
-        </div>
-        <div class="description flex-row flex-wrap">
-          <b>{{localize "TALENT.DESCRIPTION"}}</b>
+       
+          <b>{{localize "twdu.description"}}</b>
           <textarea
             name="system.description"
           >{{data.system.description}}</textarea>
-        </div>
+        
 
       </div>
 

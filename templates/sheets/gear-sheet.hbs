@@ -1,74 +1,56 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
   <div class="flex-row flex-start">
-    <div class="header w-150p">
+    <div class="header w-150p group">
       <img class="border-none" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
     <div class="w-100 padding-sm">
-      <div class="flex-col flex-wrap magin-b-sm">
-        <h1 class="center">{{localize "twdu.gear"}}</h1>
+      <div class="flex-col group">
+        <h1 class="center">{{localize "twdu.gear"}}
 
-        <nav class="sheet-tabs tabs" data-group="primary">
-          <a class="item grow" data-tab="main">{{localize 'twdu.general'}}</a>
-          <a class="item grow" data-tab="bioNotes">{{localize 'twdu.notes'}}</a>
-        </nav>
+          <input class="light" name="name" type="text" value="{{item.name}}" />
+        </h1>
       </div>
       {{!-- Sheet Body --}}
       <section class="sheet-body">
-
-        <div class="tab" data-group="primary" data-tab="main">
-          <div class="grid two-col center gap-sm h-100">
-
-            <div class="grid-align-end">
-              <h3>{{localize "twdu.name"}}:&nbsp;</h3>
-              <input class="light" name="name" type="text" value="{{item.name}}" />
+        <div class="grid two-col">
+          <div class="span-2 grid-align-end w-100 group">
+            <h2 class="subheader">{{localize "twdu.description"}}</h2>
+            <div class="full-size">
+              {{editor gearNotesHTML target="system.description" button=true owner=owner editable=editable }}
             </div>
-
-            <div class="grid-align-end">
-              <h3>{{localize "twdu.bonus"}}</h3>
-              <input class="light" name="system.bonus" type="text" value="{{data.system.bonus}}" />
-            </div>
-            <div class="grid-align-end">
-              <h3>{{localize "twdu.encSlots"}}</h3>
-              <div class="weight-select">
-                <select name="system.weight" id="weight" data-dtype="Number">
-                  {{#select data.system.weight}}
-                  <option value="0">None</option>
-                  <option value="0.5">½</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  {{/select}}
-                </select>
-              </div>
-            </div>
-            {{!-- TODO this should be a select element --}}
-            <div class="grid-align-end">
-              <h3>{{localize "twdu.skill"}}</h3>
-              {{!-- <input class="light" name="system.skill" type="text" value="{{data.system.skill}}" /> --}}
-              <select name="system.skill">
-            {{#select data.system.skill}}
+          </div>
+          <div class="flex-row justify middle group">
+            <h2 class="subsubheader m-0 pi-1">{{localize "twdu.skill"}}</h2>
+            <select name="system.skill">
+              {{#select data.system.skill}}
               {{#each config.skills as |skill|}}
-                <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}</option>
+              <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}
+              </option>
               {{/each}}
-            {{/select}}
-          </select>
-
-            </div>
-
-            <div class="span-2 grid-align-end">
-              <h3>{{localize "twdu.description"}}</h3>
-              <textarea name="system.description">{{data.system.description}}</textarea>
-            </div>
-
-
-          </div>
-        </div>
-        <div class="tab" data-group="primary" data-tab="bioNotes">
-          <div class="full-size">
-            {{editor gearNotesHTML target="system.notes" button=true owner=owner editable=editable }}
+              {{/select}}
+            </select>
           </div>
 
+          <div class="flex-row middle group">
+            <h2 class="subsubheader m-0 pi-2">{{localize "twdu.bonus"}}</h2>
+            <input class="light" name="system.bonus" type="text" value="{{data.system.bonus}}" />
+          </div>
+
+          <div class="flex-row span-2 middle group">
+            <h2 class="subsubheader m-0 pi-2">{{localize "twdu.encSlots"}}</h2>
+            <div class="weight-select">
+              <select name="system.weight" id="weight" data-dtype="Number">
+                {{#select data.system.weight}}
+                <option value="0">None</option>
+                <option value="0.5">½</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                {{/select}}
+              </select>
+            </div>
+          </div>
         </div>
       </section>
 

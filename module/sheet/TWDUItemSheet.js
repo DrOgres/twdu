@@ -28,7 +28,7 @@ export default class TWDUItemSheet extends ItemSheet {
     console.log("TWDU | data: ", data);
     if (data.source.type == "gear") {
       data.gearNotesHTML = await TextEditor.enrichHTML(
-        data.source.system.notes,
+        data.source.system.description,
         {
           async: true,
         }

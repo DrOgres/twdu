@@ -267,6 +267,10 @@ optgroup {
   grid-column: span 2;
 }
 
+.span-3 {
+  grid-column: span 3;
+}
+
 .span-4 {
   grid-column: span 4;
 }
@@ -450,6 +454,10 @@ optgroup {
 
 .max-h-300p {
   max-height: 300px;
+}
+
+.h-100 {
+  height: 100%;
 }
 
 .justify {

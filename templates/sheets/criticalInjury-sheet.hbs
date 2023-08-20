@@ -1,44 +1,79 @@
 <form class="{{cssClass}} flex-col color-brown-700" autocomplete="off">
-  <div class="bg-offwhite flex-row flex-start">
-    <div class="dl-border w-fc h-100">
-      <img
-        class="w-100p border-none br-5"
-        src="{{item.img}}"
-        data-edit="img"
-        title="{{item.name}}"
-      />
+  <div class="flex-row flex-start">
+    <div class="header w-150p group">
+      <img class="w-100" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
-    <div class="w-100 padding-sm">
-      <div class="flex-col flex-wrap magin-b-sm">
-        <h1 class="center">{{localize "twdu.criticalInjury"}}  <input class="light" name="name" type="text" value="{{item.name}}" /></h1>
-       
+    <div class="w-100">
+      <div class="flex-col group">
+        <h1 class="center">
+          <span>
+            {{localize "twdu.criticalInjury"}}
+          </span>
+          <input class="light" name="name" type="text" value="{{item.name}}" />
+        </h1>
       </div>
-      <div class="grid grid-4col-fr center gap-sm h-100">
-        
 
-        <div class="grid-span-2 grid-align-end">
-          <b>{{localize "twdu.fatal"}}</b>
-          <input
-            class="light"
-            name="system.fatal"
-            type="text"
-            value="{{data.system.fatal}}"
-          />
+      <div class="grid two-col justify group">
+        <div class="lethal grid col-60-40 group middle justify h-100">
+          <div class="subsubheader">{{localize "twdu.lethal"}}</div>
+
+          <div class="-lethal-select">
+            <select name="system.fatal" id="weight" data-dtype="boolean">
+              {{#select data.system.fatal}}
+              <option value="true">{{localize "twdu.yes"}}</option>
+              <option value="false">{{localize "twdu.no"}}</option>
+              {{/select}}
+            </select>
+          </div>
         </div>
-        <div class="grid-span-2 grid-align-end">
-          <b>{{localize "twdu.timeLimit"}}</b>
-          <input
-            class="light"
-            name="system.timeLimit"
-            type="text"
-            value="{{data.system.timeLimit}}"
-          />
+        <div class="timelimit grid col-60-40 group middle justify">
+          <div class="subsubheader">{{localize "twdu.timeLimit"}}</div>
+          <select name="system.timeLimit">
+            {{#select data.system.timeLimit}}
+            {{#each config.recoveryTime as |time|}}
+            <option value="{{time}}" {{#if (eq skill ../data.system.timeLimit)}}selected{{/if}}>{{localize time}}
+            </option>
+            {{/each}}
+            {{/select}}
+          </select>
+
+          <div class="radio-area grid two-col span-2">
+            <label class="flex-row pi-1 justify middle radio-group" for="complexity.A">
+              <input id="complexity.A" type="radio" name="system.complexity" value="A" {{checked
+                data.system.complexity 'A' }} /> {{localize
+              'twdu.advanced'}} <span class="radio"></span></label>
+
+            <label class="flex-row pi-5 justify-self-end middle radio-group" for="complexity.B">
+              <input id="complexity.B" type="radio" name="system.complexity" value="B" {{checked
+                data.system.complexity 'B' }} /> {{localize
+              'twdu.basic'}}<span class="radio"></span></label>
+          </div>
+
         </div>
 
-        <div class="grid-span-4 grid-align-end">
+        <div class="grid col-60-40 border-right group middle justify">
           <b>{{localize "twdu.penalty"}}</b>
           <input class="light" name="system.effect" type="text" value="{{data.system.effect}}" />
+        </div>
+
+        <div class="recovery grid col-60-40 group middle justify">
+          <b>{{localize "twdu.recoveryTime"}}</b>
+          <select name="system.recovery">
+            {{#select data.system.recovery}}
+            {{#each config.recoveryTime as |time|}}
+            <option value="{{time}}" {{#if (eq skill ../data.system.recovery)}}selected{{/if}}>{{localize time}}
+            </option>
+            {{/each}}
+            {{/select}}
+          </select>
+
+
+        </div>
+
+        <div class="description group span-2">
+          <div class="subsubheader pi-1">{{localize "twdu.description"}}</div>
+          <textarea class="pi-2" name="data.system.description">{{data.system.description}}</textarea>
         </div>
       </div>
     </div>

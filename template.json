@@ -271,7 +271,7 @@
           "criticalInjury": {
             "fatal": false,
             "timeLimit": "",
-            "complexity": "basic",
+            "complexity": "B",
             "effect": 0,
             "recovery": ""
           },
@@ -280,9 +280,16 @@
           },
           "project": {
             "description": "",
-            "effect": "",
+            "effect": {
+				"type": "capacity",
+				"value": 2
+				},
             "workforce": "",
-            "finishDate": ""
+            "finishDate": "",
+			"requirements": {
+				"tech": 1,
+				"items": []
+				}
           },
           "vehicle": {
             "templates": ["itemCommonProperties"],

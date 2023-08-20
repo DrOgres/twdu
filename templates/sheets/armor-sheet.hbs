@@ -1,27 +1,31 @@
 <form class="{{cssClass}} flex-col color-brown-700 bg-offwhite " autocomplete="off">
   <div class="flex-row flex-start">
 
-    <div class="header w-150p">
+    <div class="header w-150p group">
       <img class="border-none" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
-    <div class="w-100 padding-sm">
-      <div class="flex-col">
+    <div class="w-100">
+      <div class="flex-col group">
         <h1 class="center">{{localize "twdu.armor"}}
           <input class="light" name="name" type="text" value="{{item.name}}" />
         </h1>
         <br />
 
       </div>
-      <div class="grid two-col center gap-sm h-100">
-      <div class="grid two-col center">
-          <b>{{localize "twdu.protection"}}:&nbsp;</b>
-          <input class="light" name="system.protection" type="text" value="{{data.system.protection}}" />
+      <div class="grid two-col center gap-sm group pi-1">
+      <div class="grid col-60-40 border-right middle justify">
+          <div class="subsubheader">{{localize "twdu.protection"}}:&nbsp;</div>
+          <input class="center" name="system.protection" type="text" value="{{data.system.protection}}" />
         </div>
-        <div class="grid two-col center">
-          <b>{{localize "twdu.agilityPenalty"}}</b>
-          <input class="light" name="system.agility" type="text" value="{{data.system.agility}}" />
+        <div class="grid col-60-40 middle justify">
+          <div class="subsubheader">{{localize "twdu.agilityPenalty"}}:</div>
+          <input class="center" name="system.agility" type="text" value="{{data.system.agility}}" />
         </div>
+      </div>
+      <div class="description group flex-col">
+        <div class="subsubheader">{{localize "twdu.description"}}</div>
+        <textarea name="data.system.description">{{data.system.description}}</textarea>
       </div>
     </div>
   </div>
