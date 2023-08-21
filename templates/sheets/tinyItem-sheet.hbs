@@ -1,23 +1,23 @@
-<form class="{{cssClass}}" autocomplete="off">
-  <header class="item-header sheet-header">
-    <img
-      src="{{item.img}}"
-      data-edit="img"
-      title="{{item.name}}"
-      class="item-img"
-      height="64"
-      width="64"
-    />
-    <h1><input
-        name="name"
-        type="text"
-        value="{{item.name}}"
-        placeholder="Name"
-      /></h1>
-  </header>
-  <div class="grid-span-2">
-    <b>{{localize "twdu.description"}}</b>
-    <textarea name="system.description">{{data.system.description}}</textarea>
-  </div>
+<form class="{{cssClass}} flexcol" autocomplete="off">
+  {{! Item Sheet Header }}
+  <div class="flex-row flex-start">
+    <div class="header w-150p group">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
 
+    <div class="w-100">
+      <div class="flex-col group">
+        <h1 class="center">{{localize "twdu.tinyItem"}}
+          <input class="light" name="name" type="text" value="{{item.name}}" style="width: 99%;" />
+        </h1>
+      </div>
+      <div class="grid two-col w-100 group">
+
+        <div class="span-2">
+          <b>{{localize "twdu.description"}}</b>
+          <textarea name="system.description">{{data.system.description}}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>

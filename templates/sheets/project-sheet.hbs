@@ -2,16 +2,13 @@
   {{! Item Sheet Header }}
   <div class="flex-row flex-start">
     <div class="header w-150p group">
-      <img
-        src="{{item.img}}"
-        data-edit="img"
-        title="{{item.name}}"
-      />
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
     </div>
 
     <div class="w-100">
       <div class="flex-col group">
-        <h1 class="center">{{localize "twdu.project"}} <input class="light" name="name" type="text" value="{{item.name}}" /></h1>
+        <h1 class="center">{{localize "twdu.project"}} <input class="light" name="name" type="text"
+            value="{{item.name}}" /></h1>
       </div>
 
       <div class="grid two-col">
@@ -19,46 +16,56 @@
           <h2 class="subsubheader m-0 pi-1">{{localize "twdu.effect"}}</h2>
           <select name="system.effect.type">
             {{#select data.system.effect.type}}
-              <option value="capacity">{{localize "twdu.capacity"}}</option>
-              <option value="defensxe">{{localize "twdu.defense"}}</option>
+            <option value="capacity">{{localize "twdu.capacity"}}</option>
+            <option value="defensxe">{{localize "twdu.defense"}}</option>
             {{/select}}
           </select>
           <div class="effect-value flex-row middle m-0 pi-1">
             <label for="effect-value">{{localize 'twdu.value'}}</label>
-          <input
-            id="effect-value"
-            class="light"
-            name="system.effect.value"
-            type="text"
-            value="{{data.system.effect.value}}" /></div>
+            <input id="effect-value" class="light" name="system.effect.value" type="text"
+              value="{{data.system.effect.value}}" />
+          </div>
         </div>
 
         <div class="flex-row middle group pi-1">
           <h2 class="subsubheader m-0 pi-1">{{localize "twdu.finishDate"}}</h2>
-          <input
-            class="light"
-            name="system.finishDate"
-            type="text"
-            value="{{data.system.finishDate}}"
-          />
+          <input class="light" name="system.finishDate" type="text" value="{{data.system.finishDate}}" />
         </div>
         <div class="flex-col group pi-1 span-2">
           <h3>{{localize "twdu.requirements"}}</h3>
-          <div class="tech">tech</div>
-          <div class="stuff">stuff</div>
-          <div class="workforce">workforce</div>
-          
+          <div class="grid two-col">
+            <div class="tech flex-row">
+              <span>
+                {{localize "twdu.tech"}}
+              </span>
+              <input class="light" name="system.requirements.tech" type="text"
+                value="{{data.system.requirements.tech}}" />
+            </div>
+            
+            <div class="workforce flex-row">
+              <span>
+              {{localize 'twdu.workforce'}}
+              </span>
+              <input class="light" name="system.requirements.workforce" type="text"
+                value="{{data.system.workforce}}" />
+            
+            </div>
+            <div class="stuff flex-col span-2">{{localize 'twdu.items'}}
+              <textarea name="system.requirements.items">{{data.system.requirements.items}}</textarea>
+
+
+            </div>
+            
+          </div>
         </div>
 
       </div>
       <div class="item-notes pi-1 group">
 
-       
-          <b>{{localize "twdu.description"}}</b>
-          <textarea
-            name="system.description"
-          >{{data.system.description}}</textarea>
-        
+
+        <b>{{localize "twdu.description"}}</b>
+        <textarea name="system.description">{{data.system.description}}</textarea>
+
 
       </div>
 

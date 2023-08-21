@@ -96,7 +96,7 @@ export function prepareRollDialog(options) {
   
   //TODO add a summary of the dice pool thus far to the dialog
 
-  //TODO add a select for gear that can be used to modify the roll (based on skill)
+  
   if(options.type === "skill") {
     let gear = actor.items.filter((item) => item.type === "gear" && item.system.isEquipped);
     console.log("TWDU | gear: ", gear);
@@ -104,7 +104,7 @@ export function prepareRollDialog(options) {
     let skillGear = gear.filter((item) => item.system.skill === ("twdu."+ options.skillName.toLowerCase()));
     console.log("TWDU | skillGear: ", skillGear);
     if(skillGear.length > 0) {
-      dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.GEAR"), "", "gear");
+      dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.GEAR"), skillGear, "gear");
     }
   }
 
@@ -141,6 +141,18 @@ export function prepareRollDialog(options) {
             console.log("TWDU | damage: ", damage);
             let critPenalty = options.criticalPenalty;
             console.log("TWDU | critPenalty: ", critPenalty);
+
+            // get the gear bonus
+            let gearBonus = 0;
+            if(options.type === "skill") {
+              let gearSelect = html.find("#gear")[0];
+              console.log("TWDU | gearSelect: ", gearSelect);
+              if(gearSelect) {
+                gearBonus = parseInt(gearSelect.value, 10);
+              }
+            }
+            console.log("TWDU | gearBonus: ", gearBonus);
+
             roll(
               options.sheet,
               options.testName,
@@ -149,7 +161,8 @@ export function prepareRollDialog(options) {
               parseInt(bonus, 10),
               parseInt(damage, 10),
               options.armorPenalty,
-              options.criticalPenalty
+              options.criticalPenalty,
+              gearBonus
             );
           },
         },
@@ -183,7 +196,7 @@ function parseCriticalInjuries(actor) {
   return total;
 }
 
-export function roll(sheet, testName, attribute, skill, bonus, damage, armorPenalty, criticalPenalty) {
+export function roll(sheet, testName, attribute, skill, bonus, damage, armorPenalty, criticalPenalty, gearBonus) {
   // roll the dice
   console.log(
     "TWDU | roll: ",
@@ -199,7 +212,7 @@ export function roll(sheet, testName, attribute, skill, bonus, damage, armorPena
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
   sheet.lastDamage = damage;
-  let dicePool = attribute + skill + bonus + (armorPenalty || 0) + (criticalPenalty || 0);
+  let dicePool = attribute + skill + bonus + (armorPenalty || 0) + (criticalPenalty || 0) + (gearBonus || 0);
   rollDice(sheet, dicePool);
 }
 
@@ -314,9 +327,21 @@ function buildInputDialog(name, value, type) {
 function buildSelectDialog(name, value, type) {
   console.log("TWDU | buildSelectDialog: ", name, value, type);
 
+  // parse out the value to get the <optionm> tags for the select
+  let options = "";
+  for (let i = 0; i < value.length; i++) {
+    let item = value[i];
+    options += "<option id='" + item.id + "' value='"+ item.system.bonus + "'>" + item.name + ": &nbsp;" + item.system.bonus + "</option>";
+  }
+
+
   return (
   `<div >
-  select for the gear that applies to this skill 
+   <h4 class="header">` + name + `</h4>
+   <select id="gear" style="width: 100%; margin-bottom: 10px;"> 
+   <option id="none" value="0">None</option>
+   ` + options + `   
+   </select> 
   </div>`
   );
 }

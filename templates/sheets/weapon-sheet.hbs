@@ -1,37 +1,59 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="item-header sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" class="item-img" height="64" width="64" />
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
-    </header>
-    <div class="weapon">
-        {{localize "twdu.damage"}} : <input name="system.damage" type="text" value="{{data.system.damage}}" placeholder="0" data-dtype="Number" />
-        {{!-- Range should be set up as a select and used only if rangedCombat is the chosen skill  --}}
-        {{#if (eq data.system.skill "twdu.rangedCombat")}}
-        {{localize "twdu.range"}} : <input name="system.range" type="text" value="{{data.system.range}}" placeholder="close" />
-        {{/if}}
-        
-        <div class="grid-align-end">
-              <h3>{{localize "twdu.encSlots"}}</h3>
-              <div class="weight-select">
-                <select name="system.weight" id="weight" data-dtype="Number">
-                  {{#select data.system.weight}}
-                  <option value="0">None</option>
-                  <option value="0.5">½</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  {{/select}}
-                </select>
-              </div>
-            </div>
-      
-        <h3>{{localize "twdu.skill"}}: &nbsp;</h3>
+
+  <div class="flex-row">
+    <div class="header sheet-header group w-150p">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" />
+    </div>
+    <div class="weapon w-100">
+      <h1 class="group m-0 pi-1"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+
+      <div class="item group grid two-col">
+        <div class="damage flex-row group middle">
+          <h2 class="m-0 pi-1 subheader middle">
+            {{localize "twdu.damage"}}:</h2>
+          <input name="system.damage" type="text" value="{{data.system.damage}}" placeholder="0" data-dtype="Number" />
+        </div>
+
+        <div class="range-select flex-row group">
+          {{!-- Range should be set up as a select --}}
+          {{#if (eq data.system.skill "twdu.rangedCombat")}}
+          <h2 class="m-0 pi-1 subheader middle">
+            {{localize "twdu.range"}}:
+          </h2>
+          <input name="system.range" type="text" value="{{data.system.range}}" placeholder="close" />
+          {{/if}}
+        </div>
+
+        <div class="encumbrance flex-row group">
+          <h2 class="m-0 pi-1 subheader middle">{{localize "twdu.encSlots"}}:</h2>
+          <div class="weight-select">
+            <select name="system.weight" id="weight" data-dtype="Number">
+              {{#select data.system.weight}}
+              <option value="0">None</option>
+              <option value="0.5">½</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              {{/select}}
+            </select>
+          </div>
+        </div>
+        <div class="skill flex-row group">
+          <h2 class="m-0 pi-1 subheader middle">{{localize "twdu.skill"}}: &nbsp;</h2>
           <select name="system.skill">
             {{#select data.system.skill}}
-              {{#each config.combatSkills as |skill|}}
-                <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}</option>
-              {{/each}}
+            {{#each config.combatSkills as |skill|}}
+            <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}</option>
+            {{/each}}
             {{/select}}
           </select>
-    </div>  
+        </div>
+         <div class="span-2">
+          <b>{{localize "twdu.description"}}</b>
+          <textarea name="system.description">{{data.system.description}}</textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </form>

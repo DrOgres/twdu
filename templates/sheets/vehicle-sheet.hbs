@@ -1,56 +1,38 @@
 <form class="{{cssClass}}" autocomplete="off">
-    <header class="item-header sheet-header">
-        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" class="item-img" height="64" width="64" />
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
-    </header>
-    <div class="vehicle">
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.maneuverability"}}</h3>
-          <input
-            class="light"
-            name="system.bonus"
-            type="text"
-            value="{{data.system.maneuverability}}"
-          />
-        </div>
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.damage"}}</h3>
-          <input
-            class="light"
-            name="system.bonus"
-            type="text"
-            value="{{data.system.damage}}"
-          />
-        </div>
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.hull"}}</h3>
-          <input
-            class="light"
-            name="system.bonus"
-            type="text"
-            value="{{data.system.hull}}"
-          />
-        </div>
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.armor"}}</h3>
-          <input
-            class="light"
-            name="system.bonus"
-            type="text"
-            value="{{data.system.armor}}"
-          />
-        </div>
-        <div class="grid-align-end">
-          <h3>{{localize "twdu.issue"}}</h3>
-          <input
-            class="light"
-            name="system.bonus"
-            type="text"
-            value="{{data.system.issue}}"
-          />
-        </div>
 
+  <div class="flex-row flex-start">
+    <div class="header w-150p group">
+      <img src="{{item.img}}" data-edit="img" title="{{item.name}}" class="item-img"  />
     </div>
 
+
+    <div class="w-100 padding-sm">
+      <h1 class="group m-0 pi-1 "><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+      <div class="vehicle group grid two-col">
+        <div class="flex-row group middle">
+          
+          <h2 class="m-0 pi-1 subsubheader">{{localize "twdu.maneuverability"}}</h2>
+          <input class="light" name="system.maneuverability" type="text" value="{{data.system.maneuverability}}" />
+        </div>
+        <div class="flex-row group middle">
+          <h2 class="m-0 pi-1 subsubheader">{{localize "twdu.damage"}}</h2>
+          <input class="light" name="system.damage" type="text" value="{{data.system.damage}}" />
+        </div>
+        <div class="flex-row group middle">
+          <h2 class="m-0 pi-1 subheader">{{localize "twdu.hull"}}</h2>
+          <input class="light" name="system.hull" type="text" value="{{data.system.hull}}" />
+        </div>
+        <div class="flex-row group middle">
+          <h2 class="m-0 pi-1 subsubheader">{{localize "twdu.armor"}}</h2>
+          <input class="light" name="system.armor" type="text" value="{{data.system.armor}}" />
+        </div>
+        <div class="flex-col span-2 group">
+          <h2 class="m-0 pi-1 subsubheader">{{localize "twdu.issue"}}</h2>
+          <textarea name="system.issue">{{data.system.issue}}</textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 </form>
