@@ -13,11 +13,7 @@ export function prepareRollDialog(options) {
   // attName - the name of the attribute being used
   // skillName - the name of the skill being used
 
- 
-
-  let actorID = options.sheet.object.id;
-  let actor = game.actors.get(actorID);
-
+   let actor = options.sheet.object;
 
   let criticals = parseCriticalInjuries(actor);
 
@@ -27,6 +23,7 @@ export function prepareRollDialog(options) {
   if(actor.type === "character") {
   stressDice = actor.system.stress.value;
   }
+
 
   let dialogHtml = "";
   if (options.type === "weapon") {

@@ -179,6 +179,14 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onRoll(event) {
     event.preventDefault();
+    let actor = this.actor;
+    let health = actor.system.health.value;
+    if (health < 1) {
+      ui.notifications.warn(
+        game.i18n.localize("twdu.ui.cantRollWhenBroken")
+      );
+      return;
+    }
     let target = event.currentTarget;
     let key = target.dataset.key;
     let options = {
