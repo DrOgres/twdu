@@ -80,11 +80,14 @@ export function prepareRollDialog(options) {
       options.attributeDefault,
       "attribute"
     );
+
+    if(actor.type === "character" && stressDice > 0){
     dialogHtml += buildHTMLDialog(
       game.i18n.localize("twdu.ROLL.STRESS"),
       stressDice,
       "stress"
     );
+    }
   }
   if (options.type === "skill") {
     console.log("TWDU | skill options: ", options);
