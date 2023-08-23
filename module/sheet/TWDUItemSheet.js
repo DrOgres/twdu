@@ -38,7 +38,16 @@ export default class TWDUItemSheet extends ItemSheet {
   }
 
   activateListeners(html) {
+    super.activateListeners(html);
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
+    html.find(".type-change").click(this._onTypeChange.bind(this));
+  }
+
+  // force sheet update when type changes
+  async _onTypeChange(event) {
+   
+    this.item.update();
+
   }
 
   _onToggleClick(event) {

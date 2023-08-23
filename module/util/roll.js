@@ -16,6 +16,7 @@ export function prepareRollDialog(options) {
    let actor = options.sheet.object;
 
   let criticals = parseCriticalInjuries(actor);
+  let talents = actor.items.filter((item) => item.type === "talent" && item.system.hasBonus);
 
   options.criticalPenalty = (0 - criticals);
  
@@ -38,6 +39,21 @@ export function prepareRollDialog(options) {
       "skill"
     );
     dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.DAMAGE"), options.damageDefault, "damage");
+
+    // add damage bonus from talents
+    
+    if(options.type === "weapon") {
+      let damageTalents = talents.filter((item) => item.system.bonusType === "twdu.damage");
+
+      console.log("TWDU | damageTalents: ", damageTalents);
+      if(damageTalents.length > 0) {
+        // build a select dialog for the talents that we found
+        dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.TALENT"), damageTalents, "damageTalent");
+        }
+    }
+
+
+
     dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
   }
   if (options.type === "attribute") {
@@ -104,7 +120,7 @@ export function prepareRollDialog(options) {
       dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.GEAR"), skillGear, "gear");
     }
 
-    let talents = actor.items.filter((item) => item.type === "talent" && item.system.hasBonus);
+    
     console.log("TWDU | talents: ", talents);
     let skillTalents = talents.filter((item) => item.system.skill === ("twdu."+ options.skillName.toLowerCase()));
     console.log("TWDU | skillTalents: ", skillTalents);
@@ -157,6 +173,17 @@ export function prepareRollDialog(options) {
               }
             }
             console.log("TWDU | gearBonus: ", gearBonus);
+
+            let talentDamageBonus = 0;
+            if(options.type === "weapon") {
+              let damageTalentSelect = html.find("#damageTalent")[0];
+              console.log("TWDU | damageTalentSelect: ", damageTalentSelect);
+              if(damageTalentSelect) {
+                talentDamageBonus = parseInt(damageTalentSelect.value, 10);
+              }
+            }
+            console.log("TWDU | talentDamageBonus: ", talentDamageBonus);
+            damage += talentDamageBonus;
 
             // get the talent bonus
             let talentBonus = 0;
@@ -356,7 +383,7 @@ function buildSelectDialog(name, value, type) {
   return (
   `<div >
    <h4 class="header">` + name + `</h4>
-   <select id="gear" style="width: 100%; margin-bottom: 10px;"> 
+   <select id="`+ type + `" style="width: 100%; margin-bottom: 10px;"> 
    <option id="none" value="0">None</option>
    ` + options + `   
    </select> 

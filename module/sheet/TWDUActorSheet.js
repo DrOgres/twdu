@@ -255,13 +255,16 @@ export default class TWDUActorSheet extends ActorSheet {
       case "weapon":
         {
           const item = this.actor.items.get(target.dataset.itemId);
+          console.log("TWDU | actorType: ", options.actorType);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
           let skill = item.system.skill.split(".")[1];
-          if (!options.actorType === "npc") {
+          if (options.actorType === "character") {
             options.skillDefault = this.actor.system.skills[skill].value;
+            console.log("TWDU | skillDefault: ", options.skillDefault);
           } else {
             let skillLevel = this.actor.system.skills[skill].level;
+            console.log("TWDU | skillLevel: ", skillLevel);
             if (skillLevel == "base") {
               options.skillDefault = 4;
             }
@@ -275,7 +278,7 @@ export default class TWDUActorSheet extends ActorSheet {
               options.skillDefault = 10;
             }
           }
-          if (!options.actorType === "npc") {
+          if (options.actorType === "character") {
             options.attName = this.actor.system.skills[skill].attribute;
             options.attributeDefault =
               this.actor.system.attributes[options.attName].value;
