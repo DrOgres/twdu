@@ -66,7 +66,7 @@ export function prepareRollDialog(options) {
       }
     }
 
-    if(actor.type === "character"){
+    if(actor.type === "character" && stressDice > 0){
     dialogHtml += buildHTMLDialog(
       game.i18n.localize("twdu.ROLL.STRESS"),
       stressDice,
