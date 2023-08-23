@@ -15,8 +15,65 @@
 
         <div class="span-2">
           <b>{{localize "twdu.description"}}</b>
-          <textarea name="system.description">{{data.system.description}}</textarea>
+          <textarea name="system.description">{{item.system.description}}</textarea>
         </div>
+
+ <div class="span-2">
+          <b>{{localize "twdu.prerequisite"}}</b>
+          <textarea name="system.prerequisite">{{item.system.prerequisite}}</textarea>
+        </div>
+
+        <div class="has-bonus" title="{{localize 'twdu.hasBonusTooltip'}}">
+          <b>{{localize "twdu.hasBonus"}}</b>
+          {{#unless item.system.hasBonus}}
+          <img class="toggle-boolean" data-path="hasBonus" src="systems/twdu/assets/images/box_not_checked.png"
+            height="18px" width="18px">
+          {{/unless}}
+
+          {{#if item.system.hasBonus}}
+          <img class="toggle-boolean" data-path="hasBonus" src="systems/twdu/assets/images/box_checked.png"
+            height="18px" width="18px">
+          {{/if}}
+        </div>
+        <div class="bonus-type">
+          {{#if item.system.hasBonus}}
+          <b>{{localize "twdu.bonusType"}}</b>
+          <select name="system.bonusType" id="health">
+            {{#select item.system.bonusType}}
+            {{#each (TWDUinvert config.talentBonusTypes) as |state|}}
+            <option value={{state}} {{#if (eq state ../item.system.bonusType)}}selected{{/if}}>
+              {{localize state}}</option>
+            {{/each}}
+            {{/select}}
+          </select>
+          {{/if}}
+        </div>
+        {{#if item.system.hasBonus}}
+        <div class="bonus-amount">
+          <h2>Bonus Amount</h2>
+        </div>
+        <div class="bonus-amount-input">
+
+          <input type="number" name="system.bonus" value="{{item.system.bonus}}" />
+
+        </div>
+        {{/if}}
+
+        {{#if (eq item.system.bonusType "twdu.skill")}}
+        <div class="blank">&nbsp;</div>
+        <div class="skill-select">
+          <b>{{localize "twdu.skill"}}</b>
+          <select name="system.skill" id="skill">
+            {{#select item.system.skill}}
+            {{#each (TWDUinvert config.skills) as |state|}}
+            <option value={{state}} {{#if (eq state ../item.system.skill)}}selected{{/if}}>{{localize state}}
+            </option>
+            {{/each}}
+            {{/select}}
+          </select>
+        </div>
+
+        {{/if}}
       </div>
     </div>
   </div>

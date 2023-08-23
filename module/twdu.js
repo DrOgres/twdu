@@ -1,5 +1,6 @@
 import TWDUItemSheet from "./sheet/TWDUItemSheet.js";
 import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
+import TWDUActor from "./TWDUActor.js";
 import { preloadHandlebarsTemplates } from "./util/templates.js";
 import { twdu } from "../module/config.js";
 import FoundryOverrides from "./util/overrides.js";
@@ -12,6 +13,8 @@ Hooks.once("init", async function () {
   console.log("TWDU | Initializing TWDU");
   CONFIG.twdu = twdu;
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
+
+  CONFIG.Actor.documentClass = TWDUActor;
 
   //yzur init
   YearZeroRollManager.register("twdu", {
@@ -136,7 +139,6 @@ Hooks.once("init", async function () {
   });
 
   Handlebars.registerHelper("checked", function (value, test) {
-    console.log("TWDU | checked: ", value, test);
     if(value == undefined) return "";
     return value == test ? "checked" : "";
   });
@@ -178,10 +180,22 @@ Hooks.on("getSceneControlButtons", (controls) => {
   );
 });
 
+
+Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
+
+  const actor = game.actors.get(tokenData.actorId);
+  const actorId = actor.id;
+  console.log("test | preCreateToken", document, actor, actorId);
+  
+  if (actor.type === 'npc') {
+    document.update({_id: actorId , disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
+  }
+});
+
 Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
-  // When dropping something on a vehicle sheet.
+  // When dropping something on a haven sheet.
   if (actor.type === 'haven') {
-    // When dropping an actor on a vehicle sheet.
+    // When dropping an actor on a haven sheet.
     let survivor = await fromUuid(data.uuid);
     if (data.type === 'Actor') sheet._dropSurvivor(survivor.id);
   }

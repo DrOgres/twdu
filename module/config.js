@@ -57,3 +57,9 @@ twdu.recoveryTime = {
     weeks: "twdu.weeks",
     months: "twdu.months"
 }
+
+twdu.talentBonusTypes = {
+    none: "twdu.none",
+    skill: "twdu.skill",
+    damage: "twdu.damage"
+}

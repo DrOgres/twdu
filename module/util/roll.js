@@ -103,6 +103,14 @@ export function prepareRollDialog(options) {
     if(skillGear.length > 0) {
       dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.GEAR"), skillGear, "gear");
     }
+
+    let talents = actor.items.filter((item) => item.type === "talent" && item.system.hasBonus);
+    console.log("TWDU | talents: ", talents);
+    let skillTalents = talents.filter((item) => item.system.skill === ("twdu."+ options.skillName.toLowerCase()));
+    console.log("TWDU | skillTalents: ", skillTalents);
+    if(skillTalents.length > 0) {
+      dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.TALENT"), skillTalents, "talent");
+    }
   }
 
   let bonusHtml = buildInputDialog(game.i18n.localize("twdu.ROLL.BONUS"), options.bonusDefault, "bonus");
@@ -150,6 +158,17 @@ export function prepareRollDialog(options) {
             }
             console.log("TWDU | gearBonus: ", gearBonus);
 
+            // get the talent bonus
+            let talentBonus = 0;
+            if(options.type === "skill") {
+              let talentSelect = html.find("#talent")[0];
+              console.log("TWDU | talentSelect: ", talentSelect);
+              if(talentSelect) {
+                talentBonus = parseInt(talentSelect.value, 10);
+              }
+            }
+            console.log("TWDU | talentBonus: ", talentBonus);
+
             roll(
               options.sheet,
               options.testName,
@@ -159,7 +178,9 @@ export function prepareRollDialog(options) {
               parseInt(damage, 10),
               options.armorPenalty,
               options.criticalPenalty,
-              gearBonus
+              gearBonus,
+              talentBonus
+
             );
           },
         },

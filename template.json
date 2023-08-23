@@ -261,7 +261,12 @@
           "talent": {
             "description": "",
             "notes": "",
-            "archetype": ""
+            "archetype": "",
+            "prerequisite": "",
+            "hasBonus": false,
+            "bonusType": "none",
+            "skill": "",
+            "bonus": 0
             
           },
           "gear": {

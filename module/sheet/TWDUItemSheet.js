@@ -33,8 +33,26 @@ export default class TWDUItemSheet extends ItemSheet {
           async: true,
         }
       );
-      
     }
     return data;
+  }
+
+  activateListeners(html) {
+    html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
+  }
+
+  _onToggleClick(event) {
+    console.log("TWDU | _onToggleClick: ", event);
+    event.preventDefault();
+    const element = event.currentTarget;
+    const path = element.dataset.path;
+    switch (path) {
+      case "hasBonus":
+        {
+          const value = this.item.system.hasBonus;
+          this.item.update({ "system.hasBonus": !value });
+        }
+        break;
+    }
   }
 }

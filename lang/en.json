@@ -78,6 +78,7 @@
         "weapons": "Weapons",
         "armor": "Armor",
         "tinyItems": "Tiny Items",
+        "tinyItem": "Tiny Item",
         "project": "Project",
         
 
@@ -114,6 +115,10 @@
         "items": "Items",
         "maneuverability": "Maneuverability",
         "hull": "Hull",
+        "hasBonus": "Provides a Bonus",
+        "hasBonusTooltip": "Does this Talent provide a bonus to either a skill or to damage?",
+        "bonusType": "Bonus Type",
+        "prerequisite": "Prerequisite",
 
         "equipedGear": "Equiped Gear",
         "storedGear": "Stored Gear",
@@ -149,7 +154,8 @@
         "ROLL.STRESS": "Stress Dice",
         "ROLL.DAMAGE": "Damage",
         "ROLL.GEAR": "Use Gear",
-        "ROLL.CRITICAL": "Critical Injury Penalty"
+        "ROLL.CRITICAL": "Critical Injury Penalty",
+        "ROLL.TALENT": "Use Talent"
     },
     "YZUR": {
         "DIETERMS.SkillDie": "Skill Dice",

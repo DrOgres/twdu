@@ -25,4 +25,13 @@ export const registerGameSettings = function () {
         onChange: debouncedReload,
       });
 
+    game.settings.register("twdu", "defaultTokenSettings", {
+        name: 'twdu.prototypeTokenSettings',
+        hint: 'twdu.prototypeTokenSettingsHint',
+        scope: 'world',
+        config: true,
+        default: true,
+        type: Boolean
+        });
+
 };

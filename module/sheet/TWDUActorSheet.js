@@ -3,6 +3,9 @@ import { prepareRollDialog } from "../util/roll.js";
 import { twdu } from "../config.js";
 
 export default class TWDUActorSheet extends ActorSheet {
+
+  
+
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
@@ -15,7 +18,7 @@ export default class TWDUActorSheet extends ActorSheet {
           contentSelector: ".sheet-body",
           initial: "main",
         },
-      ],
+      ]
     });
   }
 
@@ -81,6 +84,11 @@ export default class TWDUActorSheet extends ActorSheet {
 
     return context;
   }
+
+
+
+
+ 
 
   calculatePopulation(context) {
     let maxpop = 0;
