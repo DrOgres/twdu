@@ -284,6 +284,7 @@ export default class TWDUActorSheet extends ActorSheet {
               this.actor.system.attributes[options.attName].value;
           }
           options.damageDefault = item.system.damage;
+          console.log("TWDU | damageDefault: ", options.damageDefault);
         }
         break;
       case "armor":

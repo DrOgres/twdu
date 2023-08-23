@@ -13,48 +13,66 @@ export function prepareRollDialog(options) {
   // attName - the name of the attribute being used
   // skillName - the name of the skill being used
 
-   let actor = options.sheet.object;
+  let actor = options.sheet.object;
 
   let criticals = parseCriticalInjuries(actor);
-  let talents = actor.items.filter((item) => item.type === "talent" && item.system.hasBonus);
+  options.criticalPenalty = 0 - criticals;
 
-  options.criticalPenalty = (0 - criticals);
- 
+  let talents = actor.items.filter(
+    (item) => item.type === "talent" && item.system.hasBonus
+  );
+  
   let stressDice = 0;
-  if(actor.type === "character") {
-  stressDice = actor.system.stress.value;
+  if (actor.type === "character") {
+    stressDice = actor.system.stress.value;
   }
-
+  console.log("TWDU | stressDice: ", stressDice);
 
   let dialogHtml = "";
   if (options.type === "weapon") {
+    if(options.attName){
     dialogHtml = buildHTMLDialog(
       options.attName,
       options.attributeDefault,
       "attribute"
     );
+    };
     dialogHtml += buildHTMLDialog(
       options.skillName,
       options.skillDefault,
       "skill"
     );
-    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.DAMAGE"), options.damageDefault, "damage");
+    dialogHtml += buildHTMLDialog(
+      game.i18n.localize("twdu.ROLL.DAMAGE"),
+      options.damageDefault,
+      "damage"
+    );
 
     // add damage bonus from talents
-    
-    if(options.type === "weapon") {
-      let damageTalents = talents.filter((item) => item.system.bonusType === "twdu.damage");
+
+    if (options.type === "weapon") {
+      let damageTalents = talents.filter(
+        (item) => item.system.bonusType === "twdu.damage"
+      );
 
       console.log("TWDU | damageTalents: ", damageTalents);
-      if(damageTalents.length > 0) {
+      if (damageTalents.length > 0) {
         // build a select dialog for the talents that we found
-        dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.TALENT"), damageTalents, "damageTalent");
-        }
+        dialogHtml += buildSelectDialog(
+          game.i18n.localize("twdu.ROLL.TALENT"),
+          damageTalents,
+          "damageTalent"
+        );
+      }
     }
 
-
-
-    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
+    if(actor.type === "character"){
+    dialogHtml += buildHTMLDialog(
+      game.i18n.localize("twdu.ROLL.STRESS"),
+      stressDice,
+      "stress"
+    );
+    }
   }
   if (options.type === "attribute") {
     dialogHtml = buildHTMLDialog(
@@ -62,16 +80,20 @@ export function prepareRollDialog(options) {
       options.attributeDefault,
       "attribute"
     );
-    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
+    dialogHtml += buildHTMLDialog(
+      game.i18n.localize("twdu.ROLL.STRESS"),
+      stressDice,
+      "stress"
+    );
   }
   if (options.type === "skill") {
     console.log("TWDU | skill options: ", options);
-    if (options.attName){
-    dialogHtml = buildHTMLDialog(
-      options.attName,
-      options.attributeDefault,
-      "attribute"
-    );
+    if (options.attName) {
+      dialogHtml = buildHTMLDialog(
+        options.attName,
+        options.attributeDefault,
+        "attribute"
+      );
     }
     dialogHtml += buildHTMLDialog(
       options.skillName,
@@ -83,20 +105,29 @@ export function prepareRollDialog(options) {
       if (armor) {
         dialogHtml += buildHTMLDialog(
           "Armor Penalty",
-          (0 - armor.system.agility),
+          0 - armor.system.agility,
           "armor"
         );
-        options.armorPenalty = (0 - armor.system.agility);
+        options.armorPenalty = 0 - armor.system.agility;
       }
     }
 
-      // add a field to show the critical penalty if there is one
-  if (criticals > 0) {
-    dialogHtml += buildHTMLDialog( game.i18n.localize("twdu.ROLL.CRITICAL"), options.criticalPenalty, "critical");    
-  }
+    // add a field to show the critical penalty if there is one
+    if (criticals > 0) {
+      dialogHtml += buildHTMLDialog(
+        game.i18n.localize("twdu.ROLL.CRITICAL"),
+        options.criticalPenalty,
+        "critical"
+      );
+    }
 
-    if (stressDice > 0  ){
-    dialogHtml += buildHTMLDialog(game.i18n.localize("twdu.ROLL.STRESS"), stressDice, "stress");
+    if (stressDice > 0) {
+      console.log("TWDU | stressDice: ", stressDice);
+      dialogHtml += buildHTMLDialog(
+        game.i18n.localize("twdu.ROLL.STRESS"),
+        stressDice,
+        "stress"
+      );
     }
   }
   if (options.type === "armor") {
@@ -106,30 +137,46 @@ export function prepareRollDialog(options) {
       "armor"
     );
   }
-  
+
   //TODO add a summary of the dice pool thus far to the dialog
 
-  
-  if(options.type === "skill") {
-    let gear = actor.items.filter((item) => item.type === "gear" && item.system.isEquipped);
+  if (options.type === "skill") {
+    let gear = actor.items.filter(
+      (item) => item.type === "gear" && item.system.isEquipped
+    );
     console.log("TWDU | gear: ", gear);
     console.log("TWDU | options.skillName: ", options.skillName.toLowerCase());
-    let skillGear = gear.filter((item) => item.system.skill === ("twdu."+ options.skillName.toLowerCase()));
+    let skillGear = gear.filter(
+      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase()
+    );
     console.log("TWDU | skillGear: ", skillGear);
-    if(skillGear.length > 0) {
-      dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.GEAR"), skillGear, "gear");
+    if (skillGear.length > 0) {
+      dialogHtml += buildSelectDialog(
+        game.i18n.localize("twdu.ROLL.GEAR"),
+        skillGear,
+        "gear"
+      );
     }
 
-    
     console.log("TWDU | talents: ", talents);
-    let skillTalents = talents.filter((item) => item.system.skill === ("twdu."+ options.skillName.toLowerCase()));
+    let skillTalents = talents.filter(
+      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase()
+    );
     console.log("TWDU | skillTalents: ", skillTalents);
-    if(skillTalents.length > 0) {
-      dialogHtml += buildSelectDialog(game.i18n.localize("twdu.ROLL.TALENT"), skillTalents, "talent");
+    if (skillTalents.length > 0) {
+      dialogHtml += buildSelectDialog(
+        game.i18n.localize("twdu.ROLL.TALENT"),
+        skillTalents,
+        "talent"
+      );
     }
   }
 
-  let bonusHtml = buildInputDialog(game.i18n.localize("twdu.ROLL.BONUS"), options.bonusDefault, "bonus");
+  let bonusHtml = buildInputDialog(
+    game.i18n.localize("twdu.ROLL.BONUS"),
+    options.bonusDefault,
+    "bonus"
+  );
 
   let d = new Dialog(
     {
@@ -165,20 +212,20 @@ export function prepareRollDialog(options) {
 
             // get the gear bonus
             let gearBonus = 0;
-            if(options.type === "skill") {
+            if (options.type === "skill") {
               let gearSelect = html.find("#gear")[0];
               console.log("TWDU | gearSelect: ", gearSelect);
-              if(gearSelect) {
+              if (gearSelect) {
                 gearBonus = parseInt(gearSelect.value, 10);
               }
             }
             console.log("TWDU | gearBonus: ", gearBonus);
 
             let talentDamageBonus = 0;
-            if(options.type === "weapon") {
+            if (options.type === "weapon") {
               let damageTalentSelect = html.find("#damageTalent")[0];
               console.log("TWDU | damageTalentSelect: ", damageTalentSelect);
-              if(damageTalentSelect) {
+              if (damageTalentSelect) {
                 talentDamageBonus = parseInt(damageTalentSelect.value, 10);
               }
             }
@@ -187,10 +234,10 @@ export function prepareRollDialog(options) {
 
             // get the talent bonus
             let talentBonus = 0;
-            if(options.type === "skill") {
+            if (options.type === "skill") {
               let talentSelect = html.find("#talent")[0];
               console.log("TWDU | talentSelect: ", talentSelect);
-              if(talentSelect) {
+              if (talentSelect) {
                 talentBonus = parseInt(talentSelect.value, 10);
               }
             }
@@ -207,7 +254,6 @@ export function prepareRollDialog(options) {
               options.criticalPenalty,
               gearBonus,
               talentBonus
-
             );
           },
         },
@@ -241,7 +287,17 @@ function parseCriticalInjuries(actor) {
   return total;
 }
 
-export function roll(sheet, testName, attribute, skill, bonus, damage, armorPenalty, criticalPenalty, gearBonus) {
+export function roll(
+  sheet,
+  testName,
+  attribute,
+  skill,
+  bonus,
+  damage,
+  armorPenalty,
+  criticalPenalty,
+  gearBonus
+) {
   // roll the dice
   console.log(
     "TWDU | roll: ",
@@ -251,50 +307,53 @@ export function roll(sheet, testName, attribute, skill, bonus, damage, armorPena
     skill,
     bonus,
     damage,
-    (armorPenalty || 0),
-    (criticalPenalty || 0)
+    armorPenalty || 0,
+    criticalPenalty || 0
   );
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
   sheet.lastDamage = damage;
-  let dicePool = attribute + skill + bonus + (armorPenalty || 0) + (criticalPenalty || 0) + (gearBonus || 0);
+  let dicePool =
+    attribute +
+    skill +
+    bonus +
+    (armorPenalty || 0) +
+    (criticalPenalty || 0) +
+    (gearBonus || 0);
   rollDice(sheet, dicePool);
 }
 
-Hooks.on('renderChatLog', (app, html, data) => {
-    html.on('click', '.dice-button.push', _onPush);
-  });
-  
-  async function _onPush(event) {
-    event.preventDefault();
-  
-    // Get the message.
-    let chatCard = event.currentTarget.closest('.chat-message');
-    let messageId = chatCard.dataset.messageId;
-    let message = game.messages.get(messageId);
-  
-    let actor = game.actors.get(message.speaker.actor);
-    console.log("TWDU | actor: ", actor);
-  
-    let newStress = actor.system.stress.value + 1;
-    await actor.update({ "system.stress.value": newStress });
-    
-    console.log("TWDU | message rolls: ", message.rolls);
-    // Copy the roll.
-    let roll = message.rolls[0].duplicate();
+Hooks.on("renderChatLog", (app, html, data) => {
+  html.on("click", ".dice-button.push", _onPush);
+});
 
-  
-    // Delete the previous message.
-    await message.delete();
+async function _onPush(event) {
+  event.preventDefault();
 
-    // add the stress dice to the roll
-    await roll.addDice(1, 'stress');
-    // Push the roll and send it.
-    await roll.push({ async: true });
-    await roll.toMessage();
-  }
-  
+  // Get the message.
+  let chatCard = event.currentTarget.closest(".chat-message");
+  let messageId = chatCard.dataset.messageId;
+  let message = game.messages.get(messageId);
 
+  let actor = game.actors.get(message.speaker.actor);
+  console.log("TWDU | actor: ", actor);
+
+  let newStress = actor.system.stress.value + 1;
+  await actor.update({ "system.stress.value": newStress });
+
+  console.log("TWDU | message rolls: ", message.rolls);
+  // Copy the roll.
+  let roll = message.rolls[0].duplicate();
+
+  // Delete the previous message.
+  await message.delete();
+
+  // add the stress dice to the roll
+  await roll.addDice(1, "stress");
+  // Push the roll and send it.
+  await roll.push({ async: true });
+  await roll.toMessage();
+}
 
 async function rollDice(sheet, numberOfDice) {
   console.log("TWDU | rollDice: ", sheet, numberOfDice);
@@ -305,8 +364,8 @@ async function rollDice(sheet, numberOfDice) {
   console.log("sheet", sheet);
 
   let stressDice = 0;
-  if(actor.type === "character") {
-  stressDice = actor.system.stress.value;
+  if (actor.type === "character") {
+    stressDice = actor.system.stress.value;
   }
 
   let formula = numberOfDice + "ds" + " + " + stressDice + "dz";
@@ -376,16 +435,30 @@ function buildSelectDialog(name, value, type) {
   let options = "";
   for (let i = 0; i < value.length; i++) {
     let item = value[i];
-    options += "<option id='" + item.id + "' value='"+ item.system.bonus + "'>" + item.name + ": &nbsp;" + item.system.bonus + "</option>";
+    options +=
+      "<option id='" +
+      item.id +
+      "' value='" +
+      item.system.bonus +
+      "'>" +
+      item.name +
+      ": &nbsp;" +
+      item.system.bonus +
+      "</option>";
   }
 
-
   return (
-  `<div >
-   <h4 class="header">` + name + `</h4>
-   <select id="`+ type + `" style="width: 100%; margin-bottom: 10px;"> 
+    `<div >
+   <h4 class="header">` +
+    name +
+    `</h4>
+   <select id="` +
+    type +
+    `" style="width: 100%; margin-bottom: 10px;"> 
    <option id="none" value="0">None</option>
-   ` + options + `   
+   ` +
+    options +
+    `   
    </select> 
   </div>`
   );
