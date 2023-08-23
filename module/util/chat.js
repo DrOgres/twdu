@@ -110,7 +110,7 @@ export const buildChatCard = function (type, data) {
       if (data.system.description != "") {
         description =
           "<b>" +
-          game.i18n.localize("GEAR.DESCRIPTION") +
+          game.i18n.localize("twdu.description") +
           ": </b>" +
           data.system.description +
           "</br>";
@@ -118,7 +118,7 @@ export const buildChatCard = function (type, data) {
       if (data.system.risk != "") {
         risk =
           "<b>" +
-          game.i18n.localize("GEAR.RISK") +
+          game.i18n.localize("twdu.risk") +
           ": </b>" +
           data.system.risk +
           "</br>";
@@ -137,17 +137,17 @@ export const buildChatCard = function (type, data) {
         "' width=50 height=50/></div>" +
         "<div class='chat-item-info grid two-col'>" +
         "<b>" +
-        game.i18n.localize("GEAR.BONUS") +
+        game.i18n.localize("twdu.bonus") +
         ": </b>" +
         data.system.bonus +
         "</br>" +
         "<b>" +
-        game.i18n.localize("GEAR.AVAILABILITY") +
+        game.i18n.localize("twdu.weight") +
         ": </b>" +
-        data.system.availability +
+        data.system.weight +
         "</br>" +
         "<b>" +
-        game.i18n.localize("GEAR.EFFECT") +
+        game.i18n.localize("twdu.effect") +
         ": </b>" +
         data.system.effect +
         "</br>" +
@@ -213,7 +213,7 @@ export const buildChatCard = function (type, data) {
         "' width=50 height=50/></div>" +
         "<div class='chat-item-info grid two-col'>" +
         "<b>" +
-        game.i18n.localize("TALENT.DESCRIPTION") +
+        game.i18n.localize("twdu.description") +
         ": </b>" +
         data.system.description +
         "</br>" +
@@ -225,7 +225,7 @@ export const buildChatCard = function (type, data) {
       if (data.system.timeLimit != "") {
         timeLimit =
           "<b>" +
-          game.i18n.localize("CRITICAL_INJURY.TIME_LIMIT") +
+          game.i18n.localize("twdu.timeLimit") +
           ": </b>" +
           data.system.timeLimit +
           "</br>";
@@ -237,7 +237,7 @@ export const buildChatCard = function (type, data) {
         token +
         `" width="45"  class="roll-token" />
             <div class='chat-flavor'>` +
-        game.i18n.localize("CRITICAL_INJURY.NAME") +
+        game.i18n.localize("twdu.name") +
         ": " +
         data.name.toUpperCase() +
         "</div>" +
@@ -246,18 +246,18 @@ export const buildChatCard = function (type, data) {
         "' width=50 height=50/></div>" +
         "<div class='chat-item-info grid two-col'>" +
         "<b>" +
-        game.i18n.localize("CRITICAL_INJURY.TYPE") +
+        game.i18n.localize("twdu.type") +
         `: </b><span class="title-case">` +
         data.system.type +
         "</span></br>" +
         "<b>" +
-        game.i18n.localize("CRITICAL_INJURY.FATAL") +
+        game.i18n.localize("twdu.lethal") +
         ": </b>" +
         data.system.fatal +
         "</br>" +
         timeLimit +
         "<b>" +
-        game.i18n.localize("CRITICAL_INJURY.EFFECT") +
+        game.i18n.localize("twdu.effect") +
         ": </b>" +
         data.system.effect +
         "</br>" +
