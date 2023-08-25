@@ -1,0 +1,21 @@
+<div class="card-holder flex-row w-100" style="position: relative;">
+    <div class="roll-token">
+        <img src={{token}} width="45" />
+    </div>
+    <div class="chat-card grow p-1" data-owner-id="{{user}}">
+        <div class='chat-flavor'> {{name}} {{token}}
+        </div>
+        <div class='flex-row center'>
+            <img src={{img}} width=50 height=50 />
+        </div>
+        <div class='chat-item-info grid two-col justify'>
+            <b>{{localize "twdu.damage"}}:</b> {{system.damage}}</br>
+            {{#if syste.range}}
+            <b>{{localize "twdu.range"}}: </b>{{system.range}}</br>
+            {{/if}}
+            <b>{{localize 'twdu.bonus'}}: </b> {{system.bonus}}</br>
+            <b>{{localize 'twdu.encSlots'}}: </b>{{system.weight}}</br>
+            <b>{{localize 'twdu.skill'}}: </b>{{localize system.skill}}</br>
+        </div>
+    </div>
+</div>`

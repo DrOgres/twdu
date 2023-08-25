@@ -309,8 +309,8 @@ export default class TWDUActorSheet extends ActorSheet {
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
     let type = item.type;
-    let chatData = buildChatCard(type, item);
-    ChatMessage.create(chatData, {});
+    buildChatCard(type, item);
+ 
   }
 
   _onItemEdit(event) {

@@ -52,14 +52,6 @@
             <input id="damage" type="radio" name="system.bonusType" value="twdu.damage" {{checked
               item.system.bonusType 'twdu.damage' }} /><span class="radio"></span></label>
 
-          {{!-- <select name="system.bonusType" id="health">
-            {{#select item.system.bonusType}}
-            {{#each (TWDUinvert config.talentBonusTypes) as |state|}}
-            <option value={{state}} {{#if (eq state ../item.system.bonusType)}}selected{{/if}}>
-              {{localize state}}</option>
-            {{/each}}
-            {{/select}}
-          </select> --}}
           {{/if}}
         </div>
         {{#if item.system.hasBonus}}
