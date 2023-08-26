@@ -11,13 +11,8 @@ export default class TWDUActor extends Actor {
     }
 
     async _preCreate(data, options, user) {
-        console.log("TWDU | _preCreate: ", data, options, user);
         await super._preCreate(data, options, user);
 
-      
-    
-        console.log("TWDU | _preCreate: default token settings", game.settings.get('twdu', 'defaultTokenSettings'));
-        
         let tokenProto = {
           'prototypeToken.displayName': CONST.TOKEN_DISPLAY_MODES.OWNER,
           'prototypeToken.displayBars': CONST.TOKEN_DISPLAY_MODES.OWNER,

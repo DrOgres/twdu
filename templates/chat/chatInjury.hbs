@@ -1,0 +1,27 @@
+<div class="card-holder flex-row w-100" style="position: relative;">
+    <div class="roll-token">
+        <img src={{token}} width="45" class="roll-token" />
+    </div>
+    <div class='chat-flavor'>{{name}} </div>
+    <div class='flex row center'>
+        <img src={{img}} width=50 height=50 />
+    </div>
+    <div class='chat-item-info grid two-col'>
+
+        <b>{{localize "twdu.lethal"}}: </b>{{#if system.fatal}}
+        {{localize "twdu.yes"}}
+        {{/if}}
+        {{#unless system.fatal}}
+        {{localize "twdu.no"}}
+        {{/unless}}
+        </br>
+        <b>{{localize "twdu.timeLimit"}}:</b> {{localize system.timeLimit}} {{system.complexity}}</br>
+
+        <b>{{localize "twdu.recoveryTime"}}:</b> {{localize system.recovery}} </br>
+        <b>{{localize "twdu.penalty"}}: </b>{{system.effect}} </br>
+
+        <div class='chat-item-info grid two-col'>
+            <b>{{localize "twdu.description"}}: </b>{{system.description}}</br>
+        </div>
+    </div>
+</div>

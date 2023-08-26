@@ -274,6 +274,7 @@
             "quantity": ""
           },
           "criticalInjury": {
+            "templates": ["itemCommonProperties"],
             "fatal": false,
             "timeLimit": "",
             "complexity": "B",

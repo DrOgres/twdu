@@ -5,7 +5,6 @@ export default async function FoundryOverrides() {
 	FormApplication.prototype._activateEditor = async function (name, options = {}, initialContent = "") {
         
 		const editor = this.editors[name];
-        console.log("TWDU | editor: ", editor);
 		if (!editor) throw new Error(`${name} is not a registered editor name!`);
 		options = foundry.utils.mergeObject(editor.options, options);
 		options.height = options.target.offsetHeight > 200 ? options.target.offsetHeight : 200;

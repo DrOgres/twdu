@@ -17,7 +17,7 @@
           <select name="system.effect.type">
             {{#select data.system.effect.type}}
             <option value="capacity">{{localize "twdu.capacity"}}</option>
-            <option value="defensxe">{{localize "twdu.defense"}}</option>
+            <option value="defense">{{localize "twdu.defense"}}</option>
             {{/select}}
           </select>
           <div class="effect-value flex-row middle m-0 pi-1">
@@ -47,7 +47,7 @@
               {{localize 'twdu.workforce'}}
               </span>
               <input class="light" name="system.requirements.workforce" type="text"
-                value="{{data.system.workforce}}" />
+                value="{{data.system.requirements.workforce}}" />
             
             </div>
             <div class="stuff flex-col span-2">{{localize 'twdu.items'}}

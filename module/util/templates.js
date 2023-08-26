@@ -33,7 +33,13 @@ export const preloadHandlebarsTemplates = async function () {
     //chat templates
     "systems/twdu/templates/ui/threat-level-display.html",
     "systems/twdu/templates/chat/chatWeapon.hbs",
-    "systems/twdu/templates/chat/chatArmor.hbs"
+    "systems/twdu/templates/chat/chatArmor.hbs",
+    "systems/twdu/templates/chat/chatGear.hbs",
+    "systems/twdu/templates/chat/chatSimpleItem.hbs",
+    "systems/twdu/templates/chat/chatTalent.hbs",
+    "systems/twdu/templates/chat/chatInjury.hbs",
+    "systems/twdu/templates/chat/chatProject.hbs",
+    "systems/twdu/templates/chat/chatVehicle.hbs",
   ];
 
   // Load the template parts
