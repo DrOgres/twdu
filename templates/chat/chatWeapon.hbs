@@ -1,12 +1,12 @@
 <div class="card-holder flex-row w-100" style="position: relative;">
-    <div class="roll-token">
+    <div class="roll-token m-0 p-1 group header">
         <img src={{token}} width="45" />
     </div>
-    <div class="chat-card grow p-1" data-owner-id="{{user}}">
-        <div class='chat-flavor'> {{name}} {{token}}
-        </div>
-        <div class='flex-row center'>
-            <img src={{img}} width=50 height=50 />
+    <div class="chat-card grow p-1 group" data-owner-id="{{user}}">
+        <h3 class='chat-flavor'> {{name}} 
+        </h3>
+        <div class='flex-row center group'>
+            <img src={{img}} height=50 />
         </div>
         <div class='chat-item-info grid two-col justify'>
             <b>{{localize "twdu.damage"}}:</b> {{system.damage}}</br>

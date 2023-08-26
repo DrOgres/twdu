@@ -1,5 +1,5 @@
 <div class="card-holder flex-row w-100" style="position: relative;">
-  <div class="roll-token">
+  <div class="roll-token m-0 p-1 header group">
     {{#if roll.options.token}}
     <img src="{{roll.options.token}}" width="45" class="roll-token" />
     {{/if}}
@@ -8,10 +8,10 @@
     {{/unless}}
   </div>
   {{#unless (eq roll.options.formula undefined)}}
-  <div class="chat-card grow p-1" data-owner-id="{{roll.options.owner}}">
+  <div class="chat-card grow" data-owner-id="{{roll.options.owner}}">
     <div class="card-content borderimg">
       {{#if (gt roll.panic 0)}}
-      <div class="walker center walker">You Messed Up!</div>
+      <div class="walker center walker header group p-1">{{localize 'twdu.ui.messedUp'}}!</div>
       {{/if}}
       <div class="dice-roll">
         {{#if flavor}}
