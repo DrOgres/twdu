@@ -13,6 +13,8 @@ export function prepareRollDialog(options) {
   // attName - the name of the attribute being used
   // skillName - the name of the skill being used
 
+  //TODO style the dialog
+
   let actor = options.sheet.object;
 
   let criticals = parseCriticalInjuries(actor);

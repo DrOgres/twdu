@@ -235,10 +235,10 @@
         &#43;</a></h2>
     {{#each items as |item|}}
     {{#if item.isTinyItem}}
-    <div class="tiny item flex-row border-bottom middle" data-item-id="{{item._id}}">
+    <div class="tiny item grid col-25p-fr-auto border-bottom middle" data-item-id="{{item._id}}">
       <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
           height="25" /></span>
-      <span class="name">{{item.name}}</span>
+      <span class="name  show-details justify-self-start">{{item.name}}</span>
       <div class="button pi-1 grow text-right">
         <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
         <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>

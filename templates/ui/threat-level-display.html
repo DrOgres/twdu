@@ -1,14 +1,15 @@
-<div class="twdu threat-level-display w-100 pi-1">
-    <div class="group w-100">
-  <h3 class="header m-0 center">{{localize "twdu.threatLevel"}}</h3>
-</div>
-  <div class="flex-row group w-100">
+<div class="twdu threat-level-display w-100 pi-1 m-0 align-self-center">
+    
+  <div class="flex-row center w-100">
     {{#if gm}}
-    <button class="threat-level-down">-</button>
+    <h1><a class="threat-level-down middle grow text-center group m-1 ds-1"><i class="fas fa-minus" title="Minus"></i></a></h1>
     {{/if}}
-    <span class="threat-count">{{threatLevel}}</span>
+  
+    <img class="threat-icon" src="systems/twdu/assets/images/threat_meter/threat_{{threatLevel}}.png" width="150px"/>
+
+
     {{#if gm}}
-    <button class="threat-level-up">+</button>
+    <h1><a class="threat-level-up middle grow text-center group m-1 ds-1"><i class="fas fa-plus" title="Plus"></i></a></h1>
     {{/if}}
   </div>
 </div>

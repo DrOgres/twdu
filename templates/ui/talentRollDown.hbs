@@ -1,0 +1,12 @@
+<div class='item-desc'>
+    <b>{{localize 'twdu.prerequisite'}}</b>: {{system.prerequisite}} <br>
+    <b>{{localize 'twdu.description'}}:</b>
+    {{system.description}} <br>
+    {{#if system.hasBonus}}
+    <b>{{localize 'twdu.bonusType'}}:</b> {{localize system.bonusType}} <br>
+    <b>{{localize 'twdu.bonus'}}:</b> {{system.bonus}} <br>
+    {{#if (eq system.bonusType 'twdu.skill')}}
+    <b>{{localize 'twdu.skill'}}:</b> {{localize system.skill}} <br>
+    {{/if}}
+    {{/if}}
+</div>

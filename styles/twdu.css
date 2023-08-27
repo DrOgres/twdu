@@ -189,6 +189,14 @@ optgroup {
   border-radius: 0;
 }
 
+.ds-1 {
+  box-shadow: 0.25rem 0.25rem 0 hsla(36, 11%, 43%, 0.5);
+}
+
+.ds-1:hover {
+  box-shadow: 0.125rem 0.125rem 0 hsla(36, 11%, 43%, 0.5);
+}
+
 .grid {
   display: grid;
 }
@@ -251,6 +259,14 @@ optgroup {
   grid-template-columns: auto 1fr 1fr;
 }
 
+.col-25p-fr-auto {
+  grid-template-columns: 30px 1fr auto;
+}
+
+.col-25p-auto-fr-auto {
+  grid-template-columns: 30px auto 1fr auto;
+}
+
 .fit-content-rows {
   grid-auto-rows: minmax(min-content, max-content);
 }
@@ -273,6 +289,18 @@ optgroup {
 
 .span-4 {
   grid-column: span 4;
+}
+
+.span-5 {
+  grid-column: span 5;
+}
+
+.span-6 {
+  grid-column: span 6;
+}
+
+.span-7 {
+  grid-column: span 7;
 }
 
 .gap-sm {
@@ -867,4 +895,8 @@ optgroup {
   content: "";
   position: absolute;
   display: none;
+}
+
+.color-h0 {
+  color: hsl(57, 15%, 6%) !important;
 }/*# sourceMappingURL=twdu.css.map */

@@ -1,0 +1,17 @@
+<p class='item-desc'>
+    <b>{{localize "twdu.lethal"}}: </b>{{#if system.fatal}}
+    {{localize "twdu.yes"}}
+    {{/if}}
+    {{#unless system.fatal}}
+    {{localize "twdu.no"}}
+    {{/unless}}
+    </br>
+    <b>{{localize "twdu.timeLimit"}}:</b> {{localize system.timeLimit}} ( {{system.complexity}} )</br>
+
+    <b>{{localize "twdu.recoveryTime"}}:</b> {{localize system.recovery}} </br>
+    <b>{{localize "twdu.penalty"}}: </b>{{system.effect}} </br>
+
+<div class='chat-item-info grid two-col'>
+    <b>{{localize "twdu.description"}}: </b>{{system.description}}</br>
+</div>
+</p>

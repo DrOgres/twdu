@@ -92,14 +92,13 @@ export class ThreatLevelDisplay extends Application {
       template: "/systems/twdu/templates/ui/threat-level-display.html",
       top: 100,
       left: 120,
-      height: 120,
-      width: 200,
+      height: 200,
+      width: 275,
       zIndex: 100,
       popOut: true,
       resizable: false,
       minimizable: false,
       title: "Threat Level",
-      background: "#000000",
     });
   }
 

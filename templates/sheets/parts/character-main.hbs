@@ -89,11 +89,12 @@
     <div class="gear p-1 border-bottom">
       <h4 class="border-bottom m-0 pi-2 subsubheader">Gear</h4>
       <div class="flex-col">
-        <div class="group-header grid six-col center pi-1">
+        <div class="group-header grid seven-col center pi-1">
           <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
           <span class="group-name">{{localize 'twdu.name'}}</span>
           <span class="group-weight">{{localize 'twdu.weight'}}</span>
           <span class="bonus">{{localize 'twdu.bonus'}}</span>
+          <span class="group-skill justify-self-center">{{localize 'twdu.skill'}}</span>
           <span class="eq-store">{{localize 'twdu.store'}}</span>
           <span class="buttons justiify-self-end">&nbsp;</span>
         </div>
@@ -102,11 +103,12 @@
         {{#each items as |item|}}
         {{#if item.isGear}}
         {{#if item.system.isEquipped}}
-        <div class="item gear grid six-col center" data-item-id="{{item._id}}">
+        <div class="item gear grid seven-col center" data-item-id="{{item._id}}">
           <img class="justify-self-start" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
           <div class="name show-details">{{item.name}}</div>
           <div class="protection">{{item.system.weight}}</div>
           <div class="bonus">{{item.system.bonus}}</div>
+          <div class="skill justify-self-center">{{localize item.system.skill}}</div>
           <a class="item-control equip-toggle equip " title='{{localize  "twdu.ui.store"}}'><i
                 class="fa-solid fa-box-open"></i></a>
           <div class="button justify-self-end middle">

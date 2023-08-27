@@ -3,9 +3,6 @@ import { prepareRollDialog } from "../util/roll.js";
 import { twdu } from "../config.js";
 
 export default class TWDUActorSheet extends ActorSheet {
-
-  
-
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
@@ -18,7 +15,7 @@ export default class TWDUActorSheet extends ActorSheet {
           contentSelector: ".sheet-body",
           initial: "main",
         },
-      ]
+      ],
     });
   }
 
@@ -84,11 +81,6 @@ export default class TWDUActorSheet extends ActorSheet {
 
     return context;
   }
-
-
-
-
- 
 
   calculatePopulation(context) {
     let maxpop = 0;
@@ -180,9 +172,72 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".show-details").click(this._onShowDetails.bind(this));
   }
 
-  _onShowDetails(event) {
+  async _onShowDetails(event) {
     event.preventDefault();
     console.log("TWDU | _onShowDetails: ", event);
+    let div = $(event.currentTarget).parents(".item"),
+      item = this.actor.items.get(div.data("itemId")),
+      chatData = null,
+      sum = "",
+      actorType = this.actor.type;
+
+    console.log("TWDU | item: ", item);
+
+    console.log("TWDU | _onShowDetails: ", actorType);
+
+    //TODO check for actor type if haven use a different template
+    switch (item.type) {
+      case "weapon":
+      case "armor":
+      case "gear":
+      case "tinyItem":
+      case "issue":
+        await renderTemplate(
+          "systems/twdu/templates/ui/description.hbs",
+          item
+        ).then((html) => {
+          chatData = html;
+        });
+        console.log("TWDU | chatData: ", chatData);
+        sum = $(
+          `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
+        );
+        break;
+      case "talent":
+        await renderTemplate(
+          "systems/twdu/templates/ui/talentRollDown.hbs",
+          item
+        ).then((html) => {
+          chatData = html;
+        });
+        console.log("TWDU | chatData: ", chatData);
+        sum = $(
+          `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
+        );
+        break;
+      case "criticalInjury":
+        console.log("TWDU | criticalInjury: ", item);
+        await renderTemplate(
+          "systems/twdu/templates/ui/criticalRollDown.hbs", item).then((html) => {
+          chatData = html;
+        });
+        console.log("TWDU | chatData: ", chatData);
+        sum = $(
+          `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
+        );
+        break;
+    }
+
+    if (chatData === null) {
+      return;
+    } else if (div.hasClass("expanded")) {
+      sum = div.children(".item-summary");
+      sum.slideUp(200, () => sum.remove());
+    } else {
+      div.append(sum.hide());
+      sum.slideDown(200);
+    }
+    div.toggleClass("expanded");
   }
 
   _onRoll(event) {
@@ -190,9 +245,7 @@ export default class TWDUActorSheet extends ActorSheet {
     let actor = this.actor;
     let health = actor.system.health.value;
     if (health < 1) {
-      ui.notifications.warn(
-        game.i18n.localize("twdu.ui.cantRollWhenBroken")
-      );
+      ui.notifications.warn(game.i18n.localize("twdu.ui.cantRollWhenBroken"));
       return;
     }
     let target = event.currentTarget;
@@ -310,7 +363,6 @@ export default class TWDUActorSheet extends ActorSheet {
     const item = this.actor.items.get(div.data("itemId"));
     let type = item.type;
     buildChatCard(type, item);
- 
   }
 
   _onItemEdit(event) {
