@@ -231,8 +231,19 @@
   display: none;
 }
 
+.sidebar-dark{
+  background-color: transparent;
+  background-image: url('/systems/twdu/assets/images/sidebar_bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin: -8px;
+  color: white;
+}
+
  // hardset color
 
  .color-h0{
    color: $header-0 !important; 
  }
+

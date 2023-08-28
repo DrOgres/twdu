@@ -2,26 +2,31 @@
     <div class="roll-token">
         <img src={{token}} width="45" class="roll-token" />
     </div>
-    <div class='chat-flavor'>{{name}} </div>
-    <div class='flex row center'>
-        <img src={{img}} width=50 height=50 />
-    </div>
-    <div class='chat-item-info grid two-col'>
+    <div class="flex-col w-100">
+        <div class='chat-flavor text-center header'>{{name}} </div>
+        <div class='flex row center group pi-1 mi-1'>
+            <img src={{img}} width=50 height=50 />
+        </div>
+        <div class='chat-item-info grid pi-1 w-100'>
+            <div class="grid col-70-30 group subheader middle">
+                <div class="justify-self-start pi-1"> {{localize "twdu.lethal"}}: </div>
+                <div class="border-left justify-self-center pi-1 w-100">
+                    {{#if system.fatal}}
+                    {{localize "twdu.yes"}}
+                    {{/if}}
+                    {{#unless system.fatal}}
+                    {{localize "twdu.no"}}
+                    {{/unless}}
+                </div>
+            </div>
+            <b>{{localize "twdu.timeLimit"}}:</b> {{localize system.timeLimit}} {{system.complexity}}</br>
 
-        <b>{{localize "twdu.lethal"}}: </b>{{#if system.fatal}}
-        {{localize "twdu.yes"}}
-        {{/if}}
-        {{#unless system.fatal}}
-        {{localize "twdu.no"}}
-        {{/unless}}
-        </br>
-        <b>{{localize "twdu.timeLimit"}}:</b> {{localize system.timeLimit}} {{system.complexity}}</br>
+            <b>{{localize "twdu.recoveryTime"}}:</b> {{localize system.recovery}} </br>
+            <b>{{localize "twdu.penalty"}}: </b>{{system.effect}} </br>
 
-        <b>{{localize "twdu.recoveryTime"}}:</b> {{localize system.recovery}} </br>
-        <b>{{localize "twdu.penalty"}}: </b>{{system.effect}} </br>
-
-        <div class='chat-item-info grid two-col'>
-            <b>{{localize "twdu.description"}}: </b>{{system.description}}</br>
+            <div class='chat-item-info grid two-col'>
+                <b>{{localize "twdu.description"}}: </b>{{system.description}}</br>
+            </div>
         </div>
     </div>
 </div>

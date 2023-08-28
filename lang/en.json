@@ -138,9 +138,13 @@
         "ui.edit": "Edit",
         "ui.wrongItemType": "\"{type}\" items cannot be added to a {actor}!",
         "ui.cantRollWhenBroken": "You cannot roll when broken!",
-        "ui.messedUp": "YOu Messed Up!",
+        "ui.messedUp": "You Messed Up!",
+        "ui.subtotal": "Subtotal",
+        "ui.skillDice": "Skill Dice",
+        "ui.stressDice": "Stress Dice",
 
         "threatLevel": "Threat Level",
+
 
         "CHAT.SUCCESS": "Successes",
         "ROLL.BASE.POOL": "Base Dice Pool",
@@ -151,7 +155,7 @@
         "ROLL.SKILL": "Skill",
         "ROLL.PREC": "Physical Recovery",
         "ROLL.MREC": "Mental Recovery",
-        "ROLL.BONUS": "Bonus Dice",
+        "ROLL.BONUS": "Add Bonus Dice",
         "ROLL.STRESS": "Stress Dice",
         "ROLL.DAMAGE": "Damage",
         "ROLL.GEAR": "Use Gear",

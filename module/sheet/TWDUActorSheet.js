@@ -269,9 +269,9 @@ export default class TWDUActorSheet extends ActorSheet {
     switch (key) {
       case "attribute":
         {
-          options.attName = target.dataset.attribute;
+          options.attName = "twdu."+ this.actor.system.attributes[target.dataset.attribute].label;
           options.attributeDefault =
-            this.actor.system.attributes[options.attName].value;
+            this.actor.system.attributes[target.dataset.attribute].value;
         }
         break;
       case "skill":
@@ -298,10 +298,11 @@ export default class TWDUActorSheet extends ActorSheet {
             options.skillDefault =
               this.actor.system.skills[target.dataset.skill].value;
             // get the attribute for the skill and set the default and name
-            options.attName =
-              this.actor.system.skills[target.dataset.skill].attribute;
+           
+            let abv = this.actor.system.skills[target.dataset.skill].attribute;
+            options.attName = "twdu."+ this.actor.system.attributes[abv].label;
             options.attributeDefault =
-              this.actor.system.attributes[options.attName].value;
+              this.actor.system.attributes[abv].value;
           }
         }
         break;
@@ -332,9 +333,10 @@ export default class TWDUActorSheet extends ActorSheet {
             }
           }
           if (options.actorType === "character") {
-            options.attName = this.actor.system.skills[skill].attribute;
+            let abv = this.actor.system.skills[skill].attribute;
+            options.attName = "twdu."+ this.actor.system.attributes[abv].label;
             options.attributeDefault =
-              this.actor.system.attributes[options.attName].value;
+              this.actor.system.attributes[abv].value;
           }
           options.damageDefault = item.system.damage;
           console.log("TWDU | damageDefault: ", options.damageDefault);

@@ -158,3 +158,105 @@ optgroup {
 .ds-1:hover {
     box-shadow:  .125rem .125rem 0 $header-bg-1;
 }
+
+.roll-fields{
+
+   p{
+       margin: 0px;
+    }
+
+    .border-bottom{
+        border-bottom: 2px dotted $white;
+        border-image: none;
+    }
+
+    h2{
+        margin: 0px;
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+        color: $white;
+        font-family: 'Ash', sans-serif;
+        font-size: 1.5rem;
+        font-weight: normal;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    h4{
+        margin: 0;
+        margin-bottom: .2rem;
+    }
+
+    select {
+        border: 1px solid white;
+        border-radius: 0;
+        font-family: 'Nu Gothic', sans-serif;
+        color: white;
+    }
+
+    select:focus {
+        box-shadow: 0 0 5px $highlight-2;
+    }
+
+    .subheader{
+        background-color: transparent;
+    }
+
+    .subtotal{
+        background-color: $header-bg-3;
+        color: $white;
+       
+    }
+
+    input[type="text"] {
+        border-radius: 0;
+        border: none;
+        border-bottom: 2px solid $header-1;
+        border-image: url('/systems/twdu/assets/images/white_box_not_checked.png') 10 stretch;
+        background-color: transparent;
+        color: white;
+        margin-bottom: 1rem;
+      
+        &:hover {
+            cursor: pointer;
+        }
+    
+        &.box{
+            min-width: 50px;
+            border: 2px solid $highlight-2;
+            border-image: url('/systems/twdu/assets/images/white_box_not_checked.png') 10 stretch;
+        }
+    }
+
+    
+    .group{
+        border: 2px solid  white;
+        border-image: url('/systems/twdu/assets/images/white_box_not_checked.png') 10 repeat;
+      }
+
+   
+
+}
+
+.dialog .dialog-buttons button.default,
+.dialog .dialog-buttons button  {
+    background: $neutral-3;
+    box-shadow:  .25rem .25rem 0 $header-bg-1;
+    color: $header-1;
+    border-radius: 0;
+    border: 1px solid $highlight-1
+}
+
+button, .dialog-buttons{
+    background: $neutral-3;
+    box-shadow:  .25rem .25rem 0 $header-bg-1;
+    color: $header-1;
+    border-radius: 0;
+    border: 1px solid $highlight-1
+}
+
+.dialog-buttons button:hover, .dialog-buttons button.default:hover {
+    box-shadow:  .125rem .125rem 0 $header-bg-1;
+    background-color: $neutral-2;
+    
+}

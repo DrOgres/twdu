@@ -23,7 +23,7 @@ export function prepareRollDialog(options) {
   let talents = actor.items.filter(
     (item) => item.type === "talent" && item.system.hasBonus
   );
-  
+
   let stressDice = 0;
   if (actor.type === "character") {
     stressDice = actor.system.stress.value;
@@ -31,13 +31,13 @@ export function prepareRollDialog(options) {
 
   let dialogHtml = "";
   if (options.type === "weapon") {
-    if(options.attName){
-    dialogHtml = buildHTMLDialog(
-      options.attName,
-      options.attributeDefault,
-      "attribute"
-    );
-    };
+    if (options.attName) {
+      dialogHtml = buildHTMLDialog(
+        game.i18n.localize(options.attName),
+        options.attributeDefault,
+        "attribute"
+      );
+    }
     dialogHtml += buildHTMLDialog(
       options.skillName,
       options.skillDefault,
@@ -66,12 +66,12 @@ export function prepareRollDialog(options) {
       }
     }
 
-    if(actor.type === "character" && stressDice > 0){
-    dialogHtml += buildHTMLDialog(
-      game.i18n.localize("twdu.ROLL.STRESS"),
-      stressDice,
-      "stress"
-    );
+    if (actor.type === "character" && stressDice > 0) {
+      dialogHtml += buildHTMLDialog(
+        game.i18n.localize("twdu.ROLL.STRESS"),
+        stressDice,
+        "stress"
+      );
     }
   }
   if (options.type === "attribute") {
@@ -81,18 +81,18 @@ export function prepareRollDialog(options) {
       "attribute"
     );
 
-    if(actor.type === "character" && stressDice > 0){
-    dialogHtml += buildHTMLDialog(
-      game.i18n.localize("twdu.ROLL.STRESS"),
-      stressDice,
-      "stress"
-    );
+    if (actor.type === "character" && stressDice > 0) {
+      dialogHtml += buildHTMLDialog(
+        game.i18n.localize("twdu.ROLL.STRESS"),
+        stressDice,
+        "stress"
+      );
     }
   }
   if (options.type === "skill") {
     if (options.attName) {
       dialogHtml = buildHTMLDialog(
-        options.attName,
+        game.i18n.localize(options.attName),
         options.attributeDefault,
         "attribute"
       );
@@ -140,6 +140,13 @@ export function prepareRollDialog(options) {
   }
 
   //TODO add a summary of the dice pool thus far to the dialog
+  let subtotal =
+    (options.attributeDefault || 0) +
+    (options.skillDefault || 0) +
+    (options.armorPenalty || 0) +
+    (options.criticalPenalty || 0);
+  console.log("TWDU | subtotal: ", subtotal);
+  dialogHtml += buildSubTotalDialog(subtotal, stressDice);
 
   if (options.type === "skill") {
     let gear = actor.items.filter(
@@ -179,7 +186,7 @@ export function prepareRollDialog(options) {
       title: game.i18n.localize("twdu.ROLL.TEST") + ": " + options.testName,
       content: buildDivHtmlDialog(
         `
-            <div class="roll-fields">
+            <div class="roll-fields pi-8 mb-1">
             <h2>` +
           game.i18n.localize("twdu.ROLL.TEST") +
           ": " +
@@ -237,7 +244,7 @@ export function prepareRollDialog(options) {
               parseInt(bonus, 10),
               parseInt(damage, 10),
               options.armorPenalty,
-              options.criticalPenalty,
+              critPenalty,
               gearBonus,
               talentBonus
             );
@@ -371,6 +378,24 @@ async function rollDice(sheet, numberOfDice) {
   sheet.roll = r.duplicate();
 }
 
+function buildSubTotalDialog(basevalue, stressvalue) {
+  return (
+    ` <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">
+       <h4 >` +
+    game.i18n.localize("twdu.ui.subtotal") +
+    `: </h4>
+      <div id="subtotal" style="text-align: center" class="flex-row space-between middle w-100 pi-2"><div>` +
+    game.i18n.localize("twdu.ui.skillDice") + `</div><div class="grow text-right pi-4 border-bottom">` +
+    basevalue +
+    `</div></div>
+    <div id="subtotal" style="text-align: center" class="flex-row space-between middle w-100 pi-2"><div>` +
+    game.i18n.localize("twdu.ui.stressDice") + `</div><div class="grow text-right pi-4 border-bottom">` +
+    stressvalue +
+    `</div></div>
+    </div>`
+  );
+}
+
 function buildInputDialog(name, value, type) {
   return (
     `
@@ -389,7 +414,7 @@ function buildInputDialog(name, value, type) {
 function buildSelectDialog(name, value, type) {
   console.log("TWDU | buildSelectDialog: ", name, value, type);
 
-  // parse out the value to get the <optionm> tags for the select
+  // parse out the value to get the <option> tags for the select
   let options = "";
   for (let i = 0; i < value.length; i++) {
     let item = value[i];
@@ -407,9 +432,9 @@ function buildSelectDialog(name, value, type) {
 
   return (
     `<div >
-   <h4 class="header">` +
+   <div class="subheader">` +
     name +
-    `</h4>
+    `</div>
    <select id="` +
     type +
     `" style="width: 100%; margin-bottom: 10px;"> 
@@ -425,21 +450,18 @@ function buildSelectDialog(name, value, type) {
 function buildHTMLDialog(diceName, diceValue, type) {
   return (
     `
-    <h4 class="header">` +
-    type +
-    `</h4>
-    <div class="flex-row" style="flex-basis: 35%; justify-content: space-between;">
-       <p style="text-transform: capitalize; white-space:nowrap;">` +
+    <div class="flex-row " style="flex-basis: 35%; justify-content: space-between;">
+    <h4 class="subheader middle">` +
     diceName +
-    `: </p>
+    ` : &nbsp;</h4>
       <p id="` +
     type +
-    `" style="text-align: center">` +
+    `" style="text-align: right" class="grow pi-2 border-bottom">` +
     diceValue +
     `</p></div>`
   );
 }
 
 function buildDivHtmlDialog(divContent) {
-  return "<div class='twdu roll-dialog '>" + divContent + "</div>";
+  return "<div class='twdu roll-dialog sidebar-dark'>" + divContent + "</div>";
 }
