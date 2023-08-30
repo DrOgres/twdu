@@ -35,6 +35,6 @@
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "stress",
     "manifest": "https://github.com/drogres/twdu/releases/latest/download/module.json",
-    "download": "https://github.com/drogres/twdu/releases/download/0.0.1/twdu.zip"
+    "download": "https://github.com/drogres/twdu/releases/download/0.0.1/system.zip"
   }
   
