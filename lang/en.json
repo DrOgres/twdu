@@ -163,7 +163,7 @@
         "ROLL.TALENT": "Use Talent"
     },
     "YZUR": {
-        "DIETERMS.SkillDie": "Skill Dice",
-        "DIETERMS.StressDie": "Stress Dice"
+        "DIETERMS.SkillDie": "Skill Dice Successes",
+        "DIETERMS.StressDie": "Stress Dice Successes"
     }
 }

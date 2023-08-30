@@ -321,8 +321,24 @@ button, .dialog-buttons {
   grid-template-columns: repeat(7, 1fr);
 }
 
+.col-10-90 {
+  grid-template-columns: 10% 90%;
+}
+
+.col-20-80 {
+  grid-template-columns: 20% 80%;
+}
+
+.col-30-70 {
+  grid-template-columns: 30% 70%;
+}
+
 .col-40-60 {
   grid-template-columns: 40% 60%;
+}
+
+.col-50-50 {
+  grid-template-columns: 50% 50%;
 }
 
 .col-60-40 {
@@ -1007,4 +1023,11 @@ button, .dialog-buttons {
 
 .color-h0 {
   color: hsl(57, 15%, 6%) !important;
+}
+
+:root {
+  --color-shadow-primary: hsla(353, 45%, 40%, 0.7);
+  --color-shadow-highlight: hsl(353, 53%, 65%);
+  --color-border-highlight-alt: hsl(353, 53%, 40%);
+  --color-border-highlight: hsl(353, 53%, 30%);
 }/*# sourceMappingURL=twdu.css.map */

@@ -8,16 +8,16 @@
     {{/unless}}
   </div>
   {{#unless (eq roll.options.formula undefined)}}
-  <div class="chat-card grow" data-owner-id="{{roll.options.owner}}">
-    <div class="card-content borderimg">
+  <div class="chat-card grow m-0 pi-1" data-owner-id="{{roll.options.owner}}">
+    <div class="card-content group">
       {{#if (gt roll.panic 0)}}
-      <div class="walker center walker header group p-1">{{localize 'twdu.ui.messedUp'}}!</div>
+      <div class="walker center walker header p-1">{{localize 'twdu.ui.messedUp'}}!</div>
       {{/if}}
       <div class="dice-roll">
         {{#if flavor}}
-        <div class="dice-flavor">{{flavor}}</div>
+        <div class="text-center header border-bottom">{{flavor}}</div>
         {{/if}}
-        <div class="dice-result">
+        <div class="dice-result m-1 p-1">
           <div class="dice-formula">{{formula}}</div>
           {{{tooltip}}}
 
@@ -49,10 +49,10 @@
   </div>
   {{/unless}}
   {{#if (eq roll.options.formula undefined)}}
-  <div class="chat-card grow p-1" data-owner-id="{{roll.options.owner}}">
+  <div class="chat-card grow mi-1 p-1 group " data-owner-id="{{roll.options.owner}}">
     <div class="dice-roll">
 
-      <div class="dice-result">
+      <div class="dice-result m-1 p-1">
         <div class="dice-formula">{{formula}}</div>
         <div class="dice-tooltip expanded">
 

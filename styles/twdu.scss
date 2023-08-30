@@ -8,3 +8,11 @@
 @use './scss/components' as *;
 // @use './scss/pages';
 // @use './scss/themes';
+
+
+:root {
+--color-shadow-primary: hsla(353, 45%, 40%, 0.7);
+--color-shadow-highlight: hsl(353, 53%, 65%);
+--color-border-highlight-alt: hsl(353, 53%, 40%);
+--color-border-highlight: hsl(353, 53%, 30%);
+}

@@ -1,21 +1,68 @@
 <div class="card-holder flex-row w-100" style="position: relative;">
     <div class="roll-token m-0 p-1 group header">
-        <img src={{token}} width="45" />
+        <img src={{token}} width="45" class="roll-token" />
     </div>
-    <div class="chat-card grow p-1 group" data-owner-id="{{user}}">
-        <h3 class='chat-flavor'> {{name}} 
-        </h3>
-        <div class='flex-row center group'>
-            <img src={{img}} height=50 />
+    <div class="flex-col w-100">
+        <div class='chat-flavor text-center header mi-1 group'>
+            {{name}}
         </div>
-        <div class='chat-item-info grid two-col justify'>
-            <b>{{localize "twdu.damage"}}:</b> {{system.damage}}</br>
+        <div class='flex-row center group pi-1 mi-1'>
+            <img src={{img}} width=50 height=50 />
+        </div>
+        <div class='chat-item-info grid pi-1 w-100'>
+
+            <div class="grid col-50-50 group subheader middle">
+                <div class="justify-self-start pi-1">
+                    {{localize "twdu.damage"}}
+                </div>
+                <div class="border-left justify-self-center pi-1 w-100">
+                    {{system.damage}}
+                </div>
+            </div>
             {{#if syste.range}}
-            <b>{{localize "twdu.range"}}: </b>{{system.range}}</br>
+            <div class="grid col-50-50 group subheader middle">
+                <div class="justify-self-start pi-1">
+                    {{localize "twdu.range"}}
+                </div>
+                <div class="border-left justify-self-center pi-1 w-100">
+                    {{system.range}}
+                </div>
+            </div>
+
             {{/if}}
-            <b>{{localize 'twdu.bonus'}}: </b> {{system.bonus}}</br>
-            <b>{{localize 'twdu.encSlots'}}: </b>{{system.weight}}</br>
-            <b>{{localize 'twdu.skill'}}: </b>{{localize system.skill}}</br>
+
+            <div class="grid col-50-50 group subheader middle">
+                <div class="justify-self-start pi-1">
+                    {{localize 'twdu.bonus'}}
+                </div>
+                <div class="border-left justify-self-center pi-1 w-100">
+                    {{system.bonus}}
+                </div>
+            </div>
+
+            <div class="grid col-50-50 group subheader middle">
+                <div class="justify-self-start pi-1">
+                    {{localize 'twdu.encSlots'}}
+                </div>
+                <div class="border-left justify-self-center pi-1 w-100">
+                    {{system.weight}}
+                </div>
+            </div>
+            <div class="grid col-50-50 group subheader middle">
+                <div class="justify-self-start pi-1">
+                    {{localize 'twdu.skill'}}
+                </div>
+                <div class="border-left justify-self-center pi-1 w-100">
+                    {{localize system.skill}}
+                </div>
+            </div>
+
+            <div class="flex-col group middle">
+                <div class="justify-self-start pi-1 subheader w-100 text-center border-bottom">{{localize
+                    'twdu.description'}}</div>
+                <div class=" justify-self-center pi-1">{{system.description}}</div>
+            </div>
+
         </div>
     </div>
-</div>`
+</div>
