@@ -17,7 +17,7 @@
           <div class="span-2 grid-align-end w-100 group">
             <h2 class="subheader">{{localize "twdu.description"}}</h2>
             <div class="full-size">
-              {{editor gearNotesHTML target="system.description" button=true owner=owner editable=editable }}
+              <textarea name="system.description">{{data.system.description}}</textarea>
             </div>
           </div>
           <div class="flex-row justify middle group">
