@@ -44,28 +44,28 @@ export function prepareRollDialog(options) {
       "skill"
     );
     dialogHtml += buildHTMLDialog(
-      game.i18n.localize("twdu.ROLL.DAMAGE"),
-      options.damageDefault,
-      "damage"
+      options.weaponName,
+      options.weaponBonusDefault,
+      "weaponBonus"
     );
+    // dialogHtml += buildHTMLDialog(
+    //   game.i18n.localize("twdu.ROLL.DAMAGE"),
+    //   options.damageDefault,
+    //   "damage"
+    // );
 
     // add damage bonus from talents
 
-    if (options.type === "weapon") {
-      let damageTalents = talents.filter(
-        (item) => item.system.bonusType === "twdu.damage"
+   
+
+     // add a field to show the critical penalty if there is one
+     if (criticals > 0) {
+      dialogHtml += buildHTMLDialog(
+        game.i18n.localize("twdu.ROLL.CRITICAL"),
+        options.criticalPenalty,
+        "critical"
       );
-
-      if (damageTalents.length > 0) {
-        // build a select dialog for the talents that we found
-        dialogHtml += buildSelectDialog(
-          game.i18n.localize("twdu.ROLL.TALENT"),
-          damageTalents,
-          "damageTalent"
-        );
-      }
     }
-
     if (actor.type === "character" && stressDice > 0) {
       dialogHtml += buildHTMLDialog(
         game.i18n.localize("twdu.ROLL.STRESS"),
@@ -74,12 +74,23 @@ export function prepareRollDialog(options) {
       );
     }
   }
+
+  
   if (options.type === "attribute") {
     dialogHtml = buildHTMLDialog(
       options.attName,
       options.attributeDefault,
       "attribute"
     );
+
+     // add a field to show the critical penalty if there is one
+     if (criticals > 0) {
+      dialogHtml += buildHTMLDialog(
+        game.i18n.localize("twdu.ROLL.CRITICAL"),
+        options.criticalPenalty,
+        "critical"
+      );
+    }
 
     if (actor.type === "character" && stressDice > 0) {
       dialogHtml += buildHTMLDialog(
@@ -139,14 +150,33 @@ export function prepareRollDialog(options) {
     );
   }
 
-  //TODO add a summary of the dice pool thus far to the dialog
+  //TODO add a summary of the dice pool thus far to the dialog unless this is armor
+  if (options.type !== "armor"){
   let subtotal =
     (options.attributeDefault || 0) +
     (options.skillDefault || 0) +
+    (options.weaponBonusDefault || 0) +
     (options.armorPenalty || 0) +
     (options.criticalPenalty || 0);
+    console.log("TWDU | options: ", options);
   console.log("TWDU | subtotal: ", subtotal);
   dialogHtml += buildSubTotalDialog(subtotal, stressDice);
+  }
+
+  if (options.type === "weapon") {
+    let damageTalents = talents.filter(
+      (item) => item.system.bonusType === "twdu.damage"
+    );
+
+    if (damageTalents.length > 0) {
+      // build a select dialog for the talents that we found
+      dialogHtml += buildSelectDialog(
+        game.i18n.localize("twdu.ROLL.TALENT"),
+        damageTalents,
+        "damageTalent"
+      );
+    }
+  }
 
   if (options.type === "skill") {
     let gear = actor.items.filter(
@@ -205,6 +235,7 @@ export function prepareRollDialog(options) {
             let attribute = options.attributeDefault;
             let skill = options.skillDefault;
             let bonus = html.find("#bonus")[0].value;
+            let weaponBonus = options.weaponBonusDefault;
             let damage = options.damageDefault;
             let critPenalty = options.criticalPenalty;
 
@@ -237,16 +268,19 @@ export function prepareRollDialog(options) {
             }
 
             roll(
+              options.type,
               options.sheet,
               options.testName,
               parseInt(attribute, 10),
               parseInt(skill, 10),
               parseInt(bonus, 10),
+              parseInt(weaponBonus, 10),
               parseInt(damage, 10),
               options.armorPenalty,
               critPenalty,
               gearBonus,
-              talentBonus
+              talentBonus,
+              parseInt(options.armorDefault, 10)
             );
           },
         },
@@ -277,28 +311,40 @@ function parseCriticalInjuries(actor) {
 }
 
 export function roll(
+  type,
   sheet,
   testName,
   attribute,
   skill,
   bonus,
+  weaponBonus,
   damage,
   armorPenalty,
   criticalPenalty,
-  gearBonus
+  gearBonus,
+  armorBonus
 ) {
+
+  console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, damage, armorPenalty, criticalPenalty, gearBonus);
   // roll the dice
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
   sheet.lastDamage = damage;
-  let dicePool =
+  let dicePool = 0;
+
+  if (type !== "armor") {
+  dicePool =
     attribute +
     skill +
     bonus +
+    (weaponBonus || 0) +
     (armorPenalty || 0) +
     (criticalPenalty || 0) +
     (gearBonus || 0);
-  rollDice(sheet, dicePool);
+  } else {
+    dicePool = armorBonus;
+  }
+  rollDice(type, sheet, dicePool);
 }
 
 Hooks.on("renderChatLog", (app, html, data) => {
@@ -329,12 +375,12 @@ async function _onPush(event) {
   await roll.toMessage();
 }
 
-async function rollDice(sheet, numberOfDice) {
+async function rollDice(type, sheet, numberOfDice) {
   let actor = game.actors.get(sheet.object._id);
   let token = actor.prototypeToken.texture.src;
 
   let stressDice = 0;
-  if (actor.type === "character") {
+  if (actor.type === "character" && type !== "armor") {
     stressDice = actor.system.stress.value;
   }
 

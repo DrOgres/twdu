@@ -45,6 +45,10 @@
         "expert": "Expert",
         "master": "Master",
 
+        "short": "Short",
+        "long": "Long",
+        "extreme": "Extreme",
+
         "headerAttributes": "Attributes & Skills",
         "skill": "Skill",
         "skills": "Skills",
@@ -83,7 +87,7 @@
         
 
         "location": "Location",
-        "protection": "Protection",
+        "protection": "Armor Level",
         "agilityPenalty": "Mobility Penalty",
         "penalty": "Penalty",
         "damage": "Damage",

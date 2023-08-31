@@ -339,6 +339,8 @@ export default class TWDUActorSheet extends ActorSheet {
               this.actor.system.attributes[abv].value;
           }
           options.damageDefault = item.system.damage;
+          options.weaponName = item.name;
+          options.weaponBonusDefault = item.system.bonus;
           console.log("TWDU | damageDefault: ", options.damageDefault);
         }
         break;
@@ -350,6 +352,8 @@ export default class TWDUActorSheet extends ActorSheet {
             (item) => item.type === "armor" && item.system.isEquipped
           );
           options.testName = options.armorItem.name;
+          options.armorName = options.armorItem.name;
+          options.armorDefault = options.armorItem.system.protection;
         }
         break;
     }
