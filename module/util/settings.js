@@ -15,6 +15,8 @@ export const registerGameSettings = function () {
     });
 
 
+    //TODO debug this
+
     game.settings.register("twdu", "threatLevelVisibility", {
         name: game.i18n.localize("twdu.threatDisplay"),
         hint: game.i18n.localize("twdu.threatDisplayHint"),
@@ -31,7 +33,8 @@ export const registerGameSettings = function () {
         scope: 'world',
         config: true,
         default: true,
-        type: Boolean
+        type: Boolean,
+        onChange: debouncedReload,
         });
 
 };

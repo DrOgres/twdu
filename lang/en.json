@@ -132,6 +132,11 @@
         "storedArmor": "Stored Armor",
         "storedVehicles": "Stored Vehicles",
 
+        "threatDisplay": "Show Players Threat Display",
+        "threatDisplayHint": "If this is enabled the Threat Level will be displayed for the players in the Layer Controls.",
+        "prototypeTokenSettings": "Use Recomended Token Settings",
+        "prototypeTokenSettingsHint": "If this is enabled the token settings will be set to the recomended settings for the system.",
+
 
         "ui.icon": "Icon",
         "ui.equip": "Equip Item",
