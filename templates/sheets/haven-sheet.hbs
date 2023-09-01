@@ -19,7 +19,7 @@
                             <input name="system.capacity.value" type="text" value="{{actor.system.capacity.value}}"
                                 placeholder="0" data-dtype="Number" />
                         </div>
-                        <div class="defense group flex-row m-0 p-1 center"> 
+                        <div class="defense group flex-row m-0 p-1 center">
                             <b class="pi-1">{{localize 'twdu.defense'}}</b>
                             <input name="system.defense.value" type="text" value="{{actor.system.defense.value}}"
                                 placeholder="0" data-dtype="Number" />
@@ -31,19 +31,21 @@
                                 'twdu.description'}}
                             </h2>
                             <div class="description scrollable max-h-150p border-left flex-col">
-                                <div class="ovedrall grid col-40-60"> <b class="pi-1 text-align-right">{{localize 'twdu.overall'}}:</b> <input name="system.description.overall"
-                                        type="text" value="{{actor.system.description.overall}}"
+                                <div class="ovedrall grid col-40-60"> <b class="pi-1 text-align-right">{{localize
+                                        'twdu.overall'}}:</b> <input name="system.description.overall" type="text"
+                                        value="{{actor.system.description.overall}}"
                                         placeholder="{{localize 'twdu.overall'}}" /></div>
-                                <div class="structures grid col-40-60"> <b class="pi-1 text-align-right">{{localize 'twdu.structures'}}:</b> <input
-                                        name="system.description.structures" type="text"
+                                <div class="structures grid col-40-60"> <b class="pi-1 text-align-right">{{localize
+                                        'twdu.structures'}}:</b> <input name="system.description.structures" type="text"
                                         value="{{actor.system.description.structures}}"
                                         placeholder="{{localize 'twdu.structures'}}" /></div>
-                                <div class="surroundings grid col-40-60"><b class="pi-1 text-align-right"> {{localize 'twdu.surroundings'}}:</b> <input
-                                        name="system.description.surroundings" type="text"
-                                        value="{{actor.system.description.surroundings}}"
+                                <div class="surroundings grid col-40-60"><b class="pi-1 text-align-right"> {{localize
+                                        'twdu.surroundings'}}:</b> <input name="system.description.surroundings"
+                                        type="text" value="{{actor.system.description.surroundings}}"
                                         placeholder="{{localize 'twdu.surroundings'}}" /></div>
-                                <div class="food grid col-40-60"> <b class="pi-1 text-align-right">{{localize 'twdu.foodSources'}}:</b> <input name="system.description.food"
-                                        type="text" value="{{actor.system.description.food}}"
+                                <div class="food grid col-40-60"> <b class="pi-1 text-align-right">{{localize
+                                        'twdu.foodSources'}}:</b> <input name="system.description.food" type="text"
+                                        value="{{actor.system.description.food}}"
                                         placeholder="{{localize 'twdu.foodSources'}}" /></div>
                             </div>
                         </div>
@@ -285,15 +287,24 @@
                 </div>
 
             </div>
+
+
+
+
+            {{!-- Notes Tab --}}
+            <div class="tab " data-group="primary" data-tab="bioNotes">
+
+
+
+                <div class="container flex-row group">
+                    <div class="flex-col w-100">
+                        <div class="full-size">
+                            {{editor havenNotes target="system.notes.value" button=true owner=owner editable=editable }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-
-
-    {{!-- Notes Tab --}}
-    <div class="tab" data-group="primary" data-tab="bioNotes">
-        {{editor havenNotes target="system.notes.value" button=true owner=owner editable=editable}}
-    </div>
-
-    </section>
-    </div>
 </form>

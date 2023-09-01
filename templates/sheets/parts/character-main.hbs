@@ -134,7 +134,7 @@
           <select name="system.health.value" id="health">
             {{#select actor.system.health.value}}
             {{#each (TWDUinvert config.healthStates) as |state|}}
-            <option value="{{subtract 3 @index}}" {{#if (eq @index ../actor.system.health.value)}}selected{{/if}}>
+            <option value="{{subtract 3 @index}}" {{#if (eq (subtract 3 @index) ../actor.system.health.value)}}selected{{/if}}>
               {{subtract 3 @index}} - {{localize
               state}}</option>
             {{/each}}

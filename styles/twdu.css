@@ -837,6 +837,10 @@ button, .dialog-buttons {
   padding: 0 0.5rem;
 }
 
+.tox.tox-tinymce {
+  min-height: 250px;
+}
+
 .label {
   font-family: "Nu Gothic", sans-serif;
 }

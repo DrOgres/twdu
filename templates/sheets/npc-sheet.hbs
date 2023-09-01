@@ -12,10 +12,10 @@
           <div class="health border-bottom border-right">
             <h2 class="subheader m-0 p-1 border-bottom">{{localize "twdu.health"}}</h2>
             <div class="health-select p-2">
-              <select name="system.health.value" id="health">
+              <select name="system.health.value" id="health"> 
                 {{#select actor.system.health.value}}
                 {{#each (TWDUinvert config.healthStates) as |state|}}
-                <option value="{{subtract 3 @index}}" {{#if (eq @index ../actor.system.health.value)}}selected{{/if}}>
+                <option value="{{subtract 3 @index}}" {{#if (eq (subtract 3 @index) ../actor.system.health.value)}}selected{{/if}}>
                   {{subtract 3 @index}} - {{localize
                   state}}</option>
                 {{/each}}
@@ -30,7 +30,7 @@
           <div class="flex-col max-h-110p">
             <div class="background m-0 p-1 flex-row center">
               <b for="background" class="pi-1">{{localize 'twdu.background'}}:</b>
-              <input name="system.backgorund" id="archetype" type="text" value="{{system.background}}"
+              <input name="system.background" id="archetype" type="text" value="{{actor.system.background}}"
                 placeholder="{{localize 'twdu.background'}}" />
             </div>
 
