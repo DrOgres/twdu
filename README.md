@@ -3,6 +3,15 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Beta 3:
+- Fixed: Notes on Haven not editable
+- Fixed: New characters showing wrong health
+- Fixed: NPC background field not saving properly
+
+-CSS - Increased minimum size of TinyMCE editor.
+
+-TODO Dice So Nice support
+
 Beta 2:
 - Fixed: Weapon Sheet not showing bonus field
 - Fixed: Weapon on Roll Dialog

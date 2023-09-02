@@ -181,6 +181,89 @@ Hooks.on("getSceneControlButtons", (controls) => {
   );
 });
 
+Hooks.once("diceSoNiceReady", (dice3d) => {
+  dice3d.addSystem({ id: "twdu", name: "The Walking Dead Universe" }, "true");
+  dice3d.addColorset({
+    name: "twdu",
+    description: "The Walking Dead Dice",
+    category: "The Walking Dead Universe",
+    foreground: "#FFFFFF",
+    background: "#ac1431",
+    outline: "#ac1433",
+    material: "plastic",
+    default: true,
+  });
+  dice3d.addDicePreset({
+    type: "d6",
+    labels: [
+      "systems/twdu/assets/dsn/dsn-d6-1.png",
+      "systems/twdu/assets/dsn/dsn-d6-2.png",
+      "systems/twdu/assets/dsn/dsn-d6-3.png",
+      "systems/twdu/assets/dsn/dsn-d6-4.png",
+      "systems/twdu/assets/dsn/dsn-d6-5.png",
+      "systems/twdu/assets/dsn/dsn-d6-6.png",
+    ],
+    bumpMaps: [
+      "systems/twdu/assets/dsn/dsn-d6-1-bump.png",
+      "systems/twdu/assets/dsn/dsn-d6-2-bump.png",
+      "systems/twdu/assets/dsn/dsn-d6-3-bump.png",
+      "systems/twdu/assets/dsn/dsn-d6-4-bump.png",
+      "systems/twdu/assets/dsn/dsn-d6-5-bump.png",
+      "systems/twdu/assets/dsn/dsn-d6-6-bump.png",
+    ],
+    colorset: "twdu",
+    system: "twdu",
+  });
+  dice3d.addDicePreset(
+    {
+      type: "ds",
+      labels: [
+        "systems/twdu/assets/dsn/dsn-d6-1.png",
+        "systems/twdu/assets/dsn/dsn-d6-2.png",
+        "systems/twdu/assets/dsn/dsn-d6-3.png",
+        "systems/twdu/assets/dsn/dsn-d6-4.png",
+        "systems/twdu/assets/dsn/dsn-d6-5.png",
+        "systems/twdu/assets/dsn/dsn-d6-6.png",
+      ],
+      bumpMaps: [
+        "systems/twdu/assets/dsn/dsn-d6-1-bump.png",
+        "systems/twdu/assets/dsn/dsn-d6-2-bump.png",
+        "systems/twdu/assets/dsn/dsn-d6-3-bump.png",
+        "systems/twdu/assets/dsn/dsn-d6-4-bump.png",
+        "systems/twdu/assets/dsn/dsn-d6-5-bump.png",
+        "systems/twdu/assets/dsn/dsn-d6-6-bump.png",
+      ],
+      colorset: "twdu",
+      system: "twdu",
+    },
+    "d6"
+  );
+  dice3d.addDicePreset(
+    {
+      type: "dz",
+      labels: [
+        "systems/twdu/assets/images/dsn/dsn-dz-1.png",
+        "systems/twdu/assets/images/dsn/dsn-dz-2.png",
+        "systems/twdu/assets/images/dsn/dsn-dz-3.png",
+        "systems/twdu/assets/images/dsn/dsn-dz-4.png",
+        "systems/twdu/assets/images/dsn/dsn-dz-5.png",
+        "systems/twdu/assets/images/dsn/dsn-dz-6.png",
+      ],
+      bumpMaps: [
+        "systems/twdu/assets/dsn/dsn-dz-1-bump.png",
+        "systems/twdu/assets/dsn/dsn-dz-2-bump.png",
+        "systems/twdu/assets/dsn/dsn-dz-3-bump.png",
+        "systems/twdu/assets/dsn/dsn-dz-4-bump.png",
+        "systems/twdu/assets/dsn/dsn-dz-5-bump.png",
+        "systems/twdu/assets/dsn/dsn-dz-6-bump.png",
+      ],
+      colorset: "twdu",
+      system: "twdu",
+    },
+    "d6"
+  );
+});
+
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 

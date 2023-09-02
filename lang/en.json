@@ -169,7 +169,9 @@
         "ROLL.DAMAGE": "Damage",
         "ROLL.GEAR": "Use Gear",
         "ROLL.CRITICAL": "Critical Injury Penalty",
-        "ROLL.TALENT": "Use Talent"
+        "ROLL.TALENT": "Use Talent",
+        "ROLL.TALENTSKILL": "Use Talent for Dice Pool",
+        "ROLL.TALENT_DAMAGE": "Use Talent for Damage Bonus"
     },
     "YZUR": {
         "DIETERMS.SkillDie": "Skill Dice Successes",

@@ -11,10 +11,11 @@
     <div class="weapons p-1 border-bottom">
       <h4 class="border-bottom m-0 pi-2 subsubheader">{{localize 'twdu.weapons'}}</h4>
       <div class="flex-col">
-        <div class="group-header grid seven-col justify pi-1">
+        <div class="group-header grid eight-col justify pi-1">
           <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
           <span class="group-name">{{localize 'twdu.name'}}</span>
-          <span class="bonus justify-self-center">{{localize 'twdu.damage'}}</span>
+          <span class="bonus justify-self-center">{{localize 'twdu.bonus'}}</span>
+          <span class="damage justify-self-center">{{localize 'twdu.damage'}}</span>
           <span class="group-weight justify-self-center">{{localize 'twdu.weight'}}</span>
           <span class="group-skill justify-self-center">{{localize 'twdu.skill'}}</span>
           <span class="eq-store justify-self-center">{{localize 'twdu.store'}}</span>
@@ -25,14 +26,15 @@
         {{#each items as |item|}}
         {{#if item.isWeapon}}
         {{#if item.system.isEquipped}}
-        <div class="item weapon grid seven-col center" data-item-id="{{item._id}}">
+        <div class="item weapon grid eight-col center" data-item-id="{{item._id}}">
           <img class="rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
             data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}"
             alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
-          <div class="name justify-self-start show-details">{{item.name}}</div>
+          <div class="name justify-self-start show-details nowrap">{{item.name}}</div>
+          <div class="name justify-self-center show-details">{{item.system.bonus}}</div>
           <div class="damage justify-self-center">{{item.system.damage}}</div>
           <div class="weight justify-self-center">{{item.system.weight}}</div>
-          <div class="skill justify-self-center">{{localize item.system.skill}}</div>
+          <div class="skill justify-self-center text-center">{{localize item.system.skill}}</div>
           <a class="item-control equip-toggle equip justify-self-center" title='{{localize  "twdu.ui.store"}}'>
             <i class="fa-solid fa-box-open"></i>
           </a>

@@ -150,7 +150,7 @@ export function prepareRollDialog(options) {
     );
   }
 
-  //TODO add a summary of the dice pool thus far to the dialog unless this is armor
+  //add a summary of the dice pool thus far to the dialog unless this is armor
   if (options.type !== "armor"){
   let subtotal =
     (options.attributeDefault || 0) +
@@ -171,7 +171,7 @@ export function prepareRollDialog(options) {
     if (damageTalents.length > 0) {
       // build a select dialog for the talents that we found
       dialogHtml += buildSelectDialog(
-        game.i18n.localize("twdu.ROLL.TALENT"),
+        game.i18n.localize("twdu.ROLL.TALENT_DAMAGE"),
         damageTalents,
         "damageTalent"
       );
@@ -198,7 +198,7 @@ export function prepareRollDialog(options) {
     );
     if (skillTalents.length > 0) {
       dialogHtml += buildSelectDialog(
-        game.i18n.localize("twdu.ROLL.TALENT"),
+        game.i18n.localize("twdu.ROLL.TALENTSKILL"),
         skillTalents,
         "talent"
       );
@@ -322,10 +322,12 @@ export function roll(
   armorPenalty,
   criticalPenalty,
   gearBonus,
-  armorBonus
+  talentBonus,
+  armorBonus,
+  
 ) {
 
-  console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, damage, armorPenalty, criticalPenalty, gearBonus);
+  console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, damage, armorPenalty, criticalPenalty, gearBonus, talentBonus, armorBonus);
   // roll the dice
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
@@ -340,7 +342,9 @@ export function roll(
     (weaponBonus || 0) +
     (armorPenalty || 0) +
     (criticalPenalty || 0) +
-    (gearBonus || 0);
+    (gearBonus || 0)
+    + (talentBonus || 0)
+    ;
   } else {
     dicePool = armorBonus;
   }
