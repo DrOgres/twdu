@@ -77,6 +77,12 @@ export default class TWDUActorSheet extends ActorSheet {
     if (context.isNPC) {
       this.computeSkills(context);
       this.equipItems(context);
+      context.notesHTML = await TextEditor.enrichHTML(
+        context.system.notes.value,
+        {
+          async: true,
+        }
+      );
     }
 
     return context;
@@ -151,6 +157,7 @@ export default class TWDUActorSheet extends ActorSheet {
       // item.update({ "system.isEquipped":  true});
     });
   }
+  
 
   activateListeners(html) {
     super.activateListeners(html);

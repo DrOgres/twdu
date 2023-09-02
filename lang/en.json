@@ -151,6 +151,7 @@
         "ui.subtotal": "Subtotal",
         "ui.skillDice": "Skill Dice",
         "ui.stressDice": "Stress Dice",
+        "ui.addexp": "Left Click to Add Experience, Right Click to Subtract Experience",
 
         "threatLevel": "Threat Level",
 

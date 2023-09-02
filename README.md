@@ -1,16 +1,22 @@
 # The Walking Dead Universe
 The Walking Dead Universe RPG system for Foundry VTT
 
+
+- TODO - Code Cleanup
+- TODO - Ensure all Localization is Complete
+
+
 ## Release Notes:
 
 Beta 3:
+- added bonus to weapon listing in inventory
+- added Dice So Nice support
 - Fixed: Notes on Haven not editable
 - Fixed: New characters showing wrong health
 - Fixed: NPC background field not saving properly
+- Fixed: tooltip for Experience Boxes. 
 
 -CSS - Increased minimum size of TinyMCE editor.
-
--TODO Dice So Nice support
 
 Beta 2:
 - Fixed: Weapon Sheet not showing bonus field
@@ -19,9 +25,6 @@ Beta 2:
 - Fixed: Missing localization on Settings
 
 - Adjustment - CSS for weapon sheet to acomidate new field and fix minor border issue
-
-- TODO - Code Cleanup
-- TODO - Ensure all Localization is Complete
 
 
 Beta 1:
