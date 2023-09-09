@@ -2,6 +2,15 @@
 
 //foundry overrides
 
+.category-tab{
+    color: $neutral-2
+}
+
+input[type="search"]{
+    color: $neutral-2;
+    background: $neutral-4;
+}
+
 .app {
     background: url(/systems/twdu/assets/images/denim075.png) repeat;
 }

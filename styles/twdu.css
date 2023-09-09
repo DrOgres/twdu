@@ -51,6 +51,15 @@
   font-weight: bolder;
 }
 
+.category-tab {
+  color: hsl(53, 14%, 75%);
+}
+
+input[type=search] {
+  color: hsl(53, 14%, 75%);
+  background: hsl(0, 0%, 27%);
+}
+
 .app {
   background: url(/systems/twdu/assets/images/denim075.png) repeat;
 }
