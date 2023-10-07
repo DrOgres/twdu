@@ -138,8 +138,8 @@ Hooks.once("init", async function () {
     return count;
   });
 
-  Handlebars.registerHelper("checked", function (value, test) {
-    console.log("TWDU | checked: ", value, test);
+  Handlebars.registerHelper("TWDU_checked", function (value, test) {
+    console.log("TWDU | TWDU_checked: ", value, test);
     if(value == undefined) return "";
     return value == test ? "checked" : "";
   });

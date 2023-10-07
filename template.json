@@ -233,7 +233,8 @@
             "talent",
             "criticalInjury",
             "vehicle",
-            "issue"
+            "issue",
+            "explosive"
         ],
         "templates": {
             "itemEquipped": {
@@ -253,22 +254,17 @@
             "damage": 0,
             "range": "none"
           },
+          "explosive": {
+              "templates": ["itemEquipped", "itemCommonProperties"],
+              "blastPower": 0,
+              "range": "short"
+          },
           "armor": {
             "templates": ["itemEquipped", "itemCommonProperties"],
             "protection": 0,
             "agility": 0
           },
-          "talent": {
-            "description": "",
-            "notes": "",
-            "archetype": "",
-            "prerequisite": "",
-            "hasBonus": false,
-            "bonusType": "none",
-            "skill": "",
-            "bonus": 0
-            
-          },
+          
           "gear": {
             "templates": ["itemEquipped", "itemCommonProperties"],
             "quantity": ""
@@ -304,6 +300,17 @@
             "armor": "", 
             "hull": "",
             "issue": ""
+          },
+          "talent": {
+            "description": "",
+            "notes": "",
+            "archetype": "",
+            "prerequisite": "",
+            "hasBonus": false,
+            "bonusType": "none",
+            "skill": "",
+            "bonus": 0
+            
           },
             "issue": {
                 "description": "",

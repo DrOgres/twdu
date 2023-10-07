@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Beta 4:
+- Added explosives as an item type
+
 Beta 3:
 - added bonus to weapon listing in inventory
 - added Dice So Nice support

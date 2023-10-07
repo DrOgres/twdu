@@ -41,15 +41,15 @@
 
           <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="none">{{localize
             'twdu.none'}}
-            <input id="none" type="radio" name="system.bonusType" value="twdu.none" {{checked item.system.bonusType 'twdu.none'
+            <input id="none" type="radio" name="system.bonusType" value="twdu.none" {{TWDU_checked item.system.bonusType 'twdu.none'
               }} /><span class="radio"></span></label>
           <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="skill">{{localize
             'twdu.skill'}}
-            <input id="skill" type="radio" name="system.bonusType" value="twdu.skill" {{checked item.system.bonusType 'twdu.skill'
+            <input id="skill" type="radio" name="system.bonusType" value="twdu.skill" {{TWDU_checked item.system.bonusType 'twdu.skill'
               }} /><span class="radio"></span></label>
           <label class="flex-row pi-2 justify middle  border-bottom radio-group" for="damage">{{localize
             'twdu.damage'}}
-            <input id="damage" type="radio" name="system.bonusType" value="twdu.damage" {{checked
+            <input id="damage" type="radio" name="system.bonusType" value="twdu.damage" {{TWDU_checked
               item.system.bonusType 'twdu.damage' }} /><span class="radio"></span></label>
 
           {{/if}}
