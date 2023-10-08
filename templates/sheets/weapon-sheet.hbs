@@ -8,10 +8,26 @@
       <h1 class="group m-0 pi-1"><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
 
       <div class="item group grid two-col">
-        <div class="damage flex-row middle border-right">
+        <div class="damage grid three-col middle border-right">
           <h2 class="m-0 pi-1 subheader middle">
             {{localize "twdu.damage"}}:</h2>
           <input name="system.damage" type="text" value="{{data.system.damage}}" placeholder="0" data-dtype="Number" />
+
+
+          {{!-- A check box for explosive here --}}
+          <div class="explosive flex-row justify-self-end" title="{{localize 'twdu.isExplosiveTooltip'}}">
+          <b>{{localize "twdu.isExplosive"}}</b>
+          {{#unless item.system.isExplosive}}
+          <img class="toggle-boolean" data-path="isExplosive" src="systems/twdu/assets/images/box_not_checked.png"
+            height="18px" width="18px">
+          {{/unless}}
+
+          {{#if item.system.isExplosive}}
+          <img class="toggle-boolean" data-path="isExplosive" src="systems/twdu/assets/images/box_checked.png"
+            height="18px" width="18px">
+          {{/if}}
+        </div>
+         
         </div>
 
         <div class="bonus flex-row middle border-right">

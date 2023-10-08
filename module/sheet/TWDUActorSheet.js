@@ -345,7 +345,19 @@ export default class TWDUActorSheet extends ActorSheet {
             options.attributeDefault =
               this.actor.system.attributes[abv].value;
           }
+
+          if (item.system.isExplosive) {
+            //if this is explosive use BP: generate a random number between 1 and 6 a number of times eaual to the item.system.damage value
+            let damage = 0;
+            for (let i = 0; i < item.system.damage; i++) {
+              damage += Math.floor(Math.random() * 6) + 1;
+              console.log("TWDU | damage: ", damage);
+            }
+            options.damageDefault = damage;
+          } else {
+
           options.damageDefault = item.system.damage;
+          }
           options.weaponName = item.name;
           options.weaponBonusDefault = item.system.bonus;
           console.log("TWDU | damageDefault: ", options.damageDefault);

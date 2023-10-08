@@ -38,9 +38,7 @@ export default class TWDUItemSheet extends ItemSheet {
 
   // force sheet update when type changes
   async _onTypeChange(event) {
-   
     this.item.update();
-
   }
 
   _onToggleClick(event) {
@@ -55,6 +53,10 @@ export default class TWDUItemSheet extends ItemSheet {
           this.item.update({ "system.hasBonus": !value });
         }
         break;
+      case "isExplosive": {
+        const value = this.item.system.isExplosive;
+        this.item.update({ "system.isExplosive": !value });
+      }
     }
   }
 }

@@ -94,6 +94,8 @@
         "agilityPenalty": "Mobility Penalty",
         "penalty": "Penalty",
         "damage": "Damage",
+        "isExplosive": "BP",
+        "isExplosiveTooltip": "Is this weapon explosive?",
         "bonus": "Bonus",
         "range": "Range",
         "lethal": "Lethal",
