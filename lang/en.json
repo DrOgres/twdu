@@ -12,6 +12,7 @@
         "no": "No",
         "a": "A",
         "b": "B",
+        "minutes": "Minutes",
         "hours": "Hours",
         "days": "Days",
         "weeks": "Weeks",
@@ -84,6 +85,8 @@
         "tinyItems": "Tiny Items",
         "tinyItem": "Tiny Item",
         "project": "Project",
+        "vehicle": "Vehicle",
+        "vehicles": "Vehicles",
         
 
         "location": "Location",

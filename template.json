@@ -233,8 +233,7 @@
             "talent",
             "criticalInjury",
             "vehicle",
-            "issue",
-            "explosive"
+            "issue"
         ],
         "templates": {
             "itemEquipped": {
@@ -252,12 +251,8 @@
           "weapon": {
             "templates": ["itemEquipped", "itemCommonProperties"],
             "damage": 0,
-            "range": "none"
-          },
-          "explosive": {
-              "templates": ["itemEquipped", "itemCommonProperties"],
-              "blastPower": 0,
-              "range": "short"
+            "range": "none",
+            "isExplosive": false
           },
           "armor": {
             "templates": ["itemEquipped", "itemCommonProperties"],

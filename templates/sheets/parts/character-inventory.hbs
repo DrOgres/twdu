@@ -156,10 +156,10 @@
     </div>
 
     <div class="gear">
-      <h2 class="subheader border-bottom border-left t m-0 p-1">{{localize 'twdu.gear'}}<a title="{{localize " twdu.ui.add"}}"
-          class="add-item" data-type="gear">
+      <h2 class="subheader border-bottom border-left t m-0 p-1">{{localize 'twdu.gear'}}<a title="{{localize "
+          twdu.ui.add"}}" class="add-item" data-type="gear">
           &#43;</a></h2>
-  
+
       {{#if ( gt (TWDUEquippedCount items 'isGear' ) 0)}}
       <h4 class="group-header m-0 pi-1">{{localize 'twdu.equipedGear'}}</h4>
       <div class="group-header grid six-col justify pi-2 pt-1">
@@ -231,6 +231,40 @@
       {{/each}}
       {{/if}}
 
+    </div>
+    <div class="vehicles">
+      <h2 class=" subheader m-0 p-1 border-bottom ">{{localize "twdu.vehicles"}} <a title="{{localize " twdu.ui.add"}}"
+          class="add-item" data-type="tinyItem">
+          &#43;</a></h2>
+      <h4 class="group-header m-0 pi-1 ">{{localize 'twdu.vehicles'}}</h4>
+      <div class="group-header grid seven-col justify pi-2 pt-1">
+        <span class="icon">{{localize "twdu.ui.icon"}}</span>
+        <span class="group-name">{{localize "twdu.name"}}</span>
+        <span class="group-weight">{{localize 'twdu.hull'}}</span>
+        <span class="bonus">{{localize 'twdu.armor'}}</span>
+        <span class="bonus">{{localize 'twdu.maneuverability'}}</span>
+        <span class="bonus">{{localize 'twdu.damage'}}</span>
+        <span class="button">{{localize 'twdu.actions'}}</span>
+      </div>
+      {{#each items as |item|}}
+      {{#if item.isVehicle}}
+      <div class="vehicle item grid seven-col border-bottom middle" data-item-id="{{item._id}}">
+        <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
+            height="25" /></span>
+        <span class="name  show-details justify-self-start">{{item.name}}</span>
+        <span class="hull">{{item.system.hull}}</span>
+        <span class="armor">{{item.system.armor}}</span>
+        <span class="weight">{{item.system.maneuverability}}</span>
+        <span class="bonus">{{item.system.damage}}</span>
+        <div class="button pi-1 grow text-right">
+          <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
+          <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+          <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{@key}}"
+            data-type="item"><i class="fas fa-trash"></i></a>
+        </div>
+      </div>
+      {{/if}}
+      {{/each}}
     </div>
   </div>
   <div class="tiny-itemsborder-left border-right border-left border-bottom">

@@ -52,6 +52,7 @@ twdu.physicalItems = [];
 
 twdu.recoveryTime = {
     none: "twdu.none",
+    minutes: "twdu.minutes",
     hours: "twdu.hours",
     days: "twdu.days",
     weeks: "twdu.weeks",

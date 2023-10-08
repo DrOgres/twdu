@@ -9,7 +9,7 @@ The Walking Dead Universe RPG system for Foundry VTT
 ## Release Notes:
 
 Beta 4:
-- Added explosives as an item type
+- Added explosives as an ranged weapon type
 - Fixed: check boxes sometimes not working properly
 
 Beta 3:
