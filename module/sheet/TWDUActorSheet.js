@@ -351,7 +351,7 @@ export default class TWDUActorSheet extends ActorSheet {
             let damage = 0;
             for (let i = 0; i < item.system.damage; i++) {
               damage += Math.floor(Math.random() * 6) + 1;
-              console.log("TWDU | damage: ", damage);
+              //console.log("TWDU | damage: ", damage);
             }
             options.damageDefault = damage;
           } else {
@@ -360,7 +360,7 @@ export default class TWDUActorSheet extends ActorSheet {
           }
           options.weaponName = item.name;
           options.weaponBonusDefault = item.system.bonus;
-          console.log("TWDU | damageDefault: ", options.damageDefault);
+          //console.log("TWDU | damageDefault: ", options.damageDefault);
         }
         break;
       case "armor":
