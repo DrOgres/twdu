@@ -1,9 +1,11 @@
 <form class="{{cssClass}} group" autocomplete="off" style="margin: -4px;">
   {{!-- Sheet Header --}}
   <div class="sheet-container" style="margin:-2px;">
-    <header class="actor-header flex-row">
+    <header class="actor-header flex-row" >
+      <div class="img-container" style="width: 175px; ">
       <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
-        style="width: 175px; max-height: 250px; padding:5px;" />
+         />
+        </div>
       <div class="character-info w-100">
 
         <h1 class="input name w-100 group pi-1"><input name="name" type="text" value="{{actor.name}}"

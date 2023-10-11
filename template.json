@@ -3,7 +3,8 @@
         "types": [
             "character",
             "haven",
-            "npc"
+            "npc",
+            "animal"
         ],
         "character":{
             "name": "New Character",
@@ -220,6 +221,16 @@
                     "label": "medicine"
                 }
             }
+        },
+        "animal":{
+            "name": "New Animal",
+            "description": "",
+            "notes":{
+                "value": "Notes"
+            },
+            "attack": 0,
+            "damage": 0,
+            "health": 0
         }
 
     },

@@ -17,6 +17,15 @@ export function prepareRollDialog(options) {
 
   let actor = options.sheet.object;
 
+  if (actor.type === "animal") {
+    console.log("TWDU | prepareRollDialog animal: ", options);
+    let attackDice = actor.system.attack;
+    let damage = actor.system.damage;
+    
+    return;
+  }
+
+
   let criticals = parseCriticalInjuries(actor);
   options.criticalPenalty = 0 - criticals;
 

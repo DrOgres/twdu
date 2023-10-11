@@ -46,4 +46,24 @@ export default class TWDUActor extends Actor {
           }
         }
       }
+
+
+      /**
+	 * Override initializing a character to set default portraits.
+	 * @param {object} data object of an initialized character.
+	 * @param {object?} options optional object of options.
+	 */
+	static async create(data, options) {
+		if (!data.img) {
+			switch (data.type) {
+				case "haven":
+					data.img = "systems/forbidden-lands/assets/fbl-sun.webp";
+					break;
+				default:
+					data.img = `systems/twdu/assets/images/twdu-${data.type}.png`;
+					break;
+			}
+		}
+		return super.create(data, options);
+	}
 }

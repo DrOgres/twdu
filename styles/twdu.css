@@ -292,6 +292,13 @@ button, .dialog-buttons {
   background-color: hsl(53, 14%, 75%);
 }
 
+.profile-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto 1/1;
+  padding: 5px;
+}
+
 .grid {
   display: grid;
 }
@@ -430,6 +437,11 @@ button, .dialog-buttons {
   gap: 2rem;
 }
 
+.start {
+  align-items: start;
+  justify-content: start;
+}
+
 .center {
   justify-content: center;
   align-items: center;
@@ -465,6 +477,8 @@ button, .dialog-buttons {
 .middle {
   align-items: center;
   align-self: center;
+  place-items: center stretch;
+  align-self: center stretch;
 }
 
 .border {

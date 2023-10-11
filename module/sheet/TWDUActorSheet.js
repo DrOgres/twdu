@@ -43,6 +43,7 @@ export default class TWDUActorSheet extends ActorSheet {
       isHaven: this.actor.type === "haven",
       isChallenge: this.actor.type === "challenge",
       isNPC: this.actor.type === "npc",
+      isAnimal: this.actor.type === "animal",
       encumbrance: 0,
       maxEncumbrance: 0,
       maxpop: 0,
@@ -84,6 +85,15 @@ export default class TWDUActorSheet extends ActorSheet {
         }
       );
     }
+
+    if (context.isAnimal) {
+      console.log("TWDU | isAnimal: ", context.isAnimal);
+      context.animalHTML = await TextEditor.enrichHTML(
+        context.system.notes.value,
+        { async: true }
+      );
+    }
+
 
     return context;
   }

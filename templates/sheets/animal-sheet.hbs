@@ -1,0 +1,59 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="sheet-container grid col-20-80" style="margin:-2px;">
+        <div class="img-container" style="width: 150px; ">
+            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
+        </div>
+        <div class="animal-data">
+            <h1 class="input name w-100 pi-1"><input name="name" type="text" value="{{actor.name}}"
+                    placeholder="{{localize 'twdu.name'}}" /></h1>
+
+
+            <div class="description p-1 flex-col">
+                <b>{{localize 'twdu.description'}}:</b>
+                <textarea name="system.description" style="resize: none;">{{actor.system.description}}</textarea>
+            </div>
+
+
+            <div class="grid three-col start group">
+
+                <div class="attack-group grid three-col center middle group  pi-1 h-100 ">
+                    <div class="label nowrap subheader h-100 w-100 p-1 text-center"><label for="attack">{{localize
+                            'twdu.attack'}}</label></div>
+                    <div class="rollable " data-key="animal-attack" data-weapon="{{actor.name}}"
+                        data-item-id="animal-attack" data-test="attack">
+                        <img src="/systems/twdu/assets/icons/wolverine-claws.svg" alt="attack" title="attack"
+                            width="30" />
+                    </div>
+                    <div class="input attack w-100 group pi-1"><input name="system.attack" id="attack" type="text"
+                            value="{{actor.system.attack}}" placeholder="0" /></div>
+                </div>
+                <div class="damage-group grid two-col center middle group  pi-1 h-100 ">
+                    <div class="label subheader h-100 text-center"><label for="damage">{{localize
+                            'twdu.damage'}}</label></div>
+
+                    <div class="input damage w-100 group pi-1"><input name="system.damage" id="damage" type="text"
+                            value="{{actor.system.damage}}" placeholder="0" /></div>
+                </div>
+                <div class="health-group grid two-col center middle group  pi-1 h-100 ">
+                    <div class="label subheader h-100 text-center"><label for="health">{{localize
+                            'twdu.health'}}</label></div>
+
+                    <div class="input health w-100 group pi-1"><input name="system.health" id="health" type="text"
+                            value="{{actor.system.health}}" placeholder="0" /></div>
+                </div>
+
+            </div>
+
+
+
+            <div class="container flex-row group">
+                <div class="flex-col w-100">
+                    <div class="full-size">
+                        {{editor animalHTML target="system.notes.value" button=true owner=owner editable=editable }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

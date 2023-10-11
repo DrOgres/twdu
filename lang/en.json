@@ -94,6 +94,7 @@
         "agilityPenalty": "Mobility Penalty",
         "penalty": "Penalty",
         "damage": "Damage",
+        "attack": "Attack Dice",
         "isExplosive": "BP",
         "isExplosiveTooltip": "Is this weapon explosive?",
         "bonus": "Bonus",

@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Beta 5:
+- Added animal as an actor type.
+
 Beta 4:
 - Added BP boolean to weapon sheet to allow explosive damage to be rolled properly. 
 - Fixed: check boxes sometimes not working properly

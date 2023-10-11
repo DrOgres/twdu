@@ -1,9 +1,10 @@
 <form class="{{cssClass}} group" autocomplete="off" style="margin: -4px;">
   <div class="sheet-container" style="margin:-2px;">
     <header class="actor-header flex-row">
-
-      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
-        style="width: 150px; max-height: 175px; padding:5px;" />
+      <div class="img-container" style="width: 150px; ">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
+           />
+      </div>
 
       <div class="character-info w-100 border-left border-bottom">
         <div class="flex-row">
@@ -340,7 +341,7 @@
           <h2 class=" subheader m-0 p-1 border-bottom ">{{localize "twdu.vehicles"}} <a title="{{localize "
               twdu.ui.add"}}" class="add-item" data-type="tinyItem">
               &#43;</a></h2>
-          
+
           <div class="group-header grid seven-col justify pi-2 pt-1">
             <span class="icon">{{localize "twdu.ui.icon"}}</span>
             <span class="group-name">{{localize "twdu.name"}}</span>
@@ -376,7 +377,7 @@
     {{!-- Notes --}}
     <div class="tab" data-group="primary" data-tab="bioNotes">
       {{> systems/twdu/templates/sheets/parts/character-notes.hbs}}
-
+    </div>
   </section>
 
   </div>
