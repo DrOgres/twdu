@@ -57,8 +57,10 @@ export default class TWDUActor extends Actor {
 		if (!data.img) {
 			switch (data.type) {
 				case "haven":
-					data.img = "systems/forbidden-lands/assets/fbl-sun.webp";
+					data.img = "systems/twdu/assets/icons/triple-gate.svg";
 					break;
+          case"npc":
+          data.img = "systems/twdu/assets/images/twdu-npc.webp";
 				default:
 					data.img = `systems/twdu/assets/images/twdu-${data.type}.png`;
 					break;
