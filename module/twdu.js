@@ -16,6 +16,8 @@ Hooks.once("init", async function () {
 
   CONFIG.Actor.documentClass = TWDUActor;
 
+  
+
   //yzur init
   YearZeroRollManager.register("twdu", {
     "ROLL.chatTemplate": "systems/twdu/templates/dice/roll.hbs",
@@ -46,6 +48,8 @@ Hooks.once("init", async function () {
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
+
+
 
 
   // Preload Handlebars Templates
@@ -145,6 +149,15 @@ Hooks.once("init", async function () {
   });
 });
 
+  
+Hooks.on("renderPause", (_app, html) => {
+  html
+    .find("img")
+    .attr("src", "systems/twdu/assets/images/misc/hand.png");
+});
+
+
+
 Hooks.on("getSceneControlButtons", (controls) => {
   let group = controls.find((c) => c.name === "token");
   group.tools.push(
@@ -213,14 +226,6 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
       "systems/twdu/assets/images/dsn/dsn-ds-5.png",
       "systems/twdu/assets/images/dsn/dsn-ds-6.png",
     ],
-    // bumpMaps: [
-    //   "systems/twdu/assets/dsn/dsn-d6-1-bump.png",
-    //   "systems/twdu/assets/dsn/dsn-d6-2-bump.png",
-    //   "systems/twdu/assets/dsn/dsn-d6-3-bump.png",
-    //   "systems/twdu/assets/dsn/dsn-d6-4-bump.png",
-    //   "systems/twdu/assets/dsn/dsn-d6-5-bump.png",
-    //   "systems/twdu/assets/dsn/dsn-d6-6-bump.png",
-    // ],
     colorset: "twdu",
     system: "twdu",
   });
@@ -235,14 +240,6 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
         "systems/twdu/assets/images/dsn/dsn-ds-5.png",
         "systems/twdu/assets/images/dsn/dsn-ds-6.png",
       ],
-      // bumpMaps: [
-      //   "systems/twdu/assets/dsn/dsn-d6-1-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-d6-2-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-d6-3-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-d6-4-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-d6-5-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-d6-6-bump.png",
-      // ],
       colorset: "twdu",
       system: "twdu",
     },
@@ -259,14 +256,6 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
         "systems/twdu/assets/images/dsn/dsn-dz-5.png",
         "systems/twdu/assets/images/dsn/dsn-dz-6.png",
       ],
-      // bumpMaps: [
-      //   "systems/twdu/assets/dsn/dsn-dz-1-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-dz-2-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-dz-3-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-dz-4-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-dz-5-bump.png",
-      //   "systems/twdu/assets/dsn/dsn-dz-6-bump.png",
-      // ],
       colorset: "twduz",
       system: "twdu",
     },

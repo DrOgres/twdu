@@ -10,6 +10,7 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 Beta 5:
 - Added animal as an actor type.
+- Fixed: Emathy skill set on NPC sheet had incorrect id for base skill check boxes.
 
 Beta 4:
 - Added BP boolean to weapon sheet to allow explosive damage to be rolled properly. 
