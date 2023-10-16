@@ -55,6 +55,11 @@
   color: hsl(57, 15%, 26%);
 }
 
+a.content-link {
+  background: unset;
+  border: none;
+}
+
 #pause {
   background: none;
 }
