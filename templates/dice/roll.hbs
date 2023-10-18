@@ -36,6 +36,7 @@
       {{/if}}
       {{!-- Push button --}}
       {{#unless (eq roll.options.actorType 'npc')}}
+      {{#unless (eq roll.options.actorType 'animal')}}
       {{#unless (gt roll.panic 0)}}
       {{#if pushable}}
       <div class="dice-buttons" data-owner-id="{{roll.options.owner}}">
@@ -43,6 +44,7 @@
           "twdu.push"}}</button>
       </div>
       {{/if}}
+      {{/unless}}
       {{/unless}}
       {{/unless}}
     </div>
