@@ -60,6 +60,10 @@ a.content-link {
   border: none;
 }
 
+.chat-message .message-header .flavor-text {
+  color: hsl(57, 15%, 26%);
+}
+
 #pause {
   background: none;
 }

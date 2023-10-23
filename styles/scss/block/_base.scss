@@ -11,6 +11,11 @@ a.content-link{
     border: none;
   }
 
+
+  .chat-message .message-header .flavor-text{
+    color: $header-1;
+  }
+
 //pause spinner
 
 #pause {
