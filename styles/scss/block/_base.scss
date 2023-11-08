@@ -5,6 +5,17 @@
   --fa-display: inherit;
 }
 
+.sidebar {
+  float: left;
+  color: hsl(0, 0%, 100%);
+  width: 60%;
+  background: $header-1;
+  padding-block: 1rem;
+  padding-left: 1.2rem;
+  padding-right: 2rem;
+  margin-inline: 0.5rem;
+}
+
 .directory .directory-header .header-search input {
   color: $header-1;
 }
