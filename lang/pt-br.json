@@ -4,8 +4,8 @@
         "archetype": "Arquétipo",
         "background": "Histórico",
         "description": "Descrição",
-        "pcAnchor": "Âncora do PJ",
-        "npcAnchor": "Âncora do PNJ",
+        "pcAnchor": "Âncora PJ",
+        "npcAnchor": "Âncora PNJ",
     
         "none": "Nenhum",
         "yes": "Sim",
@@ -132,7 +132,7 @@
         "equipedWeapons": "Armas Equipadas",
         "storedWeapons": "Armas Armazenadas",
         "equipedArmor": "Armadura Equipada",
-        "storedArmor": "Armadura Armazenada",
+        "storedArmor": "Armaduras Armazenadas",
         "storedVehicles": "Veículos Armazenados",
     
         "threatDisplay": "Mostrar Nível de Ameaça aos Jogadores",
