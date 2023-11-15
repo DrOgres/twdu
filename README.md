@@ -8,6 +8,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.0.2
+- Added Brazilian Portuguese Localization || Adicionada localização em português do Brasil (Thanks to [shuanz])
+- Adjusted collumn widths in main tab of character sheet to ensure data and headers align properly.
+
 Release: 1.0.1
 - Fixed CSS on settings menu sidebar set up for content modules unreadable without them (fixes Issue [#2](https://github.com/DrOgres/twdu/issues/2))
 - Added German Localization ||  Deutsche Lokalisierung hinzugefügt (Thanks to [Tobbot]) 

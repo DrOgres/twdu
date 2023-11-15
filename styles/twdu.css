@@ -176,6 +176,7 @@ img {
 
 h1.input {
   margin-bottom: 0px;
+  padding-block: 0.25rem;
 }
 
 h2.header {
