@@ -367,6 +367,22 @@ button,
   flex-direction: column;
 }
 
+.icon-title-4col {
+  grid-template-columns: 40px 90px repeat(4, 1fr);
+}
+
+.icon-title-5col {
+  grid-template-columns: 40px 90px repeat(5, 1fr);
+}
+
+.icon-title-6col {
+  grid-template-columns: 40px 90px repeat(6, 1fr);
+}
+
+.icon-7col {
+  grid-template-columns: 40px repeat(7, 1fr);
+}
+
 .two-col {
   grid-template-columns: repeat(2, 1fr);
 }

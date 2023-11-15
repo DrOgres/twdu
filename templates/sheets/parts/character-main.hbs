@@ -11,7 +11,7 @@
     <div class="weapons p-1 border-bottom">
       <h4 class="border-bottom m-0 pi-2 subsubheader">{{localize 'twdu.weapons'}}</h4>
       <div class="flex-col">
-        <div class="group-header grid eight-col justify pi-1">
+        <div class="group-header grid icon-title-6col justify pi-1">
           <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
           <span class="group-name">{{localize 'twdu.name'}}</span>
           <span class="bonus justify-self-center">{{localize 'twdu.bonus'}}</span>
@@ -26,7 +26,7 @@
         {{#each items as |item|}}
         {{#if item.isWeapon}}
         {{#if item.system.isEquipped}}
-        <div class="item weapon grid eight-col center" data-item-id="{{item._id}}">
+        <div class="item weapon grid icon-title-6col center" data-item-id="{{item._id}}">
           <img class="rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
             data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}"
             alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
@@ -53,7 +53,7 @@
     <div class="armor p-1 border-bottom">
       <h4 class="border-bottom m-0 pi-2 subsubheader">{{localize 'twdu.armor'}}</h4>
       <div class="flex-col">
-        <div class="group-header grid six-col justify pi-1 pt-1 center">
+        <div class="group-header grid icon-title-4col justify pi-1 pt-1 center">
           <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
           <span class="group-name">{{localize 'twdu.name'}}</span>
           <span class="bonus nowrap">{{localize 'twdu.protection'}}</span>
@@ -67,7 +67,7 @@
         {{#each items as |item|}}
         {{#if item.isArmor}}
         {{#if item.system.isEquipped}}
-        <div class="item armor grid six-col center" data-item-id="{{item._id}}">
+        <div class="item armor grid icon-title-4col center" data-item-id="{{item._id}}">
           <img class="rollable justify-self-start" data-key="armor" data-armor="{{item.name}}" data-protection="{{item.system.protection}}"
             src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
           <div class="name show-details">{{item.name}}</div>
@@ -91,7 +91,7 @@
     <div class="gear p-1 border-bottom">
       <h4 class="border-bottom m-0 pi-2 subsubheader">Gear</h4>
       <div class="flex-col">
-        <div class="group-header grid seven-col center pi-1">
+        <div class="group-header grid icon-title-5col center pi-1">
           <span class="icon justify-self-start">{{localize "twdu.ui.icon"}}</span>
           <span class="group-name">{{localize 'twdu.name'}}</span>
           <span class="group-weight">{{localize 'twdu.weight'}}</span>
@@ -105,7 +105,7 @@
         {{#each items as |item|}}
         {{#if item.isGear}}
         {{#if item.system.isEquipped}}
-        <div class="item gear grid seven-col center" data-item-id="{{item._id}}">
+        <div class="item gear grid icon-title-5col center" data-item-id="{{item._id}}">
           <img class="justify-self-start" src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
           <div class="name show-details">{{item.name}}</div>
           <div class="protection">{{item.system.weight}}</div>
