@@ -1,4 +1,46 @@
 <form class="{{cssClass}}" autocomplete="off">
 <h1>Challenge sheet</h1>
 
+<div class="grid col-70-30">
+    <div class="main group">
+        <div class="flex-col">
+            <div class="grid three-col subheader border-top border-bottom ">
+              <h2 class=" border-right border-left t m-0 p-1 span-2">{{localize 'twdu.issues'}} <a
+                  title="{{localize " twdu.ui.add"}}" class="add-item" data-type="issue">
+                  &#43;</a></h2>
+              <div class=" m-0 p-1">{{localize 'twdu.source'}}</div>        
+                
+                  
+            </div>
+              <div class="issue-list scrollable max-h-150p  border-left">
+                {{#each items as |item key|}}
+                {{#if item.isIssue}}
+                <div class="issue item grid two-col pi-2 border-bottom middle"  data-item-id="{{item._id}}">
+                 <div class="name show-details">
+                    {{item.name}}
+                    </div>
+                  <div class="button justify-self-end">
+                    <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
+                        class="fas fa-comment"></i></a>
+                    <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
+                        class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{key}}"
+                      data-type="item"><i class="fas fa-trash"></i></a>
+                  </div>
+                </div>
+                {{/if}}
+                {{/each}}
+              </div>
+            </div>
+        rumors
+        challenges
+        endgame
+        factoions
+    </div>
+    <div class="side group">
+        npcs
+    </div>
+
+</div>
+
 </form>

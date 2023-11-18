@@ -558,6 +558,7 @@ export default class TWDUActorSheet extends ActorSheet {
         "vehicle",
       ],
       npc: ["weapon", "armor", "gear", "issue", "vehicle"],
+      challenge: ["issue"]
     };
     let allowed = true;
     if (!alwaysAllowedItems.includes(type)) {
