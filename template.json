@@ -4,7 +4,8 @@
             "character",
             "haven",
             "npc",
-            "animal"
+            "animal",
+            "challenge"
         ],
         "character":{
             "name": "New Character",
@@ -117,6 +118,30 @@
             }
         },
         "challenge": {
+            "rumors" : [
+                {
+                    "description": "",
+                    "clock": 0
+                }
+            ],
+           
+            "challenges": [
+                {
+                    "description": "",
+                    "notes": ""
+                }
+            ],
+            "factions": [
+                {
+                    "name": "",
+                    "description": "",
+                    "notes": "",
+                    "clock": 0
+                }
+            ],
+            "npcs":[
+             {"actor": "id", "fate": ""}   
+            ]
 
         },
         "haven": {
@@ -320,7 +345,8 @@
           },
             "issue": {
                 "description": "",
-                "notes": ""
+                "notes": "",
+                "source": ""
             }
     }
 }
