@@ -139,9 +139,10 @@
                     "clock": 0
                 }
             ],
-            "npcs":[
-             {"actor": "id", "fate": ""}   
-            ]
+            "survivors": {
+                "npcs": [] 
+                
+            }
 
         },
         "haven": {
@@ -176,6 +177,7 @@
             "name": "NPC",
             "background": "",
             "description": "",
+            "fate": "",
             "notes":{
                 "value": "Notes"
             },

@@ -301,7 +301,7 @@ export default class TWDUActorSheet extends ActorSheet {
               options.skillDefault = 4;
             }
             if (skillLevel == "trained") {
-              options.skillDefault = 6;
+              options.skillDefault = 5;
             }
             if (skillLevel == "expert") {
               options.skillDefault = 8;
@@ -340,7 +340,7 @@ export default class TWDUActorSheet extends ActorSheet {
               options.skillDefault = 4;
             }
             if (skillLevel == "trained") {
-              options.skillDefault = 6;
+              options.skillDefault = 5;
             }
             if (skillLevel == "expert") {
               options.skillDefault = 8;
@@ -475,7 +475,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
     let newCount =
       event.type == "click"
-        ? Math.min(currentCount + 1, 10)
+        ? Math.min(currentCount + 1, 15)
         : Math.max(currentCount - 1, 0);
 
     actor.update({ "system.experience.value": newCount });
@@ -497,12 +497,13 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _dropSurvivor(actorId) {
     const survivor = game.actors.get(actorId);
+    console.log("TWDU | _dropSurvivor: ", survivor);
     const actorData = this.actor;
     if (!survivor) return;
-    if (survivor.type === "haven" && survivor.type === "haven")
-      return ui.notifications.info("Havens cannot be dropped on a Havens");
+    if (survivor.type === "haven" || survivor.type === "challenge" )
+      return ui.notifications.info("Havens nor Challenges can be dropped on Havens or Challenges.");
     if (survivor.type !== "character" && survivor.type !== "npc") return;
-    if (actorData.type === "haven") {
+    if (actorData.type === "haven" || actorData.type === "challenge") {
       return this.addSurvivor(actorId);
     }
   }
@@ -510,14 +511,17 @@ export default class TWDUActorSheet extends ActorSheet {
   addSurvivor(ID) {
     console.log("TWDU | addSurvivor: ", ID);
     const target = game.actors.get(this.object.id);
-    if (target.type !== "haven") return;
+    console.log("TWDU | addSurvivor: ", target.type);
+    if (target.type !== "haven" && target.type !== "challenge") return;
     const data = target.system;
-
+    console.log("TWDU | addSurvivor data: ", data);
     const actor = game.actors.get(ID);
     const survivorType = actor.type;
+    const fate = actor.system.fate;
     const survivor = {
       id: ID,
       type: survivorType,
+      fate: fate
     };
     // Removes duplicates.
     if (data.survivors.npcs.some((o) => o.id === ID)) this.removeSurvivor(ID);
@@ -526,8 +530,11 @@ export default class TWDUActorSheet extends ActorSheet {
     data.survivors.npcs.push(survivor);
     target.update({ "data.survivors.npcs": data.survivors.npcs });
 
+    // Updates the population on a Haven not a Challenge.
+    if (target.type === "haven"){
     target.update({ "data.survivors.population": data.survivors.npcs.length });
-
+    }
+    console.log("TWDU | data.survivors.npcs: ", data.survivors.npcs);
     return survivor;
   }
 

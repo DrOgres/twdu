@@ -277,7 +277,7 @@ Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 
 Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
   // When dropping something on a haven sheet.
-  if (actor.type === 'haven') {
+  if (actor.type === 'haven' || actor.type === 'challenge') {
     // When dropping an actor on a haven sheet.
     let survivor = await fromUuid(data.uuid);
     if (data.type === 'Actor') sheet._dropSurvivor(survivor.id);
