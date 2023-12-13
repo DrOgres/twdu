@@ -4,8 +4,8 @@
             "character",
             "haven",
             "npc",
-            "animal",
-            "challenge"
+            "animal"
+            
         ],
         "character":{
             "name": "New Character",
