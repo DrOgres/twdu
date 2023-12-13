@@ -8,6 +8,13 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.0.3
+- Fixed NPC rolling too many dice for Trained Skills [#8](https://github.com/DrOgres/twdu/issues/8)
+- Fixed Talents for weapon skills not showing up in the roll dialog [#10](https://github.com/DrOgres/twdu/issues/10)
+- Fixed arbitrary cap on XP set to 10 [#11](https://github.com/DrOgres/twdu/issues/11)
+- Fixed armor penalty not applying to Mobility tests [#9](https://github.com/DrOgres/twdu/issues/9)
+
+
 Release: 1.0.2
 - Added Brazilian Portuguese Localization || Adicionada localização em português do Brasil (Thanks to [shuanz])
 - Adjusted collumn widths in main tab of character sheet to ensure data and headers align properly.
