@@ -112,6 +112,7 @@ export function prepareRollDialog(options) {
       );
     }
   }
+
   if (options.type === "skill") {
     if (options.attName) {
       dialogHtml = buildHTMLDialog(
@@ -125,15 +126,19 @@ export function prepareRollDialog(options) {
       options.skillDefault,
       "skill"
     );
-    if (options.skillName === "Mobility" || options.skillName === "mobility") {
-      let armor = options.armorItem;
-      if (armor) {
+     // if the skill is mobility, add the armor penalty for equipped armor
+     if (options.skillName === "Mobility" || options.skillName === "mobility") {
+      let armor = actor.items.filter(
+        (item) => item.type === "armor" && item.system.isEquipped
+      );
+      if (armor.length > 0) {
+        options.armorPenalty = armor[0].system.agility;
+
         dialogHtml += buildHTMLDialog(
-          "Armor Penalty",
-          0 - armor.system.agility,
-          "armor"
+          game.i18n.localize("twdu.armor") + " " + game.i18n.localize("twdu.penalty"),         
+          options.armorPenalty,
+          "armorPenalty"
         );
-        options.armorPenalty = 0 - armor.system.agility;
       }
     }
 
@@ -167,8 +172,8 @@ export function prepareRollDialog(options) {
   let subtotal =
     (options.attributeDefault || 0) +
     (options.skillDefault || 0) +
-    (options.weaponBonusDefault || 0) +
-    (options.armorPenalty || 0) +
+    (options.weaponBonusDefault || 0) -
+    (Math.abs(options.armorPenalty) || 0) +
     (options.criticalPenalty || 0);
     console.log("TWDU | options: ", options);
   console.log("TWDU | subtotal: ", subtotal);
@@ -176,6 +181,7 @@ export function prepareRollDialog(options) {
   }
 
   if (options.type === "weapon") {
+    console.log("TWDU | skillName: ", options.skillName);
     let damageTalents = talents.filter(
       (item) => item.system.bonusType === "twdu.damage"
     );
@@ -186,6 +192,19 @@ export function prepareRollDialog(options) {
         game.i18n.localize("twdu.ROLL.TALENT_DAMAGE"),
         damageTalents,
         "damageTalent"
+      );
+    }
+
+    let skillTalents = talents.filter(
+      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+    
+    );
+    if (skillTalents.length > 0) {
+      console.log("TWDU | skillTalents: ", skillTalents);
+      dialogHtml += buildSelectDialog(
+        game.i18n.localize("twdu.ROLL.TALENTSKILL"),
+        skillTalents,
+        "talent"
       );
     }
   }
@@ -205,10 +224,16 @@ export function prepareRollDialog(options) {
       );
     }
 
+   
+   
+    
+
     let skillTalents = talents.filter(
-      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase()
+      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+    
     );
     if (skillTalents.length > 0) {
+      console.log("TWDU | skillTalents: ", skillTalents);
       dialogHtml += buildSelectDialog(
         game.i18n.localize("twdu.ROLL.TALENTSKILL"),
         skillTalents,
@@ -250,6 +275,9 @@ export function prepareRollDialog(options) {
             let weaponBonus = options.weaponBonusDefault;
             let damage = options.damageDefault;
             let critPenalty = options.criticalPenalty;
+            let armorPenalty = options.armorPenalty;
+
+            console.log("TWDU | Armor Penalty: ", armorPenalty);
 
             // get the gear bonus
             let gearBonus = 0;
@@ -351,8 +379,8 @@ export function roll(
     attribute +
     skill +
     bonus +
-    (weaponBonus || 0) +
-    (armorPenalty || 0) +
+    (weaponBonus || 0) -
+    (Math.abs(armorPenalty) || 0) +
     (criticalPenalty || 0) +
     (gearBonus || 0)
     + (talentBonus || 0)
