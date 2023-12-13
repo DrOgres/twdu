@@ -126,12 +126,14 @@ export function prepareRollDialog(options) {
       options.skillDefault,
       "skill"
     );
-     // if the skill is mobility, add the armor penalty for equipped armor
+     // if the skill is mobility, add the armor penalty for equipped armor if more than one armor is equipped use the highest penalty
      if (options.skillName === "Mobility" || options.skillName === "mobility") {
       let armor = actor.items.filter(
         (item) => item.type === "armor" && item.system.isEquipped
       );
       if (armor.length > 0) {
+        armor.sort((a, b) => (a.system.agility > b.system.agility ? -1 : 1));
+        
         options.armorPenalty = armor[0].system.agility;
 
         dialogHtml += buildHTMLDialog(
