@@ -11,10 +11,12 @@
             <div class="grid col-70-30 group subheader middle">
                 <div class="justify-self-start pi-1"> {{localize "twdu.lethal"}}: </div>
                 <div class="border-left justify-self-center pi-1 w-100">
-                    {{#if system.fatal}}
+                    
+                    {{#if  (eq system.fatal "true")}}
                     {{localize "twdu.yes"}}
                     {{/if}}
-                    {{#unless system.fatal}}
+                    {{#unless (eq system.fatal "true")}}
+                    
                     {{localize "twdu.no"}}
                     {{/unless}}
                 </div>

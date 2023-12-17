@@ -8,6 +8,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.0.4
+- Fixed weapon sheet to display Ranged Combat skill correctly in drop down. 
+- Fixed injury chat card to display correct information for letality.
+
 Release: 1.0.3
 - Fixed NPC rolling too many dice for Trained Skills [#8](https://github.com/DrOgres/twdu/issues/8)
 - Fixed Talents for weapon skills not showing up in the roll dialog [#10](https://github.com/DrOgres/twdu/issues/10)
@@ -23,10 +27,8 @@ Release: 1.0.1
 - Fixed CSS on settings menu sidebar set up for content modules unreadable without them (fixes Issue [#2](https://github.com/DrOgres/twdu/issues/2))
 - Added German Localization ||  Deutsche Lokalisierung hinzugefügt (Thanks to [Tobbot]) 
 
-
 Release: 1.0.0
 - Initial Release
-
 
 Beta 5:
 - Added animal as an actor type.

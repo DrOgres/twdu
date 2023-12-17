@@ -3,7 +3,7 @@ export const twdu = {};
 twdu.combatSkills = {
     none: "twdu.none",
     force: "twdu.force",
-    ranged: "twdu.rangedcombat",
+    ranged: "twdu.rangedCombat",
     close: "twdu.closeCombat",
 }
 
