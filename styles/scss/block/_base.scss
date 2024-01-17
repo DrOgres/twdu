@@ -3,6 +3,7 @@
 //foundry overrides
 :root {
   --fa-display: inherit;
+
 }
 
 .sidebar {
@@ -129,6 +130,7 @@ img {
 h1.input {
   margin-bottom: 0px;
   padding-block: .25rem;
+ 
 }
 
 h2.header {
@@ -144,6 +146,11 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   border: none;
+ 
+  input{
+    height: 2rem !important;
+  }
+
 }
 
 h2 {
@@ -165,6 +172,7 @@ input[type="text"] {
     stretch;
   background-color: transparent;
   color: $header-0;
+
 
   &:hover {
     cursor: pointer;

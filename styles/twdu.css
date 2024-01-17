@@ -191,6 +191,9 @@ h1 {
   font-weight: bold;
   border: none;
 }
+h1 input {
+  height: 2rem !important;
+}
 
 h2 {
   font-family: "Ash", sans-serif;
