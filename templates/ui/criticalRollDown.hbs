@@ -1,8 +1,8 @@
 <p class='item-desc'>
-    <b>{{localize "twdu.lethal"}}: </b>{{#if system.fatal}}
+    <b>{{localize "twdu.lethal"}}: </b>{{#if (eq system.fatal 'true')}}
     {{localize "twdu.yes"}}
     {{/if}}
-    {{#unless system.fatal}}
+    {{#unless (eq system.fatal 'true')}}
     {{localize "twdu.no"}}
     {{/unless}}
     </br>
