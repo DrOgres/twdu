@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.0.6  
+- Fixed issue with shown info on critial injuries on sheet always showing injuries as lethal. [#17](https://github.com/DrOgres/twdu/issues/17)
+
 Release: 1.0.5
 - Fixed height of inputs in h1 sections.
 
