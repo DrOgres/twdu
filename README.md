@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.0.5
+- Fixed height of inputs in h1 sections.
+
 Release: 1.0.4
 - Fixed weapon sheet to display Ranged Combat skill correctly in drop down. 
 - Fixed injury chat card to display correct information for letality.
