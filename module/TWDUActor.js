@@ -17,8 +17,8 @@ export default class TWDUActor extends Actor {
       "prototypeToken.bar1": { attribute: "health" },
       "prototypeToken.bar2": { attribute: "None" },
       "prototypeToken.actorLink": true,
-      "prototypeToken.sight.enabled": "true",
-      "prototypeToken.sight.range": "12",
+      "prototypeToken.sight.enabled": "false",
+      "prototypeToken.sight.range": "100",
     };
     if (game.settings.get("twdu", "defaultTokenSettings")) {
       switch (data.type) {
