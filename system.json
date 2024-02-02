@@ -20,6 +20,7 @@
         "url": "https://user-images.githubusercontent.com/9851733/108728684-1a954b00-752a-11eb-9138-6fab6f83b2a8.jpg"
       }
     ],
+    "background": "systems/twdu/assets/images/worldbg.webp",
     "minimumCoreVersion": "10",
     "compatibleCoreVersion": "11",
     "scripts": [],
