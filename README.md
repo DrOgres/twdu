@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.0.8  
+- updated token defaults to make vision less annoying for GM's and Players.
+
 
 Release: 1.0.7  
 - Added French Localization || Localisation française ajoutée (Thanks to [Kyllianm85]) [#19](https://github.com/DrOgres/twdu/issues/19)
