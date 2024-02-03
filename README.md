@@ -8,6 +8,11 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+
+Release: 1.0.7  
+- Added French Localization || Localisation française ajoutée (Thanks to [Kyllianm85]) [#19](https://github.com/DrOgres/twdu/issues/19)
+- changed max stress on template for better representation on status bars for tokens.
+
 Release: 1.0.6  
 - Fixed issue with shown info on critial injuries on sheet always showing injuries as lethal. [#17](https://github.com/DrOgres/twdu/issues/17)
 
