@@ -51,9 +51,14 @@ export function getThreatLevel() {
 
 // display the treat level in the chat
 export async function displayThreatLevel() {
+  if (!game.user.isGM) {
+    return;
+  }
   let threatLevel = getThreatLevel();
   // get the gm user
   let gm = game.users.find((u) => u.isGM && u.active);
+
+
   if (gm === undefined) {
     console.error("TWDU | displayThreatLevel: no GM found");
     return;
