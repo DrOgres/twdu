@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release: 1.1.0
+- Fixed bug where non-gm users were shown an error when the GM changed threat level [[#24](https://github.com/DrOgres/twdu/issues/24)]
+
 Release: 1.0.9
 - fixed bug where multiple chat cards would be created for every active user when threat level was changed, now only the GM user creates a card [#22](https://github.com/DrOgres/twdu/issues/22)
 
