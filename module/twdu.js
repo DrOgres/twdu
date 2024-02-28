@@ -279,7 +279,12 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
   // When dropping something on a haven sheet.
   if (actor.type === 'haven' || actor.type === 'challenge') {
     // When dropping an actor on a haven sheet.
-    let survivor = await fromUuid(data.uuid);
-    if (data.type === 'Actor') sheet._dropSurvivor(survivor.id);
+    if (data.type === 'Actor') {
+      let survivor = await fromUuid(data.uuid);
+      sheet._dropSurvivor(survivor.id);
+    }
+
+    // let survivor = await fromUuid(data.uuid);
+    // if (data.type === 'Actor') sheet._dropSurvivor(survivor.id);
   }
 });

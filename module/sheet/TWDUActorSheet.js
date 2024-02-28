@@ -227,16 +227,76 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".stress-down").click(this._onStressDown.bind(this));
     html.find(".show-details").click(this._onShowDetails.bind(this));
     // drag and drop
-    html.find(".sheet-body").on("drop", this._onItemDrop.bind(this));
+    html.find(".sheet-container").on("drop", this._onItemDrop.bind(this));
     html.find(".draggable").on("drag", this._onItemDrag.bind(this));
   }
 
-  _onItemDrag(event) {
-    console.log("TWDU | _onItemDrag: ", event);
+  _onDragStart(event) {
+    console.log(
+      "start drag",
+      event.srcElement.firstElementChild.dataset.rolled
+    );
+    console.log(
+      "start drag skill?",
+      event.currentTarget.classList.contains("skill")
+    );
+    console.log(
+      "start drag attribute?",
+      event.currentTarget.classList.contains("attribute")
+    );
+
+    if (
+      event.currentTarget.classList.contains("skill") ||
+      event.currentTarget.classList.contains("attribute")
+    ) {
+      console.log("a skill or attribute");
+      const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
+      console.log("rollItemDragged", rollItemDragged);
+
+      tftloopRoll(rollItemDragged);
+
+      return;
+    } else {
+      console.log("not a skill or attribute");
+      super._onDragStart(event);
+      return;
+    }
   }
 
+  _onItemDrag(event) {
+    event.preventDefault();
+    //console.log("TWDU | _onItemDrag: ", event);
+    game.data.item = this.actor.getEmbeddedDocument(
+      "Item",
+      event.currentTarget.closest(".item").dataset.itemId
+    );
+
+    console.log("TWDU | _onItemDrag: ", game.data.item);
+    }
+
   _onItemDrop(event) {
-    console.log("TWDU | _onItemDrop: ", event);
+    event.preventDefault();
+    //console.log("TWDU | _onItemDrop: ", event);
+
+    let actor = this.actor;
+    let item = game.data.item;
+    let actorType = actor.type;
+    let target = event.target;
+
+    console.log("TWDU | _onItemDrop: ", actor);
+    actor.createEmbeddedDocuments("Item", [item]);
+    
+    //let actor = this.actor;
+    let storedItem = game.data.item;
+
+    // remove the item from the original actor
+    let originalActor = storedItem.actor;
+    console.log("TWDU | originalActor: ", originalActor);
+    originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
+
+
+    return;
+
   }
 
   async _onShowDetails(event) {
