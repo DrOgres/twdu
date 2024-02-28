@@ -115,7 +115,8 @@
                     "label": "medicine",
                     "attribute": "emp"
                 }
-            }
+            },
+            "haven": null
         },
         "challenge": {
             "rumors" : [

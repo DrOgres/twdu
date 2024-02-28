@@ -2,6 +2,7 @@
     "twdu": {
         "name": "Name",
         "archetype": "Archetype",
+        "haven": "Haven",
         "background": "Background",
         "description": "Description",
         "pcAnchor": "PC Anchor",

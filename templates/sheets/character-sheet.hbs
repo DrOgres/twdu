@@ -1,11 +1,10 @@
 <form class="{{cssClass}} group" autocomplete="off" style="margin: -4px;">
   {{!-- Sheet Header --}}
   <div class="sheet-container" style="margin:-2px;">
-    <header class="actor-header flex-row" >
+    <header class="actor-header flex-row">
       <div class="img-container" style="width: 175px; ">
-      <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}"
-         />
-        </div>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.img}}" />
+      </div>
       <div class="character-info w-100">
 
         <h1 class="input name w-100 group pi-1"><input name="name" type="text" value="{{actor.name}}"
@@ -18,6 +17,22 @@
               <input name="system.archetype" id="archetype" type="text" value="{{system.archetype}}"
                 placeholder="{{localize 'twdu.archetype'}}" />
             </div>
+            <div class="haven m-0 p-1 border-left flex-row center justify">
+              <b class="pi-1">{{localize 'twdu.haven'}}:</b>
+              <div class="havens grid two-col border-bottom">
+                {{#if actor.system.haven}}
+                <div>{{parseActor actor.system.haven 'name'}}</div>
+                <div class="buttons justify-self-end middle">
+                  <a class="item-control actor-edit" data-actor-id="{{actor.system.haven}}"
+                    title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
+                  <a class="item-control actor-delete" title='{{localize  "twdu.ui.delete"}}' data-key="{{actor.system.haven}}"
+                    data-actor-id="{{actor.system.haven}}" data-type="haven"><i class="fas fa-trash"></i></a>
+                </div>
+                {{/if}}
+              </div>
+
+
+            </div>
 
             <div class="flex-col">
               <h2 class="subheader border-top border-bottom border-left t m-0 p-1">{{localize 'twdu.issues'}} <a
@@ -26,10 +41,10 @@
               <div class="issue-list scrollable max-h-150p  border-left">
                 {{#each items as |item key|}}
                 {{#if item.isIssue}}
-                <div class="issue item grid two-col pi-2 border-bottom middle"  data-item-id="{{item._id}}">
-                 <div class="name show-details">
+                <div class="issue item grid two-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                  <div class="name show-details">
                     {{item.name}}
-                    </div>
+                  </div>
                   <div class="button justify-self-end">
                     <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
                         class="fas fa-comment"></i></a>

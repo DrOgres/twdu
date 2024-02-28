@@ -19,7 +19,7 @@
       {{#each items as |item key|}}
       {{#if item.isWeapon}}
       {{#if item.system.isEquipped}}
-      <div class="weapon item grid seven-col justify center align-center border-bottom" data-item-id="{{item._id}}">
+      <div class="weapon item grid seven-col justify center align-center border-bottom draggable" draggable="true" data-item-id="{{item._id}}">
         <span class="icon rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
           data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}">
           <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" /></span>
@@ -56,7 +56,7 @@
       {{#each items as |item key|}}
       {{#if item.isWeapon}}
       {{#unless item.system.isEquipped}}
-      <div class="weapon item grid seven-col justify center align-center border-bottom" data-item-id="{{item._id}}">
+      <div class="weapon item grid seven-col justify center align-center border-bottom draggable" draggable="true" data-item-id="{{item._id}}">
         <span class="icon rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
           data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}">
           <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" /></span>
