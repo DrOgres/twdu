@@ -181,8 +181,7 @@
                             <div class="container">
                                 {{#each items as |item key|}}
                                 {{#if item.isGear}}
-                                <div class="gear item grid two-col pi-2 border-bottom middle"
-                                    data-item-id="{{item._id}}">
+                                <div class="gear item grid two-col pi-2 border-bottom middle draggable" draggable="true" data-item-id="{{item._id}}">
                                     <div class="name show-details">
                                         {{item.name}}
                                     </div>
@@ -209,8 +208,7 @@
                             <div class="container">
                                 {{#each items as |item key|}}
                                 {{#if item.isWeapon}}
-                                <div class="issue item grid two-col pi-2 border-bottom middle"
-                                    data-item-id="{{item._id}}">
+                                <div class="issue item grid two-col pi-2 border-bottom middle draggable" draggable="true" data-item-id="{{item._id}}">
                                     <div class="name show-details">
                                         {{item.name}}
                                     </div>
@@ -237,8 +235,7 @@
                             <div class="container">
                                 {{#each items as |item key|}}
                                 {{#if item.isArmor}}
-                                <div class="issue item grid two-col pi-2 border-bottom middle"
-                                    data-item-id="{{item._id}}">
+                                <div class="issue item grid two-col pi-2 border-bottom middle draggable" draggable="true" data-item-id="{{item._id}}">
                                     <div class="name show-details">
                                         {{item.name}}
                                     </div>
@@ -264,8 +261,7 @@
                             <div class="container">
                                 {{#each items as |item key|}}
                                 {{#if item.isVehicle}}
-                                <div class="issue item grid two-col pi-2 border-bottom middle"
-                                    data-item-id="{{item._id}}">
+                                <div class="issue item grid two-col pi-2 border-bottom middle draggable" draggable="true" data-item-id="{{item._id}}">
                                     <div class="name show-details">
                                         {{item.name}}
                                     </div>

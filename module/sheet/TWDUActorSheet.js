@@ -56,24 +56,24 @@ export default class TWDUActorSheet extends ActorSheet {
 
     if (context.isPlayer) {
       
-      // determine if the pc is in a haven
-      let havens = game.actors.filter((a) => a.type === "haven");
-      context.isInHaven = false;
-      console.log("TWDU | havens: ", havens);
-      // cheack each haven.system.survivors.npcs for the actor.id
-      for (let haven of havens) {
-        let survivors = haven.system.survivors.npcs;
-        for (let survivor of survivors) {
-          if (survivor.id === context.actor._id) {
-            context.isInHaven = true;
-            context.haven = haven;
-            // set the actor's haven as the id of the haven
-            this.actor.system.haven = haven._id;
-          }
-        }
-      }
-      console.log("TWDU | context: ", context);
-      console.log("TWDU | context.actor: ", this.actor);
+      // // determine if the pc is in a haven
+      // let havens = game.actors.filter((a) => a.type === "haven");
+      // context.isInHaven = false;
+      // console.log("TWDU | havens: ", havens);
+      // // cheack each haven.system.survivors.npcs for the actor.id
+      // for (let haven of havens) {
+      //   let survivors = haven.system.survivors.npcs;
+      //   for (let survivor of survivors) {
+      //     if (survivor.id === context.actor._id) {
+      //       context.isInHaven = true;
+      //       context.haven = haven;
+      //       // set the actor's haven as the id of the haven
+      //       this.actor.system.haven = haven._id;
+      //     }
+      //   }
+      // }
+      // console.log("TWDU | context: ", context);
+      // console.log("TWDU | context.actor: ", this.actor);
       
 
       context.maxEncumbrance = context.system.attributes.str.value + 2;
@@ -276,17 +276,21 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onItemDrop(event) {
     event.preventDefault();
-    //console.log("TWDU | _onItemDrop: ", event);
+    console.log("TWDU | _onItemDrop: ", event);
 
-    let actor = this.actor;
-    let item = game.data.item;
-    let actorType = actor.type;
-    let target = event.target;
+     let actor = this.actor;
+     let item = game.data.item;
+
+    console.log("TWDU | _onItemDrop item: ", item);
+    
+    if (item === undefined) {
+      return;
+    }
 
     console.log("TWDU | _onItemDrop: ", actor);
     actor.createEmbeddedDocuments("Item", [item]);
     
-    //let actor = this.actor;
+    
     let storedItem = game.data.item;
 
     // remove the item from the original actor
@@ -531,25 +535,29 @@ export default class TWDUActorSheet extends ActorSheet {
     //TODO determine if this is being called from haven sheet or from the actor sheet
     //TODO remove from both the haven and the actor
 
-
+    console.log("TWDU | _onActorDelete event: ", event);
     event.preventDefault();
     const target = game.actors.get(this.object.id);
     console.log("TWDU | _onActorDelete: ", target);
+
     
     if (target.type === "character"){
-      // return for now TODO add a dialog to confirm the delete then call the delete
+     
       console.log("TWDU | _onActorDelete: ", "character");
       let haven = game.actors.get(target.system.haven);
+      let pcActor = game.actors.get(target._id);
       console.log("TWDU | _onActorDelete: ", haven);
-      //TODO  remove this actor from the haven
+     
       haven.update({ "data.survivors.npcs": haven.system.survivors.npcs.filter((o) => o.id !== target.id) });
-      target.update({ "data.haven": "" });
-      console.log("TWDU | _onActorDelete: ", target.system.haven);
-      console.log("TWDU | _onActorDelete: ", target);
+      pcActor.update({ "data.haven": "" });
+      //this.actor.update({ "data.system.haven": "" });
+      console.log("TWDU | _onActorDelete: haven ", pcActor.system.haven);
+      console.log("TWDU | _onActorDelete: ", pcActor);
       return;
     }
-    console.log("TWDU | _onActorDelete: ", event);
+    
     const actorID = event.currentTarget.dataset.actorId;
+    this.removeSurvivor(actorID);
     const survivors = this.actor.system.survivors;
     survivors.npcs = survivors.npcs.filter((o) => o.id !== actorID);
     target.update({ "data.survivors.npcs": survivors.npcs });
@@ -598,11 +606,7 @@ export default class TWDUActorSheet extends ActorSheet {
     item.update({ "system.isEquipped": !item.system.isEquipped });
   }
 
-  //TODO set storage for actor's items to move to and from the haven
 
-  //TODO drag and drop items between actors 
-  //        - add item to drop target
-  //        - remove item from source
 
   _onExpChange(event) {
     event.preventDefault();
@@ -672,8 +676,11 @@ export default class TWDUActorSheet extends ActorSheet {
     // Adds the new survivor.
     data.survivors.npcs.push(survivor);
     target.update({ "data.survivors.npcs": data.survivors.npcs });
-
+    // put this haven on the character
+    if (actor.type === "character"){
+    actor.update({ "data.haven": target._id });
     // Updates the population on a Haven not a Challenge.
+    }
     if (target.type === "haven") {
       target.update({
         "data.survivors.population": data.survivors.npcs.length,
@@ -689,6 +696,12 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | removeSurvivor: ", Id);
     const target = game.actors.get(this.object.id);
     if (target.type !== "haven") return;
+    let actor = game.actors.get(Id);
+    console.log("TWDU | removeSurvivor actor: ", actor);
+    if (actor.type === "character"){
+
+      actor.update({ "data.haven": "" });
+    }
     const survivors = target.system.survivors;
     survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
     return survivors.npcs;
