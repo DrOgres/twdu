@@ -626,6 +626,10 @@ export default class TWDUActorSheet extends ActorSheet {
     event.preventDefault();
     let actor = this.actor;
     let newCount = actor.system.stress.value + 1;
+    // if the new count is greater than the max stress then update max stress to new count +1
+    if (newCount > actor.system.stress.max) {
+      actor.update({ "system.stress.max": newCount + 1 });
+    }
     actor.update({ "system.stress.value": newCount });
   }
 

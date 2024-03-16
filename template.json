@@ -26,7 +26,8 @@
             "stress": {
                 "value": 0,
                 "label": "STRESS",
-                "max": 100
+                "max": 10
+                
             },
             "experience": {
                 "value": 0,

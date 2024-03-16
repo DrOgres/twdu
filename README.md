@@ -8,11 +8,16 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 1.2.1:
+- CHanged default for Max Stress to 10
+- Max Stress now increases when it is over the current max stress, this should make for more useful status bars on tokens, that reflect use during play.
+- Migrate actors to new stress system
+- Changed verbage on equip/store items to be more clear
+
 Release: 1.2.0
 - Added ability to assign PC to Haven which will show on the character sheet and Haven sheet. [#18](https://github.com/DrOgres/twdu/issues/18)
-- Added drag and drop item movement between all actors. [#16](https://github.com/DrOgres/twdu/issues/16) and [#13](https://github.com/DrOgres/twdu/issues/13)
-
-
+- Added drag and drop items  between all actors. [#16](https://github.com/DrOgres/twdu/issues/16) and [#13](https://github.com/DrOgres/twdu/issues/13)
+- 
 
 Release: 1.1.0
 - Fixed bug where non-gm users were shown an error when the GM changed threat level [[#24](https://github.com/DrOgres/twdu/issues/24)]

@@ -8,6 +8,7 @@ import { increaseThreatLevel, decreaseThreatLevel } from "./util/threat.js";
 import { YearZeroRollManager } from "./util/yzur.js";
 import { ThreatLevelDisplay } from "./util/threat.js";
 import { registerGameSettings } from "./util/settings.js";
+import { migrate } from "./util/migration.js";
 
 Hooks.once("init", async function () {
   console.log("TWDU | Initializing TWDU");
@@ -287,4 +288,9 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
     // let survivor = await fromUuid(data.uuid);
     // if (data.type === 'Actor') sheet._dropSurvivor(survivor.id);
   }
+});
+
+Hooks.once("ready", async function () {
+  migrate();
+  //FoundryOverrides.override();
 });
