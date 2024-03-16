@@ -29,7 +29,7 @@ const migrations = {
     for( let actor of game.actors.contents ){
         const updateData = migrateActorData(actor, "1.2.1");
         if (!foundry.utils.isEmpty(updateData)) {
-            console.log("Vaesen Migration",{actor: actor, changes: updateData});
+            console.log("TWDU Migration",{actor: actor, changes: updateData});
             await actor.update(updateData);
           }
       

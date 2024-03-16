@@ -155,11 +155,14 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   computeSkills(context) {
+    console.log("compute skills", context);
+
     for (let skill of Object.values(context.system.skills)) {
       skill.hasStrength = skill.attribute === "str";
       skill.hasAgility = skill.attribute === "agl";
       skill.hasWits = skill.attribute === "wit";
       skill.hasEmpathy = skill.attribute === "emp";
+      console.log("skill computed", skill);
     }
   }
 

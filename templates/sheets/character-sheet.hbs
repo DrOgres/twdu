@@ -119,7 +119,8 @@
         {{!-- STR skillblock --}}
         <div class="skill-group flex-col">
           {{#each system.skills as |skill key|}}
-          {{#if skill.hasStrength}}
+          
+          {{#if (eq skill.attribute 'str')}}
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable pi-1" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize
               (TWDUconcat "twdu." skill.label)}}</b>
@@ -142,7 +143,8 @@
         {{!-- skillblock --}}
         <div class="skill-group flex-col">
           {{#each system.skills as |skill key|}}
-          {{#if skill.hasAgility}}
+          {{#if (eq skill.attribute 'agl')}}
+          
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat
               "twdu." skill.label)}}</b>
@@ -165,7 +167,8 @@
         {{!-- skillblock --}}
         <div class="skill-group flex-col">
           {{#each system.skills as |skill key|}}
-          {{#if skill.hasWits}}
+          {{#if (eq skill.attribute 'wit')}}
+          
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat
               "twdu." skill.label)}}</b>
@@ -188,7 +191,8 @@
         {{!-- skillblock --}}
         <div class="skill-group flex-col">
           {{#each system.skills as |skill key|}}
-          {{#if skill.hasEmpathy}}
+         
+          {{#if (eq skill.attribute 'emp')}}
           <div class="skill flex-row align-center group justify pi-1">
             <b class="rollable" data-key="skill" data-skill="{{key}}" data-test="twdu.{{key}}">{{localize (TWDUconcat
               "twdu." skill.label)}}</b>
