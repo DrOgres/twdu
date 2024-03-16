@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 1.2.2:
+- Fixed bug the handlebars parsing changed the way it handled booleans breaking the skill boxes on the character sheet. [#26](https://github.com/DrOgres/twdu/issues/26)
+
 Release 1.2.1:
 - Changed default for Max Stress to 10 [#25](https://github.com/DrOgres/twdu/issues/25)
 - Max Stress now increases when it is over the current max stress, this should make for more useful status bars on tokens, that reflect use during play.
