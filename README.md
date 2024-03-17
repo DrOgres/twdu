@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 1.2.3:
+- Fixed a bug where the critical injury penalty was not being treated as a number when calculating it's impact on a roll [#28](https://github.com/DrOgres/twdu/issues/28)
+
 Release 1.2.2:
 - Fixed bug the handlebars parsing changed the way it handled booleans breaking the skill boxes on the character sheet. [#26](https://github.com/DrOgres/twdu/issues/26)
 
