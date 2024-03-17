@@ -346,7 +346,7 @@ function parseCriticalInjuries(actor) {
   // get the criticalInjury.effect value from each item in criticals
   // add them together
   for (let i = 0; i < criticals.length; i++) {
-    console.log("TWDU | Critical: ", criticals[i]);
+    
     let critical = criticals[i];
     total += Number(critical.system.effect);
   }
