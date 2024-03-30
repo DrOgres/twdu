@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 1.2.4:
+- Spanish Localization added || Localización en español añadida (Thanks to [NandoNO82]) [#29](https://github.com/DrOgres/twdu/issues/29)
+
 Release 1.2.3:
 - Fixed a bug where the critical injury penalty was not being treated as a number when calculating it's impact on a roll [#28](https://github.com/DrOgres/twdu/issues/28)
 
