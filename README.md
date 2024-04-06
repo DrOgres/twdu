@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 1.2.5: 
+- Fixed a bug where Armor was not rollable from an NPC sheet. [#30](https://github.com/DrOgres/twdu/issues/30)
+
 Release 1.2.4:
 - Spanish Localization added || Localización en español añadida (Thanks to [NandoNO82]) [#29](https://github.com/DrOgres/twdu/issues/29)
 
