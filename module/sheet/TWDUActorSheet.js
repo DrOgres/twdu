@@ -194,8 +194,9 @@ export default class TWDUActorSheet extends ActorSheet {
   equipItems(data) {
     // this will equip all owned items for an NPC, this is primarily so that armor penalties on mobility can be calculated
     let items = data.items;
+    console.log("TWDU | equipItems: ", items);
     items.forEach((item) => {
-      this.actor.items.get(item._id).update({ "system.isEquiped": true });
+      this.actor.items.get(item._id).update({ "system.isEquipped": true });
       // item.update({ "system.isEquipped":  true});
     });
   }
@@ -377,6 +378,8 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onRoll(event) {
+
+    console.log("TWDU | _onRoll: ", event);
     event.preventDefault();
     let actor = this.actor;
     let health = actor.system.health.value;
@@ -385,7 +388,13 @@ export default class TWDUActorSheet extends ActorSheet {
       return;
     }
     let target = event.currentTarget;
+    console.log("TWDU | target: ", target);
     let key = target.dataset.key;
+    if (key === undefined) {
+      console.log("TWDU | key is undefined");
+      key = target.dataset.itemType;
+      //return;
+    }
     let options = {
       type: key,
       sheet: this,
@@ -493,7 +502,7 @@ export default class TWDUActorSheet extends ActorSheet {
         break;
       case "armor":
         {
-          console.log("TWDU | armor: ", target.dataset.armor);
+          
           let protection = target.dataset.protection;
           options.armorItem = this.actor.items.find(
             (item) => item.type === "armor" && item.system.isEquipped

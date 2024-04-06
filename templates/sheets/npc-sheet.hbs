@@ -281,7 +281,7 @@
           {{#each items as |item key|}}
           {{#if item.isArmor}}
           <div class="armor item grid five-col justify align-center border-bottom draggable" draggable="true" data-item-id="{{item._id}}">
-            <span class="icon rollable"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
+            <span class="icon rollable" data-item-type="armor"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
                 height="25" /></span>
             <span class="name show-details">{{item.name}}</span>
             <span class="damage">{{item.system.protection}}</span>
