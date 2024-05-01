@@ -48,36 +48,16 @@ export default class TWDUActorSheet extends ActorSheet {
       maxEncumbrance: 0,
       maxpop: 0,
     };
-    console.log("TWDU | context: ", context);
+    //console.log("TWDU | context: ", context);
     context.config = CONFIG.twdu;
-    console.log("TWDU | context.config: ", context.config);
+    //console.log("TWDU | context.config: ", context.config);
 
     this.computeItems(context);
 
     if (context.isPlayer) {
-      
-      // // determine if the pc is in a haven
-      // let havens = game.actors.filter((a) => a.type === "haven");
-      // context.isInHaven = false;
-      // console.log("TWDU | havens: ", havens);
-      // // cheack each haven.system.survivors.npcs for the actor.id
-      // for (let haven of havens) {
-      //   let survivors = haven.system.survivors.npcs;
-      //   for (let survivor of survivors) {
-      //     if (survivor.id === context.actor._id) {
-      //       context.isInHaven = true;
-      //       context.haven = haven;
-      //       // set the actor's haven as the id of the haven
-      //       this.actor.system.haven = haven._id;
-      //     }
-      //   }
-      // }
-      // console.log("TWDU | context: ", context);
-      // console.log("TWDU | context.actor: ", this.actor);
-      
-
+   
       context.maxEncumbrance = context.system.attributes.str.value + 2;
-      console.log("TWDU | Enriching HTML");
+      //console.log("TWDU | Enriching HTML");
       context.notesHTML = await TextEditor.enrichHTML(
         context.system.notes.value,
         {
@@ -89,7 +69,7 @@ export default class TWDUActorSheet extends ActorSheet {
         // update context with the data we just got
       context.actor = this.actor;
       context.system = this.actor.system;
-      console.log("TWDU | context: ", context);
+      //console.log("TWDU | context: ", context);
     }
 
     if (context.isHaven) {
@@ -100,7 +80,7 @@ export default class TWDUActorSheet extends ActorSheet {
         context.system.notes.value,
         { async: true }
       );
-      console.log("TWDU | haven context: ", context);
+      //console.log("TWDU | haven context: ", context);
     }
 
     if (context.isNPC) {
@@ -115,7 +95,7 @@ export default class TWDUActorSheet extends ActorSheet {
     }
 
     if (context.isAnimal) {
-      console.log("TWDU | isAnimal: ", context.isAnimal);
+      //console.log("TWDU | isAnimal: ", context.isAnimal);
       context.animalHTML = await TextEditor.enrichHTML(
         context.system.notes.value,
         { async: true }
@@ -155,14 +135,14 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   computeSkills(context) {
-    console.log("compute skills", context);
+    //console.log("compute skills", context);
 
     for (let skill of Object.values(context.system.skills)) {
       skill.hasStrength = skill.attribute === "str";
       skill.hasAgility = skill.attribute === "agl";
       skill.hasWits = skill.attribute === "wit";
       skill.hasEmpathy = skill.attribute === "emp";
-      console.log("skill computed", skill);
+      //console.log("skill computed", skill);
     }
   }
 
@@ -194,23 +174,13 @@ export default class TWDUActorSheet extends ActorSheet {
   equipItems(data) {
     // this will equip all owned items for an NPC, this is primarily so that armor penalties on mobility can be calculated
     let items = data.items;
-    console.log("TWDU | equipItems: ", items);
+    //console.log("TWDU | equipItems: ", items);
     items.forEach((item) => {
       this.actor.items.get(item._id).update({ "system.isEquipped": true });
       // item.update({ "system.isEquipped":  true});
     });
   }
 
-  // prepDragDrop() {
-  //   console.log("TWDU | prepDragDrop: ")
-  //   const dragDrop = new DragDrop({
-  //     dragSelector: ".draggable",
-  //     dropSelector: ".droppable",
-  //     permissions: { dragstart: this._canDragStart.bind(this), drop: this._canDragDrop.bind(this)},
-  //     callbacks: { dragstart:this._onDragStart.bind(this), drop: this._onDrop.bind(this) },
-  //   });
-  //   return dragDrop;
-  // }
 
   activateListeners(html) {
     super.activateListeners(html);
@@ -257,7 +227,7 @@ export default class TWDUActorSheet extends ActorSheet {
       const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
       console.log("rollItemDragged", rollItemDragged);
 
-      tftloopRoll(rollItemDragged);
+    
 
       return;
     } else {
@@ -268,6 +238,7 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onItemDrag(event) {
+   // console.log("TWDU | _onItemDrag: ", event);
     event.preventDefault();
     //console.log("TWDU | _onItemDrag: ", event);
     game.data.item = this.actor.getEmbeddedDocument(
@@ -275,9 +246,11 @@ export default class TWDUActorSheet extends ActorSheet {
       event.currentTarget.closest(".item").dataset.itemId
     );
 
-    console.log("TWDU | _onItemDrag: ", game.data.item);
+   // console.log("TWDU | _onItemDrag: ", game.data.item);
     }
 
+
+    //prevent sidebar triggering this code?
   _onItemDrop(event) {
     event.preventDefault();
     console.log("TWDU | _onItemDrop: ", event);
@@ -285,23 +258,25 @@ export default class TWDUActorSheet extends ActorSheet {
      let actor = this.actor;
      let item = game.data.item;
 
-    console.log("TWDU | _onItemDrop item: ", item);
+   // console.log("TWDU | _onItemDrop item: ", item);
     
     if (item === undefined) {
       return;
     }
 
-    console.log("TWDU | _onItemDrop: ", actor);
+   
     actor.createEmbeddedDocuments("Item", [item]);
-    
-    
+    console.log("TWDU | _onItemDrop: ", actor);
+
     let storedItem = game.data.item;
 
     // remove the item from the original actor
     let originalActor = storedItem.actor;
-    console.log("TWDU | originalActor: ", originalActor);
+    //console.log("TWDU | originalActor: ", originalActor);
     originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
+    console.log("TWDU | storedItem: ", storedItem);
 
+    storedItem = null;
 
     return;
 
@@ -618,8 +593,6 @@ export default class TWDUActorSheet extends ActorSheet {
     item.update({ "system.isEquipped": !item.system.isEquipped });
   }
 
-
-
   _onExpChange(event) {
     event.preventDefault();
 
@@ -722,8 +695,6 @@ export default class TWDUActorSheet extends ActorSheet {
     survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
     return survivors.npcs;
   }
-
-
 
   /** @override */
   async _onDropItemCreate(itemData) {
