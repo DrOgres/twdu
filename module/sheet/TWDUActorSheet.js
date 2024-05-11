@@ -253,30 +253,47 @@ export default class TWDUActorSheet extends ActorSheet {
     //prevent sidebar triggering this code?
   _onItemDrop(event) {
     event.preventDefault();
-    console.log("TWDU | _onItemDrop: ", event);
+    // console.log("TWDU | _onItemDrop: ", event);
 
      let actor = this.actor;
      let item = game.data.item;
 
-   // console.log("TWDU | _onItemDrop item: ", item);
+   //console.log("TWDU | _onItemDrop item: ", item);
     
-    if (item === undefined) {
+    if (item === undefined || item === null) {
       return;
     }
 
    
     actor.createEmbeddedDocuments("Item", [item]);
-    console.log("TWDU | _onItemDrop: ", actor);
+    // console.log("TWDU | _onItemDrop actor: ", actor.id);
 
     let storedItem = game.data.item;
+    if (storedItem === null) {
+      return;
+    }
 
     // remove the item from the original actor
     let originalActor = storedItem.actor;
-    //console.log("TWDU | originalActor: ", originalActor);
-    originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
-    console.log("TWDU | storedItem: ", storedItem);
+    // console.log("TWDU | originalActor: ", originalActor.id);
 
+  if (originalActor.id === actor.id) {
+    // console.log("id match on drop action - returning ");
     storedItem = null;
+    item = null;
+    return;
+  }
+   
+    originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
+    // console.log("TWDU | storedItem: ", storedItem);
+    // console.log("TWDU | item: ", item);
+
+    game.data.item = null;
+    storedItem = null;
+    item = null;
+    // console.log("TWDU | storedItem: ", storedItem);
+    // console.log("TWDU | item: ", item);
+    // console.log("TWDU | game.data.item: ", game.data.item);
 
     return;
 

@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 1.2.6:
+- Fixed a bug where items would duplicate on character sheets after being transfered to a differnt actor. [#31](https://gitghub.com/DrOgres/twdu/issues/31)
+
 Release 1.2.5: 
 - Fixed a bug where Armor was not rollable from an NPC sheet. [#30](https://github.com/DrOgres/twdu/issues/30)
 
