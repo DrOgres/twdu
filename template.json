@@ -2,6 +2,7 @@
     "Actor": {
         "types": [
             "character",
+            "challenge",
             "haven",
             "npc",
             "animal"
@@ -273,7 +274,8 @@
             "talent",
             "criticalInjury",
             "vehicle",
-            "issue"
+            "issue",
+            "rumor"
         ],
         "templates": {
             "itemEquipped": {
@@ -351,6 +353,23 @@
                 "description": "",
                 "notes": "",
                 "source": ""
+            },
+            "rumor": {
+                "description": "",
+                "clock": 0
+            }
+            ,
+            "challenge": {
+                "description": ""
+            },
+            "endgame": {
+                "description": "",
+                "clock": 0
+            },
+            "faction": {
+                "description": "",
+                "notes": "",
+                "clock": 0
             }
     }
 }

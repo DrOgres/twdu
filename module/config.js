@@ -64,3 +64,10 @@ twdu.talentBonusTypes = {
     skill: "twdu.skill",
     damage: "twdu.damage"
 }
+
+twdu.clockTypes ={
+    none: "twdu.none",
+    rumors: "twdu.rumor",
+    endgame: "twdu.endgame",
+    faction: "twdu.faction"
+}

@@ -43,12 +43,35 @@
 
                     <div class="issue--top  span-2 flex-row space-between">
                         <h2 class=" border-left  t m-0 p-1">{{localize 'twdu.rumors'}} <a title="{{localize "
-                                twdu.ui.add"}}" class="add-item pi-1" data-type="rumors">
+                                twdu.ui.add"}}" class="add-item pi-1" data-type="rumor">
                                 &#43;</a></h2>
 
                         <div class="source middle">{{localize 'twdu.clock'}}</div>
                     </div>
                     <div class=" m-0 p-1 border-right">&nbsp;</div>
+                </div>
+                <div class="issue-list scrollable max-h-150p  border-left">
+                    {{#each items as |item key|}}
+                    {{#if item.isRumor}}
+                    <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                        <div class="name show-details flex-row space-between">
+                            <div class="name">{{item.name}} </div>
+                            </div>
+                            <div class="clock">
+                            <div class="clock item-clock" >{{item.system.clock}}</div>
+                             <div class="clock test-clock" >test the clock</div>
+                        </div>
+                        <div class="button justify-self-end">
+                            <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
+                                    class="fas fa-comment"></i></a>
+                            <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
+                                    class="fas fa-edit"></i></a>
+                            <a class="item-control item-delete" title='{{localize  "twdu.ui.delete"}}'
+                                data-key="{{key}}" data-type="item"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                    {{/if}}
+                    {{/each}}
                 </div>
 
             </div>

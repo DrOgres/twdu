@@ -469,6 +469,65 @@ async function rollDice(type, sheet, numberOfDice) {
     speaker: ChatMessage.getSpeaker({ actor: actor, token: actor.img }),
   });
   sheet.roll = r.duplicate();
+
+}
+
+export async function rollClockTest(actor, sheet, item){
+  let clock = item.system.clock;
+  let formula = 1 + "d6";
+  let token = actor.prototypeToken.texture.src;
+
+
+  let data = {
+    owner: actor.id,
+    name: item.name
+  };
+
+  let options = {
+    name: item.name,
+    token: token,
+    owner: actor.id,
+    actorType: actor.type,
+    formula: formula,
+  };
+
+  let r = new YearZeroRoll(formula, data, options);
+  let totalResult =  r._total;
+  console.log("TWDU | rollClockTest: ", totalResult);
+  let chatMessage = `
+  <div class="card-holder flex-row w-100" style="position: relative;">
+    <div class="roll-token m-0 p-1 header group">
+      <img src="systems/twdu/assets/images/twdu-challenge.png" width="45" class="roll-token">
+    </div>
+    <div class="chat-card grow m-0 pi-1" data-owner-id="${actor.id}">
+      <div class="card-content group">
+        <div class="dice-roll">
+          <div class="text-center header border-bottom">${item.name} Clock</div>
+          <div class="dice-result m-1 p-1">
+            <div class="dice-formula">${formula}</div>
+            <div class="dice-tooltip expanded" style="display: block;">
+              <section class="tooltip-part ">
+                <div class="dice">
+                  <header class="part-header flexrow">
+                  <span class="part-formula">${formula}</span>
+                  <span class="part-total">${totalResult}</span>
+                  </header>
+                </div>
+             </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+  // test the roll against the clock and increment the clock if roll is less than clock value
+  await r.toMessage({content: chatMessage,
+    speaker: ChatMessage.getSpeaker({actor: actor, token: actor.img }),
+  });
+  sheet.roll = r.duplicate();
+  return r;
 }
 
 function buildSubTotalDialog(basevalue, stressvalue) {

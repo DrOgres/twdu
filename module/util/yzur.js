@@ -2000,6 +2000,7 @@ class YearZeroRoll extends Roll {
    * @override
    */
   async toMessage(messageData = {}, { rollMode = null, create = true } = {}) {
+    console.log("YZUR | YearZeroRoll#toMessage", messageData, rollMode, create);
     messageData = foundry.utils.mergeObject(
       {
         user: game.user.id,

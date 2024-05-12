@@ -1,6 +1,7 @@
 import { buildChatCard } from "../util/chat.js";
-import { prepareRollDialog } from "../util/roll.js";
+import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
+
 
 export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
@@ -157,6 +158,7 @@ export default class TWDUActorSheet extends ActorSheet {
       item.isProject = item.type === "project";
       item.isIssue = item.type === "issue";
       item.isVehicle = item.type === "vehicle";
+      item.isRumor = item.type === "rumor";
     }
   }
 
@@ -203,6 +205,55 @@ export default class TWDUActorSheet extends ActorSheet {
     // drag and drop
     html.find(".sheet-container").on("drop", this._onItemDrop.bind(this));
     html.find(".draggable").on("drag", this._onItemDrag.bind(this));
+    //item clocks
+    html.find(".item-clock").click(this._onIncreaseClock.bind(this));
+    html.find(".item-clock").contextmenu(this._onDecreaseClock.bind(this));
+    html.find(".test-clock").click(this._onTestClock.bind(this));
+  }
+
+  _onTestClock(event) {
+    console.log("TWDU | _onTestClock: ", event);
+    let div = $(event.currentTarget).parents(".item"),
+    item = this.actor.items.get(div.data("itemId"));
+   
+    // if the clock is less than 6 roll a d6 and if the result is greater than the clock value increase the clock by 1
+    if (item.system.clock < 6) {
+      let roll = rollClockTest(this.actor, this, item);
+      roll.then((result) => console.log("TWDU | result: ", result));
+      roll.then((result) => {
+        console.log(result.total, item.system.clock);
+        if (result.total > item.system.clock) {
+          item.update({ "system.clock": item.system.clock + 1 });
+        }
+      
+      });
+    }
+  }
+
+
+  _onIncreaseClock(event) {
+    console.log("TWDU | _onIncreaseClock: ", event);
+    let div = $(event.currentTarget).parents(".item"),
+    item = this.actor.items.get(div.data("itemId"));
+    console.log("TWDU | _onIncreaseClock: ", div);
+    console.log("TWDU | _onIncreaseClock: ", item);
+    let clockCount = item.system.clock;
+    if(item.system.clock < 6){
+      clockCount++;
+    }
+    item.update({ "system.clock": clockCount });
+
+  }
+
+  _onDecreaseClock(event) {
+    console.log("TWDU | _onDecreaseClock: ", event);
+    let div = $(event.currentTarget).parents(".item"),
+    item = this.actor.items.get(div.data("itemId"));
+    let clockCount = item.system.clock;
+    if(item.system.clock > 0){
+      clockCount--;
+    }
+    item.update({ "system.clock": clockCount });
   }
 
   _onDragStart(event) {
@@ -319,6 +370,7 @@ export default class TWDUActorSheet extends ActorSheet {
       case "gear":
       case "tinyItem":
       case "issue":
+      case "rumor":
         await renderTemplate(
           "systems/twdu/templates/ui/description.hbs",
           item

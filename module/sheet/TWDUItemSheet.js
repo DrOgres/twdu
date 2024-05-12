@@ -1,3 +1,6 @@
+import Clock from "../util/clock.js";
+
+
 export default class TWDUItemSheet extends ItemSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -16,8 +19,29 @@ export default class TWDUItemSheet extends ItemSheet {
     });
   }
 
+
+
   get template() {
     return `systems/twdu/templates/sheets/${this.item.type}-sheet.hbs`;
+  }
+
+  async itemClock() {
+    // Only item types that have a clock should return a clock
+    const newClock = new Clock(6);
+    const clockTypes = ["rumor", "endgame", "faction"];
+    console.log("TWDU | clock: ", newClock );
+    console.log("TWDU | clockTypes: ", clockTypes);
+    console.log("TWDU | item: ", this.item.type);
+    if (!clockTypes.includes(this.item.type)) {
+      return newClock;
+    }
+    
+
+      console.log("TWDU | item: ", this.item.type);
+      console.log("TWDU | clock: ", this.clock);
+
+   return;
+    //return new Clock();
   }
 
   async getData() {
@@ -25,8 +49,14 @@ export default class TWDUItemSheet extends ItemSheet {
     const source = this.item.toObject();
     data.config = CONFIG.twdu;
     data.source = source;
-    console.log("TWDU | data: ", data);
+    
+    this.itemClock().then((clock) => {
+      console.log("TWDU | clock: ", clock);
+      data.clock = clock;
+      console.log("TWDU | data: ", data);
 
+    });
+    console.log("TWDU | data: ", data);
     return data;
   }
 
