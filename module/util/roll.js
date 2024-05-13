@@ -492,8 +492,11 @@ export async function rollClockTest(actor, sheet, item){
   };
 
   let r = new YearZeroRoll(formula, data, options);
+  console.log("TWDU | rollClockTest: ", r);
+  await r.evaluate();
   let totalResult =  r._total;
-  console.log("TWDU | rollClockTest: ", totalResult);
+  console.log("TWDU | rollClockTest total: ", r._total);
+  console.log("TWDU | rollClockTest evaluated: ", r._evaluated);
   let chatMessage = `
   <div class="card-holder flex-row w-100" style="position: relative;">
     <div class="roll-token m-0 p-1 header group">
@@ -510,7 +513,7 @@ export async function rollClockTest(actor, sheet, item){
                 <div class="dice">
                   <header class="part-header flexrow">
                   <span class="part-formula">${formula}</span>
-                  <span class="part-total">${totalResult}</span>
+                  <span class="part-total">${r._total}</span>
                   </header>
                 </div>
              </section>
@@ -521,6 +524,22 @@ export async function rollClockTest(actor, sheet, item){
     </div>
   </div>
   `;
+  console.log("TWDU | clock: ", clock);
+  if (clock > r._total) {
+    //TODO localize this
+    chatMessage += `
+    <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">
+      Clock did not advance
+    </div>
+    `;
+  } else {
+    //TODO localize this
+    chatMessage += `
+    <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">
+      Clock advanced
+    </div>
+    `;
+  }
 
   // test the roll against the clock and increment the clock if roll is less than clock value
   await r.toMessage({content: chatMessage,
