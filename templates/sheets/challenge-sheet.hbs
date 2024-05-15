@@ -205,9 +205,8 @@
                     {{parseActor id 'name'}}
                 </div>
                 <div class="border-right">
-                    {{log "debug logging" level="debug"}}
-                    {{log 'type' type 'index' @index 'id' id 'system npc item' survivor }}
-                    <input name="survivor.fate" value='{{survivor.fate}}' />
+                    
+                    <input class="set-fate" name="survivor.fate" value='{{lookupOrDefault survivor 'fate' 'unknown'}}' data-survivor="{{@index}}" />
                 </div>
                 <div class="buttons justify-self-end middle">
 

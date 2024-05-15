@@ -150,6 +150,13 @@ Hooks.once("init", async function () {
   });
 });
 
+Handlebars.registerHelper('lookupOrDefault', function (object, propertyName, defaultValue, options) {
+  let result = options.lookupProperty(object, propertyName)
+  if (result != '') {
+      return result
+  };
+  return defaultValue;
+});
   
 Hooks.on("renderPause", (_app, html) => {
   html

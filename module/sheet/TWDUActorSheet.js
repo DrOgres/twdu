@@ -7,7 +7,7 @@ export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
-      width: 750,
+      width: 750 - "max-content",
       height: 750 - "max-content",
       resizable: true,
       tabs: [
@@ -101,6 +101,10 @@ export default class TWDUActorSheet extends ActorSheet {
         context.system.notes.value,
         { async: true }
       );
+    }
+
+    if (context.isChallenge) {
+      context.survivors = this.actor.system.survivors;
     }
     // const drag = this.prepDragDrop();
     // console.log("TWDU | drag: ", drag);
@@ -212,6 +216,19 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".item-clock").click(this._onIncreaseClock.bind(this));
     html.find(".item-clock").contextmenu(this._onDecreaseClock.bind(this));
     html.find(".test-clock").click(this._onTestClock.bind(this));
+    // challenge sheet listeners
+    html.find(".set-fate").change(this._onSetFate.bind(this));
+  }
+
+  _onSetFate(event) {
+   
+    let currentTarget = event.currentTarget;
+    let survivorIndex = currentTarget.dataset.survivor;
+    let newFate = currentTarget.value;
+   
+    this.actor.system.survivors.npcs[survivorIndex].fate = newFate;
+    this.actor.update({ "data.survivors.npcs": this.actor.system.survivors.npcs });
+
   }
 
   _onTestClock(event) {
