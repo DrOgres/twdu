@@ -159,6 +159,9 @@ export default class TWDUActorSheet extends ActorSheet {
       item.isIssue = item.type === "issue";
       item.isVehicle = item.type === "vehicle";
       item.isRumor = item.type === "rumor";
+      item.isChallenge = item.type === "challenges";
+      item.isEndgame = item.type === "endgame";
+      item.isFaction = item.type === "faction";
     }
   }
 
@@ -371,6 +374,7 @@ export default class TWDUActorSheet extends ActorSheet {
       case "tinyItem":
       case "issue":
       case "rumor":
+      case "challenges":
         await renderTemplate(
           "systems/twdu/templates/ui/description.hbs",
           item

@@ -275,7 +275,10 @@
             "criticalInjury",
             "vehicle",
             "issue",
-            "rumor"
+            "rumor",
+            "challenges",
+            "endgame",
+            "faction"
         ],
         "templates": {
             "itemEquipped": {
@@ -359,7 +362,7 @@
                 "clock": 0
             }
             ,
-            "challenge": {
+            "challenges": {
                 "description": ""
             },
             "endgame": {

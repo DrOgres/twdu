@@ -100,6 +100,10 @@ export const buildChatCard = function (type, item, chatOptions = {}) {
       break;
     case "tinyItem":
     case "issue":
+    case "rumor":
+    case "faction":
+    case "challenges":
+    case "endgame":
       chatOptions = foundry.utils.mergeObject(
         {
           user: game.user.id,
