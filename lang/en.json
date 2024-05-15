@@ -139,6 +139,15 @@
         "storedArmor": "Stowed Armor",
         "storedVehicles": "Stowed Vehicles",
 
+        "npcs": "NPCs",
+        "rumors": "Rumors",
+        "challenges": "Challenges",
+        "endgame": "Endgame",
+        "factions": "Factions",
+        "source": "Source",
+        "fate": "Fate",
+        "clock": "Clock",
+
         "threatDisplay": "Show Players Threat Display",
         "threatDisplayHint": "If this is enabled the Threat Level will be displayed for the players in the Layer Controls.",
         "prototypeTokenSettings": "Use Recomended Token Settings",

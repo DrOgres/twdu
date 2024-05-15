@@ -609,8 +609,6 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onActorDelete(event) {
-    //TODO determine if this is being called from haven sheet or from the actor sheet
-    //TODO remove from both the haven and the actor
 
     console.log("TWDU | _onActorDelete event: ", event);
     event.preventDefault();
@@ -640,7 +638,6 @@ export default class TWDUActorSheet extends ActorSheet {
     target.update({ "data.survivors.npcs": survivors.npcs });
     target.update({ "data.survivors.population": survivors.npcs.length });
 
-    //TODO also remove the haven from the actor
   }
 
   _onItemDelete(event) {
@@ -768,7 +765,7 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | data.survivors.npcs: ", data.survivors.npcs);
     return survivor;
 
-    //TODO also update the haven on the actor
+
   }
 
   removeSurvivor(Id) {
