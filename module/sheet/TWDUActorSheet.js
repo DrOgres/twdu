@@ -218,6 +218,14 @@ export default class TWDUActorSheet extends ActorSheet {
     html.find(".test-clock").click(this._onTestClock.bind(this));
     // challenge sheet listeners
     html.find(".set-fate").change(this._onSetFate.bind(this));
+    html.find(".set-source").change(this._onSetSource.bind(this));
+  }
+
+  _onSetSource(event) {
+    let currentTarget = event.currentTarget;
+    let item = this.actor.items.get(currentTarget.dataset.itemId);
+    let newSource = currentTarget.value;
+    item.update({ "system.source": newSource });
   }
 
   _onSetFate(event) {
@@ -225,9 +233,13 @@ export default class TWDUActorSheet extends ActorSheet {
     let currentTarget = event.currentTarget;
     let survivorIndex = currentTarget.dataset.survivor;
     let newFate = currentTarget.value;
-   
+    let item = this.actor.items.get(currentTarget.dataset.itemId);
+
     this.actor.system.survivors.npcs[survivorIndex].fate = newFate;
+    console.log("TWDU | _onSetFate: ", this.actor.system.survivors.npcs[survivorIndex]);
+    console.log("TWDU | _onSetFate: ", item);
     this.actor.update({ "data.survivors.npcs": this.actor.system.survivors.npcs });
+
 
   }
 

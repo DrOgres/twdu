@@ -18,8 +18,11 @@
                     {{#each items as |item key|}}
                     {{#if item.isIssue}}
                     <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
-                        <div class="name show-details flex-row space-between span-2">
-                            <div class="name">{{item.name}} </div>
+                        <div class="name  flex-row space-between span-2">
+                            <div class="name show-details">{{item.name}} </div>
+                            <div class="border-right">
+                                <input class="set-source" name="item.system.source" value='{{item.system.source}}' data-item-id="{{item._id}}"/>
+                            </div>
                             <div class="source">{{item.system.source}}</div>
                         </div>
                         <div class="button justify-self-end">
@@ -83,7 +86,7 @@
                             twdu.ui.add"}}" class="add-item pi-1" data-type="challenges">
                             &#43;</a></h2>
 
-                    
+
                 </div>
                 <div class="issue-list scrollable max-h-150p  border-left">
                     {{#each items as |item key|}}
@@ -204,8 +207,9 @@
                     {{parseActor id 'name'}}
                 </div>
                 <div class="border-right">
-                    
-                    <input class="set-fate" name="survivor.fate" value='{{lookupOrDefault survivor 'fate' 'unknown'}}' data-survivor="{{@index}}" />
+                    {{log survivor}}
+                    <input class="set-fate" name="survivor.fate" value='{{lookupOrDefault survivor 'fate' 'unknown' }}'
+                        data-survivor="{{@index}}" />
                 </div>
                 <div class="buttons justify-self-end middle">
 
