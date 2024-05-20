@@ -38,13 +38,18 @@
  */
 class YearZeroDie extends Die {
   constructor(termData = {}) {
-    termData.faces = termData.faces || 6;
+    termData.faces = Number.isInteger(termData.faces) ? termData.faces : 6;
     super(termData);
 
     if (this.maxPush == undefined) {
       this.maxPush = termData.maxPush ?? 1;
     }
   }
+
+  get denomination() {
+    return this.constructor.DENOMINATION;
+  }
+
 
   /**
    * The type of the die.
@@ -141,9 +146,9 @@ class YearZeroDie extends Die {
    * @see (Foundry) {@link https://foundryvtt.com/api/DiceTerm.html#roll|DiceTerm.roll}
    * @override
    */
-  roll(options = {}) {
+  async roll(options = {}) {
     // Modifies the result.
-    const roll = super.roll(options);
+    const roll = await super.roll(options);
 
     // Stores indexes
     roll.indexResult = options.indexResult;
