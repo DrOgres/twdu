@@ -69,6 +69,8 @@ input[type="search"] {
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+  width: fit-content;
+  max-width: 900px;
 }
 
 .chat-message {

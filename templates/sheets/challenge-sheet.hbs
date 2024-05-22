@@ -200,6 +200,8 @@
                 <div class="pi-1">{{localize 'twdu.fate'}}</div>
                 <div>&nbsp;</div>
             </div>
+            {{log 'actor.system.survivors'}}
+            {{log actor.system}}
             {{#each actor.system.survivors.npcs as |survivor|}}
             {{# if (eq type 'npc')}}
             <div class="survivors grid three-col border-bottom">
