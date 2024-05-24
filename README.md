@@ -8,6 +8,11 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.0:
+NOTE: This is a major release to make this system v12 compatable. BACKUP YOUR DATA BEFORE USE.
+- v12 Compatibility issue [#32](https://github.com/DrOgres/twdu/issues/32)
+- added Challenge sheet as an actor type (Solo players rejoice) issue [#7](https://github.com/DrOgres/twdu/issues/7)
+
 Release 1.2.6:
 - Fixed a bug where items would duplicate on character sheets after being transfered to a differnt actor. [#31](https://gitghub.com/DrOgres/twdu/issues/31)
 
