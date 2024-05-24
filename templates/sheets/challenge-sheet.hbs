@@ -1,14 +1,14 @@
-<form class="{{cssClass}}" autocomplete="off">
-    <div class="grid col-70-30">
+<form class="{{cssClass}} challenge" autocomplete="off">
+    <div class="sheet-container grid col-70-30 w-900p">
         <div class="main group">
             <div class="flex-col">
-                <div class="grid three-col subheader border-top border-bottom ">
-                    <div class="issue--top  span-2 flex-row space-between">
+                <div class="grid col-90-10  subheader border-top border-bottom ">
+                    <div class="issue--top  flex-row space-between">
                         <h2 class=" border-left  t m-0 p-1">{{localize 'twdu.issues'}} <a title="{{localize "
                                 twdu.ui.add"}}" class="add-item pi-1" data-type="issue">
                                 &#43;</a></h2>
 
-                        <div class="source middle">{{localize 'twdu.source'}}</div>
+                        <div class="source middle w-75">{{localize 'twdu.source'}}</div>
                     </div>
                     <div class=" m-0 p-1 border-right">&nbsp;</div>
 
@@ -17,13 +17,12 @@
                 <div class="issue-list scrollable max-h-150p  border-left">
                     {{#each items as |item key|}}
                     {{#if item.isIssue}}
-                    <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
-                        <div class="name  flex-row space-between span-2">
+                    <div class="issue item grid col-90-10 p-1 border-bottom middle" data-item-id="{{item._id}}">
+                        <div class="name  flex-row space-between">
                             <div class="name show-details">{{item.name}} </div>
-                            <div class="border-right">
-                                <input class="set-source" name="item.system.source" value='{{item.system.source}}' data-item-id="{{item._id}}"/>
+                            <div class="w-75">
+                                <input class="set-source w-100" name="item.system.source" value='{{item.system.source}}' data-item-id="{{item._id}}"/>
                             </div>
-                            <div class="source">{{item.system.source}}</div>
                         </div>
                         <div class="button justify-self-end">
                             <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
@@ -40,7 +39,7 @@
             </div>
 
             <div class="flex-col">
-                <div class="grid three-col subheader border-top border-bottom">
+                <div class="grid col-80-10-10 subheader border-top border-bottom">
 
                     <div class="issue--top  span-2 flex-row space-between">
                         <h2 class=" border-left  t m-0 p-1">{{localize 'twdu.rumors'}} <a title="{{localize "
@@ -54,17 +53,17 @@
                 <div class="issue-list scrollable max-h-150p  border-left">
                     {{#each items as |item key|}}
                     {{#if item.isRumor}}
-                    <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                    <div class="issue item grid col-80-10-10 p-1 border-bottom middle" data-item-id="{{item._id}}">
                         <div class="name show-details flex-row space-between">
                             <div class="name">{{item.name}} </div>
                         </div>
-                        <div class="clock">
-                            <div class="clock item-clock">{{item.system.clock}}</div>
+                        <div class="clock justify-self-center">
+                            
                             <div class="clock test-clock"> <img
-                                    src="systems/twdu/assets/images/clock/clock_{{item.system.clock}}.png" height="32x"
-                                    width="32px"></div>
+                                    src="systems/twdu/assets/images/clock/clock_{{item.system.clock}}.png" height="25x"
+                                    width="25px"></div>
                         </div>
-                        <div class="button justify-self-end">
+                        <div class="button justify-self-stretch">
                             <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
                                     class="fas fa-comment"></i></a>
                             <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
@@ -80,7 +79,7 @@
             </div>
 
             <div class="flex-col">
-                <div class="grid subheader border-top border-bottom">
+                <div class="grid col-80-10-10 subheader border-top border-bottom">
 
                     <h2 class=" border-left  t m-0 p-1">{{localize 'twdu.challenges'}} <a title="{{localize "
                             twdu.ui.add"}}" class="add-item pi-1" data-type="challenges">
@@ -92,7 +91,7 @@
                     {{#each items as |item key|}}
                     {{#if item.isChallenge}}
                     <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
-                        <div class="name show-details flex-row space-between">
+                        <div class="name show-details flex-row space-between span-2">
                             <div class="name">{{item.name}} </div>
                         </div>
 
@@ -112,32 +111,32 @@
             </div>
 
             <div class="flex-col">
-                <div class="grid three-col subheader border-top border-bottom">
+                <div class="grid col-80-10-10 subheader border-top border-bottom">
 
-                    <div class="issue--top  span-2 flex-row space-between">
+                    <div class="issue--top flex-row space-between">
                         <h2 class=" border-left  t m-0 p-1">{{localize 'twdu.endgame'}} <a title="{{localize "
                                 twdu.ui.add"}}" class="add-item pi-1" data-type="endgame">
                                 &#43;</a></h2>
 
-                        <div class="source middle">{{localize 'twdu.clock'}}</div>
+                        
                     </div>
+                    <div class="source middle">{{localize 'twdu.clock'}}</div>
                     <div class=" m-0 p-1 border-right">&nbsp;</div>
                 </div>
 
                 <div class="issue-list scrollable max-h-150p  border-left">
                     {{#each items as |item key|}}
                     {{#if item.isEndgame}}
-                    <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                    <div class="issue item grid col-80-10-10 p-1 border-bottom middle" data-item-id="{{item._id}}">
                         <div class="name show-details flex-row space-between">
                             <div class="name">{{item.name}} </div>
                         </div>
-                        <div class="clock">
-                            <div class="clock item-clock">{{item.system.clock}}</div>
+                        <div class="clock justify-self-center">
                             <div class="clock test-clock"> <img
-                                    src="systems/twdu/assets/images/clock/clock_{{item.system.clock}}.png" height="32x"
-                                    width="32px"></div>
+                                    src="systems/twdu/assets/images/clock/clock_{{item.system.clock}}.png" height="25px"
+                                    width="25px"></div>
                         </div>
-                        <div class="button justify-self-end">
+                        <div class="button justify-self-stretch">
                             <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
                                     class="fas fa-comment"></i></a>
                             <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
@@ -152,31 +151,31 @@
 
             </div>
             <div class="flex-col">
-                <div class="grid three-col subheader border-top border-bottom">
+                <div class="grid col-80-10-10 subheader border-top border-bottom">
 
-                    <div class="issue--top  span-2 flex-row space-between">
+                    <div class="issue--top flex-row space-between">
                         <h2 class=" border-left  t m-0 p-1">{{localize 'twdu.factions'}} <a title="{{localize "
                                 twdu.ui.add"}}" class="add-item pi-1" data-type="faction">
                                 &#43;</a></h2>
 
-                        <div class="source middle">{{localize 'twdu.clock'}}</div>
+                        
                     </div>
+                    <div class="clock middle">{{localize 'twdu.clock'}}</div>
                     <div class=" m-0 p-1 border-right">&nbsp;</div>
                 </div>
                 <div class="issue-list scrollable max-h-150p  border-left">
                     {{#each items as |item key|}}
                     {{#if item.isFaction}}
-                    <div class="issue item grid three-col pi-2 border-bottom middle" data-item-id="{{item._id}}">
+                    <div class="issue item grid col-80-10-10 p-1 border-bottom middle" data-item-id="{{item._id}}">
                         <div class="name show-details flex-row space-between">
                             <div class="name">{{item.name}} </div>
                         </div>
-                        <div class="clock">
-                            <div class="clock item-clock">{{item.system.clock}}</div>
+                        <div class="clock justify-self-center">
                             <div class="clock test-clock"> <img
-                                    src="systems/twdu/assets/images/clock/clock_{{item.system.clock}}.png" height="32x"
-                                    width="32px"></div>
+                                    src="systems/twdu/assets/images/clock/clock_{{item.system.clock}}.png" height="25px"
+                                    width="25px"></div>
                         </div>
-                        <div class="button justify-self-end">
+                        <div class="button justify-self-stretch">
                             <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i
                                     class="fas fa-comment"></i></a>
                             <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i
@@ -192,7 +191,7 @@
             </div>
 
         </div>
-        <div class="side group">
+        <div class="side group w-250p">
             <div><img src="/systems/twdu/assets/images/brand_block.png" alt="the walking dead universe"></div>
             <div class="header border">{{localize 'twdu.npcs'}}</div>
             <div class="grid three-col group">
@@ -204,13 +203,13 @@
             {{log actor.system}}
             {{#each actor.system.survivors.npcs as |survivor|}}
             {{# if (eq type 'npc')}}
-            <div class="survivors grid three-col border-bottom">
+            <div class="survivors grid col-33-50-13 border-bottom ">
                 <div class="name item border-right" data-actor-id="{{id}}">
                     {{parseActor id 'name'}}
                 </div>
                 <div class="border-right">
                     {{log survivor}}
-                    <input class="set-fate" name="survivor.fate" value='{{lookupOrDefault survivor 'fate' 'unknown' }}'
+                    <input class="set-fate w-100 mi-1" name="survivor.fate" value='{{lookupOrDefault survivor 'fate' 'unknown' }}'
                         data-survivor="{{@index}}" />
                 </div>
                 <div class="buttons justify-self-end middle">

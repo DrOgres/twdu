@@ -5,9 +5,10 @@ import { twdu } from "../config.js";
 
 export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
+    
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
-      width: 750 - "fit-content",
+      width: 900 - "max-content",
       height: 750 - "max-content",
       resizable: true,
       tabs: [
@@ -226,6 +227,7 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onSetSource(event) {
+    console.log("TWDU | _onSetSource: ", event);
     let currentTarget = event.currentTarget;
     let item = this.actor.items.get(currentTarget.dataset.itemId);
     let newSource = currentTarget.value;

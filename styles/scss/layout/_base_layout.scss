@@ -63,6 +63,8 @@
     grid-template-columns: repeat(8, 1fr);
 }
 
+//two column percentages
+
 .col-10-90{
     grid-template-columns: 10% 90%;
 }
@@ -93,6 +95,38 @@
 
 .col-80-20{
     grid-template-columns: 80% 20%;
+}
+
+.col-90-10{
+    grid-template-columns: 90% 10%;
+}
+
+//three column percentages
+.col-80-10-10{
+    grid-template-columns: 80% 10% 10%;
+}
+
+.col-70-15-15{
+    grid-template-columns: 70% 15% 15%;
+}
+
+.col-20-60-20{
+    grid-template-columns: 20% 60% 20%;
+}
+
+.col-10-80-10{
+    grid-template-columns: 10% 80% 10%;
+}
+.col-33-60-7{
+    grid-template-columns: 33% 60% 7%;
+}
+
+.col-33-57-10{
+    grid-template-columns: 33% 57% 10%;
+}
+
+.col-33-50-13 {
+    grid-template-columns: 33% 50% 13%;
 }
 
 .fr-auto-fr{

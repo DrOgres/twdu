@@ -115,12 +115,14 @@ input[type=search] {
   background: url(/systems/twdu/assets/images/denim075.png) repeat;
 }
 
+.twdu .sheet .actor {
+  width: min(100%, 900px);
+}
+
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: 900px;
+  max-width: 950px;
 }
 
 .chat-message {
@@ -450,6 +452,38 @@ button,
   grid-template-columns: 80% 20%;
 }
 
+.col-90-10 {
+  grid-template-columns: 90% 10%;
+}
+
+.col-80-10-10 {
+  grid-template-columns: 80% 10% 10%;
+}
+
+.col-70-15-15 {
+  grid-template-columns: 70% 15% 15%;
+}
+
+.col-20-60-20 {
+  grid-template-columns: 20% 60% 20%;
+}
+
+.col-10-80-10 {
+  grid-template-columns: 10% 80% 10%;
+}
+
+.col-33-60-7 {
+  grid-template-columns: 33% 60% 7%;
+}
+
+.col-33-57-10 {
+  grid-template-columns: 33% 57% 10%;
+}
+
+.col-33-50-13 {
+  grid-template-columns: 33% 50% 13%;
+}
+
 .fr-auto-fr {
   grid-template-columns: 1fr auto 1fr;
 }
@@ -626,6 +660,10 @@ button,
   width: 100%;
 }
 
+.w-75 {
+  width: 75%;
+}
+
 .w-50p {
   width: 50px;
 }
@@ -648,6 +686,30 @@ button,
 
 .w-300p {
   width: 300px;
+}
+
+.w-400p {
+  width: 400px;
+}
+
+.w-500p {
+  width: 500px;
+}
+
+.w-600p {
+  width: 600px;
+}
+
+.w-700p {
+  width: 700px;
+}
+
+.w-800p {
+  width: 800px;
+}
+
+.w-900p {
+  width: 900px;
 }
 
 .min-w-50p {

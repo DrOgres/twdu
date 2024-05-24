@@ -66,11 +66,14 @@ input[type="search"] {
   background: url(/systems/twdu/assets/images/denim075.png) repeat;
 }
 
+.twdu .sheet .actor{
+  width: min(100%, 900px);
+}
+
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
-  width: fit-content;
-  max-width: 900px;
+  max-width: 950px;
 }
 
 .chat-message {
