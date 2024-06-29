@@ -38,6 +38,9 @@ export async function decreaseThreatLevel(amount) {
   threatLevel -= amount;
   console.log("TWDU | decreaseThreatLevel: ", threatLevel);
   await setThreatLevel(threatLevel);
+ 
+  console.log(game.canvas.controls.layerOptions);
+
 }
 
 export async function setThreatLevel(threatLevel) {

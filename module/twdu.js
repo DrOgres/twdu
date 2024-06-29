@@ -171,27 +171,25 @@ Hooks.on("getSceneControlButtons", (controls) => {
   group.tools.push(
     {
       name: "add",
-      // TODO localize this
-      title: "Increase Threat Level",
+      title: "CONTROL.addThreatLevel",
       icon: "fas fa-plus",
-      buttons: true,
+      button: true,
       visible: game.user.isGM,
       onClick: () => increaseThreatLevel(1),
     },
     {
       name: "subtract",
-      // TODO localize this
-      title: "Decrease Threat Level",
+      title: "CONTROL.subThreatLevel",
       icon: "fas fa-minus",
-      buttons: true,
+      button: true,
       visible: game.user.isGM,
       onClick: () => decreaseThreatLevel(1),
     },
     {
       name: "showInterface",
-      title: "Show Threat Interface",
+      title: "CONTROL.displayThreatLevel",
       icon: "fas fa-biohazard",
-      buttons: true,
+      button: true,
       visible: game.settings.get("twdu", "threatLevelVisibility")
         ? true
         : game.user.isGM,

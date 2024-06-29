@@ -1,4 +1,11 @@
 {
+
+    "CONTROL":{
+        "addThreatLevel": "Increase Threat Level",
+        "subThreatLevel": "Decrease Threat Level",
+        "displayThreatLevel": "Show Threat Interface"
+
+    },
     "twdu": {
         "name": "Name",
         "archetype": "Archetype",
