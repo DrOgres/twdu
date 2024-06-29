@@ -8,6 +8,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.1:
+- Fix: buttons to change threat level were being selfish with focus.  this fixes issue [#33](https://github.com/DrOgres/twdu/issues/33)
+- added localization to tool tips for threat level buttons
+
 Release 2.0.0:
 NOTE: This is a major release to make this system v12 compatable. BACKUP YOUR DATA BEFORE USE.
 - v12 Compatibility issue [#32](https://github.com/DrOgres/twdu/issues/32)
