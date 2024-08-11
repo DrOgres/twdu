@@ -76,7 +76,22 @@ export default class TWDUActorSheet extends ActorSheet {
 
     if (context.isHaven) {
 
-     
+      // TODO check all survivors and remove any that are not in the world
+
+      const survivors = this.actor.system.survivors;
+      console.log("TWDU | haven survivors: ", survivors);
+      
+      for (let survivor of survivors.npcs) {
+        let actor = game.actors.get(survivor.id);
+        if (!actor) {
+          console.log("TWDU | haven survivor not found: ", survivor);
+          this.removeSurvivor(survivor.id);
+          ui.notifications.warn("Haven survivor ID  not found removing from list");
+        }
+      }
+      console.log("TWDU | haven survivors: ", survivors);
+      context.system.survivors = survivors;
+
       context.maxpop = this.calculatePopulation(context);
       context.havenNotes = await TextEditor.enrichHTML(
         context.system.notes.value,
@@ -106,7 +121,22 @@ export default class TWDUActorSheet extends ActorSheet {
 
     if (context.isChallenge) {
       console.log("TWDU | isChallenge: ", this.actor);
-      context.survivors = this.actor.system.survivors;
+      //TODO check all survivors and remove any that are not in the world
+      const survivors = this.actor.system.survivors;
+      console.log("TWDU | challenge survivors: ", survivors);
+      for (let survivor of survivors.npcs) {
+        let actor = game.actors.get(survivor.id);
+        if (!actor) {
+          console.log("TWDU | challenge survivor not found: ", survivor);
+          this.removeSurvivor(survivor.id);
+          ui.notifications.warn("Challenge survivor ID  not found removing from list");
+        }
+      }
+      console.log("TWDU | challenge survivors: ", survivors);
+      context.system.survivors = survivors;
+
+
+      //context.survivors = this.actor.system.survivors;
     }
     // const drag = this.prepDragDrop();
     // console.log("TWDU | drag: ", drag);
@@ -794,15 +824,31 @@ export default class TWDUActorSheet extends ActorSheet {
   removeSurvivor(Id) {
     console.log("TWDU | removeSurvivor: ", Id);
     const target = game.actors.get(this.object.id);
-    if (target.type !== "haven") return;
+    const survivors = target.system.survivors;
+    console.log("TWDU | removeSurvivor target: ", target);
+    console.log("TWDU | removeSurvivor survivors: ", survivors);
+
+    console.log("TWDU | removeSurvivor target: ", target.type);
+    //if (target.type !== "haven" || "challenge") return;
+    console.log("TWDU | removeSurvivor target: ", target);
+    
     let actor = game.actors.get(Id);
     console.log("TWDU | removeSurvivor actor: ", actor);
-    if (actor.type === "character"){
+    
+    if(!actor) {
+      console.log("TWDU | removeSurvivor actor not found: ", actor);
+      survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
+    }
 
+    if(target.type === "haven"){
+    if (actor !== undefined && actor.type === "character"){
       actor.update({ "system.haven": "" });
     }
-    const survivors = target.system.survivors;
+  }
+    
     survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
+    target.update({ "system.survivors.npcs": survivors.npcs });
+    console.log("TWDU | removeSurvivor survivors updated: ", target.system.survivors);
     return survivors.npcs;
   }
 
