@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.2:
+- Fix: Haven and Challenge sheets failed to open when an Actor in their list of survivors is missing or has had it's ID change.  Currently removes the missing Actor ID 
+
 Release 2.0.1:
 - Fix: buttons to change threat level were being selfish with focus.  this fixes issue [#33](https://github.com/DrOgres/twdu/issues/33)
 - added localization to tool tips for threat level buttons

@@ -2,10 +2,8 @@ import { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
-
 export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
-    
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
       width: 900 - "max-content",
@@ -57,7 +55,6 @@ export default class TWDUActorSheet extends ActorSheet {
     this.computeItems(context);
 
     if (context.isPlayer) {
-   
       context.maxEncumbrance = context.system.attributes.str.value + 2;
       //console.log("TWDU | Enriching HTML");
       context.notesHTML = await TextEditor.enrichHTML(
@@ -68,28 +65,31 @@ export default class TWDUActorSheet extends ActorSheet {
       );
       this.computeSkills(context);
       context.encumbrance = this.computeEncumbrance(context);
-        // update context with the data we just got
+      // update context with the data we just got
       context.actor = this.actor;
       context.system = this.actor.system;
       //console.log("TWDU | context: ", context);
     }
 
     if (context.isHaven) {
-
-      // TODO check all survivors and remove any that are not in the world
+      //check all survivors and remove any that are not in the world
 
       const survivors = this.actor.system.survivors;
-      console.log("TWDU | haven survivors: ", survivors);
-      
+      // console.log("TWDU | haven survivors: ", survivors);
+
       for (let survivor of survivors.npcs) {
         let actor = game.actors.get(survivor.id);
         if (!actor) {
-          console.log("TWDU | haven survivor not found: ", survivor);
+          // console.log("TWDU | haven survivor not found: ", survivor);
+
+          const msg = game.i18n.localize(
+            "twdu.ui.survivorNotFound" + ": " + survivor.id
+          );
           this.removeSurvivor(survivor.id);
-          ui.notifications.warn("Haven survivor ID  not found removing from list");
+          ui.notifications.warn(msg);
         }
       }
-      console.log("TWDU | haven survivors: ", survivors);
+      //console.log("TWDU | haven survivors: ", survivors);
       context.system.survivors = survivors;
 
       context.maxpop = this.calculatePopulation(context);
@@ -97,7 +97,7 @@ export default class TWDUActorSheet extends ActorSheet {
         context.system.notes.value,
         { async: true }
       );
-      console.log("TWDU | haven context: ", context);
+      //console.log("TWDU | haven context: ", context);
     }
 
     if (context.isNPC) {
@@ -120,21 +120,25 @@ export default class TWDUActorSheet extends ActorSheet {
     }
 
     if (context.isChallenge) {
-      console.log("TWDU | isChallenge: ", this.actor);
-      //TODO check all survivors and remove any that are not in the world
+      //console.log("TWDU | isChallenge: ", this.actor);
+      //check all survivors and remove any that are not in the world
       const survivors = this.actor.system.survivors;
-      console.log("TWDU | challenge survivors: ", survivors);
+      //console.log("TWDU | challenge survivors: ", survivors);
       for (let survivor of survivors.npcs) {
         let actor = game.actors.get(survivor.id);
         if (!actor) {
-          console.log("TWDU | challenge survivor not found: ", survivor);
+          // console.log("TWDU | challenge survivor not found: ", survivor);
+          const msg = game.i18n.localize(
+            "twdu.ui.survivorNotFound" + ": " + survivor.id
+          );
           this.removeSurvivor(survivor.id);
-          ui.notifications.warn("Challenge survivor ID  not found removing from list");
+          ui.notifications.warn(
+            "Challenge survivor ID  not found removing from list"
+          );
         }
       }
-      console.log("TWDU | challenge survivors: ", survivors);
+      //console.log("TWDU | challenge survivors: ", survivors);
       context.system.survivors = survivors;
-
 
       //context.survivors = this.actor.system.survivors;
     }
@@ -168,7 +172,7 @@ export default class TWDUActorSheet extends ActorSheet {
     if (capacity === 6) {
       maxpop = 500;
     }
-    if (capacity > 6){
+    if (capacity > 6) {
       maxpop = 500;
     }
     return maxpop;
@@ -225,7 +229,6 @@ export default class TWDUActorSheet extends ActorSheet {
     });
   }
 
-
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
@@ -257,7 +260,7 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onSetSource(event) {
-    console.log("TWDU | _onSetSource: ", event);
+    //console.log("TWDU | _onSetSource: ", event);
     let currentTarget = event.currentTarget;
     let item = this.actor.items.get(currentTarget.dataset.itemId);
     let newSource = currentTarget.value;
@@ -265,60 +268,56 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onSetFate(event) {
-   
     let currentTarget = event.currentTarget;
     let survivorIndex = currentTarget.dataset.survivor;
     let newFate = currentTarget.value;
     let item = this.actor.items.get(currentTarget.dataset.itemId);
 
     this.actor.system.survivors.npcs[survivorIndex].fate = newFate;
-    console.log("TWDU | _onSetFate: ", this.actor.system.survivors.npcs[survivorIndex]);
-    console.log("TWDU | _onSetFate: ", item);
-    this.actor.update({ "system.survivors.npcs": this.actor.system.survivors.npcs });
-
-
+    // console.log("TWDU | _onSetFate: ", this.actor.system.survivors.npcs[survivorIndex]);
+    // console.log("TWDU | _onSetFate: ", item);
+    this.actor.update({
+      "system.survivors.npcs": this.actor.system.survivors.npcs,
+    });
   }
 
   _onTestClock(event) {
-    console.log("TWDU | _onTestClock: ", event);
+    // console.log("TWDU | _onTestClock: ", event);
     let div = $(event.currentTarget).parents(".item"),
-    item = this.actor.items.get(div.data("itemId"));
-   
+      item = this.actor.items.get(div.data("itemId"));
+
     // if the clock is less than 6 roll a d6 and if the result is greater than the clock value increase the clock by 1
     if (item.system.clock < 6) {
       let roll = rollClockTest(this.actor, this, item);
       roll.then((result) => console.log("TWDU | result: ", result));
       roll.then((result) => {
-        console.log(result.total, item.system.clock);
+        // console.log(result.total, item.system.clock);
         if (result.total > item.system.clock) {
           item.update({ "system.clock": item.system.clock + 1 });
         }
-      
       });
     }
   }
 
-
   _onIncreaseClock(event) {
-    console.log("TWDU | _onIncreaseClock: ", event);
+    // console.log("TWDU | _onIncreaseClock: ", event);
     let div = $(event.currentTarget).parents(".item"),
-    item = this.actor.items.get(div.data("itemId"));
-    console.log("TWDU | _onIncreaseClock: ", div);
-    console.log("TWDU | _onIncreaseClock: ", item);
+      item = this.actor.items.get(div.data("itemId"));
+    // console.log("TWDU | _onIncreaseClock: ", div);
+    // console.log("TWDU | _onIncreaseClock: ", item);
     let clockCount = item.system.clock;
-    if(item.system.clock < 6){
+    if (item.system.clock < 6) {
       clockCount++;
     }
     item.update({ "system.clock": clockCount });
-
   }
 
   _onDecreaseClock(event) {
-    console.log("TWDU | _onDecreaseClock: ", event);
+    // console.log("TWDU | _onDecreaseClock: ", event);
     let div = $(event.currentTarget).parents(".item"),
-    item = this.actor.items.get(div.data("itemId"));
+      item = this.actor.items.get(div.data("itemId"));
     let clockCount = item.system.clock;
-    if(item.system.clock > 0){
+    if (item.system.clock > 0) {
       clockCount--;
     }
     item.update({ "system.clock": clockCount });
@@ -346,8 +345,6 @@ export default class TWDUActorSheet extends ActorSheet {
       const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
       console.log("rollItemDragged", rollItemDragged);
 
-    
-
       return;
     } else {
       console.log("not a skill or attribute");
@@ -357,7 +354,7 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onItemDrag(event) {
-   // console.log("TWDU | _onItemDrag: ", event);
+    // console.log("TWDU | _onItemDrag: ", event);
     event.preventDefault();
     //console.log("TWDU | _onItemDrag: ", event);
     game.data.item = this.actor.getEmbeddedDocument(
@@ -365,27 +362,25 @@ export default class TWDUActorSheet extends ActorSheet {
       event.currentTarget.closest(".item").dataset.itemId
     );
 
-   // console.log("TWDU | _onItemDrag: ", game.data.item);
-    }
+    // console.log("TWDU | _onItemDrag: ", game.data.item);
+  }
 
-
-    //prevent sidebar triggering this code?
+  //prevent sidebar triggering this code?
   _onItemDrop(event) {
     event.preventDefault();
-     console.log("TWDU | _onItemDrop: ", event);
+    //  console.log("TWDU | _onItemDrop: ", event);
 
-     let actor = this.actor;
-     let item = game.data.item;
+    let actor = this.actor;
+    let item = game.data.item;
 
-   console.log("TWDU | _onItemDrop item: ", item);
-    
+    //  console.log("TWDU | _onItemDrop item: ", item);
+
     if (item === undefined || item === null) {
       return;
     }
 
-   
     actor.createEmbeddedDocuments("Item", [item]);
-     console.log("TWDU | _onItemDrop actor: ", actor.id);
+    //  console.log("TWDU | _onItemDrop actor: ", actor.id);
 
     let storedItem = game.data.item;
     if (storedItem === null) {
@@ -394,45 +389,44 @@ export default class TWDUActorSheet extends ActorSheet {
 
     // remove the item from the original actor
     let originalActor = storedItem.actor;
-     console.log("TWDU | originalActor: ", originalActor.id);
+    //  console.log("TWDU | originalActor: ", originalActor.id);
 
-  if (originalActor.id === actor.id) {
-     console.log("id match on drop action - returning ");
-    storedItem = null;
-    item = null;
-    return;
-  }
-   
+    if (originalActor.id === actor.id) {
+      //  console.log("id match on drop action - returning ");
+      storedItem = null;
+      item = null;
+      return;
+    }
+
     originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
-     console.log("TWDU | storedItem: ", storedItem);
-     console.log("TWDU | item: ", item);
+    //  console.log("TWDU | storedItem: ", storedItem);
+    //  console.log("TWDU | item: ", item);
 
     game.data.item = null;
     storedItem = null;
     item = null;
-     console.log("TWDU | storedItem: ", storedItem);
-     console.log("TWDU | item: ", item);
-     console.log("TWDU | game.data.item: ", game.data.item);
+    //  console.log("TWDU | storedItem: ", storedItem);
+    //  console.log("TWDU | item: ", item);
+    //  console.log("TWDU | game.data.item: ", game.data.item);
 
-     //TODO check to see if survivor has been added to the sheet
+    //TODO check to see if survivor has been added to the sheet
     return;
-
   }
 
   async _onShowDetails(event) {
     event.preventDefault();
-    console.log("TWDU | _onShowDetails: ", event);
+    // console.log("TWDU | _onShowDetails: ", event);
     let div = $(event.currentTarget).parents(".item"),
       item = this.actor.items.get(div.data("itemId")),
       chatData = null,
       sum = "",
       actorType = this.actor.type;
 
-    console.log("TWDU | item: ", item);
+    // console.log("TWDU | item: ", item);
 
-    console.log("TWDU | _onShowDetails: ", actorType);
+    // console.log("TWDU | _onShowDetails: ", actorType);
 
-    //TODO check for actor type if haven use a different template
+    //check for item type if to use a the correct template
     switch (item.type) {
       case "weapon":
       case "armor":
@@ -447,7 +441,7 @@ export default class TWDUActorSheet extends ActorSheet {
         ).then((html) => {
           chatData = html;
         });
-        console.log("TWDU | chatData: ", chatData);
+        // console.log("TWDU | chatData: ", chatData);
         sum = $(
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
@@ -459,20 +453,20 @@ export default class TWDUActorSheet extends ActorSheet {
         ).then((html) => {
           chatData = html;
         });
-        console.log("TWDU | chatData: ", chatData);
+        // console.log("TWDU | chatData: ", chatData);
         sum = $(
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
         break;
       case "criticalInjury":
-        console.log("TWDU | criticalInjury: ", item);
+        // console.log("TWDU | criticalInjury: ", item);
         await renderTemplate(
           "systems/twdu/templates/ui/criticalRollDown.hbs",
           item
         ).then((html) => {
           chatData = html;
         });
-        console.log("TWDU | chatData: ", chatData);
+        // console.log("TWDU | chatData: ", chatData);
         sum = $(
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
@@ -492,8 +486,7 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onRoll(event) {
-
-    console.log("TWDU | _onRoll: ", event);
+    // console.log("TWDU | _onRoll: ", event);
     event.preventDefault();
     let actor = this.actor;
     let health = actor.system.health.value;
@@ -502,10 +495,10 @@ export default class TWDUActorSheet extends ActorSheet {
       return;
     }
     let target = event.currentTarget;
-    console.log("TWDU | target: ", target);
+    // console.log("TWDU | target: ", target);
     let key = target.dataset.key;
     if (key === undefined) {
-      console.log("TWDU | key is undefined");
+      // console.log("TWDU | key is undefined");
       key = target.dataset.itemType;
       //return;
     }
@@ -569,16 +562,16 @@ export default class TWDUActorSheet extends ActorSheet {
       case "weapon":
         {
           const item = this.actor.items.get(target.dataset.itemId);
-          console.log("TWDU | actorType: ", options.actorType);
+          // console.log("TWDU | actorType: ", options.actorType);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
           let skill = item.system.skill.split(".")[1];
           if (options.actorType === "character") {
             options.skillDefault = this.actor.system.skills[skill].value;
-            console.log("TWDU | skillDefault: ", options.skillDefault);
+            // console.log("TWDU | skillDefault: ", options.skillDefault);
           } else {
             let skillLevel = this.actor.system.skills[skill].level;
-            console.log("TWDU | skillLevel: ", skillLevel);
+            // console.log("TWDU | skillLevel: ", skillLevel);
             if (skillLevel == "base") {
               options.skillDefault = 4;
             }
@@ -616,7 +609,6 @@ export default class TWDUActorSheet extends ActorSheet {
         break;
       case "armor":
         {
-          
           let protection = target.dataset.protection;
           options.armorItem = this.actor.items.find(
             (item) => item.type === "armor" && item.system.isEquipped
@@ -628,7 +620,7 @@ export default class TWDUActorSheet extends ActorSheet {
         break;
     }
 
-    console.log("TWDU | options", options);
+    // console.log("TWDU | options", options);
 
     prepareRollDialog(options);
   }
@@ -643,7 +635,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onItemEdit(event) {
     event.preventDefault();
-    console.log("TWDU | _onItemEdit: ", event);
+    // console.log("TWDU | _onItemEdit: ", event);
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
     item.sheet.render(true);
@@ -651,42 +643,42 @@ export default class TWDUActorSheet extends ActorSheet {
 
   _onShowActor(event) {
     event.preventDefault();
-    console.log("TWDU | _onShowActor: ", event);
+    // console.log("TWDU | _onShowActor: ", event);
     const actorID = event.currentTarget.dataset.actorId;
     const actor = game.actors.get(actorID);
     actor.sheet.render(true);
   }
 
   _onActorDelete(event) {
-
-    console.log("TWDU | _onActorDelete event: ", event);
+    // console.log("TWDU | _onActorDelete event: ", event);
     event.preventDefault();
     const target = game.actors.get(this.object.id);
-    console.log("TWDU | _onActorDelete: ", target);
+    // console.log("TWDU | _onActorDelete: ", target);
 
-    
-    if (target.type === "character"){
-     
-      console.log("TWDU | _onActorDelete: ", "character");
+    if (target.type === "character") {
+      // console.log("TWDU | _onActorDelete: ", "character");
       let haven = game.actors.get(target.system.haven);
       let pcActor = game.actors.get(target._id);
-      console.log("TWDU | _onActorDelete: ", haven);
-     
-      haven.update({ "system.survivors.npcs": haven.system.survivors.npcs.filter((o) => o.id !== target.id) });
+      // console.log("TWDU | _onActorDelete: ", haven);
+
+      haven.update({
+        "system.survivors.npcs": haven.system.survivors.npcs.filter(
+          (o) => o.id !== target.id
+        ),
+      });
       pcActor.update({ "system.haven": "" });
       //this.actor.update({ "data.system.haven": "" });
-      console.log("TWDU | _onActorDelete: haven ", pcActor.system.haven);
-      console.log("TWDU | _onActorDelete: ", pcActor);
+      // console.log("TWDU | _onActorDelete: haven ", pcActor.system.haven);
+      // console.log("TWDU | _onActorDelete: ", pcActor);
       return;
     }
-    
+
     const actorID = event.currentTarget.dataset.actorId;
     this.removeSurvivor(actorID);
     const survivors = this.actor.system.survivors;
     survivors.npcs = survivors.npcs.filter((o) => o.id !== actorID);
     target.update({ "system.survivors.npcs": survivors.npcs });
     target.update({ "system.survivors.population": survivors.npcs.length });
-
   }
 
   _onItemDelete(event) {
@@ -767,13 +759,12 @@ export default class TWDUActorSheet extends ActorSheet {
     // TODO remove the PC from the current haven and add it to the new haven if the user confirms also update the haven on the PC
 
     const survivor = game.actors.get(actorId);
-    console.log("TWDU | _dropSurvivor: ", survivor);
+    // console.log("TWDU | _dropSurvivor: ", survivor);
     const actorData = this.actor;
+    const msg = game.i18n.localize("twdu.ui.havenOnHavenDrop");
     if (!survivor) return;
     if (survivor.type === "haven" || survivor.type === "challenge")
-      return ui.notifications.info(
-        "Havens nor Challenges can be dropped on Havens or Challenges."
-      );
+      return ui.notifications.info(msg);
     if (survivor.type !== "character" && survivor.type !== "npc") return;
     if (actorData.type === "haven" || actorData.type === "challenge") {
       return this.addSurvivor(actorId);
@@ -781,15 +772,15 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   addSurvivor(ID) {
-    console.log("TWDU | addSurvivor: ", ID);
+    // console.log("TWDU | addSurvivor: ", ID);
     const target = game.actors.get(this.object.id);
-    console.log("TWDU | addSurvivor: ", target.type);
+    // console.log("TWDU | addSurvivor: ", target.type);
     if (target.type !== "haven" && target.type !== "challenge") return;
     const data = target.system;
-    console.log("TWDU | addSurvivor data: ", data);
+    // console.log("TWDU | addSurvivor data: ", data);
     const actor = game.actors.get(ID);
     const survivorType = actor.type;
-    const fate = '';
+    const fate = "";
     const survivor = {
       id: ID,
       type: survivorType,
@@ -802,10 +793,10 @@ export default class TWDUActorSheet extends ActorSheet {
     data.survivors.npcs.push(survivor);
     target.update({ "system.survivors.npcs": data.survivors.npcs });
     // put this haven on the character
-    if (actor.type === "character" && target.type === "haven"){
-    actor.update({ "system.haven": target._id });
-    console.log("TWDU | addSurvivor actor: ", actor);
-    // Updates the population on a Haven not a Challenge.
+    if (actor.type === "character" && target.type === "haven") {
+      actor.update({ "system.haven": target._id });
+      // console.log("TWDU | addSurvivor actor: ", actor);
+      // Updates the population on a Haven not a Challenge.
     }
     if (target.type === "haven") {
       target.update({
@@ -814,48 +805,45 @@ export default class TWDUActorSheet extends ActorSheet {
     }
 
     //target.update({ "data.survivors.npcs": data.survivors.npcs });
-    console.log("TWDU | data.survivors.npcs: ", data.survivors.npcs);
-    console.log("TWDU | target: ", target);
+    // console.log("TWDU | data.survivors.npcs: ", data.survivors.npcs);
+    // console.log("TWDU | target: ", target);
     return survivor;
-
-
   }
 
   removeSurvivor(Id) {
-    console.log("TWDU | removeSurvivor: ", Id);
+    // console.log("TWDU | removeSurvivor: ", Id);
     const target = game.actors.get(this.object.id);
     const survivors = target.system.survivors;
-    console.log("TWDU | removeSurvivor target: ", target);
-    console.log("TWDU | removeSurvivor survivors: ", survivors);
+    // console.log("TWDU | removeSurvivor target: ", target);
+    // console.log("TWDU | removeSurvivor survivors: ", survivors);
 
-    console.log("TWDU | removeSurvivor target: ", target.type);
-    //if (target.type !== "haven" || "challenge") return;
-    console.log("TWDU | removeSurvivor target: ", target);
-    
+    // console.log("TWDU | removeSurvivor target: ", target.type);
+    // console.log("TWDU | removeSurvivor target: ", target);
+
     let actor = game.actors.get(Id);
-    console.log("TWDU | removeSurvivor actor: ", actor);
-    
-    if(!actor) {
-      console.log("TWDU | removeSurvivor actor not found: ", actor);
+    // console.log("TWDU | removeSurvivor actor: ", actor);
+
+    if (!actor) {
+      // console.log("TWDU | removeSurvivor actor not found: ", actor);
       survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
     }
 
-    if(target.type === "haven"){
-    if (actor !== undefined && actor.type === "character"){
-      actor.update({ "system.haven": "" });
+    if (target.type === "haven") {
+      if (actor !== undefined && actor.type === "character") {
+        actor.update({ "system.haven": "" });
+      }
     }
-  }
-    
+
     survivors.npcs = survivors.npcs.filter((o) => o.id !== Id);
     target.update({ "system.survivors.npcs": survivors.npcs });
-    console.log("TWDU | removeSurvivor survivors updated: ", target.system.survivors);
+    //console.log("TWDU | removeSurvivor survivors updated: ", target.system.survivors);
     return survivors.npcs;
   }
 
   /** @override */
   async _onDropItemCreate(itemData) {
     const type = itemData.type;
-    console.log("TWDU | drag and drop items", this);
+    // console.log("TWDU | drag and drop items", this);
     const alwaysAllowedItems = twdu.physicalItems;
     const allowedItems = {
       haven: ["weapon", "armor", "gear", "project", "vehicle", "issue"],

@@ -175,6 +175,8 @@
         "ui.skillDice": "Skill Dice",
         "ui.stressDice": "Stress Dice",
         "ui.addexp": "Left Click to Add Experience, Right Click to Subtract Experience",
+        "us.survivorNotFound" : "Survivor missing or bad ID removing from list",
+        "ui.havenOnHavenDrop": "Havens nor Challenges can not be dropped on Havens or Challenges.",
 
         "threatLevel": "Threat Level",
 
