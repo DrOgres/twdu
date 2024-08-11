@@ -199,8 +199,7 @@
                 <div class="pi-1">{{localize 'twdu.fate'}}</div>
                 <div>&nbsp;</div>
             </div>
-            {{log 'actor.system.survivors'}}
-            {{log actor.system}}
+           
             {{#each actor.system.survivors.npcs as |survivor|}}
             {{# if (eq type 'npc')}}
             <div class="survivors grid col-33-50-13 border-bottom ">
@@ -208,7 +207,7 @@
                     {{parseActor id 'name'}}
                 </div>
                 <div class="border-right">
-                    {{log survivor}}
+                    
                     <input class="set-fate w-100 mi-1" name="survivor.fate" value='{{lookupOrDefault survivor 'fate' 'unknown' }}'
                         data-survivor="{{@index}}" />
                 </div>
