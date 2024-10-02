@@ -8,10 +8,10 @@
     "relationships": {
       "systems": [{ "id": "twdu" }]
     },
-    "version": "2.0.2",
+    "version": "2.0.3",
     "compatibility": {
       "minimum": "10",
-      "verified": "12.327",
+      "verified": "12.331",
       "maximum": "12"
     },
     "media": [

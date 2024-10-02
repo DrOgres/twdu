@@ -8,6 +8,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.3:
+- Fix: Journal sheets were capped out and not filling the entire window
+- Fix: made header text more ledgible 
+
 Release 2.0.2:
 - Fix: Haven and Challenge sheets failed to open when an Actor in their list of survivors is missing or has had it's ID change.  Currently removes the missing Actor ID 
 - cleaned up templates and log output
