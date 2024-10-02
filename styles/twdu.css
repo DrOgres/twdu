@@ -122,7 +122,19 @@ input[type=search] {
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
-  max-width: 950px;
+}
+
+.intro {
+  filter: saturate(0.5);
+}
+
+.chapter-header-text h1 {
+  padding: 0 !important;
+}
+
+.flavor-text {
+  text-shadow: hsl(0, 0%, 0%) 1px 1px 2px;
+  filter: drop-shadow(1px 1px 2px hsl(0, 0%, 0%));
 }
 
 .chat-message {
@@ -360,6 +372,16 @@ button,
   height: auto;
   aspect-ratio: auto 1/1;
   padding: 5px;
+}
+
+.sheet.journal-entry .scrollable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-right: 0.5rem;
+  overflow: auto auto;
 }
 
 .grid {
