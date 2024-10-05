@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.4:
+- Fix: made chat card text for roll table results more ledgible 
+
 Release 2.0.3:
 - Fix: Journal sheets were capped out and not filling the entire window
 - Fix: made header text more ledgible 
