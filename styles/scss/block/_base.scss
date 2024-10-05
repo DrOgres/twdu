@@ -84,12 +84,14 @@ input[type="search"] {
 
 .chapter-header-text h1{
   padding: 0 !important; 
+
+  .flavor-text{
+    text-shadow: $black 1px 1px 2px;
+    filter: drop-shadow(1px 1px 2px $black);
+  }
+  
 }
 
-.flavor-text{
-  text-shadow: $black 1px 1px 2px;
-  filter: drop-shadow(1px 1px 2px $black);
-}
 
 
 .chat-message {
