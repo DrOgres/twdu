@@ -3,7 +3,6 @@
 //foundry overrides
 :root {
   --fa-display: inherit;
-
 }
 
 .sidebar {
@@ -29,7 +28,6 @@ a.content-link {
 
 .chat-message .message-header .flavor-text {
   color: $header-1;
-  
 }
 
 //pause spinner
@@ -67,32 +65,28 @@ input[type="search"] {
   background: url(/systems/twdu/assets/images/denim075.png) repeat;
 }
 
-.twdu .sheet .actor{
+.twdu .sheet .actor {
   width: min(100%, 900px);
 }
 
 .window-app .window-content {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
-
 }
 
-
-.intro{
+.intro {
   filter: saturate(0.5);
 }
 
-.chapter-header-text h1{
-  padding: 0 !important; 
-
-  .flavor-text{
+.chapter-header-text {
+  h1 {
+    padding: 0 !important;
+  }
+  .flavor-text {
     text-shadow: $black 1px 1px 2px;
     filter: drop-shadow(1px 1px 2px $black);
   }
-  
 }
-
-
 
 .chat-message {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
@@ -152,8 +146,7 @@ img {
 
 h1.input {
   margin-bottom: 0px;
-  padding-block: .25rem;
- 
+  padding-block: 0.25rem;
 }
 
 h2.header {
@@ -169,11 +162,10 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   border: none;
- 
-  input{
+
+  input {
     height: 2rem !important;
   }
-
 }
 
 h2 {
@@ -195,7 +187,6 @@ input[type="text"] {
     stretch;
   background-color: transparent;
   color: $header-0;
-
 
   &:hover {
     cursor: pointer;
@@ -354,7 +345,6 @@ button,
   aspect-ratio: auto 1/1;
   padding: 5px;
 }
-
 
 .sheet.journal-entry .scrollable {
   position: absolute;
