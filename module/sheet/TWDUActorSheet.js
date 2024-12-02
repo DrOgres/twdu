@@ -3,10 +3,12 @@ import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
 export default class TWDUActorSheet extends ActorSheet {
+  
   static get defaultOptions() {
+  
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
-      width: 900 - "fit-content",
+      width: 900 - "min-content",
       height: 750 - "max-content",
       resizable: true,
       tabs: [
@@ -153,6 +155,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
     if(this.actor.type === "haven") {
       this.setPortrait(context);
+      // this.setPosition({width: 800, height: 800});
     }
     return context;
   }
