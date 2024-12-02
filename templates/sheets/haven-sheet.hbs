@@ -104,9 +104,20 @@
                         <div class="scrollable max-h-300p">
                             {{#each actor.system.survivors.npcs as |survivor key|}}
                             {{# if (eq type 'character')}}
-                            <div class="survivors grid two-col border-bottom">
-                                <div class="name item" data-actor-id="{{id}}">
+                            <div class="survivors grid col-90-10 border-bottom">
+                                
+                                <div class="name item flexrow" data-actor-id="{{id}}">
+                                    <div class="icon border max-w-50p" >
+                                        <img src="{{parseActor id 'img'}}" width="50"/>
+                                    </div>
+                                    <div class="survivor-name  flexcol w-100">
+                                        <span class="text-left subheader border-bottom">
                                     {{parseActor id 'name'}}
+                                    </span>
+                                    <span class="middle">
+                                        {{parseActor id 'archetype'}}
+                                    </span>
+                                    </div>
 
                                 </div>
                                 <div class="buttons justify-self-end middle">
@@ -124,9 +135,19 @@
                             <div class="subsubheader border-bottom">NPCs</div>
                             {{#each actor.system.survivors.npcs as |survivor key|}}
                             {{# if (eq type 'npc')}}
-                            <div class="survivors grid two-col border-bottom">
-                                <div class="name item" data-actor-id="{{id}}">
+                            <div class="survivors grid col-90-10 border-bottom">
+                                <div class="name item flexrow" data-actor-id="{{id}}">
+                                    <div class="icon border max-w-50p" >
+                                        <img src="{{parseActor id 'img'}}" width="50"/>
+                                    </div>
+                                    <div class="survivor-name  flexcol w-100">
+                                        <span class="text-left subheader border-bottom">
                                     {{parseActor id 'name'}}
+                                    </span>
+                                    <span class="middle">
+                                        {{parseActor id 'background'}}
+                                    </span>
+                                    </div>
 
                                 </div>
                                 <div class="buttons justify-self-end middle">

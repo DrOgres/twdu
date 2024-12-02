@@ -757,6 +757,34 @@ button,
   min-width: 300px;
 }
 
+.max-w-30p {
+  max-width: 30px;
+}
+
+.max-w-50p {
+  max-width: 50px;
+}
+
+.max-w-100p {
+  max-width: 100px;
+}
+
+.max-w-150p {
+  max-width: 150px;
+}
+
+.max-w-200p {
+  max-width: 200px;
+}
+
+.max-w-250p {
+  max-width: 250px;
+}
+
+.max-w-300p {
+  max-width: 300px;
+}
+
 .max-h-110p {
   max-height: 110px;
 }

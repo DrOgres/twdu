@@ -62,6 +62,9 @@ Hooks.once("init", async function () {
   Handlebars.registerHelper("parseActor", function (actorId, part) {
     let actor = game.actors.get(actorId);
     if(part === "name"){return actor.name;}
+    else if(part === "img"){return actor.img;}
+    else if(part === "archetype"){return actor.system.archetype;}
+    else if(part === "background"){return actor.system.background;}
     else {return actorId;}
   
   });
