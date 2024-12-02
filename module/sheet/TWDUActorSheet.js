@@ -6,7 +6,7 @@ export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
-      width: 900 - "max-content",
+      width: 900 - "fit-content",
       height: 750 - "max-content",
       resizable: true,
       tabs: [
@@ -47,10 +47,15 @@ export default class TWDUActorSheet extends ActorSheet {
       encumbrance: 0,
       maxEncumbrance: 0,
       maxpop: 0,
+      portrait: true,
     };
     //console.log("TWDU | context: ", context);
     context.config = CONFIG.twdu;
     //console.log("TWDU | context.config: ", context.config);
+
+    
+
+    console.log("TWDU | context: ", context);
 
     this.computeItems(context);
 
@@ -145,6 +150,10 @@ export default class TWDUActorSheet extends ActorSheet {
     // const drag = this.prepDragDrop();
     // console.log("TWDU | drag: ", drag);
     // console.log("TWDU | data: ", this);
+
+    if(this.actor.type === "haven") {
+      this.setPortrait(context);
+    }
     return context;
   }
 
@@ -227,6 +236,11 @@ export default class TWDUActorSheet extends ActorSheet {
       this.actor.items.get(item._id).update({ "system.isEquipped": true });
       // item.update({ "system.isEquipped":  true});
     });
+  }
+
+  setPortrait(context) {
+    context.portrait = game.settings.get("twdu", "havenSurvivorDisplaySetting");
+    console.log("TWDU | setPortrait: ", context.portrait);
   }
 
   activateListeners(html) {

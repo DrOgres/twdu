@@ -107,9 +107,12 @@
                             <div class="survivors grid col-90-10 border-bottom">
                                 
                                 <div class="name item flexrow" data-actor-id="{{id}}">
+                                    
+                                    {{#if ../portrait}}
                                     <div class="icon border max-w-50p" >
                                         <img src="{{parseActor id 'img'}}" width="50"/>
                                     </div>
+                                    {{/if}}
                                     <div class="survivor-name  flexcol w-100">
                                         <span class="text-left subheader border-bottom">
                                     {{parseActor id 'name'}}
@@ -137,9 +140,11 @@
                             {{# if (eq type 'npc')}}
                             <div class="survivors grid col-90-10 border-bottom">
                                 <div class="name item flexrow" data-actor-id="{{id}}">
+                                    {{#if ../portrait}}
                                     <div class="icon border max-w-50p" >
                                         <img src="{{parseActor id 'img'}}" width="50"/>
                                     </div>
+                                    {{/if}}
                                     <div class="survivor-name  flexcol w-100">
                                         <span class="text-left subheader border-bottom">
                                     {{parseActor id 'name'}}

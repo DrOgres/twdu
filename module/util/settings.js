@@ -36,6 +36,17 @@ export const registerGameSettings = function () {
     onChange: debouncedReload,
   });
 
+  game.settings.register("twdu", "havenSurvivorDisplaySetting", {
+    name: "twdu.havenSurvivorDisplay",
+    hint: "twdu.havenSurvivorDisplayHint",
+    scope: "client",
+    config: true,
+    restricted: false,
+    type: Boolean,
+    default: true,
+    onChange: debouncedReload,
+  });
+
   game.settings.register("twdu", "systemMigrationVersion", {
     config: false,
     scope: "world",

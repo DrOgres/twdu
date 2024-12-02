@@ -159,6 +159,8 @@
         "threatDisplayHint": "If this is enabled the Threat Level will be displayed for the players in the Layer Controls.",
         "prototypeTokenSettings": "Use Recomended Token Settings",
         "prototypeTokenSettingsHint": "If this is enabled the token settings will be set to the recomended settings for the system.",
+        "havenSurvivorDisplay": "Show Portraits for Haven Survivors",
+        "havenSurvivorDisplayHint": "If this is enabled the portraits of the survivors in the Haven will be displayedon the haven sheet tab.",
 
 
         "ui.icon": "Icon",
