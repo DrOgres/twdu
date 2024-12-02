@@ -38,8 +38,9 @@
                     <div class="label subheader h-100 text-center"><label for="health">{{localize
                             'twdu.health'}}</label></div>
 
-                    <div class="input health w-100 group pi-1"><input name="system.health" id="health" type="text"
-                            value="{{actor.system.health}}" placeholder="0" /></div>
+                    <div class="input health w-100 group pi-1 flexrow"><input name="system.healthMax.value" id="health" type="number"
+                            value="{{actor.system.healthMax.value}}" placeholder="0" /> / <input name="system.healthMax.max" id="maxHealth" type="number" value="{{actor.system.healthMax.max}}" placeholder="0" />
+                            </div>
                 </div>
 
             </div>
