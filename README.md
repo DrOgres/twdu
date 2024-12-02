@@ -8,6 +8,12 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.5:
+- Fix: changed Animal health to have a range (mix/max) so tokens can use health bars [#36](https://github.com/DrOgres/twdu/issues/36)
+- UI: Improved Readability for selected state of skill level on NPC sheet [#35](https://github.com/DrOgres/twdu/issues/35)
+- UI: Added Portrait and Archetype information to Survivors on Haven sheet [#37](https://github.com/DrOgres/twdu/issues/37)
+- UI: Added roll down for Project details on the Haven Sheet [#38](https://github.com/DrOgres/twdu/issues/38)
+
 Release 2.0.4:
 - Fix: made chat card text for roll table results more ledgible 
 

@@ -471,6 +471,19 @@ export default class TWDUActorSheet extends ActorSheet {
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
         break;
+        case "project":
+          // console.log("TWDU | project: ", item);
+          await renderTemplate(
+            "systems/twdu/templates/ui/projectRollDown.hbs",
+            item
+          ).then((html) => {
+            chatData = html;
+          });
+          // console.log("TWDU | chatData: ", chatData);
+          sum = $(
+            `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
+          );
+          break;
     }
 
     if (chatData === null) {
