@@ -1174,7 +1174,6 @@ button,
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: hsl(53, 14%, 75%);
 }
 
 .radio-group:hover input ~ .radio {
