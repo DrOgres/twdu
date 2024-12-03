@@ -1,5 +1,5 @@
-<form class="{{cssClass}} haven flexcol" autocomplete="off">
-    <div class="sheet-container w-100 min-h-800p" style="margin:-2px;">
+<form class="{{cssClass}} haven" autocomplete="off">
+    <div class="sheet container w-100 " style="margin:-2px;">
 
         {{!-- Header --}}
         <header class="actor-header flex-row">
@@ -94,14 +94,14 @@
         <section class="sheet-body">
             {{!-- Main Tab --}}
             <div class="tab" data-group="primary" data-tab="main">
-                <div class="grid three-col">
+                <div class="grid three-col h-100">
                     {{!-- Survivors --}}
                     <div class="container border-left border-bottom flex-col">
                         <h3 class="subheader border-bottom m-0 p-1">{{localize 'twdu.survivors'}} &nbsp;
                             
                             {{actor.system.survivors.population}} / {{maxpop}}</h3>
                         <div class="subsubheader border-bottom">Player Characters</div>
-                        <div class="scrollable max-h-300p">
+                        <div class="scrollable">
                             {{#each actor.system.survivors.npcs as |survivor key|}}
                             {{# if (eq type 'character')}}
                             <div class="survivors grid col-90-10 border-bottom">
@@ -175,7 +175,7 @@
                             <a title="{{localize " twdu.ui.add"}}" class="add-item" data-type="project">
                                 &#43;</a>
                         </h3>
-                        <div class="scrollable max-h-300p">
+                        <div class="scrollable">
                             {{#each items as |item key|}}
                             {{#if item.isProject}}
                             <div class="project item grid two-col border-bottom" data-item-id="{{item._id}}">

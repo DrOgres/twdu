@@ -2,7 +2,7 @@ import { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
-export default class TWDUActorSheet extends ActorSheet {
+export default class TWDUActorSheetPCv2 extends ActorSheetv2 {
 
   // constructor(object, options={}) {
   //   console.log("TWDU | TWDUActorSheet: ", object);
@@ -12,6 +12,8 @@ export default class TWDUActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
+      width: "auto" || "max-content",
+      height: 800 - "max-content",
       resizable: true,
       tabs: [
         {

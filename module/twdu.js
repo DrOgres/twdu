@@ -1,5 +1,5 @@
 import TWDUItemSheet from "./sheet/TWDUItemSheet.js";
-import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
+// import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
 import TWDUActor from "./TWDUActor.js";
 import { preloadHandlebarsTemplates } from "./util/templates.js";
 import { twdu } from "../module/config.js";
@@ -9,6 +9,12 @@ import { YearZeroRollManager } from "./util/yzur.js";
 import { ThreatLevelDisplay } from "./util/threat.js";
 import { registerGameSettings } from "./util/settings.js";
 import { migrate } from "./util/migration.js";
+import TWDUActorSheetPC from "./sheet/TWDUActorSheetPC.js";
+import TWDUActorSheetNPC from "./sheet/TWDUActorSheetNPC.js";
+import TWDUActorSheetAnimal from "./sheet/TWDUActorSheetAnimal.js";
+import TWDUActorSheetHaven from "./sheet/TWDUActorSheetHaven.js";
+import TWDUActorSheetChallenge from "./sheet/TWDUActorSheetChallenge.js";
+// import TWDUActorSheetPCv2 from "./sheet/TWDUActorSheetPCv2.js";
 
 Hooks.once("init", async function () {
   console.log("TWDU | Initializing TWDU");
@@ -46,10 +52,40 @@ Hooks.once("init", async function () {
   ]);
 
   Items.unregisterSheet("core", ItemSheet);
+
   Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
 
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
+  //TODO set up sheets for each actor type to be able to set default options correctly for each type
+  // Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
+
+  Actors.registerSheet("twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
+  Actors.registerSheet("twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
+  Actors.registerSheet("twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
+  Actors.registerSheet("twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
+  Actors.registerSheet("twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
+
+
+
+  // Actors.registerSheet("dnd5e", ActorSheet5eCharacter, {
+  //   types: ["character"],
+  //   label: "DND5E.SheetClassCharacterLegacy"
+  // });
+  // DocumentSheetConfig.registerSheet(Actor, "dnd5e", ActorSheet5eCharacter2, {
+  //   types: ["character"],
+  //   makeDefault: true,
+  //   label: "DND5E.SheetClassCharacter"
+  // });
+
+  // "Actor": {
+  //   "types": [
+  //       "character",
+  //       "challenge",
+  //       "haven",
+  //       "npc",
+  //       "animal"
+        
+  //   ],
 
 
 

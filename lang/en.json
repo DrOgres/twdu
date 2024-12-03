@@ -7,6 +7,14 @@
 
     },
     "twdu": {
+
+        "SheetClassCharacter": "Player Character",
+        "SheetClassCharacterLegacy": "Player Character (Legacy)",
+        "SheetClassNPC": "NPC",
+        "SheetClassHaven": "Haven",
+        "SheetClassChallenge": "Challenge",
+        "SheetClassAnimal": "Animal",
+
         "name": "Name",
         "archetype": "Archetype",
         "haven": "Haven",
