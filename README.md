@@ -8,6 +8,11 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 2.0.6:
+- Fix: [#39](https://github.com/DrOgres/twdu/issues/39) Secrets were not showing for GM 
+- UI: Migrated to Prose Mirror for editors to enhance functionality of system
+- UI: Added size specific actor sheet types to make layout more consistent and usable
+
 Release 2.0.5:
 - Fix: changed Animal health to have a range (mix/max) so tokens can use health bars [#36](https://github.com/DrOgres/twdu/issues/36)
 - UI: Improved Readability for selected state of skill level on NPC sheet [#35](https://github.com/DrOgres/twdu/issues/35)
