@@ -1,5 +1,5 @@
-<form class="{{cssClass}} haven" autocomplete="off">
-    <div class="sheet-container w-800p" style="margin:-2px;">
+<form class="{{cssClass}} haven flexcol" autocomplete="off">
+    <div class="sheet-container w-100 min-h-800p" style="margin:-2px;">
 
         {{!-- Header --}}
         <header class="actor-header flex-row">
@@ -314,7 +314,7 @@
                 <div class="container flex-row group">
                     <div class="flex-col w-100">
                         <div class="full-size">
-                            {{editor havenNotes target="system.notes.value" button=true owner=owner editable=editable }}
+                            {{editor havenNotes target="system.notes.value" button=true owner=owner editable=editable engine="prosemirror" collaborate=false  }}
                         </div>
                     </div>
                 </div>

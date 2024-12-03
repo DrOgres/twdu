@@ -8,8 +8,8 @@ export default class TWDUActorSheet extends ActorSheet {
   
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
-      width: 900 - "min-content",
-      height: 750 - "max-content",
+      width: 900 - "max-content",
+      height: 800 - "max-content",
       resizable: true,
       tabs: [
         {
@@ -65,11 +65,15 @@ export default class TWDUActorSheet extends ActorSheet {
       context.maxEncumbrance = context.system.attributes.str.value + 2;
       //console.log("TWDU | Enriching HTML");
       context.notesHTML = await TextEditor.enrichHTML(
-        context.system.notes.value,
+        this.actor.system.notes.value,
         {
+          secrets: this.actor.isOwner,
+          rollData: context.rollData,
           async: true,
+          relativeTo: this.actor
         }
       );
+      console.log("TWDU | context: ", context.notesHTML);
       this.computeSkills(context);
       context.encumbrance = this.computeEncumbrance(context);
       // update context with the data we just got
@@ -101,8 +105,11 @@ export default class TWDUActorSheet extends ActorSheet {
 
       context.maxpop = this.calculatePopulation(context);
       context.havenNotes = await TextEditor.enrichHTML(
-        context.system.notes.value,
-        { async: true }
+        this.actor.system.notes.value,
+        {  secrets: this.actor.isOwner,
+          rollData: context.rollData,
+          async: true,
+          relativeTo: this.actor}
       );
       //console.log("TWDU | haven context: ", context);
     }
@@ -113,7 +120,10 @@ export default class TWDUActorSheet extends ActorSheet {
       context.notesHTML = await TextEditor.enrichHTML(
         context.system.notes.value,
         {
+          secrets: this.actor.isOwner,
+          rollData: context.rollData,
           async: true,
+          relativeTo: this.actor
         }
       );
     }
@@ -122,7 +132,10 @@ export default class TWDUActorSheet extends ActorSheet {
       //console.log("TWDU | isAnimal: ", context.isAnimal);
       context.animalHTML = await TextEditor.enrichHTML(
         context.system.notes.value,
-        { async: true }
+        {  secrets: this.actor.isOwner,
+          rollData: context.rollData,
+          async: true,
+          relativeTo: this.actor }
       );
     }
 

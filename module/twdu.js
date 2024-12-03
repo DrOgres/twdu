@@ -39,6 +39,7 @@ Hooks.once("init", async function () {
         });
         const doc = document.createElement("span");
         doc.innerHTML = myData;
+        console.log("TWDU | enricher: ", doc);
         return doc;
       },
     },
@@ -69,9 +70,7 @@ Hooks.once("init", async function () {
   
   });
 
-  Handlebars.registerHelper("enrichHtmlHelper", function (rawText) {
-    return TextEditor.enrichHTML(rawText, { async: true });
-  });
+
 
   Handlebars.registerHelper("TWDUconcat", function () {
     let outStr = "";

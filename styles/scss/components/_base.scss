@@ -2,14 +2,13 @@
 
 // Force proper height
 .app.sheet .editor {
-  min-height: 55px;
-  height: 100%;
+  min-height: 100px;
 }
 
 
 .editor-content {
   padding: 0.5rem;
-  min-height: 50px;
+  min-height: 100px;
 }
 
 .dice-roll .dice-formula,
