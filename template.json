@@ -360,7 +360,8 @@
             "issue": {
                 "description": "",
                 "notes": "",
-                "source": ""
+                "source": "",
+                "isSecret": false
             },
             "rumor": {
                 "description": "",

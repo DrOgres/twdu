@@ -6,10 +6,13 @@
     </div>
 
     <div class="w-100">
-      <div class="flex-col group">
+      <div class="flexcol group">
         <h1 class="center">{{localize "twdu.issue"}}
           <input class="light" name="name" type="text" value="{{item.name}}" style="width: 99%;" />
         </h1>
+        {{!-- TODO make a check box to toggle secret status --}}
+        <div class="secret">{{ifThen item.system.isSecret "Seceret" "Not Secret"}}</div>
+        
       </div>
       <div class="grid two-col w-100 group">
 
