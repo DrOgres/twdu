@@ -59,7 +59,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
     
 
-    console.log("TWDU | context: ", context);
+    // console.log("TWDU | context: ", context);
 
     this.computeItems(context);
 
@@ -75,7 +75,7 @@ export default class TWDUActorSheet extends ActorSheet {
           relativeTo: this.actor
         }
       );
-      console.log("TWDU | context: ", context.notesHTML);
+      // console.log("TWDU | context: ", context.notesHTML);
       this.computeSkills(context);
       context.encumbrance = this.computeEncumbrance(context);
       // update context with the data we just got
@@ -258,7 +258,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
   setPortrait(context) {
     context.portrait = game.settings.get("twdu", "havenSurvivorDisplaySetting");
-    console.log("TWDU | setPortrait: ", context.portrait);
+    // console.log("TWDU | setPortrait: ", context.portrait);
   }
 
   activateListeners(html) {
@@ -356,30 +356,30 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onDragStart(event) {
-    console.log(
-      "start drag",
-      event.srcElement.firstElementChild.dataset.rolled
-    );
-    console.log(
-      "start drag skill?",
-      event.currentTarget.classList.contains("skill")
-    );
-    console.log(
-      "start drag attribute?",
-      event.currentTarget.classList.contains("attribute")
-    );
+    // console.log(
+    //   "start drag",
+    //   event.srcElement.firstElementChild.dataset.rolled
+    // );
+    // console.log(
+    //   "start drag skill?",
+    //   event.currentTarget.classList.contains("skill")
+    // );
+    // console.log(
+    //   "start drag attribute?",
+    //   event.currentTarget.classList.contains("attribute")
+    // );
 
     if (
       event.currentTarget.classList.contains("skill") ||
       event.currentTarget.classList.contains("attribute")
     ) {
-      console.log("a skill or attribute");
+      // console.log("a skill or attribute");
       const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
-      console.log("rollItemDragged", rollItemDragged);
+      // console.log("rollItemDragged", rollItemDragged);
 
       return;
     } else {
-      console.log("not a skill or attribute");
+      // console.log("not a skill or attribute");
       super._onDragStart(event);
       return;
     }
