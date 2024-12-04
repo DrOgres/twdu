@@ -611,12 +611,14 @@ export default class TWDUActorSheet extends ActorSheet {
           // console.log("TWDU | actorType: ", options.actorType);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
-          let skill = item.system.skill.split(".")[1];
+          console.log("TWDU | skillName: ", options.skillName);
+          // let skill = item.system.skill.split(".")[1];
+          // console.log("TWDU | skill: ", skill);
           if (options.actorType === "character") {
-            options.skillDefault = this.actor.system.skills[skill].value;
+            options.skillDefault = this.actor.system.skills[options.skillName].value;
             // console.log("TWDU | skillDefault: ", options.skillDefault);
           } else {
-            let skillLevel = this.actor.system.skills[skill].level;
+            let skillLevel = this.actor.system.skills[options.skillName].level;
             // console.log("TWDU | skillLevel: ", skillLevel);
             if (skillLevel == "base") {
               options.skillDefault = 4;
@@ -632,7 +634,7 @@ export default class TWDUActorSheet extends ActorSheet {
             }
           }
           if (options.actorType === "character") {
-            let abv = this.actor.system.skills[skill].attribute;
+            let abv = this.actor.system.skills[options.skillName].attribute;
             options.attName = "twdu." + this.actor.system.attributes[abv].label;
             options.attributeDefault = this.actor.system.attributes[abv].value;
           }

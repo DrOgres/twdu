@@ -44,25 +44,16 @@
         <div class="encumbrance flex-row group">
           <h2 class="m-0 pi-1 subheader middle">{{localize "twdu.encSlots"}}:</h2>
           <div class="weight-select">
-            <select name="system.weight" id="weight" data-dtype="Number">
-              {{#select data.system.weight}}
-              <option value="0">None</option>
-              <option value="0.5">½</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              {{/select}}
-            </select>
+             <select name="system.weight" id="weight" data-dtype="Number">
+              {{selectOptions config.weights selected=data.system.weight localize=true}}
+             </select>
+           
           </div>
         </div>
         <div class="skill flex-row group">
           <h2 class="m-0 pi-1 subheader middle">{{localize "twdu.skill"}}: </h2>
           <select name="system.skill">
-            {{#select data.system.skill}}
-            {{#each config.combatSkills as |skill|}}
-            <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}</option>
-            {{/each}}
-            {{/select}}
+            {{selectOptions config.combatSkills selected=data.system.skill localize=true}}
           </select>
         </div>
         <div class="range-select flex-row group">

@@ -3,8 +3,8 @@ export const twdu = {};
 twdu.combatSkills = {
     none: "twdu.none",
     force: "twdu.force",
-    ranged: "twdu.rangedCombat",
-    close: "twdu.closeCombat",
+    rangedCombat: "twdu.rangedCombat",
+    closeCombat: "twdu.closeCombat",
 }
 
 twdu.skills = {
@@ -44,6 +44,15 @@ twdu.encumbranceIncrements = {
     one: 1,
     two: 2,
     three: 3,
+}
+
+twdu.weights = {
+    0: "twdu.none",
+    0.5: "0.5",
+    1: "1",
+    2: "2",
+    3: "3",
+
 }
 
 
