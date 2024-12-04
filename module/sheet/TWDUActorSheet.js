@@ -52,8 +52,9 @@ export default class TWDUActorSheet extends ActorSheet {
       maxEncumbrance: 0,
       maxpop: 0,
       portrait: true,
+      user: game.user,
     };
-    //console.log("TWDU | context: ", context);
+    console.log("TWDU | context: ", context);
     context.config = CONFIG.twdu;
     //console.log("TWDU | context.config: ", context.config);
 
@@ -754,6 +755,12 @@ export default class TWDUActorSheet extends ActorSheet {
         {
           const value = this.actor.system.driveUsed;
           this.actor.update({ "system.driveUsed": !value });
+        }
+        break;
+        case "isSecret": {
+          const item = this.actor.items.get(element.dataset.itemId);
+          const value = item.system.isSecret;
+          item.update({ "system.isSecret": !value });
         }
         break;
     }

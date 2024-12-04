@@ -11,7 +11,13 @@
           <input class="light" name="name" type="text" value="{{item.name}}" style="width: 99%;" />
         </h1>
         {{!-- TODO make a check box to toggle secret status --}}
-        <div class="secret">{{ifThen item.system.isSecret "Seceret" "Not Secret"}}</div>
+        <div class="secret flexrow">{{localize "twdu.secret"}}: 
+          {{#if item.system.isSecret}}
+          <div class='toggle-boolean' title="{{localize "twdu.isSecret"}}" data-path='isSecret'><i class='fa-solid fa-eye-slash'></i></div>
+          {{else}}
+          <div class='toggle-boolean' title="{{localize "twdu.isNotSecret"}}" data-path='isSecret'><i class='fa-solid fa-eye'></i></div>
+          {{/if}}
+        </div>
         
       </div>
       <div class="grid two-col w-100 group">

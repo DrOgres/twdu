@@ -162,6 +162,9 @@
         "source": "Source",
         "fate": "Fate",
         "clock": "Clock",
+        "secret": "Secret",
+        "isSecret": "This is a Secret and will be hidden from the players. Click to toggle",
+        "isNotSecret": "This is not a Secret and will not be hidden from players. Click to toggle",
 
         "threatDisplay": "Show Players Threat Display",
         "threatDisplayHint": "If this is enabled the Threat Level will be displayed for the players in the Layer Controls.",

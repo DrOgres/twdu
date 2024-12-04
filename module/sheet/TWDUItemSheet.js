@@ -49,6 +49,8 @@ export default class TWDUItemSheet extends ItemSheet {
     const source = this.item.toObject();
     data.config = CONFIG.twdu;
     data.source = source;
+    data.user = game.user;
+    console.log(data.user);
     
     this.itemClock().then((clock) => {
       console.log("TWDU | clock: ", clock);
@@ -87,6 +89,12 @@ export default class TWDUItemSheet extends ItemSheet {
         const value = this.item.system.isExplosive;
         this.item.update({ "system.isExplosive": !value });
       }
+      break;
+      case "isSecret": {
+        const value = this.item.system.isSecret;
+        this.item.update({ "system.isSecret": !value });
+      }
+      break;
     }
   }
 }
