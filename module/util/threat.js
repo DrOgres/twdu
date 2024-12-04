@@ -14,10 +14,7 @@ export async function increaseThreatLevel(amount) {
     await setThreatLevel(6);
     return;
   }
-
-  console.log("TWDU | increaseThreatLevel: ", threatLevel);
   threatLevel += amount;
-  console.log("TWDU | increaseThreatLevel: ", threatLevel);
   await setThreatLevel(threatLevel);
 }
 
@@ -33,14 +30,8 @@ export async function decreaseThreatLevel(amount) {
     await setThreatLevel(0);
     return;
   }
-
-  console.log("TWDU | decreaseThreatLevel: ", threatLevel);
   threatLevel -= amount;
-  console.log("TWDU | decreaseThreatLevel: ", threatLevel);
   await setThreatLevel(threatLevel);
- 
-  console.log(game.canvas.controls.layerOptions);
-
 }
 
 export async function setThreatLevel(threatLevel) {
@@ -87,7 +78,7 @@ export async function displayThreatLevel() {
 
 // show a UI dialog to allow the GM to set the threat level
 export async function threatLevelDialog() {
-  console.log("TWDU | threatLevelDialog: ", game.user.isGM);
+ 
   ThreatLevel.render(true);
 }
 
@@ -101,7 +92,7 @@ export class ThreatLevelDisplay extends Application {
   }
 
   static render() {
-    console.log("TWDU | ThreatLevel.render: ", this.threatLevel);
+  
     this.threatLevel.render(true);
   }
 
