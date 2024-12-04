@@ -121,10 +121,10 @@
         
 
         
-        "unharmed": "Unharmed",
-        "bruised": "Bruised",
-        "battered": "Battered",
-        "broken": "Broken",
+        "unharmed": "3 - Unharmed",
+        "bruised": "2 - Bruised",
+        "battered": "1 - Battered",
+        "broken": "0 - Broken",
 
         "weight": "Weight",
         "effect": "Effect",

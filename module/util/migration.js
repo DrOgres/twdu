@@ -6,7 +6,7 @@ export function migrate(){
     console.log("Data CurrentVersion", currentVersion);
 
     Object.keys(migrations).forEach(function(key) {
-        if (!currentVersion || isNewerVersion(key, currentVersion))
+        if (!currentVersion || foundry.utils.isNewerVersion(key, currentVersion))
           migrations[key]();
       });
 

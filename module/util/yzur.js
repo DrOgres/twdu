@@ -36,7 +36,7 @@
  * Custom Die class for Year Zero games.
  * @extends {Die} The Foundry Die class
  */
-class YearZeroDie extends Die {
+class YearZeroDie extends foundry.dice.terms.Die {
   constructor(termData = {}) {
     termData.faces = Number.isInteger(termData.faces) ? termData.faces : 6;
     super(termData);
@@ -389,7 +389,7 @@ YearZeroDie.MODIFIERS = foundry.utils.mergeObject(
     p: "setpush",
     np: "nopush",
   },
-  Die.MODIFIERS
+  foundry.dice.terms.Die.MODIFIERS
 );
 
 /* -------------------------------------------- */
@@ -1621,7 +1621,7 @@ class YearZeroRoll extends Roll {
       if (this.terms.length > 0) {
         // eslint-disable-next-line no-undef
         this.terms.push(
-          new OperatorTerm({ operator: type === "neg" ? "-" : "+" })
+          new foundry.dice.terms.OperatorTerm({ operator: type === "neg" ? "-" : "+" })
         );
       }
       this.terms.push(term);
@@ -1705,7 +1705,7 @@ class YearZeroRoll extends Roll {
     //   The evaluate() method iterates each terms and runs only
     //   the term's own evaluate() method on new (pushed) dice.
     this._evaluated = false;
-    await this.evaluate({ async });
+    await this.evaluate();
 
     return this;
   }
@@ -2014,7 +2014,7 @@ class YearZeroRoll extends Roll {
         // with the HTML returned by roll.render(), but only if content is left unchanged.
         // So you can overwrite it here with a custom content in messageData.
         content: this.total,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+        // type: CONST.CHAT_MESSAGE_STYLES.ROLL,
         // sound: CONFIG.sounds.dice, // Already added in super.
       },
       messageData

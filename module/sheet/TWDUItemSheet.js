@@ -3,7 +3,7 @@ import Clock from "../util/clock.js";
 
 export default class TWDUItemSheet extends ItemSheet {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "item", "item-sheet"],
       width: 550,
       // height: 489 + 'max-content',

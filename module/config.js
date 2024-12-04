@@ -31,10 +31,10 @@ twdu.ranges = {
 }
 
 twdu.healthStates = {
-    3: "twdu.unharmed",
-    2: "twdu.bruised",
+    0: "twdu.broken",
     1: "twdu.battered",
-    0: "twdu.broken"
+    2: "twdu.bruised",
+    3: "twdu.unharmed"
 }
 
 

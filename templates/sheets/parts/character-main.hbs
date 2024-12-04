@@ -134,13 +134,8 @@
         <h2 class="subheader m-0 p-1 border-bottom">{{localize "twdu.health"}}</h2>
         <div class="health-select p-2">
           <select name="system.health.value" id="health">
-            {{#select actor.system.health.value}}
-            {{#each (TWDUinvert config.healthStates) as |state|}}
-            <option value="{{subtract 3 @index}}" {{#if (eq (subtract 3 @index) ../actor.system.health.value)}}selected{{/if}}>
-              {{subtract 3 @index}} - {{localize
-              state}}</option>
-            {{/each}}
-            {{/select}}
+            {{selectOptions config.healthStates selected=system.health.value localize=true}}
+            
           </select>
         </div>
       </div>

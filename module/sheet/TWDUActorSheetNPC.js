@@ -4,7 +4,7 @@ export default class TWDUActorSheetNPC extends TWDUActorSheet {
 
     /** @override */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["twdu", "sheet", "actor", "npc"],
         template: "systems/twdu/templates/actor/npc-sheet.html",
         width: 800,

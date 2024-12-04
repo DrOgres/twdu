@@ -106,7 +106,7 @@ export class ThreatLevelDisplay extends Application {
   }
 
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       id: "threat-level-display",
       template: "/systems/twdu/templates/ui/threat-level-display.html",
       top: 100,

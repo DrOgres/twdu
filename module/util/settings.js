@@ -23,7 +23,7 @@ export const registerGameSettings = function () {
     config: true,
     type: Boolean,
     default: false,
-    onChange: debouncedReload,
+    onChange: foundry.utils.debouncedReload,
   });
 
   game.settings.register("twdu", "defaultTokenSettings", {
@@ -33,7 +33,7 @@ export const registerGameSettings = function () {
     config: true,
     default: true,
     type: Boolean,
-    onChange: debouncedReload,
+    onChange: foundry.utils.debouncedReload,
   });
 
   game.settings.register("twdu", "havenSurvivorDisplaySetting", {
@@ -44,7 +44,7 @@ export const registerGameSettings = function () {
     restricted: false,
     type: Boolean,
     default: true,
-    onChange: debouncedReload,
+    onChange: foundry.utils.debouncedReload,
   });
 
   game.settings.register("twdu", "systemMigrationVersion", {
