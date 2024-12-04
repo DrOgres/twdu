@@ -54,7 +54,7 @@ export default class TWDUActorSheet extends ActorSheet {
       portrait: true,
       user: game.user,
     };
-    console.log("TWDU | context: ", context);
+    // console.log("TWDU | context: ", context);
     context.config = CONFIG.twdu;
     //console.log("TWDU | context.config: ", context.config);
 
