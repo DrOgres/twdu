@@ -13,14 +13,8 @@
             <h2 class="subheader m-0 p-1 border-bottom">{{localize "twdu.health"}}</h2>
             <div class="health-select p-2">
               <select name="system.health.value" id="health">
-                {{#select actor.system.health.value}}
-                {{#each (TWDUinvert config.healthStates) as |state|}}
-                <option value="{{subtract 3 @index}}" {{#if (eq (subtract 3 @index)
-                  ../actor.system.health.value)}}selected{{/if}}>
-                  {{subtract 3 @index}} - {{localize
-                  state}}</option>
-                {{/each}}
-                {{/select}}
+                {{selectOptions config.healthStates selected=system.health.value localize=true}}
+
               </select>
             </div>
           </div>
@@ -83,22 +77,26 @@
             (TWDUconcat "twdu." skill.label)}}</div>
 
           <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.base">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.base">{{localize
               'twdu.base'}}
               <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
                 level 'base' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.trained">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.trained">{{localize
               'twdu.trained'}}
               <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
                 level 'trained' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.expert">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.expert">{{localize
               'twdu.expert'}}
               <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
                 level 'expert' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group" for="{{key}}.master">{{localize
+            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
+              for="{{key}}.master">{{localize
               'twdu.master'}}
               <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
                 level 'master' }} /><span class="radio"></span></label>
@@ -118,24 +116,28 @@
             "twdu." skill.label)}}</div>
 
           <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.base">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.base">{{localize
               'twdu.base'}}
               <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
                 level 'base' }} />
               <span class="radio"></span>
             </label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.trained">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.trained">{{localize
               'twdu.trained'}}
               <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
                 level 'trained' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.expert">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.expert">{{localize
               'twdu.expert'}}
               <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
                 level 'expert' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.master">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.master">{{localize
               'twdu.master'}}
               <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
                 level 'master' }} /><span class="radio"></span></label>
@@ -154,22 +156,26 @@
             data-test="twdu.{{key}}">{{localize (TWDUconcat
             "twdu." skill.label)}}</div>
           <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.base">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.base">{{localize
               'twdu.base'}}
               <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
                 level 'base' }} /><span class="radio"></span></label>
 
-            <label class="fflex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.trained">{{localize
+            <label class="fflex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.trained">{{localize
               'twdu.trained'}}
               <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
                 level 'trained' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.expert">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.expert">{{localize
               'twdu.expert'}}
               <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
                 level 'expert' }} /><span class="radio"></span></label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group" for="{{key}}.master">{{localize
+            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
+              for="{{key}}.master">{{localize
               'twdu.master'}}
               <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
                 level 'master' }} /><span class="radio"></span></label>
@@ -246,7 +252,8 @@
           {{#each items as |item key|}}
           {{#if item.isWeapon}}
 
-          <div class="weapon item grid seven-col justify center align-center border-bottom pi-1 draggable" draggable="true" data-item-id="{{item._id}}">
+          <div class="weapon item grid seven-col justify center align-center border-bottom pi-1 draggable"
+            draggable="true" data-item-id="{{item._id}}">
             <div class="icon rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
               data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}">
               <img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
@@ -280,9 +287,10 @@
           </div>
           {{#each items as |item key|}}
           {{#if item.isArmor}}
-          <div class="armor item grid five-col justify align-center border-bottom draggable" draggable="true" data-item-id="{{item._id}}">
-            <span class="icon rollable" data-item-type="armor"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
-                height="25" /></span>
+          <div class="armor item grid five-col justify align-center border-bottom draggable" draggable="true"
+            data-item-id="{{item._id}}">
+            <span class="icon rollable" data-item-type="armor"><img src="{{item.img}}" alt="{{item.name}}"
+                title="{{item.name}}" width="25" height="25" /></span>
             <span class="name show-details">{{item.name}}</span>
             <span class="damage">{{item.system.protection}}</span>
             <span class="agiltity">{{item.system.agility}}</span>
@@ -314,7 +322,8 @@
           </div>
           {{#each items as |item key|}}
           {{#if item.isGear }}
-          <div class="gear item grid five-col border-bottom middle draggable" draggable="true" data-item-id="{{item._id}}">
+          <div class="gear item grid five-col border-bottom middle draggable" draggable="true"
+            data-item-id="{{item._id}}">
             <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="24"
                 height="24" /></span>
             <span class="name show-details">{{item.name}}</span>
@@ -351,7 +360,8 @@
           </div>
           {{#each items as |item|}}
           {{#if item.isVehicle}}
-          <div class="vehicle item grid seven-col border-bottom middle draggable" draggable="true" data-item-id="{{item._id}}">
+          <div class="vehicle item grid seven-col border-bottom middle draggable" draggable="true"
+            data-item-id="{{item._id}}">
             <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
                 height="25" /></span>
             <span class="name  show-details justify-self-start">{{item.name}}</span>
