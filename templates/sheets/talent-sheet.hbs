@@ -67,12 +67,7 @@
         <div class="skill-select group">
           <b>{{localize "twdu.skill"}}</b>
           <select name="system.skill" id="skill">
-            {{#select item.system.skill}}
-            {{#each (TWDUinvert config.skills) as |state|}}
-            <option value={{state}} {{#if (eq state ../item.system.skill)}}selected{{/if}}>{{localize state}}
-            </option>
-            {{/each}}
-            {{/select}}
+            {{selectOptions config.skills selected=item.system.skill localize=true}}
           </select>
         </div>
 

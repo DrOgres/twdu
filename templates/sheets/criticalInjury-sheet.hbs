@@ -20,22 +20,14 @@
 
           <div class="-lethal-select">
             <select name="system.fatal" id="weight" data-dtype="boolean">
-              {{#select data.system.fatal}}
-              <option value="true">{{localize "twdu.yes"}}</option>
-              <option value="false">{{localize "twdu.no"}}</option>
-              {{/select}}
+              {{selectOptions config.yesNo selected=item.system.fatal localize=true}}
             </select>
           </div>
         </div>
         <div class="timelimit grid col-60-40 group middle justify">
           <div class="subsubheader">{{localize "twdu.timeLimit"}}</div>
           <select name="system.timeLimit">
-            {{#select data.system.timeLimit}}
-            {{#each config.recoveryTime as |time|}}
-            <option value="{{time}}" {{#if (eq skill ../data.system.timeLimit)}}selected{{/if}}>{{localize time}}
-            </option>
-            {{/each}}
-            {{/select}}
+            {{selectOptions config.recoveryTime selected=item.system.timeLimit localize=true}}
           </select>
 
           <div class="radio-area grid two-col span-2">
@@ -60,12 +52,8 @@
         <div class="recovery grid col-60-40 group middle justify">
           <b>{{localize "twdu.recoveryTime"}}</b>
           <select name="system.recovery">
-            {{#select data.system.recovery}}
-            {{#each config.recoveryTime as |time|}}
-            <option value="{{time}}" {{#if (eq skill ../data.system.recovery)}}selected{{/if}}>{{localize time}}
-            </option>
-            {{/each}}
-            {{/select}}
+            {{selectOptions config.recoveryTime selected=item.system.recovery localize=true}}
+            
           </select>
 
 

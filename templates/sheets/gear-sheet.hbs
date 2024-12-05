@@ -22,14 +22,9 @@
           </div>
           <div class="flex-row justify middle group">
             <h2 class="subsubheader m-0 pi-1">{{localize "twdu.skill"}}</h2>
-            <select name="system.skill">
-              {{#select data.system.skill}}
-              {{#each config.skills as |skill|}}
-              <option value="{{skill}}" {{#if (eq skill ../data.system.skill)}}selected{{/if}}>{{localize skill}}
-              </option>
-              {{/each}}
-              {{/select}}
-            </select>
+            <select name="system.skill" id="skill">
+            {{selectOptions config.skills selected=item.system.skill localize=true}}
+          </select>
           </div>
 
           <div class="flex-row middle group">
@@ -41,14 +36,8 @@
             <h2 class="subsubheader m-0 pi-2">{{localize "twdu.encSlots"}}</h2>
             <div class="weight-select">
               <select name="system.weight" id="weight" data-dtype="Number">
-                {{#select data.system.weight}}
-                <option value="0">None</option>
-                <option value="0.5">½</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                {{/select}}
-              </select>
+              {{selectOptions config.weights selected=data.system.weight localize=true}}
+             </select>
             </div>
           </div>
         </div>

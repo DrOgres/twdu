@@ -37,6 +37,11 @@ twdu.healthStates = {
     3: "twdu.unharmed"
 }
 
+twdu.yesNo = {
+    true: "twdu.yes",
+    false: "twdu.no",
+}
+
 
 twdu.encumbranceIncrements = {
     none: 0,
