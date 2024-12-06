@@ -42,6 +42,11 @@ twdu.yesNo = {
     false: "twdu.no",
 }
 
+twdu.projectEffects = {
+    capacity: "twdu.capacity",
+    defense: "twdu.defense"
+}
+
 
 twdu.encumbranceIncrements = {
     none: 0,
