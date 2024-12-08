@@ -10,6 +10,8 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 Release 3.0.0
 - Deprecation Hunt: prepared for v13 NO LONGER BACKARDS COMPATABLE REQUIRES FOUNDRY V12 or higher!
+- Secrets for Haven and NPC issue are here.  show and hide to your players or not. [#40](https://github.com/DrOgres/twdu/issues/40)
+
 
 Release 2.0.6:
 - Fix: [#39](https://github.com/DrOgres/twdu/issues/39) Secrets were not showing for GM 
