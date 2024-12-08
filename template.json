@@ -260,7 +260,6 @@
             },
             "attack": 0,
             "damage": 0,
-            "health": 0,
             "healthMax": {
                 "value": 0,
                 "label": "HEALTH",

@@ -17,7 +17,41 @@ export function migrate(){
 
 
 const migrations = {
-    "1.2.1" : migrateTo1_2_1
+    "1.2.1" : migrateTo1_2_1,
+    "3.0.0" : migrateTo3_0_0
+  }
+
+  async function migrateTo3_0_0() {
+    console.log("Migrating to 3.0.0");
+    const options = {permanent: true};
+    ui.notifications.warn("Migrating your data to version 3.0.0. Please, wait until it finishes.", options);
+    for( let actor of game.actors.contents ){
+        const updateData = migrateActorData(actor, "3.0.0");
+        if (!foundry.utils.isEmpty(updateData)) {
+            console.log("TWDU Migration",{actor: actor, changes: updateData});
+            await actor.update(updateData);
+          }
+        if (actor.type === "animal") {
+          console.log("Animal Actor", actor);
+          setToken(actor);
+        }
+
+        if (actor.type === "animal" && actor.img === "systems/twdu/assets/images/misc/walker_classic.webp") {
+            await actor.update({"img": "systems/twdu/assets/images/twdu-animal.png"});
+            // also change the prototype token to this same image
+            let token = actor.token;
+            console.log("Token", token);
+            token.img = "systems/twdu/assets/images/twdu-animal.png";
+            await actor.update({"token": token});
+
+        } else if (actor.type === "npc" && actor.img ==="icons/svg/mystery-man.svg" ) {
+           await actor.update({"img": "systems/twdu/assets/images/twdu-npc.png"});
+        }
+    }
+
+    await game.settings.set("twdu", "systemMigrationVersion", game.system.version);
+    ui.notifications.info("Migration to 3.0.0 completed!", options);
+
   }
 
 
@@ -36,6 +70,7 @@ const migrations = {
     }
 
     await game.settings.set("twdu", "systemMigrationVersion", game.system.version);
+    ui.notifications.info("Migration to 1.2.1 completed!", options);
 
 
   }
@@ -43,20 +78,40 @@ const migrations = {
 
   function migrateActorData(actor, version){
     const updateData = {};
-    if (actor.type !== "character") return updateData;
+    
 
     switch (version) {
       case "1.2.1":
+        if (actor.type !== "character") return updateData;
         console.log("Migrating actor to 1.2.1 | ", actor);
         let stressMax = actor.system.stress.max;
         console.log("Stress Max | ", stressMax);
         if (stressMax < 10 ) {
-            updateData["system.stress.max"] = 10;
-            
+            updateData["system.stress.max"] = 10; 
         }
-        
+        break;
+      case "3.0.0":
+        if (actor.type !== "animal") return updateData;
+        console.log("Migrating actor to 3.0.0 | ", actor);
+        updateData["system.healthMax.value"] = actor.system.health;
+        updateData["system.healthMax.max"] = actor.system.health;
+       
+        console.log("Health Max | ", updateData );
         break;
     }
     console.log(updateData);
     return updateData;
   }
+
+  function setToken(actor) {
+    if (actor.type !== "animal") return;
+    console.log("Setting Token Image for Animal Actor | ", actor);
+    console.log("Token", actor.prototypeToken);
+    let token = actor.prototypeToken;
+    console.log("Token", token);
+    token.texture.src = "systems/twdu/assets/images/twdu-animal.png";
+    token.bar1 = {attribute: "healthMax"};
+    actor.update({"prototypeToken": token});
+  }
+
+
