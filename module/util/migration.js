@@ -44,6 +44,9 @@ const migrations = {
           }
     }
 
+    await game.settings.set("twdu", "systemMigrationVersion", game.system.version);
+    ui.notifications.info("Migration to 3.0.1 completed!", options);
+
   }
 
 
