@@ -6,6 +6,8 @@ export function migrate(){
     console.log("Data CurrentVersion", currentVersion);
 
     Object.keys(migrations).forEach(function(key) {
+      console.log("Data Key", key);
+      console.log("Data CurrentVersion", currentVersion);
         if (!currentVersion || foundry.utils.isNewerVersion(key, currentVersion))
           migrations[key]();
       });
@@ -31,13 +33,13 @@ const migrations = {
     for( let actor of game.actors.contents ){
         const updateData = migrateActorData(actor, "3.0.1");
         if (!foundry.utils.isEmpty(updateData)) {
-            console.log("TWDU Migration",{actor: actor, changes: updateData});
+            // console.log("TWDU Migration",{actor: actor, changes: updateData});
            // for each item in updateData the key is the item id and the value is the new skill 
            // update the document in the actor with the id that matches the key with the value of the key
             for (let key in updateData) {
                 let item = actor.items.get(key);
                 if (item) {
-                    console.log("Item | ", item);
+                    // console.log("Item | ", item);
                     item.update({"system.skill": updateData[key]});
                 }
             }
@@ -48,7 +50,7 @@ const migrations = {
     for (let item of game.items.contents) {
         if (item.system.skill && item.system.skill.startsWith("twdu.")) {
             let skill = item.system.skill.replace("twdu.", "");
-            console.log("Skill | ", skill);
+            // console.log("Skill | ", skill);
             await item.update({"system.skill": skill});
         }
     }
@@ -66,11 +68,11 @@ const migrations = {
     for( let actor of game.actors.contents ){
         const updateData = migrateActorData(actor, "3.0.0");
         if (!foundry.utils.isEmpty(updateData)) {
-            console.log("TWDU Migration",{actor: actor, changes: updateData});
+            // console.log("TWDU Migration",{actor: actor, changes: updateData});
             await actor.update(updateData);
           }
         if (actor.type === "animal") {
-          console.log("Animal Actor", actor);
+          // console.log("Animal Actor", actor);
           setToken(actor);
         }
 
@@ -78,7 +80,7 @@ const migrations = {
             await actor.update({"img": "systems/twdu/assets/images/twdu-animal.png"});
             // also change the prototype token to this same image
             let token = actor.prototypeToken;
-            console.log("Token", token);
+            // console.log("Token", token);
             token.texture.src = "systems/twdu/assets/images/twdu-animal.png";
             await actor.update({"prototypeToken": token});
 
@@ -101,7 +103,7 @@ const migrations = {
     for( let actor of game.actors.contents ){
         const updateData = migrateActorData(actor, "1.2.1");
         if (!foundry.utils.isEmpty(updateData)) {
-            console.log("TWDU Migration",{actor: actor, changes: updateData});
+            // console.log("TWDU Migration",{actor: actor, changes: updateData});
             await actor.update(updateData);
           }
       
