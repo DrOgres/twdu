@@ -11,6 +11,7 @@ The Walking Dead Universe RPG system for Foundry VTT
 Release 3.0.1
 - Fix: existing items on characters did not have the correct skill nomenclature which broke the rolling [#43](https://github.com/DrOgres/twdu/issues/43)
 - Fix: roll dialog was not showing applicable gear and talents for rolls
+- Fix: migrated all exisitng items to new schema
 
 Release 3.0.0
 - Deprecation Hunt: prepared for v13 NO LONGER BACKARDS COMPATABLE REQUIRES FOUNDRY V12 or higher!

@@ -44,6 +44,15 @@ const migrations = {
           }
     }
 
+    // for all items in the game, if the item has a system.skill defined check to see if it starts with twdu. and if it does remove twdu. from the data
+    for (let item of game.items.contents) {
+        if (item.system.skill && item.system.skill.startsWith("twdu.")) {
+            let skill = item.system.skill.replace("twdu.", "");
+            console.log("Skill | ", skill);
+            await item.update({"system.skill": skill});
+        }
+    }
+
     await game.settings.set("twdu", "systemMigrationVersion", game.system.version);
     ui.notifications.info("Migration to 3.0.1 completed!", options);
 
