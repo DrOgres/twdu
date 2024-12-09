@@ -198,7 +198,7 @@ export function prepareRollDialog(options) {
     }
 
     let skillTalents = talents.filter(
-      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+      (item) => item.system.skill ===  options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
     
     );
     if (skillTalents.length > 0) {
@@ -216,7 +216,7 @@ export function prepareRollDialog(options) {
       (item) => item.type === "gear" && item.system.isEquipped
     );
     let skillGear = gear.filter(
-      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase()
+      (item) => item.system.skill === options.skillName.toLowerCase()
     );
     if (skillGear.length > 0) {
       dialogHtml += buildSelectDialog(
@@ -231,7 +231,7 @@ export function prepareRollDialog(options) {
     
 
     let skillTalents = talents.filter(
-      (item) => item.system.skill === "twdu." + options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+      (item) => item.system.skill === options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
     
     );
     if (skillTalents.length > 0) {

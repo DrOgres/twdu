@@ -26,7 +26,7 @@
         <span class="name justify-self-start show-details">{{item.name}}</span>
         <span class="bonus justify-self-center">{{item.system.bonus}}</span>
         <span class="weight justify-self-cemter">{{item.system.weight}}</span>
-        <span class="skill justify-self-center text-center">{{localize item.system.skill}}</span>
+        <span class="skill justify-self-center text-center">{{localize  (concat "twdu." item.system.skill)}}</span>
         <span class="equip justify-self-center" data-item-id="{{item.id}}">
           <a class="equip-toggle" title='{{localize  "twdu.ui.store"}}'><i class="fa-solid fa-box-open"></i></a>
         </span>
