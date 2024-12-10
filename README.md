@@ -8,6 +8,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 3.0.2
+- Fix [#44](https://github.com/DrOgres/twdu/issues/44)
+
+
 Release 3.0.1
 - Fix: existing items on characters did not have the correct skill nomenclature which broke the rolling [#43](https://github.com/DrOgres/twdu/issues/43)
 - Fix: roll dialog was not showing applicable gear and talents for rolls
