@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 3.0.3
+- Fix: add vehicle on NPC sheet not working
+
 Release 3.0.2
 - Fix [#44](https://github.com/DrOgres/twdu/issues/44)
 
