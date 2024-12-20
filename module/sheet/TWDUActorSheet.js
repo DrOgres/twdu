@@ -389,7 +389,7 @@ export default class TWDUActorSheet extends ActorSheet {
   _onItemDrag(event) {
     // console.log("TWDU | _onItemDrag: ", event);
     event.preventDefault();
-    //console.log("TWDU | _onItemDrag: ", event);
+    // console.log("TWDU | _onItemDrag: ", event);
     game.data.item = this.actor.getEmbeddedDocument(
       "Item",
       event.currentTarget.closest(".item").dataset.itemId
@@ -402,28 +402,21 @@ export default class TWDUActorSheet extends ActorSheet {
   _onItemDrop(event) {
     event.preventDefault();
     //  console.log("TWDU | _onItemDrop: ", event);
-
     let actor = this.actor;
     let item = game.data.item;
-
     //  console.log("TWDU | _onItemDrop item: ", item);
-
     if (item === undefined || item === null) {
       return;
     }
-
     actor.createEmbeddedDocuments("Item", [item]);
     //  console.log("TWDU | _onItemDrop actor: ", actor.id);
-
     let storedItem = game.data.item;
     if (storedItem === null) {
       return;
     }
-
     // remove the item from the original actor
     let originalActor = storedItem.actor;
     //  console.log("TWDU | originalActor: ", originalActor.id);
-
     if (originalActor.id === actor.id) {
       //  console.log("id match on drop action - returning ");
       storedItem = null;
@@ -441,8 +434,6 @@ export default class TWDUActorSheet extends ActorSheet {
     //  console.log("TWDU | storedItem: ", storedItem);
     //  console.log("TWDU | item: ", item);
     //  console.log("TWDU | game.data.item: ", game.data.item);
-
-    //TODO check to see if survivor has been added to the sheet
     return;
   }
 
@@ -897,7 +888,7 @@ export default class TWDUActorSheet extends ActorSheet {
   /** @override */
   async _onDropItemCreate(itemData) {
     const type = itemData.type;
-    // console.log("TWDU | drag and drop items", this);
+     console.log("TWDU | drag and drop items", this);
     const alwaysAllowedItems = twdu.physicalItems;
     const allowedItems = {
       haven: ["weapon", "armor", "gear", "project", "vehicle", "issue"],
