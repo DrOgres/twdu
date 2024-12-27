@@ -657,6 +657,16 @@ export default class TWDUActorSheet extends ActorSheet {
           options.armorDefault = options.armorItem.system.protection;
         }
         break;
+      case "vehicle":
+        {
+          let vehicle = this.actor.items.get(target.dataset.itemId);
+          options.testName = vehicle.name;
+          options.vehicleName = vehicle.name;
+          options.actorName = this.actor.name;
+          options.actorID = this.actor.id;
+          options.vehicleDefault = vehicle.system.maneuverability;
+        }
+        break;
     }
 
     // console.log("TWDU | options", options);

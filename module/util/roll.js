@@ -13,7 +13,8 @@ export function prepareRollDialog(options) {
   // attName - the name of the attribute being used
   // skillName - the name of the skill being used
 
-
+//TODO on roll for mobility add vehicle to gear list
+//TODO on roll by clicking vehicle item set up the dialog for a mobility roll with the vehicle as a predefined gear bonus.
 
   let actor = options.sheet.object;
 
@@ -215,9 +216,21 @@ export function prepareRollDialog(options) {
     let gear = actor.items.filter(
       (item) => item.type === "gear" && item.system.isEquipped
     );
+    
     let skillGear = gear.filter(
       (item) => item.system.skill === options.skillName.toLowerCase()
     );
+
+    // if the skill is mobility add any vehicle items to skillGear
+    if (options.skillName === "Mobility" || options.skillName === "mobility") {
+      let vehicles = actor.items.filter(
+        (item) => item.type === "vehicle" 
+      );
+      for (let i = 0; i < vehicles.length; i++) {
+        skillGear.push(vehicles[i]);
+      }
+    }
+
     if (skillGear.length > 0) {
       dialogHtml += buildSelectDialog(
         game.i18n.localize("twdu.ROLL.GEAR"),
@@ -589,6 +602,8 @@ function buildSelectDialog(name, value, type) {
   let options = "";
   for (let i = 0; i < value.length; i++) {
     let item = value[i];
+    console.log("TWDU | item: ", item);
+    if(item.type !== "vehicle"){
     options +=
       "<option id='" +
       item.id +
@@ -599,6 +614,10 @@ function buildSelectDialog(name, value, type) {
       ": &nbsp;" +
       item.system.bonus +
       "</option>";
+  } else {
+  options += "<option id='" + item.id +
+  "' value='" + item.system.maneuverability + "'>" + item.name + ": &nbsp;" + item.system.maneuverability + "</option>";
+}
   }
 
   return (

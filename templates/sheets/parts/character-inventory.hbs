@@ -248,6 +248,7 @@
       </div>
       {{#each items as |item|}}
       {{#if item.isVehicle}}
+      {{!-- if they click the icon roll a mobility test and use the vehicle as gear for the bonus --}}
       <div class="vehicle item grid seven-col border-bottom middle draggable"  draggable="true" data-item-id="{{item._id}}">
         <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
             height="25" /></span>

@@ -8,6 +8,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+- added vehicle items to the drop down for gear when rolling mobility.
+
+
 Release 3.0.3
 - Fix: add vehicle on NPC sheet not working
 
