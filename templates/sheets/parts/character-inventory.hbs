@@ -250,7 +250,8 @@
       {{#if item.isVehicle}}
       {{!-- if they click the icon roll a mobility test and use the vehicle as gear for the bonus --}}
       <div class="vehicle item grid seven-col border-bottom middle draggable"  draggable="true" data-item-id="{{item._id}}">
-        <span class="icon"><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
+        <span class="icon rollable" data-key="vehicle" data-vehicle="{{item.name}}"
+          data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="mobility" ><img src="{{item.img}}" alt="{{item.name}}" title="{{item.name}}" width="25"
             height="25" /></span>
         <span class="name  show-details justify-self-start">{{item.name}}</span>
         <span class="hull">{{item.system.hull}}</span>

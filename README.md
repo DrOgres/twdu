@@ -7,8 +7,11 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
-
+ERelease 3.0.4
 - added vehicle items to the drop down for gear when rolling mobility.
+- fix: fix css area for drop listener on npc sheet to accept dropped items on whole sheet [#50](https://github.com/DrOgres/twdu/issues/50)
+- fix: fix haven sheet not listening for dropped items [#52](https://github.com/DrOgres/twdu/issues/52)
+- Feature: you may now make a Vehicle Maneuverability Roll by clicking the vehicle item in the inventory. [#49](https://github.com/DrOgres/twdu/issues/49)
 
 
 Release 3.0.3

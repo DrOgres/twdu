@@ -190,6 +190,7 @@
         "ui.addexp": "Left Click to Add Experience, Right Click to Subtract Experience",
         "us.survivorNotFound" : "Survivor missing or bad ID removing from list",
         "ui.havenOnHavenDrop": "Havens nor Challenges can not be dropped on Havens or Challenges.",
+        "ui.noSkill": "No Skill selected on this weapon Item, please configure it and try again.",
 
         "threatLevel": "Threat Level",
 

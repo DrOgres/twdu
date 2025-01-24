@@ -14,7 +14,6 @@ export function prepareRollDialog(options) {
   // skillName - the name of the skill being used
 
 
-//TODO on roll by clicking vehicle item set up the dialog for a mobility roll with the vehicle as a predefined gear bonus.
 
   let actor = options.sheet.object;
 
@@ -170,15 +169,33 @@ export function prepareRollDialog(options) {
     );
   }
 
-  //TODO add the vehicle clicked roll dialog here
+ 
 
   if (options.type === "vehicle") {
     console.log("TWDU | vehicle options: ", options);
-    // dialogHtml = buildHTMLDialog(
-    //   options.vehicleName,
-    //   options.vehicleDefault,
-    //   "vehicle"
-    // );
+    options.skillName = game.i18n.localize("twdu.mobility");
+    options.skillDefault = actor.system.skills.mobility.value;
+    options.attName = "AGILITY";
+    options.attributeDefault = actor.system.attributes.agl.value;
+
+    dialogHtml += buildHTMLDialog(
+        game.i18n.localize(options.attName),
+        options.attributeDefault,
+        "attribute"
+      );
+    
+    
+    dialogHtml += buildHTMLDialog(
+      options.skillName,
+      options.skillDefault,
+      "skill"
+    );
+
+    dialogHtml += buildHTMLDialog(
+      options.vehicleName,
+      options.vehicleDefault,
+      "vehicle"
+    );
   }
 
   //add a summary of the dice pool thus far to the dialog unless this is armor
@@ -186,7 +203,8 @@ export function prepareRollDialog(options) {
   let subtotal =
     (options.attributeDefault || 0) +
     (options.skillDefault || 0) +
-    (options.weaponBonusDefault || 0) -
+    (options.weaponBonusDefault || 0) +
+    (Math.abs(options.vehicleDefault) || 0) -
     (Math.abs(options.armorPenalty) || 0) +
     (options.criticalPenalty || 0);
     console.log("TWDU | options: ", options);
@@ -295,10 +313,12 @@ export function prepareRollDialog(options) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize("twdu.ROLL.ROLL"),
           callback: (html) => {
+            console.log("TWDU | rolled", options);
             let attribute = options.attributeDefault;
             let skill = options.skillDefault;
             let bonus = html.find("#bonus")[0].value;
             let weaponBonus = options.weaponBonusDefault;
+            let vehicleBonus = options.vehicleDefault || 0;
             let damage = options.damageDefault;
             let critPenalty = options.criticalPenalty;
             let armorPenalty = options.armorPenalty;
@@ -341,6 +361,7 @@ export function prepareRollDialog(options) {
               parseInt(skill, 10),
               parseInt(bonus, 10),
               parseInt(weaponBonus, 10),
+              parseInt(vehicleBonus, 10),
               parseInt(damage, 10),
               options.armorPenalty,
               critPenalty,
@@ -385,6 +406,7 @@ export function roll(
   skill,
   bonus,
   weaponBonus,
+  vehicleBonus,
   damage,
   armorPenalty,
   criticalPenalty,
@@ -394,7 +416,7 @@ export function roll(
   
 ) {
 
-  console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, damage, armorPenalty, criticalPenalty, gearBonus, talentBonus, armorBonus);
+  console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, vehicleBonus, damage, armorPenalty, criticalPenalty, gearBonus, talentBonus, armorBonus);
   // roll the dice
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
@@ -406,7 +428,8 @@ export function roll(
     attribute +
     skill +
     bonus +
-    (weaponBonus || 0) -
+    (weaponBonus || 0) +
+    (vehicleBonus || 0) -
     (Math.abs(armorPenalty) || 0) +
     (criticalPenalty || 0) +
     (gearBonus || 0)

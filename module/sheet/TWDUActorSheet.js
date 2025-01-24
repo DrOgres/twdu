@@ -523,7 +523,7 @@ export default class TWDUActorSheet extends ActorSheet {
   }
 
   _onRoll(event) {
-    // console.log("TWDU | _onRoll: ", event);
+    console.log("TWDU | _onRoll: ", event);
     event.preventDefault();
     let actor = this.actor;
     let health = actor.system.health.value;
@@ -602,6 +602,10 @@ export default class TWDUActorSheet extends ActorSheet {
           // console.log("TWDU | actorType: ", options.actorType);
           options.testName = target.dataset.test;
           options.skillName = game.i18n.localize(item.system.skill);
+          if (options.skillName === "" || options.skillName === undefined) {
+            ui.notifications.warn(game.i18n.localize("twdu.ui.noSkill"));
+            return;
+          } 
           console.log("TWDU | skillName: ", options.skillName);
           // let skill = item.system.skill.split(".")[1];
           // console.log("TWDU | skill: ", skill);
@@ -660,11 +664,14 @@ export default class TWDUActorSheet extends ActorSheet {
       case "vehicle":
         {
           let vehicle = this.actor.items.get(target.dataset.itemId);
+          console.log("TWDU | vehicle: ", vehicle);
           options.testName = vehicle.name;
           options.vehicleName = vehicle.name;
+          options.skillName = game.i18n.localize('twdu.mobility');
           options.actorName = this.actor.name;
           options.actorID = this.actor.id;
-          options.vehicleDefault = vehicle.system.maneuverability;
+          options.vehicleDefault = vehicle.system.maneuverability || 0; 
+          console.log("TWDU | options: ", options);
         }
         break;
     }
