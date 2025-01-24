@@ -13,7 +13,7 @@ export function prepareRollDialog(options) {
   // attName - the name of the attribute being used
   // skillName - the name of the skill being used
 
-//TODO on roll for mobility add vehicle to gear list
+
 //TODO on roll by clicking vehicle item set up the dialog for a mobility roll with the vehicle as a predefined gear bonus.
 
   let actor = options.sheet.object;
@@ -168,6 +168,17 @@ export function prepareRollDialog(options) {
       options.armorDefault,
       "armor"
     );
+  }
+
+  //TODO add the vehicle clicked roll dialog here
+
+  if (options.type === "vehicle") {
+    console.log("TWDU | vehicle options: ", options);
+    // dialogHtml = buildHTMLDialog(
+    //   options.vehicleName,
+    //   options.vehicleDefault,
+    //   "vehicle"
+    // );
   }
 
   //add a summary of the dice pool thus far to the dialog unless this is armor

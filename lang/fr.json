@@ -4,8 +4,8 @@
         "archetype": "Archétype",
         "background": "Historique",
         "description": "Description",
-        "pcAnchor": "Ancre PJ",
-        "npcAnchor": "Ancre PNJ",
+        "pcAnchor": "PJ Attache",
+        "npcAnchor": "PNJ Attache",
 
         "none": "Aucun",
         "yes": "Oui",
@@ -22,22 +22,22 @@
         "value": "Valeur",
 
         "AGILITY": "Agilité",
-        "STRENGTH": "Force",
-        "WITS": "Astuce",
+        "STRENGTH": "Vigueur",
+        "WITS": "Esprit",
         "EMPATHY": "Empathie",
         "HEALTH": "Santé",
         "STRESS": "Stress",
         
         "closeCombat": "Combat rapproché",
-        "endure": "Endurer",
-        "force": "Forcer",
+        "endure": "Endurance",
+        "force": "Force",
         "mobility": "Mobilité",
         "rangedCombat": "Combat à distance",
-        "stealth": "Furtivité",
-        "scout": "Éclaireur",
+        "stealth": "Discrétion",
+        "scout": "Reconnaissance",
         "survival": "Survie",
-        "tech": "Technologie", 
-        "leadership": "Leadership", 
+        "tech": "Technique", 
+        "leadership": "Commandement", 
         "manipulation": "Manipulation",
         "medicine": "Médecine",
 
@@ -90,7 +90,7 @@
         
 
         "location": "Emplacement",
-        "protection": "Niveau d'armure",
+        "protection": "Protection",
         "agilityPenalty": "Pénalité de mobilité",
         "penalty": "Pénalité",
         "damage": "Dégâts",
@@ -107,7 +107,7 @@
         
         "unharmed": "Indemne",
         "bruised": "Contusionné",
-        "battered": "Battu",
+        "battered": "Malmené",
         "broken": "Brisé",
 
         "weight": "Poids",
@@ -123,7 +123,7 @@
         "finishDate": "Date de fin",
         "requirements": "Exigences",
         "items": "Objets",
-        "maneuverability": "Manœuvrabilité",
+        "maneuverability": "Maniabilité",
         "hull": "Coque",
         "hasBonus": "Fournit un bonus",
         "hasBonusTooltip": "Ce talent fournit-il un bonus soit à une compétence soit aux dégâts ?",
