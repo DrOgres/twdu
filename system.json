@@ -8,7 +8,7 @@
     "relationships": {
       "systems": [{ "id": "twdu" }]
     },
-    "version": "3.0.3",
+    "version": "3.0.4",
     "compatibility": {
       "minimum": "12",
       "verified": "12.331",
@@ -22,7 +22,7 @@
     ],
     "background": "systems/twdu/assets/images/worldbg.webp",
     "minimumCoreVersion": "10",
-    "compatibleCoreVersion": "11",
+    "compatibleCoreVersion": "12",
     "scripts": [],
     "esmodules": ["module/twdu.js"],
     "styles": ["styles/twdu.css"],
