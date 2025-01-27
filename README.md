@@ -7,6 +7,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 3.0.5
+- Fix: [#61](https://github.com/DrOgres/twdu/issues/61) Non-english localizations were not showing gear or talents in roll dialog
+
 Release 3.0.4
 - added vehicle items to the drop down for gear when rolling mobility.
 - fix: fix css area for drop listener on npc sheet to accept dropped items on whole sheet [#50](https://github.com/DrOgres/twdu/issues/50)
