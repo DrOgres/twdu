@@ -35,6 +35,7 @@ export function prepareRollDialog(options) {
   let talents = actor.items.filter(
     (item) => item.type === "talent" && item.system.hasBonus
   );
+  console.log("TWDU | talents: ", talents);
 
   let stressDice = 0;
   if (actor.type === "character") {
@@ -127,7 +128,7 @@ export function prepareRollDialog(options) {
       "skill"
     );
      // if the skill is mobility, add the armor penalty for equipped armor if more than one armor is equipped use the highest penalty
-     if (options.skillName === "Mobility" || options.skillName === "mobility") {
+     if (options.skillKey === "Mobility" || options.skillKey === "mobility") {
       let armor = actor.items.filter(
         (item) => item.type === "armor" && item.system.isEquipped
       );
@@ -214,6 +215,8 @@ export function prepareRollDialog(options) {
 
   if (options.type === "weapon") {
     console.log("TWDU | skillName: ", options.skillName);
+    console.log("TWDU | skillKey: ", options.skillKey);
+    console.log("TWDU | talents: ", talents);
     let damageTalents = talents.filter(
       (item) => item.system.bonusType === "twdu.damage"
     );
@@ -226,11 +229,11 @@ export function prepareRollDialog(options) {
         "damageTalent"
       );
     }
-
+    console.log("TWDU | Talents: ", talents);
     let skillTalents = talents.filter(
       (item) => item.system.skill ===  options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
-    
     );
+    console.log("TWDU | skillTalents: ", skillTalents);
     if (skillTalents.length > 0) {
       console.log("TWDU | skillTalents: ", skillTalents);
       dialogHtml += buildSelectDialog(
@@ -242,16 +245,18 @@ export function prepareRollDialog(options) {
   }
 
   if (options.type === "skill") {
+    console.log("TWDU | skillName: ", options.skillName);
+    console.log("TWDU | skillKey: ", options.skillKey);
     let gear = actor.items.filter(
       (item) => item.type === "gear" && item.system.isEquipped
     );
     
     let skillGear = gear.filter(
-      (item) => item.system.skill === options.skillName.toLowerCase()
+      (item) => item.system.skill === options.skillKey.toLowerCase()
     );
 
     // if the skill is mobility add any vehicle items to skillGear
-    if (options.skillName === "Mobility" || options.skillName === "mobility") {
+    if (options.skillKey === "Mobility" || options.skillKey === "mobility") {
       let vehicles = actor.items.filter(
         (item) => item.type === "vehicle" 
       );
@@ -271,11 +276,13 @@ export function prepareRollDialog(options) {
    
    
     
-
+    console.log("TWDU | Talents: ", talents);
+    console.log("TWDU | options.skillName: ", options);
     let skillTalents = talents.filter(
-      (item) => item.system.skill === options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
+      (item) => item.system.skill === options.skillKey.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
     
     );
+    console.log("TWDU | skillTalents: ", skillTalents);
     if (skillTalents.length > 0) {
       console.log("TWDU | skillTalents: ", skillTalents);
       dialogHtml += buildSelectDialog(

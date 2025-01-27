@@ -568,6 +568,8 @@ export default class TWDUActorSheet extends ActorSheet {
       case "skill":
         {
           if (options.actorType === "npc") {
+            console.log("TWDU | npc skill: ", target.dataset.skill);
+            options.skillKey = target.dataset.skill;
             options.skillName = target.dataset.skill;
             let skillLevel =
               this.actor.system.skills[target.dataset.skill].level;
@@ -584,7 +586,9 @@ export default class TWDUActorSheet extends ActorSheet {
               options.skillDefault = 10;
             }
           } else {
+            console.log("TWDU | character skill: ", target.dataset.skill);
             options.testName = game.i18n.localize(target.dataset.test);
+            options.skillKey = target.dataset.skill;
             options.skillName = game.i18n.localize(target.dataset.test);
             options.skillDefault =
               this.actor.system.skills[target.dataset.skill].value;
@@ -601,6 +605,7 @@ export default class TWDUActorSheet extends ActorSheet {
           const item = this.actor.items.get(target.dataset.itemId);
           // console.log("TWDU | actorType: ", options.actorType);
           options.testName = target.dataset.test;
+          options.skillKey = item.system.skill;
           options.skillName = game.i18n.localize(item.system.skill);
           if (options.skillName === "" || options.skillName === undefined) {
             ui.notifications.warn(game.i18n.localize("twdu.ui.noSkill"));
@@ -667,6 +672,7 @@ export default class TWDUActorSheet extends ActorSheet {
           console.log("TWDU | vehicle: ", vehicle);
           options.testName = vehicle.name;
           options.vehicleName = vehicle.name;
+          options.skillKey = "twdu.mobility"
           options.skillName = game.i18n.localize('twdu.mobility');
           options.actorName = this.actor.name;
           options.actorID = this.actor.id;
