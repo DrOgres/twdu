@@ -1,10 +1,10 @@
 import { displayThreatLevel, getThreatLevel } from "./threat.js";
 
-//TODO localize this
+
 export const registerGameSettings = function () {
   game.settings.register("twdu", "threatLevel", {
-    name: "Threat Level",
-    hint: "Threat Level",
+    name: game.i18n.localize("twdu.threatLevel"),
+    hint: game.i18n.localize("twdu.threatLevel"),
     scope: "world",
     config: false,
     type: Number,
@@ -14,7 +14,7 @@ export const registerGameSettings = function () {
     },
   });
 
-  //TODO debug this
+
 
   game.settings.register("twdu", "threatLevelVisibility", {
     name: game.i18n.localize("twdu.threatDisplay"),

@@ -166,6 +166,8 @@
         "isSecret": "This is a Secret and will be hidden from the players. Click to toggle",
         "isNotSecret": "This is not a Secret and will not be hidden from players. Click to toggle",
 
+
+        "threatLevel": "Threat Level",
         "threatDisplay": "Show Players Threat Display",
         "threatDisplayHint": "If this is enabled the Threat Level will be displayed for the players in the Layer Controls.",
         "prototypeTokenSettings": "Use Recomended Token Settings",
@@ -192,7 +194,7 @@
         "ui.havenOnHavenDrop": "Havens nor Challenges can not be dropped on Havens or Challenges.",
         "ui.noSkill": "No Skill selected on this weapon Item, please configure it and try again.",
 
-        "threatLevel": "Threat Level",
+        
 
 
         "CHAT.SUCCESS": "Successes",
