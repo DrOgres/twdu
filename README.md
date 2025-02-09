@@ -6,6 +6,9 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 3.0.7
+-Fix typo on localize helper
+
 Release 3.0.6
 -Fix: [#56](https://github.com/DrOgres/twdu/issues/56) Items were duplicating themselves when dropped on originating actor
 -Fix: [#62](https://github.com/DrOgres/twdu/issues/62) Weapon names overflowing into other text when they are very long 
