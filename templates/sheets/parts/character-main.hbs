@@ -27,11 +27,13 @@
         {{#if item.isWeapon}}
         {{#if item.system.isEquipped}}
         <div class="item weapon grid icon-title-6col center" data-item-id="{{item._id}}">
-          <img class="rollable justify-self-start" data-key="weapon" data-weapon="{{item.name}}"
+          <div class="rollable justify-self-start icon">
+          <img  data-key="weapon" data-weapon="{{item.name}}"
             data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}"
             alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
-          <div class="name justify-self-start show-details nowrap">{{item.name}}</div>
-          <div class="name justify-self-center show-details">{{item.system.bonus}}</div>
+            </div>
+          <div class="name justify-self-start show-details">{{item.name}}</div>
+          <div class="bonus justify-self-center show-details">{{item.system.bonus}}</div>
           <div class="damage justify-self-center">{{item.system.damage}}</div>
           <div class="weight justify-self-center">{{item.system.weight}}</div>
           <div class="skill justify-self-center text-center">{{localize (concat "twdu." item.system.skill)}}</div>
