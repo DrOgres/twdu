@@ -580,17 +580,19 @@ export async function rollClockTest(actor, sheet, item){
   `;
   console.log("TWDU | clock: ", clock);
   if (clock > r._total) {
-    //TODO localize this
+
     chatMessage += `
-    <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">
-      Clock did not advance
+    <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;"> ` +
+      game.i18n.localize(twdu.clockNotAdvance) 
+      +`
     </div>
     `;
   } else {
-    //TODO localize this
+ 
     chatMessage += `
-    <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">
-      Clock advanced
+    <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">` +
+      game.i18n.localize(twdu.clockAdvance) 
+      +`
     </div>
     `;
   }
@@ -669,7 +671,7 @@ function buildSelectDialog(name, value, type) {
    <select id="` +
     type +
     `" style="width: 100%; margin-bottom: 10px;"> 
-   <option id="none" value="0">None</option>
+   <option id="none" value="0">` + game.i18n.localize(twdu.none) + `</option>
    ` +
     options +
     `   

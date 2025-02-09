@@ -570,7 +570,7 @@ export default class TWDUActorSheet extends ActorSheet {
           if (options.actorType === "npc") {
             console.log("TWDU | npc skill: ", target.dataset.skill);
             options.skillKey = target.dataset.skill;
-            options.skillName = target.dataset.skill;
+            options.skillName = game.i18n.localize(target.dataset.test);
             let skillLevel =
               this.actor.system.skills[target.dataset.skill].level;
             if (skillLevel == "base") {

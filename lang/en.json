@@ -165,6 +165,8 @@
         "secret": "Secret",
         "isSecret": "This is a Secret and will be hidden from the players. Click to toggle",
         "isNotSecret": "This is not a Secret and will not be hidden from players. Click to toggle",
+        "clockNoAdvance": "The Clock did not advance.",
+        "clockAdvance": "The Clock advanced.",
 
 
         "threatLevel": "Threat Level",
