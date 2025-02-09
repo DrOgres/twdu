@@ -417,12 +417,12 @@ export default class TWDUActorSheet extends ActorSheet {
     // remove the item from the original actor
     let originalActor = storedItem.actor;
     //  console.log("TWDU | originalActor: ", originalActor.id);
-    if (originalActor.id === actor.id) {
-      //  console.log("id match on drop action - returning ");
-      storedItem = null;
-      item = null;
-      return;
-    }
+    // if (originalActor.id === actor.id) {
+    //    console.log("TWDU |  id match on drop action - returning ");
+    //   storedItem = null;
+    //   item = null;
+    //   return;
+    // }
 
     originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
     //  console.log("TWDU | storedItem: ", storedItem);
@@ -910,6 +910,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
   /** @override */
   async _onDropItemCreate(itemData) {
+    console.log("TWDU | _onDropItemCreate: ", itemData);
     const type = itemData.type;
      console.log("TWDU | drag and drop items", this);
     const alwaysAllowedItems = twdu.physicalItems;
@@ -944,6 +945,7 @@ export default class TWDUActorSheet extends ActorSheet {
       ui.notifications.warn(msg);
       return false;
     }
+    console.log("TWDU | _onDropItemCreate: ", itemData);
     return super._onDropItemCreate(itemData);
   }
 }
