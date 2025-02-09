@@ -583,7 +583,7 @@ export async function rollClockTest(actor, sheet, item){
 
     chatMessage += `
     <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;"> ` +
-      game.i18n.localize(twdu.clockNotAdvance) 
+      game.i18n.localize("twdu.clockNotAdvance") 
       +`
     </div>
     `;
@@ -591,7 +591,7 @@ export async function rollClockTest(actor, sheet, item){
  
     chatMessage += `
     <div class="flex-col group pi-1 subtotal" style="flex-basis: 35%; justify-content: space-between; margin-block: 5px;">` +
-      game.i18n.localize(twdu.clockAdvance) 
+      game.i18n.localize("twdu.clockAdvance") 
       +`
     </div>
     `;
@@ -671,7 +671,7 @@ function buildSelectDialog(name, value, type) {
    <select id="` +
     type +
     `" style="width: 100%; margin-bottom: 10px;"> 
-   <option id="none" value="0">` + game.i18n.localize(twdu.none) + `</option>
+   <option id="none" value="0">` + game.i18n.localize("twdu.none") + `</option>
    ` +
     options +
     `   

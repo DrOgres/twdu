@@ -6,6 +6,12 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 3.0.9
+- Fix [#68](https://github.com/DrOgres/twdu/issues/68) NPC not rolling when items are usable
+
+Release 3.0.8
+- minor update push
+
 Release 3.0.7
 - Fix typo on localize helper
 
