@@ -182,7 +182,7 @@ Hooks.once("init", async function () {
   });
 
   Handlebars.registerHelper("TWDU_checked", function (value, test) {
-    //console.log("TWDU | TWDU_checked: ", value, test);
+    // console.log("TWDU | TWDU_checked: ", value, test);
     if(value == undefined) return "";
     return value == test ? "checked" : "";
   });

@@ -5,7 +5,7 @@ export default class TWDUActor extends Actor {
     const data = actorData.system;
     const flags = this.flags;
   }
-
+//TODO set option to use default token settings rather than these
   async _preCreate(data, options, user) {
     await super._preCreate(data, options, user);
 

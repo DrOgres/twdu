@@ -47,6 +47,20 @@ twdu.projectEffects = {
     defense: "twdu.defense"
 }
 
+twdu.npcSkill = {
+    base: "twdu.base",
+    trained: "twdu.trained",
+    expert: "twdu.expert",
+    master: "twdu.master"
+}
+
+twdu.npcSkillStore ={
+    closeCombat: "system.skills.closeCombat.level",
+    trained: "system.skill.trained.level",
+    expert: "system.skill.expert.level",
+    master: "system.skill.master.level"
+}
+
 
 twdu.encumbranceIncrements = {
     none: 0,

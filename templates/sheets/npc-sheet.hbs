@@ -92,37 +92,33 @@
 
       {{!-- STR skillblock --}}
       <div class="flex-col border-left border-right pi-1">
+       
         {{#each system.skills as |skill key|}}
         {{#if skill.hasStrength}}
         <div class="skill flex-col align-center  justify pi-1">
           <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="{{key}}"
-            data-test="twdu.{{key}}">{{localize
-            (TWDUconcat "twdu." skill.label)}}</div>
+            data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</div>
 
           <div class="grid two-col w-100">
             <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.base">{{localize
-              'twdu.base'}}
-              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
-                level 'base' }} /><span class="radio"></span></label>
+              for="{{key}}.base">{{localize 'twdu.base'}}
+              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked level 'base' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.trained">{{localize
-              'twdu.trained'}}
-              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
-                level 'trained' }} /><span class="radio"></span></label>
+              for="{{key}}.trained">{{localize 'twdu.trained'}}
+              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained"
+                {{TWDU_checked level 'trained' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.expert">{{localize
-              'twdu.expert'}}
-              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
-                level 'expert' }} /><span class="radio"></span></label>
+              for="{{key}}.expert">{{localize 'twdu.expert'}}
+              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert"
+                {{TWDU_checked level 'expert' }} /><span class="radio"></span></label>
 
             <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
               for="{{key}}.master">{{localize
               'twdu.master'}}
-              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
-                level 'master' }} /><span class="radio"></span></label>
+              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master"
+                {{TWDU_checked level 'master' }} /><span class="radio"></span></label>
           </div>
         </div>
         {{/if}}
@@ -257,8 +253,8 @@
       <div class="big-stuff">
 
         <div class="weapons">
-          <h2 class="subheader border-bottom border-left t m-0 p-1">{{localize "twdu.weapons"}}<a title="{{localize "twdu.ui.add"}}"
-              class="add-item" data-type="weapon">
+          <h2 class="subheader border-bottom border-left t m-0 p-1">{{localize "twdu.weapons"}}<a title="{{localize "
+              twdu.ui.add"}}" class="add-item" data-type="weapon">
               &#43;</a></h2>
 
           <div class="group-header grid seven-col justify pi-1 pt-1">
@@ -298,8 +294,8 @@
         </div>
 
         <div class="armor">
-          <h2 class="subheader border-bottom border-left t m-0 p-1">{{localize "twdu.armor"}} <a title="{{localize "twdu.ui.add"}}"
-              class="add-item" data-type="armor">
+          <h2 class="subheader border-bottom border-left t m-0 p-1">{{localize "twdu.armor"}} <a title="{{localize "
+              twdu.ui.add"}}" class="add-item" data-type="armor">
               &#43;</a></h2>
           <div class="group-header grid five-col justify pi-1 pt-1">
             <span class="icon">{{localize "twdu.ui.icon"}}</span>

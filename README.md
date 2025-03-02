@@ -6,6 +6,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 3.0.10
+- Fix [#70](https://github.com/DrOgres/twdu/issues/70) Rollables not getting dice set correctly on main tab
+- Fix [#71](https://github.com/DrOgres/twdu/issues/70) Localization incorrect on roll down for critical injury
+
 Release 3.0.9
 - Fix [#68](https://github.com/DrOgres/twdu/issues/68) NPC not rolling when items are usable
 

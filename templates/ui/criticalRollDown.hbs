@@ -6,9 +6,10 @@
     {{localize "twdu.no"}}
     {{/unless}}
     </br>
-    <b>{{localize "twdu.timeLimit"}}:</b> {{localize system.timeLimit}} ( {{system.complexity}} )</br>
+    {{log system.timeLimit}}
+    <b>{{localize "twdu.timeLimit"}}:</b> {{localize (concat "twdu." system.timeLimit)}} ( {{system.complexity}} )</br>
 
-    <b>{{localize "twdu.recoveryTime"}}:</b> {{localize system.recovery}} </br>
+    <b>{{localize "twdu.recoveryTime"}}:</b> {{localize (concat "twdu." system.recovery)}} </br>
     <b>{{localize "twdu.penalty"}}: </b>{{system.effect}} </br>
 
 <div class='chat-item-info grid two-col'>

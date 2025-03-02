@@ -118,6 +118,8 @@ export default class TWDUActorSheet extends ActorSheet {
     }
 
     if (context.isNPC) {
+      context.npcSkill = twdu.npcSkill;
+      context.npcSkillStore = twdu.npcSkillStore;
       this.computeSkills(context);
       this.equipItems(context);
       context.notesHTML = await TextEditor.enrichHTML(

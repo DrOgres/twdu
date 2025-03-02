@@ -27,9 +27,9 @@
         {{#if item.isWeapon}}
         {{#if item.system.isEquipped}}
         <div class="item weapon grid icon-title-6col center" data-item-id="{{item._id}}">
-          <div class="rollable justify-self-start icon">
-          <img  data-key="weapon" data-weapon="{{item.name}}"
-            data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}" src="{{item.img}}"
+          <div class="rollable justify-self-start icon" data-key="weapon" data-weapon="{{item.name}}"
+            data-item-id="{{item._id}}" data-test="{{item.name}}" data-skill="{{item.system.skill}}">
+          <img   src="{{item.img}}"
             alt="{{item.name}}" title="{{item.name}}" width="25" height="25" />
             </div>
           <div class="name justify-self-start show-details">{{item.name}}</div>
