@@ -6,8 +6,8 @@
     {{localize "twdu.no"}}
     {{/unless}}
     </br>
-    {{log system.timeLimit}}
-    <b>{{localize "twdu.timeLimit"}}:</b> {{localize (concat "twdu." system.timeLimit)}} ( {{system.complexity}} )</br>
+    {{log actor}}
+    <b>{{localize "twdu.timeLimit"}}:</b> {{localize (concat "twdu." system.timeLimit)}} ( {{localize (concat "twdu." (lowercase system.complexity) )}} )</br>
 
     <b>{{localize "twdu.recoveryTime"}}:</b> {{localize (concat "twdu." system.recovery)}} </br>
     <b>{{localize "twdu.penalty"}}: </b>{{system.effect}} </br>

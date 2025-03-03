@@ -202,6 +202,11 @@ Hooks.on("renderPause", (_app, html) => {
     .attr("src", "systems/twdu/assets/images/misc/hand.png");
 });
 
+Handlebars.registerHelper('lowercase', function (string){
+  let result = string.toLowerCase();
+  return result;
+});
+
 
 
 Hooks.on("getSceneControlButtons", (controls) => {
