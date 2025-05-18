@@ -1,72 +1,71 @@
 {
-    "id": "twdu",
-    "title": "The Walking Dead Universe RPG - Official",
-    "description": "Official Walking Dead Universe RPG System for Foundry VTT",
-    "authors": [{ "name": "DrOgres" }],
-    "url": "https://github.com/drogres/twdu",
-    "flags": {},
-    "relationships": {
-      "systems": [{ "id": "twdu" }]
+  "id": "twdu",
+  "title": "The Walking Dead Universe RPG - Official",
+  "description": "Official Walking Dead Universe RPG System for Foundry VTT",
+  "authors": [{ "name": "DrOgres" }],
+  "url": "https://github.com/drogres/twdu",
+  "flags": {},
+  "relationships": {
+    "systems": [{ "id": "twdu" }]
+  },
+  "version": "4.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.324",
+    "maximum": "13"
+  },
+  "media": [
+    {
+      "type": "cover",
+      "url": "https://raw.githubusercontent.com/DrOgres/twdu/main/assets/images/cover.webp"
+    }
+  ],
+  "background": "systems/twdu/assets/images/worldbg.webp",
+  "scripts": [],
+  "esmodules": ["module/twdu.js"],
+  "styles": ["styles/twdu.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
     },
-    "version": "3.0.11",
-    "compatibility": {
-      "minimum": "12",
-      "verified": "12.331",
-      "maximum": "12"
+
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json",
+      "flags": {}
     },
-    "media": [
-      {
-        "type": "cover",
-        "url": "https://raw.githubusercontent.com/DrOgres/twdu/main/assets/images/cover.webp"
-      }
-    ],
-    "background": "systems/twdu/assets/images/worldbg.webp",
-    "minimumCoreVersion": "10",
-    "compatibleCoreVersion": "12",
-    "scripts": [],
-    "esmodules": ["module/twdu.js"],
-    "styles": ["styles/twdu.css"],
-    "languages": [
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-      },
-      
-      {
-        "lang": "fr",
-        "name": "Français",
-        "path": "lang/fr.json",
-        "flags": {}
-      },
-      {
-        "lang": "de",
-        "name": "Deutsch",
-        "path": "lang/de.json",
-        "flags": {}
-      },
-      {
-        "lang": "pt-BR",
-        "name": "Português (Brasil)",
-        "path": "lang/pt-br.json",
-        "flags": {}
-      },
-      {
-        "lang": "es",
-        "name": "Español",
-        "path": "lang/es.json",
-        "flags": {}
-      }
-    ],
-    "packs": [],
-    "socket": true,
-    "protected": false,
-    "initiative": "1d10",
-    "gridDistance": 1,
-    "gridUnits": "m",
-    "primaryTokenAttribute": "health",
-    "secondaryTokenAttribute": "stress",
-    "manifest": "https://github.com/drogres/twdu/releases/latest/download/module.json",
-    "download": "https://github.com/drogres/twdu/releases/download/3.0.11/system.zip"
-  }
-  
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json",
+      "flags": {}
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-br.json",
+      "flags": {}
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json",
+      "flags": {}
+    }
+  ],
+  "packs": [],
+  "socket": true,
+  "protected": false,
+  "initiative": "1d10",
+  "grid": {
+    "distance": 1,
+    "units": "meter"
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "stress",
+  "manifest": "https://github.com/drogres/twdu/releases/latest/download/module.json",
+  "download": "https://github.com/drogres/twdu/releases/download/3.0.11/system.zip"
+}

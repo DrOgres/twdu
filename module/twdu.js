@@ -209,30 +209,38 @@ Handlebars.registerHelper('lowercase', function (string){
 
 
 
-Hooks.on("getSceneControlButtons", (controls) => {
-  let group = controls.find((c) => c.name === "token");
-  group.tools.push(
-    {
-      name: "add",
-      title: "CONTROL.addThreatLevel",
+Hooks.on("getSceneControlButtons", async function (controls) {
+
+  console.log(controls);
+  let group = controls.tokens;
+  let tools = group.tools;
+  const newButtonGroup = {
+    threatLevelIncrease : {
       icon: "fas fa-plus",
-      button: true,
+      name: "add",
+      order: 90,
+      title: "CONTROL.addThreatLevel",
       visible: game.user.isGM,
-      onClick: () => increaseThreatLevel(1),
+      onChange: ()=> increaseThreatLevel(1),
+       button: true
     },
+    threatLevelDecrease:
     {
       name: "subtract",
       title: "CONTROL.subThreatLevel",
       icon: "fas fa-minus",
       button: true,
       visible: game.user.isGM,
+      order: 91,
       onClick: () => decreaseThreatLevel(1),
     },
+    threatLevelVisibility:
     {
       name: "showInterface",
       title: "CONTROL.displayThreatLevel",
       icon: "fas fa-biohazard",
       button: true,
+      order: 92,
       visible: game.settings.get("twdu", "threatLevelVisibility")
         ? true
         : game.user.isGM,
@@ -240,7 +248,12 @@ Hooks.on("getSceneControlButtons", (controls) => {
         ThreatLevelDisplay.render();
       },
     }
-  );
+  };
+  let newTools = {...tools, ...newButtonGroup};
+ group.tools = {...tools, ...newButtonGroup};
+  console.log("SceneControlTool: ", controls.tokens.tools.threatLevelIncrease);
+  console.log("Button boolean on add button: ", controls.tokens.tools.threatLevelIncrease.button );
+  console.log(controls);
 });
 
 Hooks.once("diceSoNiceReady", (dice3d) => {
