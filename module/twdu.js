@@ -209,7 +209,7 @@ Handlebars.registerHelper('lowercase', function (string){
 
 
 
-Hooks.on("getSceneControlButtons", async function (controls) {
+Hooks.on("getSceneControlButtons", function (controls) {
 
   console.log(controls);
   let group = controls.tokens;
