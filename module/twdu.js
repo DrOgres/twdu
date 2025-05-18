@@ -211,11 +211,18 @@ Handlebars.registerHelper('lowercase', function (string){
 
 Hooks.on("getSceneControlButtons", (controls) => {
 
-  console.log(controls);
-  let group = controls.tokens;
-  let tools = group.tools;
-  const newButtonGroup = {
-    threatLevelIncrease : {
+  const tokenControls = Array.isArray(controls)
+				? controls.find((c) => c.name === "token")
+				: controls.tokens;
+	if (!tokenControls) return;
+
+  console.log("token controls, ", tokenControls);
+
+  const tools = tokenControls.tools;
+
+  console.log(Object.keys(tools));
+
+    tools['threatLevelIncrease'] = {
       icon: "fas fa-plus",
       name: "add",
       order: 90,
@@ -223,36 +230,54 @@ Hooks.on("getSceneControlButtons", (controls) => {
       visible: game.user.isGM,
       onChange: ()=> increaseThreatLevel(1),
        button: true
-    },
-    threatLevelDecrease:
-    {
-      name: "subtract",
-      title: "CONTROL.subThreatLevel",
-      icon: "fas fa-minus",
-      button: true,
-      visible: game.user.isGM,
-      order: 91,
-      onClick: () => decreaseThreatLevel(1),
-    },
-    threatLevelVisibility:
-    {
-      name: "showInterface",
-      title: "CONTROL.displayThreatLevel",
-      icon: "fas fa-biohazard",
-      button: true,
-      order: 92,
-      visible: game.settings.get("twdu", "threatLevelVisibility")
-        ? true
-        : game.user.isGM,
-      onClick: () => {
-        ThreatLevelDisplay.render();
-      },
     }
-  };
 
- group.tools = {...tools, ...newButtonGroup};
+  console.log(Object.keys(tools));
   console.log("SceneControlTool: ", controls.tokens.tools.threatLevelIncrease);
   console.log("Button boolean on add button: ", controls.tokens.tools.threatLevelIncrease.button );
+
+  // console.log(controls);
+  // let group = controls.tokens;
+  // let tools = group.tools;
+  // const newButtonGroup = {
+  //   threatLevelIncrease : {
+  //     icon: "fas fa-plus",
+  //     name: "add",
+  //     order: 90,
+  //     title: "CONTROL.addThreatLevel",
+  //     visible: game.user.isGM,
+  //     onChange: ()=> increaseThreatLevel(1),
+  //      button: true
+  //   },
+  //   threatLevelDecrease:
+  //   {
+  //     name: "subtract",
+  //     title: "CONTROL.subThreatLevel",
+  //     icon: "fas fa-minus",
+  //     button: true,
+  //     visible: game.user.isGM,
+  //     order: 91,
+  //     onClick: () => decreaseThreatLevel(1),
+  //   },
+  //   threatLevelVisibility:
+  //   {
+  //     name: "showInterface",
+  //     title: "CONTROL.displayThreatLevel",
+  //     icon: "fas fa-biohazard",
+  //     button: true,
+  //     order: 92,
+  //     visible: game.settings.get("twdu", "threatLevelVisibility")
+  //       ? true
+  //       : game.user.isGM,
+  //     onClick: () => {
+  //       ThreatLevelDisplay.render();
+  //     },
+  //   }
+  // };
+  // let newToolgroup = {...tools, ...newButtonGroup};
+  // group.tools = newToolgroup;
+  // console.log("SceneControlTool: ", controls.tokens.tools.threatLevelIncrease);
+  // console.log("Button boolean on add button: ", controls.tokens.tools.threatLevelIncrease.button );
   console.log(controls);
 });
 
