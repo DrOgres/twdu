@@ -249,7 +249,7 @@ Hooks.on("getSceneControlButtons", function (controls) {
       },
     }
   };
-  let newTools = {...tools, ...newButtonGroup};
+
  group.tools = {...tools, ...newButtonGroup};
   console.log("SceneControlTool: ", controls.tokens.tools.threatLevelIncrease);
   console.log("Button boolean on add button: ", controls.tokens.tools.threatLevelIncrease.button );
