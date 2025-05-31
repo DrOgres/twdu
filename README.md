@@ -6,6 +6,15 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 4.0.0
+- V13 compatability
+- updated Germain Localization thanks [KaiderWeise](https://github.com/KaiderWeise) 
+
+Release 3.0.12
+- Fixed: mirgated weapons to match new data structure
+- Animals: now attack properly
+- V13 prepwork
+
 Release 3.0.11
 - Locaized 'severity' letter on critical rolldowns
 
