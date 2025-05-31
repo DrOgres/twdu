@@ -528,7 +528,12 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | _onRoll: ", event);
     event.preventDefault();
     let actor = this.actor;
-    let health = actor.system.health.value;
+    let health;
+    if(actor.type === 'animal'){
+      health = actor.system.healthMax.value;
+    } else {
+    health = actor.system.health.value;
+    }
     if (health < 1) {
       ui.notifications.warn(game.i18n.localize("twdu.ui.cantRollWhenBroken"));
       return;
