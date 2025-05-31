@@ -64,7 +64,7 @@ async function migrateTo3_0_12() {
     "systemMigrationVersion",
     game.system.version
   );
-  ui.notifications.info("Migration to 3.0.1 completed!", options);
+  ui.notifications.info("Migration to 3.0.12 completed!", options);
 }
 
 async function migrateTo3_0_1() {
