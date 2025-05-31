@@ -460,7 +460,11 @@ Hooks.on("renderChatLog", (app, html, data) => {
   for (let element of div.getElementsByClassName("dice-button")) {
     console.log("Element", element);
     if (element.classList.contains("push")) {
-      element.addEventListener("click", _onPush);
+      console.log("contains push in element")
+      element.addEventListener("click", (e)=> {
+        this._onPush(e);
+      });
+      console.log(element);
     } else if (element.classList.contains("apply-damage")) {
     element.addEventListener("click", _onApplyDamage);
     }
@@ -468,6 +472,7 @@ Hooks.on("renderChatLog", (app, html, data) => {
 });
 
 async function _onPush(event) {
+  console.log(event);
   event.preventDefault();
 
   // Get the message.

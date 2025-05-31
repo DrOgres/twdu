@@ -14,6 +14,7 @@ import TWDUActorSheetNPC from "./sheet/TWDUActorSheetNPC.js";
 import TWDUActorSheetAnimal from "./sheet/TWDUActorSheetAnimal.js";
 import TWDUActorSheetHaven from "./sheet/TWDUActorSheetHaven.js";
 import TWDUActorSheetChallenge from "./sheet/TWDUActorSheetChallenge.js";
+import { ChatMessageTWDU } from "./util/chat.js";
 // import TWDUActorSheetPCv2 from "./sheet/TWDUActorSheetPCv2.js";
 
 Hooks.once("init", async function () {
@@ -22,6 +23,7 @@ Hooks.once("init", async function () {
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
 
   CONFIG.Actor.documentClass = TWDUActor;
+  CONFIG.ChatMessage.documentClass = ChatMessageTWDU;
 
   
 
@@ -87,7 +89,13 @@ Hooks.once("init", async function () {
         
   //   ],
 
-
+  Hooks.on("renderChatMessage", (app, html, data) => {
+    // console.log("renderChatMessage", app, html, data);
+    // console.log("ChatMessageElectricState", ChatMessageES);
+    ChatMessageTWDU.activateListeners(html);
+    // ChatMessageVaesen.hideChatActionButtons(app, html, data);
+  });
+  
 
 
   // Preload Handlebars Templates

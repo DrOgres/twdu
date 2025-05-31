@@ -1977,7 +1977,7 @@ class YearZeroRoll extends Roll {
     };
 
     // Renders the roll display template.
-    return renderTemplate(chatOptions.template, chatData);
+    return foundry.applications.handlebars.renderTemplate(chatOptions.template, chatData);
   }
 
   /* -------------------------------------------- */

@@ -1,3 +1,53 @@
+export class ChatMessageTWDU extends ChatMessage {
+    prepareData() {
+      super.prepareData();
+    }
+
+
+    static activateListeners(html) {
+      // console.log("Activating listeners", html);
+      html.find(".dice-button.push").click((ev) => {
+        // console.log("Button clicked", ev); 
+        _onPush(ev);
+        });
+      html.find(".dice-button.apply-damage").click((ev) => {
+        // console.log("Button clicked", ev);
+        _onApplyDamage(ev);
+      });
+
+    }
+
+
+}
+
+
+async function _onPush(event) {
+  console.log(event);
+  event.preventDefault();
+
+  // Get the message.
+  let chatCard = event.currentTarget.closest(".chat-message");
+  let messageId = chatCard.dataset.messageId;
+  let message = game.messages.get(messageId);
+  let actor = game.actors.get(message.speaker.actor);
+  let newStress = actor.system.stress.value + 1;
+  await actor.update({ "system.stress.value": newStress });
+
+  // Copy the roll.
+  let roll = message.rolls[0].duplicate();
+
+  // Delete the previous message.
+  await message.delete();
+
+  // add the stress dice to the roll
+  await roll.addDice(1, "stress");
+  // Push the roll and send it.
+  await roll.push({ async: true });
+  await roll.toMessage();
+}
+
+
+
 export const hideChatActionButtons = function (message, html, data) {
   const card = html.find(".twdu.chat-card");
 
@@ -5,6 +55,7 @@ export const hideChatActionButtons = function (message, html, data) {
     let user = game.actors.get(card.attr("data-owner-id"));
 
     if (user && !user.isOwner) {
+      console.log("card render is user owner? ". user.isOwner);
       const buttons = card.find(".push");
       buttons.each((_i, btn) => {
         btn.style.display = "none";

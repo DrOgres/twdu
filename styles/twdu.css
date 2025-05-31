@@ -55,11 +55,15 @@
   --fa-display: inherit;
 }
 
+body {
+  --color-light-4: $neutral-4;
+}
+
 .sidebar {
   float: left;
   color: hsl(0, 0%, 100%);
   width: 60%;
-  background: hsl(57, 15%, 26%);
+  background: hsl(57, 15%, 55%);
   padding-block: 1rem;
   padding-left: 1.2rem;
   padding-right: 2rem;
@@ -85,6 +89,8 @@ a.content-link {
 }
 
 #pause > img {
+  content: url("../assets/images/misc/hand.png");
+  filter: drop-shadow(5px 7px 1px hsl(353, 24%, 85%));
   width: 200px;
   height: auto;
   top: -50px;
@@ -93,9 +99,18 @@ a.content-link {
 }
 
 #pause > figcaption {
+  color: hsl(353, 24%, 85%);
   font-family: "Nu Gothic", sans-serif;
-  font-size: var(--font-size-48);
+  font-size: 1.5rem;
   text-shadow: 0px 3px 5px rgb(0, 0, 0);
+}
+
+figure figcaption {
+  font-family: "Ash", sans-serif;
+  font-size: 1.2rem;
+  color: hsl(53, 10%, 68%);
+  margin-top: 0;
+  text-align: center;
 }
 
 .fa-spin {
@@ -144,6 +159,7 @@ input[type=search] {
 .window-title,
 .header-button {
   color: hsl(53, 10%, 68%);
+  font-size: 1.5rem;
 }
 
 a:hover {
@@ -184,6 +200,10 @@ a:hover {
   border-left: 1px solid hsl(353, 45%, 30%);
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
+}
+
+nav.tabs [data-tab] {
+  color: hsl(53, 14%, 15%);
 }
 
 img {
@@ -276,6 +296,16 @@ optgroup {
 
 .ds-1:hover {
   box-shadow: 0.125rem 0.125rem 0 hsla(36, 11%, 43%, 0.5);
+}
+
+fieldset p {
+  color: hsl(53, 14%, 15%);
+}
+fieldset p a {
+  color: hsl(355, 53%, 31%);
+}
+fieldset pre {
+  color: hsl(53, 14%, 15%);
 }
 
 .roll-fields p {
@@ -1083,6 +1113,11 @@ button,
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
 }
 
+.dice-buttons {
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
 .notes {
   display: flex;
   gap: 0.3rem;
@@ -1112,6 +1147,36 @@ button,
 
 .label {
   font-family: "Nu Gothic", sans-serif;
+}
+
+a.content-link {
+  background: unset;
+  border: none;
+  color: hsl(355, 53%, 31%);
+}
+
+.standard-form {
+  background-color: hsl(53, 14%, 75%);
+}
+.standard-form legend {
+  color: hsl(53, 14%, 15%);
+}
+.standard-form label, .standard-form .label {
+  color: hsl(53, 14%, 15%);
+}
+.standard-form h1 {
+  color: hsl(57, 15%, 26%);
+}
+.standard-form .hint {
+  color: hsl(355, 53%, 31%);
+}
+
+.filter {
+  color: hsl(53, 14%, 15%);
+}
+
+.status, .count {
+  color: hsl(53, 14%, 15%);
 }
 
 .show-details:hover {
