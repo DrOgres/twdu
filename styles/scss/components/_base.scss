@@ -21,6 +21,11 @@
   
 }
 
+.dice-buttons {
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
 
 .notes {
   display: flex;
@@ -59,6 +64,39 @@
   font-family: 'Nu Gothic', sans-serif;
 }
 
+a.content-link{
+  background: unset;
+  border: none;
+  color: $highlight-2;
+}
+
+ .standard-form {
+  background-color: $neutral-2;
+
+  legend {
+    color: $neutral-1;
+  }
+
+  label, .label {
+    color: $neutral-1;
+  }
+
+  h1 {
+    color: $header-1;
+  }
+
+  .hint {
+    color: $highlight-2;
+  }
+ }
+
+ .filter {
+  color: $neutral-1;
+ }
+
+ .status, .count {
+  color: $neutral-1;
+ }
 
 
 .show-details:hover{

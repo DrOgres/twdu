@@ -3,6 +3,7 @@
 // we will implement a button in the base select UI to increment and decrement the threat level
 
 export async function increaseThreatLevel(amount) {
+  console.log("threat up");
   let threatLevel = getThreatLevel();
   if (threatLevel === undefined) {
     threatLevel = 0;
