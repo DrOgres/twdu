@@ -2,11 +2,10 @@ export function migrate() {
   if (!game.user.isGM) return;
 
   const currentVersion = game.settings.get("twdu", "systemMigrationVersion");
-  console.log("Data CurrentVersion", currentVersion);
-
+  // console.log("Data CurrentVersion", currentVersion);
   Object.keys(migrations).forEach(function (key) {
-    console.log("Data Key", key);
-    console.log("Data CurrentVersion", currentVersion);
+    // console.log("Data Key", key);
+    // console.log("Data CurrentVersion", currentVersion);
     if (!currentVersion || foundry.utils.isNewerVersion(key, currentVersion))
       migrations[key]();
   });
@@ -54,7 +53,9 @@ async function migrateTo3_0_12() {
 
     if (item.system.range && item.system.range.startsWith("twdu.")) {
       let range = item.system.range.replace("twdu.", "");
-      console.log("Range | ", range);
+
+      // console.log("Range | ", range);
+
       await item.update({ "system.range": range });
     }
   }
@@ -64,7 +65,9 @@ async function migrateTo3_0_12() {
     "systemMigrationVersion",
     game.system.version
   );
+
   ui.notifications.info("Migration to 3.0.12 completed!", options);
+
 }
 
 async function migrateTo3_0_1() {
@@ -101,7 +104,9 @@ async function migrateTo3_0_1() {
     }
     if (item.system.range && item.system.range.startsWith("twdu.")) {
       let range = item.system.range.replace("twdu.", "");
-      console.log("Range | ", range);
+
+      // console.log("Range | ", range);
+
       await item.update({ "system.range": range });
     }
   }
@@ -193,37 +198,41 @@ function migrateActorData(actor, version) {
   switch (version) {
     case "1.2.1":
       if (actor.type !== "character") return updateData;
-      console.log("Migrating actor to 1.2.1 | ", actor);
+      // console.log("Migrating actor to 1.2.1 | ", actor);
       let stressMax = actor.system.stress.max;
-      console.log("Stress Max | ", stressMax);
+      // console.log("Stress Max | ", stressMax);
       if (stressMax < 10) {
         updateData["system.stress.max"] = 10;
       }
       break;
     case "3.0.0":
       if (actor.type !== "animal") return updateData;
-      console.log("Migrating actor to 3.0.0 | ", actor);
+
+      // console.log("Migrating actor to 3.0.0 | ", actor);
       updateData["system.healthMax.value"] = actor.system.health;
       updateData["system.healthMax.max"] = actor.system.health;
+      // console.log("Health Max | ", updateData);
 
-      console.log("Health Max | ", updateData);
       break;
 
     case "3.0.1": {
       let items = actor.items;
-      console.log("Items | ", items);
+
+      // console.log("Items | ", items);
       for (let item of items) {
-        console.log("Item | ", item);
+        // console.log("Item | ", item);
         // if the item has a system.skill defined check to see if it starts with twdu. and if it does remove twdu. from the data
         if (item.system.skill && item.system.skill.startsWith("twdu.")) {
           let skill = item.system.skill.replace("twdu.", "");
-          console.log("Skill | ", skill);
+          // console.log("Skill | ", skill);
           updateData[item.id] = skill;
         }
 
         if (item.system.range && item.system.range.startsWith("twdu.")) {
           let range = item.system.range.replace("twdu.", "");
-          console.log("Range | ", range);
+
+          // console.log("Range | ", range);
+
           updateData[item.id] = range;
         }
       }
@@ -231,35 +240,43 @@ function migrateActorData(actor, version) {
     }
     case "3.0.12": {
       let items = actor.items;
-      console.log("Items | ", items);
+
+      // console.log("Items | ", items);
       for (let item of items) {
-        console.log("Item | ", item);
+        // console.log("Item | ", item);
         // if the item has a system.skill defined check to see if it starts with twdu. and if it does remove twdu. from the data
         if (item.system.skill && item.system.skill.startsWith("twdu.")) {
           let skill = item.system.skill.replace("twdu.", "");
-          console.log("Skill | ", skill);
+          // console.log("Skill | ", skill);
+
           updateData[item.id] = skill;
         }
 
         if (item.system.range && item.system.range.startsWith("twdu.")) {
           let range = item.system.range.replace("twdu.", "");
-          console.log("Range | ", range);
+
+          // console.log("Range | ", range);
+
           updateData[item.id] = range;
         }
       }
       break;
     }
   }
-  console.log(updateData);
+
+  // console.log(updateData);
+
   return updateData;
 }
 
 function setToken(actor) {
   if (actor.type !== "animal") return;
-  console.log("Setting Token Image for Animal Actor | ", actor);
-  console.log("Token", actor.prototypeToken);
+
+  // console.log("Setting Token Image for Animal Actor | ", actor);
+  // console.log("Token", actor.prototypeToken);
   let token = actor.prototypeToken;
-  console.log("Token", token);
+  // console.log("Token", token);
+
   token.texture.src = "systems/twdu/assets/images/twdu-animal.png";
   token.bar1 = { attribute: "healthMax" };
   actor.update({ prototypeToken: token });

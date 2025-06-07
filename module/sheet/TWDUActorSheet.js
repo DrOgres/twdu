@@ -528,7 +528,6 @@ export default class TWDUActorSheet extends ActorSheet {
     console.log("TWDU | _onRoll: ", event);
     event.preventDefault();
     let actor = this.actor;
-    console.log(actor.type);
     let health;
     if(actor.type === 'animal'){
       health = actor.system.healthMax.value;
