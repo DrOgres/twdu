@@ -6,6 +6,14 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 3.0.13
+- Fixed: NPC sheets completely borked [#77](https://github.com/DrOgres/twdu/issues/77)
+
+Release 3.0.12
+- Fixed: mirgated weapons to match new data structure
+- Animals: now attack properly
+- V13 prepwork
+
 Release 3.0.11
 - Locaized 'severity' letter on critical rolldowns
 
