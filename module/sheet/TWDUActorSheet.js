@@ -2,7 +2,7 @@ import { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
-export default class TWDUActorSheet extends ActorSheet {
+export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
 
   // constructor(object, options={}) {
   //   console.log("TWDU | TWDUActorSheet: ", object);
@@ -22,6 +22,7 @@ export default class TWDUActorSheet extends ActorSheet {
       ],
     });
   }
+
 
   get template() {
     return `systems/twdu/templates/sheets/${this.actor.type}-sheet.hbs`;
@@ -67,7 +68,7 @@ export default class TWDUActorSheet extends ActorSheet {
     if (context.isPlayer) {
       context.maxEncumbrance = context.system.attributes.str.value + 2;
       //console.log("TWDU | Enriching HTML");
-      context.notesHTML = await TextEditor.enrichHTML(
+      context.notesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
         this.actor.system.notes.value,
         {
           secrets: this.actor.isOwner,
@@ -107,7 +108,7 @@ export default class TWDUActorSheet extends ActorSheet {
       context.system.survivors = survivors;
 
       context.maxpop = this.calculatePopulation(context);
-      context.havenNotes = await TextEditor.enrichHTML(
+      context.havenNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
         this.actor.system.notes.value,
         {  secrets: this.actor.isOwner,
           rollData: context.rollData,
@@ -122,7 +123,7 @@ export default class TWDUActorSheet extends ActorSheet {
       context.npcSkillStore = twdu.npcSkillStore;
       this.computeSkills(context);
       this.equipItems(context);
-      context.notesHTML = await TextEditor.enrichHTML(
+      context.notesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
         context.system.notes.value,
         {
           secrets: this.actor.isOwner,
@@ -135,7 +136,7 @@ export default class TWDUActorSheet extends ActorSheet {
 
     if (context.isAnimal) {
       //console.log("TWDU | isAnimal: ", context.isAnimal);
-      context.animalHTML = await TextEditor.enrichHTML(
+      context.animalHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
         context.system.notes.value,
         {  secrets: this.actor.isOwner,
           rollData: context.rollData,

@@ -6,7 +6,7 @@ export default class TWDUActorSheetAnimal extends TWDUActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["twdu", "sheet", "actor", "animal"],
-        template: "systems/twdu/templates/actor/animal-sheet.html",
+        template: "systems/twdu/templates/sheets/animal-sheet.hbs",
         width: 800,
         height: 460,
        tabs: [

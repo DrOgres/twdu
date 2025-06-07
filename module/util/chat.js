@@ -79,7 +79,7 @@ const twduChat = {
 
 async function renderChatMessage(chatOptions, dataSource) {
   const data = dataSource;
-  return await Promise.resolve(renderTemplate(chatOptions.template, data));
+  return await Promise.resolve(foundry.applications.handlebars.renderTemplate(chatOptions.template, data));
 }
 
 

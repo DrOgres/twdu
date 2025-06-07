@@ -53,19 +53,19 @@ Hooks.once("init", async function () {
     },
   ]);
 
-  Items.unregisterSheet("core", ItemSheet);
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
 
-  Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
 
-  Actors.unregisterSheet("core", ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
   //TODO set up sheets for each actor type to be able to set default options correctly for each type
   // Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
 
-  Actors.registerSheet("twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
-  Actors.registerSheet("twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
-  Actors.registerSheet("twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
-  Actors.registerSheet("twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
-  Actors.registerSheet("twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
 
 
 
