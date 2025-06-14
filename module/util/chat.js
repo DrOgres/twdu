@@ -1,4 +1,4 @@
-export default class ChatMessageTWDU extends ChatMessage {
+export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
   prepareData() {
     super.prepareData();
   }

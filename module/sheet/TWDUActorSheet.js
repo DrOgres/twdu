@@ -1,15 +1,13 @@
-
-import  ChatMessageTWDU, { buildChatCard } from "../util/chat.js";
+import ChatMessageTWDU, { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
 export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
-
   // constructor(object, options={}) {
   //   console.log("TWDU | TWDUActorSheet: ", object);
   //   super(object, options);
   // }
-  
+
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "actor"],
@@ -23,7 +21,6 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       ],
     });
   }
-
 
   get template() {
     return `systems/twdu/templates/sheets/${this.actor.type}-sheet.hbs`;
@@ -60,8 +57,6 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     context.config = CONFIG.twdu;
     //console.log("TWDU | context.config: ", context.config);
 
-    
-
     // console.log("TWDU | context: ", context);
 
     this.computeItems(context);
@@ -69,15 +64,16 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     if (context.isPlayer) {
       context.maxEncumbrance = context.system.attributes.str.value + 2;
       //console.log("TWDU | Enriching HTML");
-      context.notesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-        this.actor.system.notes.value,
-        {
-          secrets: this.actor.isOwner,
-          rollData: context.rollData,
-          async: true,
-          relativeTo: this.actor
-        }
-      );
+      context.notesHTML =
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+          this.actor.system.notes.value,
+          {
+            secrets: this.actor.isOwner,
+            rollData: context.rollData,
+            async: true,
+            relativeTo: this.actor,
+          }
+        );
       // console.log("TWDU | context: ", context.notesHTML);
       this.computeSkills(context);
       context.encumbrance = this.computeEncumbrance(context);
@@ -109,13 +105,16 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       context.system.survivors = survivors;
 
       context.maxpop = this.calculatePopulation(context);
-      context.havenNotes = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-        this.actor.system.notes.value,
-        {  secrets: this.actor.isOwner,
-          rollData: context.rollData,
-          async: true,
-          relativeTo: this.actor}
-      );
+      context.havenNotes =
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+          this.actor.system.notes.value,
+          {
+            secrets: this.actor.isOwner,
+            rollData: context.rollData,
+            async: true,
+            relativeTo: this.actor,
+          }
+        );
       //console.log("TWDU | haven context: ", context);
     }
 
@@ -124,26 +123,30 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       context.npcSkillStore = twdu.npcSkillStore;
       this.computeSkills(context);
       this.equipItems(context);
-      context.notesHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-        context.system.notes.value,
-        {
-          secrets: this.actor.isOwner,
-          rollData: context.rollData,
-          async: true,
-          relativeTo: this.actor
-        }
-      );
+      context.notesHTML =
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+          context.system.notes.value,
+          {
+            secrets: this.actor.isOwner,
+            rollData: context.rollData,
+            async: true,
+            relativeTo: this.actor,
+          }
+        );
     }
 
     if (context.isAnimal) {
       //console.log("TWDU | isAnimal: ", context.isAnimal);
-      context.animalHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-        context.system.notes.value,
-        {  secrets: this.actor.isOwner,
-          rollData: context.rollData,
-          async: true,
-          relativeTo: this.actor }
-      );
+      context.animalHTML =
+        await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+          context.system.notes.value,
+          {
+            secrets: this.actor.isOwner,
+            rollData: context.rollData,
+            async: true,
+            relativeTo: this.actor,
+          }
+        );
     }
 
     if (context.isChallenge) {
@@ -173,7 +176,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     // console.log("TWDU | drag: ", drag);
     // console.log("TWDU | data: ", this);
 
-    if(this.actor.type === "haven") {
+    if (this.actor.type === "haven") {
       this.setPortrait(context);
       // this.setPosition({width: 800, height: 800});
     }
@@ -450,11 +453,6 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       sum = "",
       actorType = this.actor.type;
 
-    // console.log("TWDU | item: ", item);
-
-    // console.log("TWDU | _onShowDetails: ", actorType);
-
-    //check for item type if to use a the correct template
     switch (item.type) {
       case "weapon":
       case "armor":
@@ -463,55 +461,42 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       case "issue":
       case "rumor":
       case "challenges":
-        await renderTemplate(
+        chatData = await foundry.applications.handlebars.renderTemplate(
           "systems/twdu/templates/ui/description.hbs",
           item
-        ).then((html) => {
-          chatData = html;
-        });
+        );
         // console.log("TWDU | chatData: ", chatData);
         sum = $(
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
         break;
       case "talent":
-        await renderTemplate(
+        chatData = await foundry.applications.handlebars.renderTemplate(
           "systems/twdu/templates/ui/talentRollDown.hbs",
           item
-        ).then((html) => {
-          chatData = html;
-        });
-        // console.log("TWDU | chatData: ", chatData);
+        );
         sum = $(
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
         break;
       case "criticalInjury":
-        // console.log("TWDU | criticalInjury: ", item);
-        await renderTemplate(
+        chatData = await foundry.applications.handlebars.renderTemplate(
           "systems/twdu/templates/ui/criticalRollDown.hbs",
           item
-        ).then((html) => {
-          chatData = html;
-        });
-        // console.log("TWDU | chatData: ", chatData);
+        );
         sum = $(
           `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
         );
         break;
-        case "project":
-          // console.log("TWDU | project: ", item);
-          await renderTemplate(
-            "systems/twdu/templates/ui/projectRollDown.hbs",
-            item
-          ).then((html) => {
-            chatData = html;
-          });
-          // console.log("TWDU | chatData: ", chatData);
-          sum = $(
-            `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
-          );
-          break;
+      case "project":
+        chatData = await foundry.applications.handlebars.renderTemplate(
+          "systems/twdu/templates/ui/projectRollDown.hbs",
+          item
+        );
+        sum = $(
+          `<div class="item-summary span-7 justify-self-start">${chatData}</div>`
+        );
+        break;
     }
 
     if (chatData === null) {
@@ -532,10 +517,10 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     let actor = this.actor;
     console.log("TWDU | rolling actor: ", actor);
     let health;
-    if(actor.type === 'animal'){
+    if (actor.type === "animal") {
       health = actor.system.healthMax.value;
     } else {
-    health = actor.system.health.value;
+      health = actor.system.health.value;
     }
     if (health < 1) {
       ui.notifications.warn(game.i18n.localize("twdu.ui.cantRollWhenBroken"));
@@ -620,12 +605,13 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
           if (options.skillName === "" || options.skillName === undefined) {
             ui.notifications.warn(game.i18n.localize("twdu.ui.noSkill"));
             return;
-          } 
+          }
           console.log("TWDU | skillName: ", options.skillName);
           // let skill = item.system.skill.split(".")[1];
           // console.log("TWDU | skill: ", skill);
           if (options.actorType === "character") {
-            options.skillDefault = this.actor.system.skills[options.skillName].value;
+            options.skillDefault =
+              this.actor.system.skills[options.skillName].value;
             // console.log("TWDU | skillDefault: ", options.skillDefault);
           } else {
             let skillLevel = this.actor.system.skills[options.skillName].level;
@@ -682,11 +668,11 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
           console.log("TWDU | vehicle: ", vehicle);
           options.testName = vehicle.name;
           options.vehicleName = vehicle.name;
-          options.skillKey = "twdu.mobility"
-          options.skillName = game.i18n.localize('twdu.mobility');
+          options.skillKey = "twdu.mobility";
+          options.skillName = game.i18n.localize("twdu.mobility");
           options.actorName = this.actor.name;
           options.actorID = this.actor.id;
-          options.vehicleDefault = vehicle.system.maneuverability || 0; 
+          options.vehicleDefault = vehicle.system.maneuverability || 0;
           console.log("TWDU | options: ", options);
         }
         break;
@@ -702,11 +688,10 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
     let type = item.type;
-    //TODO remove the render step from the build chat card function 
+    //TODO remove the render step from the build chat card function
     // console.log(ChatMessageTWDU.buildChatCard(type, item));
     let chatData = await buildChatCard(type, item, {});
     await ChatMessageTWDU.create(chatData, {});
-
   }
 
   _onItemEdit(event) {
@@ -787,7 +772,8 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
           this.actor.update({ "system.driveUsed": !value });
         }
         break;
-        case "isSecret": {
+      case "isSecret":
+        {
           const item = this.actor.items.get(element.dataset.itemId);
           const value = item.system.isSecret;
           item.update({ "system.isSecret": !value });
@@ -926,7 +912,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
   async _onDropItemCreate(itemData) {
     console.log("TWDU | _onDropItemCreate: ", itemData);
     const type = itemData.type;
-     console.log("TWDU | drag and drop items", this);
+    console.log("TWDU | drag and drop items", this);
     const alwaysAllowedItems = twdu.physicalItems;
     const allowedItems = {
       haven: ["weapon", "armor", "gear", "project", "vehicle", "issue"],
