@@ -1,4 +1,5 @@
-import { buildChatCard } from "../util/chat.js";
+
+import  ChatMessageTWDU, { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
@@ -696,12 +697,16 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     prepareRollDialog(options);
   }
 
-  _onItemToChat(event) {
+  async _onItemToChat(event) {
     event.preventDefault();
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
     let type = item.type;
-    buildChatCard(type, item);
+    //TODO remove the render step from the build chat card function 
+    // console.log(ChatMessageTWDU.buildChatCard(type, item));
+    let chatData = await buildChatCard(type, item, {});
+    await ChatMessageTWDU.create(chatData, {});
+
   }
 
   _onItemEdit(event) {

@@ -19,13 +19,14 @@
                     {{system.damage}}
                 </div>
             </div>
-            {{#if syste.range}}
+            {{log system.range}}
+            {{#if system.range}}
             <div class="grid col-50-50 group subheader middle">
                 <div class="justify-self-start pi-1">
                     {{localize "twdu.range"}}
                 </div>
                 <div class="border-left justify-self-center pi-1 w-100">
-                    {{system.range}}
+                    {{localize system.range}}
                 </div>
             </div>
 
@@ -53,7 +54,7 @@
                     {{localize 'twdu.skill'}}
                 </div>
                 <div class="border-left justify-self-center pi-1 w-100">
-                    {{localize system.skill}}
+                    {{localize (TWDUconcat "twdu." system.skill)}}
                 </div>
             </div>
 

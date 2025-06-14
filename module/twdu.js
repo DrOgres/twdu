@@ -14,7 +14,7 @@ import TWDUActorSheetNPC from "./sheet/TWDUActorSheetNPC.js";
 import TWDUActorSheetAnimal from "./sheet/TWDUActorSheetAnimal.js";
 import TWDUActorSheetHaven from "./sheet/TWDUActorSheetHaven.js";
 import TWDUActorSheetChallenge from "./sheet/TWDUActorSheetChallenge.js";
-import { ChatMessageTWDU } from "./util/chat.js";
+import ChatMessageTWDU from "./util/chat.js";
 // import TWDUActorSheetPCv2 from "./sheet/TWDUActorSheetPCv2.js";
 
 Hooks.once("init", async function () {
