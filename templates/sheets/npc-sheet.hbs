@@ -48,7 +48,7 @@
                 </div>
                 <div class="button justify-self-end">
                   {{#if (eq ../user.role 4)}}
-                  <a class='toggle-boolean' title="{{localize "twdu.isNotSecret"}}" data-path='isSecret'
+                  <a class='toggle-boolean' title="{{localize " twdu.isNotSecret"}}" data-path='isSecret'
                     data-item-id="{{item._id}}"><i class='fa-solid fa-eye'></i></a>
                   {{/if}}
                   <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
@@ -65,7 +65,7 @@
                   {{item.name}}
                 </div>
                 <div class="button justify-self-end">
-                  <a class='toggle-boolean' title="{{localize "twdu.isSecret"}}" data-path='isSecret'
+                  <a class='toggle-boolean' title="{{localize " twdu.isSecret"}}" data-path='isSecret'
                     data-item-id="{{item._id}}"><i class='fa-solid fa-eye-slash'></i></a>
                   <a class="item-control to-chat" title='{{localize "twdu.ui.chat"}}'><i class="fas fa-comment"></i></a>
                   <a class="item-control item-edit" title='{{localize "twdu.ui.edit"}}'><i class="fas fa-edit"></i></a>
@@ -92,150 +92,135 @@
 
       {{!-- STR skillblock --}}
       <div class="flex-col border-left border-right pi-1">
-       
-        {{#each system.skills as |skill key|}}
-        {{#if skill.hasStrength}}
-        <div class="skill flex-col align-center  justify pi-1">
-          <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="{{key}}"
-            data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</div>
 
-          <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.base">{{localize 'twdu.base'}}
-              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked level 'base' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.trained">{{localize 'twdu.trained'}}
-              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained"
-                {{TWDU_checked level 'trained' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.expert">{{localize 'twdu.expert'}}
-              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert"
-                {{TWDU_checked level 'expert' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
-              for="{{key}}.master">{{localize
-              'twdu.master'}}
-              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master"
-                {{TWDU_checked level 'master' }} /><span class="radio"></span></label>
-          </div>
+        {{!-- Close Combat --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="closeCombat"
+          data-test="twdu.closeCombat">{{localize "twdu.closeCombat"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.closeCombat.level" id="closeCombat">
+            {{selectOptions config.npcSkill selected=system.skills.closeCombat.level localize=true}}
+          </select>
         </div>
-        {{/if}}
-        {{/each}}
+
+        {{!-- Force --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="force"
+          data-test="twdu.force">{{localize "twdu.force"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.force.level" id="force">
+            {{selectOptions config.npcSkill selected=system.skills.force.level localize=true}}
+          </select>
+        </div>
+        {{!-- Endure --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="endure"
+          data-test="twdu.endure">{{localize "twdu.endure"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.endure.level" id="endure">
+            {{selectOptions config.npcSkill selected=system.skills.endure.level localize=true}}
+          </select>
+        </div>
+
+
       </div>
 
-      {{!--Agility skillblock --}}
-      <div class=" flex-col pi-1 border-right">
-        {{#each system.skills as |skill key|}}
-        {{#if skill.hasAgility}}
-        <div class="skill flex-col align-center  justify pi-1">
-          <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="{{key}}"
-            data-test="twdu.{{key}}">{{localize (TWDUconcat
-            "twdu." skill.label)}}</div>
 
-          <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.base">{{localize
-              'twdu.base'}}
-              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
-                level 'base' }} />
-              <span class="radio"></span>
-            </label>
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.trained">{{localize
-              'twdu.trained'}}
-              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
-                level 'trained' }} /><span class="radio"></span></label>
+      {{!-- Agility skillblock --}}
+      <div class="flex-col border-left border-right pi-1">
 
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.expert">{{localize
-              'twdu.expert'}}
-              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
-                level 'expert' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.master">{{localize
-              'twdu.master'}}
-              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
-                level 'master' }} /><span class="radio"></span></label>
-          </div>
+        {{!-- Mobility --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="mobility"
+          data-test="twdu.mobility">{{localize "twdu.mobility"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.mobility.level" id="mobility">
+            {{selectOptions config.npcSkill selected=system.skills.mobility.level localize=true}}
+          </select>
         </div>
-        {{/if}}
-        {{/each}}
+
+        {{!-- Ranged Combat --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="rangedCombat"
+          data-test="twdu.rangedCombat">{{localize "twdu.rangedCombat"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.rangedCombat.level" id="rangedCombat">
+            {{selectOptions config.npcSkill selected=system.skills.rangedCombat.level localize=true}}
+          </select>
+        </div>
+        {{!-- Stealth --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="stealth"
+          data-test="twdu.stealth">{{localize "twdu.stealth"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.stealth.level" id="stealth">
+            {{selectOptions config.npcSkill selected=system.skills.stealth.level localize=true}}
+          </select>
+        </div>
+
+
       </div>
 
-      {{!-- wits skillblock --}}
-      <div class=" flex-col pi-1">
-        {{#each system.skills as |skill key|}}
-        {{#if skill.hasWits}}
-        <div class="skill flex-col align-center justify ">
-          <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="{{key}}"
-            data-test="twdu.{{key}}">{{localize (TWDUconcat
-            "twdu." skill.label)}}</div>
-          <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.base">{{localize
-              'twdu.base'}}
-              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
-                level 'base' }} /><span class="radio"></span></label>
+      {{!-- Withs skillblock --}}
+      <div class="flex-col border-left border-right pi-1">
 
-            <label class="fflex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.trained">{{localize
-              'twdu.trained'}}
-              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
-                level 'trained' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.expert">{{localize
-              'twdu.expert'}}
-              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
-                level 'expert' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right  border-bottom radio-group"
-              for="{{key}}.master">{{localize
-              'twdu.master'}}
-              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
-                level 'master' }} /><span class="radio"></span></label>
-          </div>
+        {{!-- Scout --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="scout"
+          data-test="twdu.scout">{{localize "twdu.scout"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.scout.level" id="scout">
+            {{selectOptions config.npcSkill selected=system.skills.scout.level localize=true}}
+          </select>
         </div>
-        {{/if}}
-        {{/each}}
+
+        {{!-- Survival Combat --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="survival"
+          data-test="twdu.survival">{{localize "twdu.survival"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.survival.level" id="survival">
+            {{selectOptions config.npcSkill selected=system.skills.survival.level localize=true}}
+          </select>
+        </div>
+        {{!-- Tech --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="tech"
+          data-test="twdu.tech">{{localize "twdu.tech"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.tech.level" id="tech">
+            {{selectOptions config.npcSkill selected=system.skills.tech.level localize=true}}
+          </select>
+        </div>
+
+
       </div>
 
       {{!-- Empathy skillblock --}}
-      <div class=" flex-col border-left border-right pi-1">
-        {{#each system.skills as |skill key|}}
-        {{#if skill.hasEmpathy}}
-        <div class="skill flex-col align-center justify ">
-          <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="{{key}}"
-            data-test="twdu.{{key}}">{{localize (TWDUconcat "twdu." skill.label)}}</div>
-          <div class="grid two-col w-100">
-            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
-              for="{{key}}.base">{{localize 'twdu.base'}}
-              <input id="{{key}}.base" type="radio" name="system.skills.{{key}}.level" value="base" {{TWDU_checked
-                level 'base' }} /> <span class="radio"></span> </label>
+      <div class="flex-col border-left border-right pi-1">
 
-            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
-              for="{{key}}.trained">{{localize 'twdu.trained'}}
-              <input id="{{key}}.trained" type="radio" name="system.skills.{{key}}.level" value="trained" {{TWDU_checked
-                level 'trained' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
-              for="{{key}}.expert">{{localize 'twdu.expert'}}
-              <input id="{{key}}.expert" type="radio" name="system.skills.{{key}}.level" value="expert" {{TWDU_checked
-                level 'expert' }} /><span class="radio"></span></label>
-
-            <label class="flex-row pi-2 justify middle border-right border-bottom radio-group"
-              for="{{key}}.master">{{localize 'twdu.master'}}
-              <input id="{{key}}.master" type="radio" name="system.skills.{{key}}.level" value="master" {{TWDU_checked
-                level 'master' }} /><span class="radio"></span></label>
-          </div>
+        {{!-- Leadership --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="leadership"
+          data-test="twdu.leadership">{{localize "twdu.leadership"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.leadership.level" id="leadership">
+            {{selectOptions config.npcSkill selected=system.skills.leadership.level localize=true}}
+          </select>
         </div>
-        {{/if}}
-        {{/each}}
+
+        {{!-- Manipulation Combat --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="manipulation"
+          data-test="twdu.manipulation">{{localize "twdu.manipulation"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.manipulation.level" id="manipulation">
+            {{selectOptions config.npcSkill selected=system.skills.manipulation.level localize=true}}
+          </select>
+        </div>
+        {{!-- Medicine --}}
+        <div class="rollable bold w-100 border-bottom subheader" data-key="skill" data-skill="medicine"
+          data-test="twdu.medicine">{{localize "twdu.medicine"}}</div>
+        <div class="grid p-2 skill-select">
+          <select name="system.skills.medicine.level" id="medicine">
+            {{selectOptions config.npcSkill selected=system.skills.medicine.level localize=true}}
+          </select>
+        </div>
+
+
       </div>
+
+
     </div>
   </div>
 
@@ -263,7 +248,7 @@
             <span class="bonus justify-self-center">{{localize 'twdu.bonus'}}</span>
             <span class="damage justify-self-center">{{localize 'twdu.damage'}}</span>
             <span class="group-weight justify-self-center">{{localize 'twdu.weight'}}</span>
-            <span class="group-skill justify-self-center">{{localize  'twdu.skill'}}</span>
+            <span class="group-skill justify-self-center">{{localize 'twdu.skill'}}</span>
             <span class="eq-store justify-self-end">{{localize 'twdu.actions'}}</span>
 
           </div>

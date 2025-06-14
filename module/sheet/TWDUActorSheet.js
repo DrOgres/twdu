@@ -529,6 +529,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     console.log("TWDU | _onRoll: ", event);
     event.preventDefault();
     let actor = this.actor;
+    console.log("TWDU | rolling actor: ", actor);
     let health;
     if(actor.type === 'animal'){
       health = actor.system.healthMax.value;
@@ -540,10 +541,10 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       return;
     }
     let target = event.currentTarget;
-    // console.log("TWDU | target: ", target);
+    console.log("TWDU | target: ", target);
     let key = target.dataset.key;
     if (key === undefined) {
-      // console.log("TWDU | key is undefined");
+      console.log("TWDU | key is undefined");
       key = target.dataset.itemType;
       //return;
     }
