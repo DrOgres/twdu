@@ -56,9 +56,17 @@ twdu.npcSkill = {
 
 twdu.npcSkillStore ={
     closeCombat: "system.skills.closeCombat.level",
-    trained: "system.skill.trained.level",
-    expert: "system.skill.expert.level",
-    master: "system.skill.master.level"
+    force: "system.skills.force.level",
+    endure: "system.skills.endure.level",
+    rangedCombat: "system.skills.rangedCombat.level",
+    mobility: "system.skills.mobility.level",
+    stealth: "system.skills.stealth.level",
+    scout: "system.skills.scout.level",
+    survival: "system.skills.survival.level",
+    tech: "system.skills.tech.level",
+    leadership: "system.skills.leadership.level",
+    manipulation: "system.skills.manipulation.level",
+    medicine: "system.skills.medicine.level",
 }
 
 

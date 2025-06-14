@@ -1,7 +1,7 @@
 import Clock from "../util/clock.js";
 
 
-export default class TWDUItemSheet extends ItemSheet {
+export default class TWDUItemSheet extends foundry.appv1.sheets.ItemSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["twdu", "sheet", "item", "item-sheet"],

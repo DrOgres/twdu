@@ -449,10 +449,30 @@ export function roll(
 }
 
 Hooks.on("renderChatLog", (app, html, data) => {
-  html.on("click", ".dice-button.push", _onPush);
+  console.log("Chat Log Rendered", app, html, data);
+  console.log("HTML length", html);
+  let div = document.createElement("div");
+  // the html in the div is represented with [object HTMLElement] so we need to convert it to a string
+  let htmlString = html.outerHTML;
+  console.log("HTML String", htmlString);
+  div.innerHTML = htmlString;
+  console.log("Div", div);
+  for (let element of div.getElementsByClassName("dice-button")) {
+    console.log("Element", element);
+    if (element.classList.contains("push")) {
+      console.log("contains push in element")
+      element.addEventListener("click", (e)=> {
+        this._onPush(e);
+      });
+      console.log(element);
+    } else if (element.classList.contains("apply-damage")) {
+    element.addEventListener("click", _onApplyDamage);
+    }
+  }
 });
 
 async function _onPush(event) {
+  console.log(event);
   event.preventDefault();
 
   // Get the message.

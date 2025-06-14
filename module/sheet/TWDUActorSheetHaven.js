@@ -6,7 +6,7 @@ export default class TWDUActorSheetHaven extends TWDUActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["twdu", "sheet", "actor", "haven"],
-        template: "systems/twdu/templates/actor/haven-sheet.html",
+        template: "systems/twdu/templates/sheets/haven-sheet.hbs",
         width: 800,
         height: "min-content",
        tabs: [
