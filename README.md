@@ -10,6 +10,7 @@ The Walking Dead Universe RPG system for Foundry VTT
 Release 4.0.0
 - V13 compatability
 - updated Germain Localization thanks [KaiderWeise](https://github.com/KaiderWeise) 
+- Fixex: NPC sheets changing skill levels only ever trageted the first opened sheet [#69](https://github.com/DrOgres/twdu/issues/69)
 
 Release 3.0.13
 - Fixed: NPC sheets completely borked [#77](https://github.com/DrOgres/twdu/issues/77)
