@@ -3,15 +3,17 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
     super.prepareData();
   }
   static activateListeners(html) {
-    // console.log("Activating listeners", html);
-    html.find(".dice-button.push").click((ev) => {
-      // console.log("Button clicked", ev);
-      _onPush(ev);
-    });
-    html.find(".dice-button.apply-damage").click((ev) => {
-      // console.log("Button clicked", ev);
-      _onApplyDamage(ev);
-    });
+    console.log("Activating listeners", html);
+    const button = html.querySelectorAll(".dice-button.push");
+    for (let i = 0; i<button.length; i++){
+      button[i].addEventListener('click', _onPush);
+    }
+
+    const damageButton = html.querySelectorAll(".dice-button.apply-damage");
+     for (let i = 0; i<damageButton.length; i++){
+      damageButton[i].addEventListener('click', _onApplyDamage);
+    }
+
   }
 }
 

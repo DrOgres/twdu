@@ -89,9 +89,7 @@ Hooks.once("init", async function () {
         
   //   ],
 
-  Hooks.on("renderChatMessage", (app, html, data) => {
-    // console.log("renderChatMessage", app, html, data);
-    // console.log("ChatMessageElectricState", ChatMessageES);
+  Hooks.on("renderChatMessageHTML", (app, html, data) => {
     ChatMessageTWDU.activateListeners(html);
     // ChatMessageVaesen.hideChatActionButtons(app, html, data);
   });
