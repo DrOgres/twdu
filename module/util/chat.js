@@ -3,7 +3,7 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
     super.prepareData();
   }
   static activateListeners(html) {
-    console.log("Activating listeners", html);
+   // console.log("Activating listeners", html);
     const button = html.querySelectorAll(".dice-button.push");
     for (let i = 0; i<button.length; i++){
       button[i].addEventListener('click', _onPush);
@@ -15,6 +15,22 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
     }
 
   }
+
+
+  static hideChatActionButtons = function (message, html, data) {
+  const card = html.querySelectorAll(".twdu.chat-card");
+
+  if (card.length > 0) {
+    let user = game.actors.get(card.attr("data-owner-id"));
+    if (user && !user.isOwner) {
+      console.log("card render is user owner? ".user.isOwner);
+      const buttons = card.find(".push");
+      buttons.each((_i, btn) => {
+        btn.style.display = "none";
+      });
+    }
+  }
+};
 }
 
 export async function buildChatCard(type, item, chatOptions = {}) {
@@ -147,21 +163,7 @@ async function _onPush(event) {
   await roll.toMessage();
 }
 
-export const hideChatActionButtons = function (message, html, data) {
-  const card = html.find(".twdu.chat-card");
 
-  if (card.length > 0) {
-    let user = game.actors.get(card.attr("data-owner-id"));
-
-    if (user && !user.isOwner) {
-      console.log("card render is user owner? ".user.isOwner);
-      const buttons = card.find(".push");
-      buttons.each((_i, btn) => {
-        btn.style.display = "none";
-      });
-    }
-  }
-};
 
 const twduChat = {
   template: {

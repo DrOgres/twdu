@@ -91,7 +91,7 @@ Hooks.once("init", async function () {
 
   Hooks.on("renderChatMessageHTML", (app, html, data) => {
     ChatMessageTWDU.activateListeners(html);
-    // ChatMessageVaesen.hideChatActionButtons(app, html, data);
+    ChatMessageTWDU.hideChatActionButtons(app, html, data);
   });
   
 
