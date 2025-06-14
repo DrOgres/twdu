@@ -151,9 +151,26 @@ input[type=search] {
   filter: drop-shadow(1px 1px 2px hsl(0, 0%, 0%));
 }
 
+.entry-name {
+  padding-inline: 15px;
+  background-color: hsl(53, 14%, 75%);
+}
+
 .chat-message {
+  position: relative;
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+}
+.chat-message .flavor-text {
+  color: hsl(355, 53%, 31%) !important;
+}
+
+.chat-message.whisper {
+  filter: sepia(0.5);
+}
+
+.chat-message.blind {
+  filter: grayscale(0.7);
 }
 
 .window-title,
@@ -1094,8 +1111,26 @@ button,
   margin-bottom: 1.26rem;
 }
 
+body.theme-dark, .application {
+  --color-text-primary: $highlight-1;
+  --color-text-secondary: $neutral-1;
+}
+
+.name-count, .control {
+  color: hsl(353, 45%, 30%);
+}
+
 .app.sheet .editor {
   min-height: 100px;
+}
+
+li .document, li .folder, .document-type .actors, li .update {
+  color: hsl(53, 14%, 15%);
+  list-style-type: none;
+}
+
+.folder {
+  color: hsl(0, 0%, 0%);
 }
 
 .editor-content {
@@ -1153,6 +1188,14 @@ a.content-link {
   background: unset;
   border: none;
   color: hsl(355, 53%, 31%);
+}
+
+.dialog-form.standard-form {
+  background-color: hsl(57, 15%, 6%);
+}
+.dialog-form.standard-form .standard-form {
+  background-color: hsl(57, 15%, 6%);
+  padding: 12px;
 }
 
 .standard-form {

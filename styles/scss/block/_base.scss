@@ -106,9 +106,29 @@ input[type="search"] {
   }
 }
 
+.entry-name{
+  padding-inline: 15px;
+  background-color: $neutral-2;
+}
+
 .chat-message {
+
+  position: relative;
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+
+  .flavor-text{
+    color: $highlight-2 !important;
+  }
+
+}
+.chat-message.whisper{
+  filter: sepia(.5);
+}
+
+
+.chat-message.blind{
+  filter: grayscale(.70);
 }
 
 .window-title,

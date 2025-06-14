@@ -1096,12 +1096,12 @@ class YearZeroRoll extends Roll {
    * @param {boolean}        [options.yzur]    Forces the roll of a YearZeroRoll in Foundry
    */
   constructor(formula, data = {}, options = {}) {
-    console.log(
-      "YearZeroRoll | constructor | formula, data, options",
-      formula,
-      data,
-      options
-    );
+    // console.log(
+    //   "YearZeroRoll | constructor | formula, data, options",
+    //   formula,
+    //   data,
+    //   options
+    // );
     if (options.name == undefined) options.name = data.name;
     if (options.game == undefined) options.game = data.game;
     if (options.maxPush == undefined) options.maxPush = data.maxPush;

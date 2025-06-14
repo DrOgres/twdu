@@ -1,10 +1,28 @@
 @use "../abstracts" as *;
 
+body.theme-dark, .application {
+  --color-text-primary: $highlight-1;
+  --color-text-secondary: $neutral-1;
+}
+
+.name-count, .control{
+  color: $highlight-1;
+}
+
+
 // Force proper height
 .app.sheet .editor {
   min-height: 100px;
 }
 
+li .document, li .folder, .document-type .actors, li .update{
+  color: $neutral-1;
+  list-style-type: none;
+}
+
+.folder{
+  color: $black;
+}
 
 .editor-content {
   padding: 0.5rem;
@@ -68,6 +86,15 @@ a.content-link{
   background: unset;
   border: none;
   color: $highlight-2;
+}
+
+.dialog-form.standard-form {
+  background-color: $header-0;
+
+  .standard-form {
+    background-color: $header-0;
+    padding: 12px;
+  }
 }
 
  .standard-form {

@@ -3,7 +3,7 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
     super.prepareData();
   }
   static activateListeners(html) {
-   // console.log("Activating listeners", html);
+  
     const button = html.querySelectorAll(".dice-button.push");
     for (let i = 0; i<button.length; i++){
       button[i].addEventListener('click', _onPush);
@@ -23,7 +23,7 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
   if (card.length > 0) {
     let user = game.actors.get(card.attr("data-owner-id"));
     if (user && !user.isOwner) {
-      console.log("card render is user owner? ".user.isOwner);
+
       const buttons = card.find(".push");
       buttons.each((_i, btn) => {
         btn.style.display = "none";
@@ -139,9 +139,8 @@ export async function buildChatCard(type, item, chatOptions = {}) {
 }
 
 async function _onPush(event) {
-  console.log(event);
-  event.preventDefault();
 
+  event.preventDefault();
   // Get the message.
   let chatCard = event.currentTarget.closest(".chat-message");
   let messageId = chatCard.dataset.messageId;
