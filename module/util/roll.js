@@ -35,7 +35,7 @@ export function prepareRollDialog(options) {
   let talents = actor.items.filter(
     (item) => item.type === "talent" && item.system.hasBonus
   );
-  console.log("TWDU | talents: ", talents);
+  // console.log("TWDU | talents: ", talents);
 
   let stressDice = 0;
   if (actor.type === "character") {
@@ -173,7 +173,7 @@ export function prepareRollDialog(options) {
  
 
   if (options.type === "vehicle") {
-    console.log("TWDU | vehicle options: ", options);
+    // console.log("TWDU | vehicle options: ", options);
     options.skillName = game.i18n.localize("twdu.mobility");
     options.skillDefault = actor.system.skills.mobility.value;
     options.attName = "AGILITY";
@@ -208,15 +208,15 @@ export function prepareRollDialog(options) {
     (Math.abs(options.vehicleDefault) || 0) -
     (Math.abs(options.armorPenalty) || 0) +
     (options.criticalPenalty || 0);
-    console.log("TWDU | options: ", options);
-  console.log("TWDU | subtotal: ", subtotal);
+  //   console.log("TWDU | options: ", options);
+  // console.log("TWDU | subtotal: ", subtotal);
   dialogHtml += buildSubTotalDialog(subtotal, stressDice);
   }
 
   if (options.type === "weapon") {
-    console.log("TWDU | skillName: ", options.skillName);
-    console.log("TWDU | skillKey: ", options.skillKey);
-    console.log("TWDU | talents: ", talents);
+    // console.log("TWDU | skillName: ", options.skillName);
+    // console.log("TWDU | skillKey: ", options.skillKey);
+    // console.log("TWDU | talents: ", talents);
     let damageTalents = talents.filter(
       (item) => item.system.bonusType === "twdu.damage"
     );
@@ -229,13 +229,13 @@ export function prepareRollDialog(options) {
         "damageTalent"
       );
     }
-    console.log("TWDU | Talents: ", talents);
+    // console.log("TWDU | Talents: ", talents);
     let skillTalents = talents.filter(
       (item) => item.system.skill ===  options.skillName.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
     );
-    console.log("TWDU | skillTalents: ", skillTalents);
+    // console.log("TWDU | skillTalents: ", skillTalents);
     if (skillTalents.length > 0) {
-      console.log("TWDU | skillTalents: ", skillTalents);
+      // console.log("TWDU | skillTalents: ", skillTalents);
       dialogHtml += buildSelectDialog(
         game.i18n.localize("twdu.ROLL.TALENTSKILL"),
         skillTalents,
@@ -245,8 +245,8 @@ export function prepareRollDialog(options) {
   }
 
   if (options.type === "skill") {
-    console.log("TWDU | skillName: ", options.skillName);
-    console.log("TWDU | skillKey: ", options.skillKey);
+    // console.log("TWDU | skillName: ", options.skillName);
+    // console.log("TWDU | skillKey: ", options.skillKey);
     let gear = actor.items.filter(
       (item) => item.type === "gear" && item.system.isEquipped
     );
@@ -276,15 +276,15 @@ export function prepareRollDialog(options) {
    
    
     
-    console.log("TWDU | Talents: ", talents);
-    console.log("TWDU | options.skillName: ", options);
+    // console.log("TWDU | Talents: ", talents);
+    // console.log("TWDU | options.skillName: ", options);
     let skillTalents = talents.filter(
       (item) => item.system.skill === options.skillKey.toLowerCase().toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase())
     
     );
-    console.log("TWDU | skillTalents: ", skillTalents);
+    // console.log("TWDU | skillTalents: ", skillTalents);
     if (skillTalents.length > 0) {
-      console.log("TWDU | skillTalents: ", skillTalents);
+      // console.log("TWDU | skillTalents: ", skillTalents);
       dialogHtml += buildSelectDialog(
         game.i18n.localize("twdu.ROLL.TALENTSKILL"),
         skillTalents,
@@ -320,7 +320,7 @@ export function prepareRollDialog(options) {
           icon: '<i class="fas fa-check"></i>',
           label: game.i18n.localize("twdu.ROLL.ROLL"),
           callback: (html) => {
-            console.log("TWDU | rolled", options);
+            // console.log("TWDU | rolled", options);
             let attribute = options.attributeDefault;
             let skill = options.skillDefault;
             let bonus = html.find("#bonus")[0].value;
@@ -330,7 +330,7 @@ export function prepareRollDialog(options) {
             let critPenalty = options.criticalPenalty;
             let armorPenalty = options.armorPenalty;
 
-            console.log("TWDU | Armor Penalty: ", armorPenalty);
+            // console.log("TWDU | Armor Penalty: ", armorPenalty);
 
             // get the gear bonus
             let gearBonus = 0;
@@ -423,7 +423,7 @@ export function roll(
   
 ) {
 
-  console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, vehicleBonus, damage, armorPenalty, criticalPenalty, gearBonus, talentBonus, armorBonus);
+  // console.log("TWUD | roll: ", type, sheet, testName, attribute, skill, bonus, weaponBonus, vehicleBonus, damage, armorPenalty, criticalPenalty, gearBonus, talentBonus, armorBonus);
   // roll the dice
   sheet.roll = new YearZeroRoll();
   sheet.lastTestName = testName;
@@ -449,22 +449,22 @@ export function roll(
 }
 
 Hooks.on("renderChatLog", (app, html, data) => {
-  console.log("Chat Log Rendered", app, html, data);
-  console.log("HTML length", html);
+  // console.log("Chat Log Rendered", app, html, data);
+  // console.log("HTML length", html);
   let div = document.createElement("div");
   // the html in the div is represented with [object HTMLElement] so we need to convert it to a string
   let htmlString = html.outerHTML;
-  console.log("HTML String", htmlString);
+  // console.log("HTML String", htmlString);
   div.innerHTML = htmlString;
-  console.log("Div", div);
+  // console.log("Div", div);
   for (let element of div.getElementsByClassName("dice-button")) {
-    console.log("Element", element);
+    // console.log("Element", element);
     if (element.classList.contains("push")) {
-      console.log("contains push in element")
+      // console.log("contains push in element")
       element.addEventListener("click", (e)=> {
         this._onPush(e);
       });
-      console.log(element);
+      // console.log(element);
     } else if (element.classList.contains("apply-damage")) {
     element.addEventListener("click", _onApplyDamage);
     }
@@ -472,7 +472,7 @@ Hooks.on("renderChatLog", (app, html, data) => {
 });
 
 async function _onPush(event) {
-  console.log(event);
+  // console.log(event);
   event.preventDefault();
 
   // Get the message.
@@ -566,11 +566,11 @@ export async function rollClockTest(actor, sheet, item){
   };
 
   let r = new YearZeroRoll(formula, data, options);
-  console.log("TWDU | rollClockTest: ", r);
+  // console.log("TWDU | rollClockTest: ", r);
   await r.evaluate();
   let totalResult =  r._total;
-  console.log("TWDU | rollClockTest total: ", r._total);
-  console.log("TWDU | rollClockTest evaluated: ", r._evaluated);
+  // console.log("TWDU | rollClockTest total: ", r._total);
+  // console.log("TWDU | rollClockTest evaluated: ", r._evaluated);
   let chatMessage = `
   <div class="card-holder flex-row w-100" style="position: relative;">
     <div class="roll-token m-0 p-1 header group">
@@ -598,7 +598,7 @@ export async function rollClockTest(actor, sheet, item){
     </div>
   </div>
   `;
-  console.log("TWDU | clock: ", clock);
+  // console.log("TWDU | clock: ", clock);
   if (clock > r._total) {
 
     chatMessage += `
@@ -659,13 +659,13 @@ function buildInputDialog(name, value, type) {
 }
 
 function buildSelectDialog(name, value, type) {
-  console.log("TWDU | buildSelectDialog: ", name, value, type);
+  // console.log("TWDU | buildSelectDialog: ", name, value, type);
 
   // parse out the value to get the <option> tags for the select
   let options = "";
   for (let i = 0; i < value.length; i++) {
     let item = value[i];
-    console.log("TWDU | item: ", item);
+    // console.log("TWDU | item: ", item);
     if(item.type !== "vehicle"){
     options +=
       "<option id='" +
