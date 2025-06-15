@@ -74,6 +74,14 @@ body {
   color: hsl(57, 15%, 26%);
 }
 
+.directory {
+  color: hsl(57, 15%, 26%);
+}
+
+.mainset {
+  color: hsl(57, 15%, 6%) !important;
+}
+
 a.content-link {
   background: unset;
   border: none;

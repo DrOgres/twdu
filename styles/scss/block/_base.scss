@@ -24,6 +24,14 @@ body {
   color: $header-1;
 }
 
+.directory{
+  color: $header-1;
+}
+
+.mainset{
+  color: $header-0 !important;
+}
+
 a.content-link {
   background: unset;
   border: none;
