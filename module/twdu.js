@@ -14,6 +14,7 @@ import TWDUActorSheetNPC from "./sheet/TWDUActorSheetNPC.js";
 import TWDUActorSheetAnimal from "./sheet/TWDUActorSheetAnimal.js";
 import TWDUActorSheetHaven from "./sheet/TWDUActorSheetHaven.js";
 import TWDUActorSheetChallenge from "./sheet/TWDUActorSheetChallenge.js";
+import ChatMessageTWDU from "./util/chat.js";
 // import TWDUActorSheetPCv2 from "./sheet/TWDUActorSheetPCv2.js";
 
 Hooks.once("init", async function () {
@@ -22,6 +23,7 @@ Hooks.once("init", async function () {
   console.log("TWDU | CONFIG.twdu: ", CONFIG.twdu);
 
   CONFIG.Actor.documentClass = TWDUActor;
+  CONFIG.ChatMessage.documentClass = ChatMessageTWDU;
 
   
 
@@ -51,19 +53,19 @@ Hooks.once("init", async function () {
     },
   ]);
 
-  Items.unregisterSheet("core", ItemSheet);
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
 
-  Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
+  foundry.documents.collections.Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
 
-  Actors.unregisterSheet("core", ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
   //TODO set up sheets for each actor type to be able to set default options correctly for each type
   // Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
 
-  Actors.registerSheet("twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
-  Actors.registerSheet("twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
-  Actors.registerSheet("twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
-  Actors.registerSheet("twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
-  Actors.registerSheet("twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
+  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
 
 
 
@@ -87,7 +89,11 @@ Hooks.once("init", async function () {
         
   //   ],
 
-
+  Hooks.on("renderChatMessageHTML", (app, html, data) => {
+    ChatMessageTWDU.activateListeners(html);
+    ChatMessageTWDU.hideChatActionButtons(app, html, data);
+  });
+  
 
 
   // Preload Handlebars Templates
@@ -210,37 +216,48 @@ Handlebars.registerHelper('lowercase', function (string){
 
 
 Hooks.on("getSceneControlButtons", (controls) => {
-  let group = controls.find((c) => c.name === "token");
-  group.tools.push(
-    {
-      name: "add",
-      title: "CONTROL.addThreatLevel",
+
+  const tokenControls = Array.isArray(controls)
+				? controls.find((c) => c.name === "token")
+				: controls.tokens;
+	if (!tokenControls) return;
+
+  const tools = tokenControls.tools;
+
+    tools['threatLevelIncrease'] = {
       icon: "fas fa-plus",
-      button: true,
+      name: "threatLevelIncrease",
+      order: 90,
+      title: "CONTROL.addThreatLevel",
       visible: game.user.isGM,
-      onClick: () => increaseThreatLevel(1),
-    },
-    {
-      name: "subtract",
-      title: "CONTROL.subThreatLevel",
+      onClick: ()=> increaseThreatLevel(1),
+       button: true
+    }
+
+        tools['threatLevelDecrease'] = {
       icon: "fas fa-minus",
-      button: true,
+      name: "threatLevelDecrease",
+      order: 91,
+      title: "CONTROL.subThreatLevel",
       visible: game.user.isGM,
-      onClick: () => decreaseThreatLevel(1),
-    },
-    {
-      name: "showInterface",
-      title: "CONTROL.displayThreatLevel",
+      onClick: ()=> decreaseThreatLevel(1),
+       button: true
+    }
+
+        tools['threatLevelVisibility'] = {
       icon: "fas fa-biohazard",
-      button: true,
+      name: "threatLevelVisibility",
+      order: 92,
+      title: "CONTROL.displayThreatLevel",
       visible: game.settings.get("twdu", "threatLevelVisibility")
         ? true
         : game.user.isGM,
       onClick: () => {
         ThreatLevelDisplay.render();
       },
+       button: true
     }
-  );
+
 });
 
 Hooks.once("diceSoNiceReady", (dice3d) => {

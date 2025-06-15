@@ -3,7 +3,6 @@ export function migrate() {
 
   const currentVersion = game.settings.get("twdu", "systemMigrationVersion");
   // console.log("Data CurrentVersion", currentVersion);
-
   Object.keys(migrations).forEach(function (key) {
     // console.log("Data Key", key);
     // console.log("Data CurrentVersion", currentVersion);
@@ -54,7 +53,9 @@ async function migrateTo3_0_12() {
 
     if (item.system.range && item.system.range.startsWith("twdu.")) {
       let range = item.system.range.replace("twdu.", "");
+
       // console.log("Range | ", range);
+
       await item.update({ "system.range": range });
     }
   }
@@ -64,7 +65,9 @@ async function migrateTo3_0_12() {
     "systemMigrationVersion",
     game.system.version
   );
-  ui.notifications.info("Migration to 3.0.1 completed!", options);
+
+  ui.notifications.info("Migration to 3.0.12 completed!", options);
+
 }
 
 async function migrateTo3_0_1() {
@@ -101,7 +104,9 @@ async function migrateTo3_0_1() {
     }
     if (item.system.range && item.system.range.startsWith("twdu.")) {
       let range = item.system.range.replace("twdu.", "");
+
       // console.log("Range | ", range);
+
       await item.update({ "system.range": range });
     }
   }
@@ -202,15 +207,17 @@ function migrateActorData(actor, version) {
       break;
     case "3.0.0":
       if (actor.type !== "animal") return updateData;
+
       // console.log("Migrating actor to 3.0.0 | ", actor);
       updateData["system.healthMax.value"] = actor.system.health;
       updateData["system.healthMax.max"] = actor.system.health;
-
       // console.log("Health Max | ", updateData);
+
       break;
 
     case "3.0.1": {
       let items = actor.items;
+
       // console.log("Items | ", items);
       for (let item of items) {
         // console.log("Item | ", item);
@@ -223,7 +230,9 @@ function migrateActorData(actor, version) {
 
         if (item.system.range && item.system.range.startsWith("twdu.")) {
           let range = item.system.range.replace("twdu.", "");
+
           // console.log("Range | ", range);
+
           updateData[item.id] = range;
         }
       }
@@ -231,6 +240,7 @@ function migrateActorData(actor, version) {
     }
     case "3.0.12": {
       let items = actor.items;
+
       // console.log("Items | ", items);
       for (let item of items) {
         // console.log("Item | ", item);
@@ -238,28 +248,35 @@ function migrateActorData(actor, version) {
         if (item.system.skill && item.system.skill.startsWith("twdu.")) {
           let skill = item.system.skill.replace("twdu.", "");
           // console.log("Skill | ", skill);
+
           updateData[item.id] = skill;
         }
 
         if (item.system.range && item.system.range.startsWith("twdu.")) {
           let range = item.system.range.replace("twdu.", "");
+
           // console.log("Range | ", range);
+
           updateData[item.id] = range;
         }
       }
       break;
     }
   }
+
   // console.log(updateData);
+
   return updateData;
 }
 
 function setToken(actor) {
   if (actor.type !== "animal") return;
+
   // console.log("Setting Token Image for Animal Actor | ", actor);
   // console.log("Token", actor.prototypeToken);
   let token = actor.prototypeToken;
   // console.log("Token", token);
+
   token.texture.src = "systems/twdu/assets/images/twdu-animal.png";
   token.bar1 = { attribute: "healthMax" };
   actor.update({ prototypeToken: token });

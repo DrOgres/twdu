@@ -6,7 +6,7 @@ export default class TWDUActorSheetChallenge extends TWDUActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["twdu", "sheet", "actor", "challenge"],
-        template: "systems/twdu/templates/actor/challenge-sheet.html",
+        template: "systems/twdu/templates/sheets/challenge-sheet.hbs",
         width: 850,
         height: "min-content",
        tabs: [

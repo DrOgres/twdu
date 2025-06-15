@@ -1096,12 +1096,12 @@ class YearZeroRoll extends Roll {
    * @param {boolean}        [options.yzur]    Forces the roll of a YearZeroRoll in Foundry
    */
   constructor(formula, data = {}, options = {}) {
-    console.log(
-      "YearZeroRoll | constructor | formula, data, options",
-      formula,
-      data,
-      options
-    );
+    // console.log(
+    //   "YearZeroRoll | constructor | formula, data, options",
+    //   formula,
+    //   data,
+    //   options
+    // );
     if (options.name == undefined) options.name = data.name;
     if (options.game == undefined) options.game = data.game;
     if (options.maxPush == undefined) options.maxPush = data.maxPush;
@@ -1895,7 +1895,7 @@ class YearZeroRoll extends Roll {
       }
     }
     // // return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, { parts });
-    return renderTemplate(this.constructor.TOOLTIP_TEMPLATE, {
+    return foundry.applications.handlebars.renderTemplate(this.constructor.TOOLTIP_TEMPLATE, {
       parts,
       pushed: this.pushed,
       pushCounts: this.pushed
@@ -1917,7 +1917,7 @@ class YearZeroRoll extends Roll {
   async getRollInfos(template = null) {
     template = template ?? CONFIG.YZUR?.Roll?.infosTemplate;
     const context = { roll: this };
-    return renderTemplate(template, context);
+    return foundry.applications.handlebars.renderTemplate(template, context);
   }
 
   /* -------------------------------------------- */
@@ -1977,7 +1977,7 @@ class YearZeroRoll extends Roll {
     };
 
     // Renders the roll display template.
-    return renderTemplate(chatOptions.template, chatData);
+    return foundry.applications.handlebars.renderTemplate(chatOptions.template, chatData);
   }
 
   /* -------------------------------------------- */

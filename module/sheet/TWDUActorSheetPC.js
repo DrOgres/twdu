@@ -6,7 +6,7 @@ export default class TWDUActorSheetPC extends TWDUActorSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
         classes: ["twdu", "sheet", "actor", "pc"],
-        template: "systems/twdu/templates/actor/character-sheet.html",
+        template: "systems/twdu/templates/sheets/character-sheet.hbs",
         width: 800,
         height: 800,
        tabs: [

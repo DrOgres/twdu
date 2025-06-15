@@ -5,11 +5,15 @@
   --fa-display: inherit;
 }
 
+body {
+  --color-light-4: $neutral-4;
+}
+
 .sidebar {
   float: left;
   color: hsl(0, 0%, 100%);
   width: 60%;
-  background: $header-1;
+  background: $header-2;
   padding-block: 1rem;
   padding-left: 1.2rem;
   padding-right: 2rem;
@@ -18,6 +22,14 @@
 
 .directory .directory-header .header-search input {
   color: $header-1;
+}
+
+.directory{
+  color: $header-1;
+}
+
+.mainset{
+  color: $header-0 !important;
 }
 
 a.content-link {
@@ -36,16 +48,30 @@ a.content-link {
   background: none;
 }
 #pause > img {
+
+  content: url('../assets/images/misc/hand.png');
+  filter: drop-shadow(5px 7px 1px $highlight-5);
   width: 200px;
   height: auto;
   top: -50px;
   left: calc(50% - 100px);
   opacity: 1;
+
 }
+
 #pause > figcaption {
+  color: $highlight-5;
   font-family: "Nu Gothic", sans-serif;
-  font-size: var(--font-size-48);
+  font-size: 1.5rem;
   text-shadow: 0px 3px 5px rgb(0, 0, 0);
+}
+
+figure figcaption{
+  font-family: 'Ash' , sans-serif;
+  font-size: 1.2rem;
+  color: $neutral-3;
+  margin-top: 0;
+  text-align: center;
 }
 
 .fa-spin {
@@ -88,14 +114,35 @@ input[type="search"] {
   }
 }
 
+.entry-name{
+  padding-inline: 15px;
+  background-color: $neutral-2;
+}
+
 .chat-message {
+
+  position: relative;
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+
+  .flavor-text{
+    color: $highlight-2 !important;
+  }
+
+}
+.chat-message.whisper{
+  filter: sepia(.5);
+}
+
+
+.chat-message.blind{
+  filter: grayscale(.70);
 }
 
 .window-title,
 .header-button {
-  color: $neutral-3;
+  color: $neutral-3 !important;
+  font-size: 1.1rem;
 }
 
 a:hover {
@@ -138,6 +185,10 @@ a:hover {
     border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10
       stretch;
   }
+}
+
+nav.tabs [data-tab] {
+  color: $neutral-1;
 }
 
 img {
@@ -237,6 +288,20 @@ optgroup {
 
 .ds-1:hover {
   box-shadow: 0.125rem 0.125rem 0 $header-bg-1;
+}
+
+fieldset {
+  p {
+    color: $neutral-1;
+
+    a {
+      color: $highlight-2;
+    }
+  }
+
+  pre {
+    color: $neutral-1;
+  }
 }
 
 .roll-fields {
@@ -347,11 +412,11 @@ button,
 }
 
 .sheet.journal-entry .scrollable {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
   padding-right: 0.5rem;
   overflow: auto auto;
 }
