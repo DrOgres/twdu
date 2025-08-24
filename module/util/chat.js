@@ -3,7 +3,6 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
     super.prepareData();
   }
   static activateListeners(html) {
-  
     const button = html.querySelectorAll(".dice-button.push");
     for (let i = 0; i<button.length; i++){
       button[i].addEventListener('click', _onPush);

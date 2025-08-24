@@ -160,25 +160,32 @@ input[type=search] {
 }
 
 .entry-name {
+  color: hsl(53, 14%, 75%);
   padding-inline: 15px;
-  background-color: hsl(53, 14%, 75%);
+  background: url(/systems/twdu/assets/images/misc/scene-bg.webp);
+  font-size: 1.5em;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 2px hsla(36, 11%, 53%, 0.3);
+  text-shadow: 2px 2px 0 hsl(57, 15%, 6%), -1px -1px 0 hsl(57, 15%, 6%), 1px -1px 0 hsl(57, 15%, 6%), -1px 1px 0 hsl(57, 15%, 6%), 1px 1px 0 hsl(57, 15%, 6%);
 }
 
 .chat-message {
   position: relative;
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+  filter: sepia(0.5);
 }
 .chat-message .flavor-text {
   color: hsl(355, 53%, 31%) !important;
 }
 
 .chat-message.whisper {
-  filter: sepia(0.5);
+  filter: grayscale(0.6) brightness(101%);
 }
 
 .chat-message.blind {
-  filter: grayscale(0.7);
+  filter: saturate(20%) grayscale(0.95) brightness(120%);
 }
 
 .window-title,

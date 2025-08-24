@@ -114,9 +114,23 @@ input[type="search"] {
   }
 }
 
+
 .entry-name{
+  color: $neutral-2;
   padding-inline: 15px;
-  background-color: $neutral-2;
+  background: url(/systems/twdu/assets/images/misc/scene-bg.webp);
+  // background-color: $neutral-2;
+  font-size: 1.5em;
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-stroke: 2px $header-bg-2;
+   text-shadow:
+       2px 2px 0 $header-0,
+     -1px -1px 0 $header-0,  
+      1px -1px 0 $header-0,
+      -1px 1px 0 $header-0,
+       1px 1px 0 $header-0;
 }
 
 .chat-message {
@@ -124,6 +138,7 @@ input[type="search"] {
   position: relative;
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+  filter: sepia(.5);
 
   .flavor-text{
     color: $highlight-2 !important;
@@ -131,12 +146,13 @@ input[type="search"] {
 
 }
 .chat-message.whisper{
-  filter: sepia(.5);
+  filter: grayscale(.60) brightness(101%);
+  
 }
 
 
 .chat-message.blind{
-  filter: grayscale(.70);
+  filter: saturate(20%) grayscale(.950) brightness(120%) ;
 }
 
 .window-title,
