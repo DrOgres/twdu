@@ -188,6 +188,10 @@ input[type=search] {
   filter: saturate(20%) grayscale(0.95) brightness(120%);
 }
 
+.chat-input {
+  background: hsl(53, 14%, 75%);
+}
+
 .window-title,
 .header-button {
   color: hsl(53, 10%, 68%) !important;
