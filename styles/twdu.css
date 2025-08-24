@@ -74,10 +74,6 @@ body {
   color: hsl(57, 15%, 26%);
 }
 
-.directory {
-  color: hsl(57, 15%, 26%);
-}
-
 .mainset {
   color: hsl(57, 15%, 6%) !important;
 }
@@ -222,7 +218,7 @@ a:hover {
 }
 
 .tabs {
-  background-color: hsla(36, 11%, 53%, 0.3);
+  background-color: hsla(36, 11%, 68%, 0.5);
   font: 1.5em "Ash", sans-serif;
   color: hsl(57, 15%, 26%);
   text-transform: uppercase;
@@ -283,10 +279,9 @@ input[type=text] {
   -o-border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
   background-color: transparent;
-  color: hsl(57, 15%, 6%);
 }
 input[type=text]:hover {
-  cursor: pointer;
+  cursor: text;
 }
 input[type=text].box {
   min-width: 50px;
@@ -311,7 +306,6 @@ select {
      border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10 stretch;
   border-radius: 0;
   font-family: "Nu Gothic", sans-serif;
-  color: hsl(57, 15%, 26%);
   background: transparent;
 }
 
@@ -334,9 +328,6 @@ optgroup {
   box-shadow: 0.125rem 0.125rem 0 hsla(36, 11%, 43%, 0.5);
 }
 
-fieldset p {
-  color: hsl(53, 14%, 15%);
-}
 fieldset p a {
   color: hsl(355, 53%, 31%);
 }
@@ -419,6 +410,7 @@ fieldset pre {
 
 button,
 .dialog-buttons {
+  padding: 2px;
   background: hsl(53, 10%, 68%);
   box-shadow: 0.25rem 0.25rem 0 hsla(36, 11%, 43%, 0.5);
   color: hsl(57, 15%, 26%);
@@ -432,6 +424,11 @@ button,
   background-color: hsl(53, 14%, 75%);
 }
 
+button.ui-control[aria-pressed=true] {
+  background-color: hsl(353, 45%, 30%);
+  color: hsl(353, 24%, 85%);
+}
+
 .profile-img {
   width: 100%;
   height: auto;
@@ -442,6 +439,22 @@ button,
 .sheet.journal-entry .scrollable {
   padding-right: 0.5rem;
   overflow: auto auto;
+}
+
+table {
+  background-color: #dddddd !important;
+}
+table th {
+  height: 2rem;
+}
+table tr {
+  align-items: flex-start;
+  min-height: -moz-max-content;
+  min-height: max-content;
+}
+table tr td {
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .grid {
@@ -1209,36 +1222,12 @@ a.content-link {
   color: hsl(355, 53%, 31%);
 }
 
-.dialog-form.standard-form {
-  background-color: hsl(57, 15%, 6%);
-}
 .dialog-form.standard-form .standard-form {
-  background-color: hsl(57, 15%, 6%);
   padding: 12px;
 }
 
-.standard-form {
-  background-color: hsl(53, 14%, 75%);
-}
-.standard-form legend {
-  color: hsl(53, 14%, 15%);
-}
 .standard-form label, .standard-form .label {
-  color: hsl(53, 14%, 15%);
-}
-.standard-form h1 {
-  color: hsl(57, 15%, 26%);
-}
-.standard-form .hint {
-  color: hsl(355, 53%, 31%);
-}
-
-.filter {
-  color: hsl(53, 14%, 15%);
-}
-
-.status, .count {
-  color: hsl(53, 14%, 15%);
+  color: hsl(353, 24%, 85%);
 }
 
 .show-details:hover {
@@ -1422,6 +1411,18 @@ a.content-link {
 
 .color-h0 {
   color: hsl(57, 15%, 6%) !important;
+}
+
+header.journal-page-header h1 {
+  color: hsl(57, 15%, 26%);
+}
+
+.sheet.journal-entry .journal-entry-content {
+  background-color: hsla(36, 11%, 95%, 0.7);
+}
+
+.sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-number, .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-index {
+  color: hsl(57, 15%, 55%);
 }
 
 :root {

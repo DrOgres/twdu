@@ -24,9 +24,9 @@ body {
   color: $header-1;
 }
 
-.directory{
-  color: $header-1;
-}
+// .directory{
+//   color: $header-1;
+// }
 
 .mainset{
   color: $header-0 !important;
@@ -190,7 +190,7 @@ a:hover {
 }
 
 .tabs {
-  background-color: $header-bg-2;
+  background-color: $header-bg-0;
   font: 1.5em "Ash", sans-serif;
   color: $header-1;
   text-transform: uppercase;
@@ -233,6 +233,7 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   border: none;
+  
 
   input {
     height: 2rem !important;
@@ -257,10 +258,10 @@ input[type="text"] {
   border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10
     stretch;
   background-color: transparent;
-  color: $header-0;
+
 
   &:hover {
-    cursor: pointer;
+    cursor: text;
   }
 
   &.box {
@@ -287,7 +288,6 @@ select {
     stretch;
   border-radius: 0;
   font-family: "Nu Gothic", sans-serif;
-  color: $header-1;
   background: transparent;
 }
 
@@ -312,7 +312,7 @@ optgroup {
 
 fieldset {
   p {
-    color: $neutral-1;
+
 
     a {
       color: $highlight-2;
@@ -411,6 +411,7 @@ fieldset {
 
 button,
 .dialog-buttons {
+  padding: 2px;
   background: $neutral-3;
   box-shadow: 0.25rem 0.25rem 0 $header-bg-1;
   color: $header-1;
@@ -422,6 +423,12 @@ button,
 .dialog-buttons button.default:hover {
   box-shadow: 0.125rem 0.125rem 0 $header-bg-1;
   background-color: $neutral-2;
+}
+
+button.ui-control[aria-pressed="true"] {
+  
+  background-color: $highlight-1;
+  color: $highlight-5;
 }
 
 .profile-img {
@@ -439,4 +446,21 @@ button,
   // left: 0;
   padding-right: 0.5rem;
   overflow: auto auto;
+}
+
+
+table { 
+  background-color: #dddddd !important;
+
+  th {
+    height: 2rem;
+  }
+  tr{
+    align-items: flex-start;
+    min-height: max-content;
+
+    td {
+      height: max-content;
+    }
+  }
 }

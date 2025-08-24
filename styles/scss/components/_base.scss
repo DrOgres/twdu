@@ -89,41 +89,41 @@ a.content-link{
 }
 
 .dialog-form.standard-form {
-  background-color: $header-0;
+  // background-color: $header-0;
 
   .standard-form {
-    background-color: $header-0;
+    // background-color: $header-0;
     padding: 12px;
   }
 }
 
  .standard-form {
-  background-color: $neutral-2;
+  // background-color: $neutral-2;
 
-  legend {
-    color: $neutral-1;
-  }
+  // legend {
+  //   color: $neutral-1;
+  // }
 
   label, .label {
-    color: $neutral-1;
+    color: $highlight-5;
   }
 
-  h1 {
-    color: $header-1;
-  }
+  // h1 {
+  //   color: $header-1;
+  // }
 
-  .hint {
-    color: $highlight-2;
-  }
+//   .hint {
+//     // color: $highlight-2;
+//   }
  }
 
- .filter {
-  color: $neutral-1;
- }
+//  .filter {
+//   // color: $neutral-1;
+//  }
 
- .status, .count {
-  color: $neutral-1;
- }
+//  .status, .count {
+//   color: $neutral-1;
+//  }
 
 
 .show-details:hover{
@@ -315,3 +315,19 @@ a.content-link{
    color: $header-0 !important; 
  }
 
+ header.journal-page-header{
+  h1{
+    color: $header-1;
+  }
+ }
+
+
+ .sheet.journal-entry .journal-entry-content{
+  background-color: $header-bg-5;
+ }
+
+
+ //foundry override
+ .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-number, .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-index{
+  color: $header-2;
+ }
