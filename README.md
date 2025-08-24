@@ -7,9 +7,12 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 4.0.1
+- A host of CSS fixes to improve readability and usability in the system this should address [#79](https://github.com/DrOgres/twdu/issues/79) and related issues [#81](https://github.com/DrOgres/twdu/issues/81)  and [#80](https://github.com/DrOgres/twdu/issues/80) 
+
 Release 4.0.0
 - V13 compatability
-- updated Germain Localization thanks [KaiderWeise](https://github.com/KaiderWeise) 
+- updated German Localization thanks [KaiderWeise](https://github.com/KaiderWeise) 
 - Fixex: NPC sheets changing skill levels only ever trageted the first opened sheet [#69](https://github.com/DrOgres/twdu/issues/69)
 
 Release 3.0.13
