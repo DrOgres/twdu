@@ -1,7 +1,22 @@
 {
+    "CONTROL":{
+        "addThreatLevel": "Augmenter le niveau de menace",
+        "subThreatLevel": "Diminuer le niveau de menace",
+        "displayThreatLevel": "Afficher l'interface de menace"
+
+    },
     "twdu": {
+        
+        "SheetClassCharacter": "Personnage Joueur",
+        "SheetClassCharacterLegacy": "Personnage Joueur (Legacy)",
+        "SheetClassNPC": "PNJ",
+        "SheetClassHaven": "Refuge",
+        "SheetClassChallenge": "Épreuve",
+        "SheetClassAnimal": "Animal",
+        
         "name": "Nom",
         "archetype": "Archétype",
+        "haven": "Refuge",
         "background": "Historique",
         "description": "Description",
         "pcAnchor": "PJ Attache",
@@ -71,19 +86,19 @@
         "issue": "Problème",
         "experience": "Expérience",
         "encumbrance": "Encombrement",
-        "encSlots": "Emplacements",
-        "equipStore": "Équiper/Stock",
-        "equip": "Equiper",
-        "store": "Stock",
+        "encSlots": "Cases d'encombrement",
+        "equipStore": "Équiper/En réserve",
+        "equip": "Équiper",
+        "store": "Stocker",
         "actions": "Actions",
 
-        "gear": "Equipement",
+        "gear": "Équipement",
         "criticalInjury": "Blessure critique",
         "criticalInjuries": "Blessures critiques",
         "weapons": "Armes",
-        "armor": "Armure",
-        "tinyItems": "Petits objets",
-        "tinyItem": "Petit objet",
+        "armor": "Protection",
+        "tinyItems": "Objets minuscules",
+        "tinyItem": "Objet minuscule",
         "project": "Projet",
         "vehicle": "Véhicule",
         "vehicles": "Véhicules",
@@ -105,10 +120,10 @@
         
 
         
-        "unharmed": "Indemne",
-        "bruised": "Contusionné",
-        "battered": "Malmené",
-        "broken": "Brisé",
+        "unharmed": "3. Indemne",
+        "bruised": "2. Contusionné",
+        "battered": "1. Malmené",
+        "broken": "0. Brisé",
 
         "weight": "Poids",
         "effect": "Effet",
@@ -130,18 +145,35 @@
         "bonusType": "Type de bonus",
         "prerequisite": "Prérequis",
 
-        "equipedGear": "Équipement équipé",
-        "storedGear": "Équipement stocké",
+        "equipedGear": "Équipement emporté",
+        "storedGear": "Équipement en réserve",
         "equipedWeapons": "Armes équipées",
-        "storedWeapons": "Armes stockées",
-        "equipedArmor": "Armure équipée",
-        "storedArmor": "Armure stockée",
-        "storedVehicles": "Véhicules stockés",
+        "storedWeapons": "Armes en réserve",
+        "equipedArmor": "Protection équipée",
+        "storedArmor": "Protection en réserve",
+        "storedVehicles": "Véhicules en réserve",
 
+        "npcs": "PNJs",
+        "rumors": "Rumeurs",
+        "challenges": "Épreuves",
+        "endgame": "Dénouement",
+        "factions": "Factions",
+        "source": "Source",
+        "fate": "Destin",
+        "clock": "Cadran",
+        "secret": "Secret",
+        "isSecret": "Il s'agit d'un secret et sera donc caché aux joueurs. Cochez pour activer",
+        "isNotSecret": "Il ne s'agit pas d'un secret et sera donc révélé aux joueurs. Cochez pour activer",
+        "clockNoAdvance": "Le Cadran n'avance pas.",
+        "clockAdvance": "Le Cadran avance.",
+        
+        "threatLevel": "Niveau de menace",
         "threatDisplay": "Afficher la menace aux joueurs",
-        "threatDisplayHint": "Si activé, le niveau de menace sera affiché pour les joueurs dans les contrôles de couche.",
+        "threatDisplayHint": "Si activé, le niveau de menace sera affiché pour les joueurs dans le panel de contrôle.",
         "prototypeTokenSettings": "Utiliser les paramètres de jeton recommandés",
         "prototypeTokenSettingsHint": "Si activé, les paramètres du jeton seront réglés sur les paramètres recommandés pour le système.",
+        "havenSurvivorDisplay": "Afficher le portrait des Survivants",
+        "havenSurvivorDisplayHint": "Si activé, les portraits des survivants seront affichés dans la fiche de Refuge.",
 
 
         "ui.icon": "Icône",
@@ -152,14 +184,16 @@
         "ui.chat": "Chat",
         "ui.edit": "Éditer",
         "ui.wrongItemType": "\"{type}\" les objets ne peuvent pas être ajoutés à un {actor}!",
-        "ui.cantRollWhenBroken": "Vous ne pouvez pas lancer quand vous êtes cassé !",
-        "ui.messedUp": "Vous avez gâché !",
+        "ui.cantRollWhenBroken": "Vous ne pouvez pas lancer quand vous êtes brisé !",
+        "ui.messedUp": "Vous avez merdé !",
         "ui.subtotal": "Sous-total",
         "ui.skillDice": "Dés de compétence",
         "ui.stressDice": "Dés de stress",
         "ui.addexp": "Clic gauche pour ajouter de l'expérience, clic droit pour soustraire de l'expérience",
-
-        "threatLevel": "Niveau de menace",
+        "us.survivorNotFound" : "Survivant manquant ou mauvais ID retiré de la liste",
+        "ui.havenOnHavenDrop": "Refuges et/ou Épreuves ne peuvent pas être déposé dans un Refuge ou une Épreuve.",
+        "ui.noSkill": "Aucune Compétence sélectionnée sur l'arme, veuillez la configurer et réessayez.",
+        
 
 
         "CHAT.SUCCESS": "Succès",
@@ -181,7 +215,14 @@
         "ROLL.TALENT_DAMAGE": "Utiliser Talent pour Bonus de dégâts"
     },
     "YZUR": {
-        "DIETERMS.SkillDie": "Succès des dés de compétence",
-        "DIETERMS.StressDie": "Succès des dés de stress"
+        "DIETERMS.SkillDie": "Succès de compétence",
+        "DIETERMS.StressDie": "Succès de stress"
+    },
+    "TYPES": {
+        "Actor.character": "Personnage",
+        "Actor.challenge": "Épreuve",
+        "Actor.haven": "Refuge",
+        "Actor.npc": "PNJ",
+        "Actor.animal": "Animal"
     }
 }
