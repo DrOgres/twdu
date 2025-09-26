@@ -215,8 +215,8 @@
         "ROLL.TALENT_DAMAGE": "Utiliser Talent pour Bonus de dégâts"
     },
     "YZUR": {
-        "DIETERMS.SkillDie": "Succès des dés de compétence",
-        "DIETERMS.StressDie": "Succès des dés de stress"
+        "DIETERMS.SkillDie": "Succès de compétence",
+        "DIETERMS.StressDie": "Succès de stress"
     },
     "TYPES": {
         "Actor.character": "Personnage",
