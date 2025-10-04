@@ -114,6 +114,7 @@
         "isExplosive": "BP",
         "isExplosiveTooltip": "Is this weapon explosive?",
         "bonus": "Bonus",
+        "bonusAmount": "Bonus Amount",
         "range": "Range",
         "lethal": "Lethal",
         "timeLimit": "Time Limit",
@@ -226,6 +227,19 @@
         "Actor.challenge": "Challenge",
         "Actor.haven": "Haven",
         "Actor.npc": "NPC",
-        "Actor.animal": "Animal"
+        "Actor.animal": "Animal",
+        "Item.weapon": "Weapon",
+        "Item.armor": "Armor",
+        "Item.gear": "Gear",
+        "Item.tinyItem": "Tiny Item",
+        "Item.project": "Project",
+        "Item.talent": "Talent",
+        "Item.criticalInjury": "Critical Injury",
+        "Item.vehicle": "vehicle",
+        "Item.issue": "Issue",
+        "Item.rumor": "Rumor",
+        "Item.challenges": "Challenges",
+        "Item.endgame": "End Game",
+        "Item.faction": "Faction"
     }
 }

@@ -10,6 +10,10 @@
   {{#unless (eq roll.options.formula undefined)}}
   <div class="chat-card grow m-0 pi-1" data-owner-id="{{roll.options.owner}}">
     <div class="card-content group">
+
+           {{!-- goal: if the roll is a gm whisper only the GM should see the messed up message --}}
+
+      
       {{#if (gt roll.panic 0)}}
       <div class="walker center walker header p-1">{{localize 'twdu.ui.messedUp'}}!</div>
       {{/if}}

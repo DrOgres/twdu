@@ -1,9 +1,11 @@
 @use "../abstracts" as *;
 
-body.theme-dark, .application {
-  --color-text-primary: $highlight-1;
-  --color-text-secondary: $neutral-1;
-}
+// body.theme-dark, .application {
+//   --color-text-primary: $highlight-1;
+//   --color-text-secondary: $neutral-1;
+// }
+
+
 
 .name-count, .control{
   color: $highlight-1;

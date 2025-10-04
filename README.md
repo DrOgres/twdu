@@ -7,6 +7,17 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 4.0.2
+- Fixed context menu for chat cards postitioned under other cards [#87](https://github.com/DrOgres/twdu/issues/87)
+- CSS color improved slightly in dark mode until such time as we can do a full rework of css for new foundry [#88](https://github.com/DrOgres/twdu/issues/88)
+- Added localization flags for items [#91](https://github.com/DrOgres/twdu/issues/91)
+- Fixed Gear not appearing as an option for Close Combat skill rolls [#93](https://github.com/DrOgres/twdu/issues/93)
+- Fixed CSS on audio looping to make it visible [#86](https://github.com/DrOgres/twdu/issues/86)
+- Adjusted CSS filter on non-whispered chat cards to clean up the appearance [#84](https://github.com/DrOgres/twdu/issues/84)
+- Added css to distinguih selected state on token hud icons [#83](https://github.com/DrOgres/twdu/issues/83)
+- Reduced font size in sidebar listings [#82](https://github.com/DrOgres/twdu/issues/82)
+- French Localization updated Thanks [Cereb](https://github.com/CptCereb) | Localisation française mise à jour Merci Cereb
+
 Release 4.0.1
 - A host of CSS fixes to improve readability and usability in the system this should address [#79](https://github.com/DrOgres/twdu/issues/79) and related issues [#81](https://github.com/DrOgres/twdu/issues/81)  and [#80](https://github.com/DrOgres/twdu/issues/80) 
 

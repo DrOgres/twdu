@@ -246,13 +246,13 @@ export function prepareRollDialog(options) {
 
   if (options.type === "skill") {
     // console.log("TWDU | skillName: ", options.skillName);
-    // console.log("TWDU | skillKey: ", options.skillKey);
+    console.log("TWDU | skillKey: ", options.skillKey);
     let gear = actor.items.filter(
       (item) => item.type === "gear" && item.system.isEquipped
     );
     
     let skillGear = gear.filter(
-      (item) => item.system.skill === options.skillKey.toLowerCase()
+      (item) => item.system.skill === options.skillKey
     );
 
     // if the skill is mobility add any vehicle items to skillGear

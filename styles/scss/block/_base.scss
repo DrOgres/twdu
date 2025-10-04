@@ -28,7 +28,7 @@ body {
 //   color: $header-1;
 // }
 
-.mainset{
+.mainset {
   color: $header-0 !important;
 }
 
@@ -48,15 +48,13 @@ a.content-link {
   background: none;
 }
 #pause > img {
-
-  content: url('../assets/images/misc/hand.png');
+  content: url("../assets/images/misc/hand.png");
   filter: drop-shadow(5px 7px 1px $highlight-5);
   width: 200px;
   height: auto;
   top: -50px;
   left: calc(50% - 100px);
   opacity: 1;
-
 }
 
 #pause > figcaption {
@@ -66,8 +64,8 @@ a.content-link {
   text-shadow: 0px 3px 5px rgb(0, 0, 0);
 }
 
-figure figcaption{
-  font-family: 'Ash' , sans-serif;
+figure figcaption {
+  font-family: "Ash", sans-serif;
   font-size: 1.2rem;
   color: $neutral-3;
   margin-top: 0;
@@ -114,48 +112,49 @@ input[type="search"] {
   }
 }
 
-
-.entry-name{
+.entry-name {
   color: $neutral-2;
   padding-inline: 15px;
   background: url(/systems/twdu/assets/images/misc/scene-bg.webp);
   // background-color: $neutral-2;
-  font-size: 1.5em;
+  font-size: 1.1em;
   -webkit-background-clip: text;
   background-clip: text;
 
   -webkit-text-stroke: 2px $header-bg-2;
-   text-shadow:
-       2px 2px 0 $header-0,
-     -1px -1px 0 $header-0,  
-      1px -1px 0 $header-0,
-      -1px 1px 0 $header-0,
-       1px 1px 0 $header-0;
+  text-shadow: 2px 2px 0 $header-0, -1px -1px 0 $header-0, 1px -1px 0 $header-0,
+    -1px 1px 0 $header-0, 1px 1px 0 $header-0;
 }
 
-.chat-message {
 
-  position: relative;
-  background: url(/systems/twdu/assets/images/background.webp) no-repeat;
-  background-size: cover;
-  filter: sepia(.5);
 
-  .flavor-text{
-    color: $highlight-2 !important;
+@layer blocks.ui {
+    #context-menu {
+      position: absolute;
+      z-index: 9999;
+    }
   }
 
-}
-.chat-message.whisper{
-  filter: grayscale(.60) brightness(101%);
-  
-}
+
+.chat-message {
+  z-index: 8888;
+  background: url(/systems/twdu/assets/images/background.webp) no-repeat;
+  background-size: cover;
 
 
-.chat-message.blind{
-  filter: saturate(20%) grayscale(.950) brightness(120%) ;
+  .flavor-text {
+    color: $highlight-2 !important;
+  }
+}
+.chat-message.whisper {
+  filter: sepia(0.6) brightness(85%);
 }
 
-.chat-input{
+.chat-message.blind {
+  filter: saturate(20%) grayscale(0.95) brightness(120%);
+}
+
+.chat-input {
   background: $neutral-2;
 }
 
@@ -233,7 +232,6 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
   border: none;
-  
 
   input {
     height: 2rem !important;
@@ -258,7 +256,6 @@ input[type="text"] {
   border-image: url("/systems/twdu/assets/images/box_not_checked.png") 10
     stretch;
   background-color: transparent;
-
 
   &:hover {
     cursor: text;
@@ -312,8 +309,6 @@ optgroup {
 
 fieldset {
   p {
-
-
     a {
       color: $highlight-2;
     }
@@ -425,8 +420,31 @@ button,
   background-color: $neutral-2;
 }
 
+.playlist-sounds{
+  color: $neutral-3;
+}
+
+button.control-icon.active{
+   background-color: $highlight-1;
+  color: $highlight-5;
+}
+
+button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate.inactive{
+  background-color: $neutral-3;
+  color: $header-1;
+}
+
+button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate{
+  background-color: $highlight-1;
+  color: $highlight-5;
+}
+
+button, .sound-control, .inactive{
+  background-color: $neutral-3;
+  color: $header-1;
+}
+
 button.ui-control[aria-pressed="true"] {
-  
   background-color: $highlight-1;
   color: $highlight-5;
 }
@@ -448,14 +466,13 @@ button.ui-control[aria-pressed="true"] {
   overflow: auto auto;
 }
 
-
-table { 
+table {
   background-color: #dddddd !important;
 
   th {
     height: 2rem;
   }
-  tr{
+  tr {
     align-items: flex-start;
     min-height: max-content;
 

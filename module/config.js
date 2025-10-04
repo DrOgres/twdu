@@ -10,7 +10,7 @@ twdu.combatSkills = {
 twdu.skills = {
     none: "twdu.none",
     force: "twdu.force",
-    close: "twdu.closeCombat",
+    closeCombat: "twdu.closeCombat",
     endure: "twdu.endure",
     ranged: "twdu.rangedCombat",
     mobility: "twdu.mobility",

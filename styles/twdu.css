@@ -159,25 +159,30 @@ input[type=search] {
   color: hsl(53, 14%, 75%);
   padding-inline: 15px;
   background: url(/systems/twdu/assets/images/misc/scene-bg.webp);
-  font-size: 1.5em;
+  font-size: 1.1em;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-stroke: 2px hsla(36, 11%, 53%, 0.3);
   text-shadow: 2px 2px 0 hsl(57, 15%, 6%), -1px -1px 0 hsl(57, 15%, 6%), 1px -1px 0 hsl(57, 15%, 6%), -1px 1px 0 hsl(57, 15%, 6%), 1px 1px 0 hsl(57, 15%, 6%);
 }
 
+@layer blocks.ui {
+  #context-menu {
+    position: absolute;
+    z-index: 9999;
+  }
+}
 .chat-message {
-  position: relative;
+  z-index: 8888;
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
-  filter: sepia(0.5);
 }
 .chat-message .flavor-text {
   color: hsl(355, 53%, 31%) !important;
 }
 
 .chat-message.whisper {
-  filter: grayscale(0.6) brightness(101%);
+  filter: sepia(0.6) brightness(85%);
 }
 
 .chat-message.blind {
@@ -422,6 +427,30 @@ button,
 .dialog-buttons button.default:hover {
   box-shadow: 0.125rem 0.125rem 0 hsla(36, 11%, 43%, 0.5);
   background-color: hsl(53, 14%, 75%);
+}
+
+.playlist-sounds {
+  color: hsl(53, 10%, 68%);
+}
+
+button.control-icon.active {
+  background-color: hsl(353, 45%, 30%);
+  color: hsl(353, 24%, 85%);
+}
+
+button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate.inactive {
+  background-color: hsl(53, 10%, 68%);
+  color: hsl(57, 15%, 26%);
+}
+
+button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate {
+  background-color: hsl(353, 45%, 30%);
+  color: hsl(353, 24%, 85%);
+}
+
+button, .sound-control, .inactive {
+  background-color: hsl(53, 10%, 68%);
+  color: hsl(57, 15%, 26%);
 }
 
 button.ui-control[aria-pressed=true] {
@@ -1141,11 +1170,6 @@ table tr td {
 
 .mb-6 {
   margin-bottom: 1.26rem;
-}
-
-body.theme-dark, .application {
-  --color-text-primary: $highlight-1;
-  --color-text-secondary: $neutral-1;
 }
 
 .name-count, .control {
