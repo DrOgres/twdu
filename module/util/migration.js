@@ -17,7 +17,47 @@ const migrations = {
   "3.0.1": migrateTo3_0_1,
   "3.0.12": migrateTo3_0_12,
   "4.0.2": migrateTo4_0_2,
+  "4.0.3": migrateTo4_0_3
 };
+
+async function migrateTo4_0_3(){
+  // check all gear 
+  console.log("Migrating to 4.0.3");
+  const options = { permanent: false };
+  ui.notifications.warn(
+    "Migrating your data to version 4.0.3. Please, wait until it finishes.",
+    options
+  );
+  for (let actor of game.actors.contents) {
+    const updateData = migrateActorData(actor, "4.0.3");
+    if (!foundry.utils.isEmpty(updateData)){
+      for (let key in updateData) {
+        let item = actor.items.get(key);
+        if (item) {
+          item.update({ "system.skill": updateData[key] });
+        }
+      }
+    }
+  }
+  
+  for (let item of game.items.contents) {
+    if (item.system.skill === "close"){
+      let skill = "rangedCombat";
+      await item.update({ "system.skill": skill});
+    }
+  }
+
+    await game.settings.set(
+    "twdu",
+    "systemMigrationVersion",
+    game.system.version
+  );
+
+  ui.notifications.info("Migration to 4.0.3 completed!", options);
+
+}
+
+
 
 async function migrateTo4_0_2(){
   // check all gear 
@@ -305,6 +345,17 @@ function migrateActorData(actor, version) {
       for (let item of items) {
         if (item.system.skill === "close"){
           let skill = item.system.skill.replace("close", "closeCombat");
+          console.log("Skill | ", skill);
+          updateData[item.id] = skill;
+        }
+      }
+      break;
+    }
+    case "4.0.3" : {
+      let items = actor.items;
+      for (let item of items) {
+        if (item.system.skill === "ranged"){
+          let skill = item.system.skill.replace("ranged", "rangedCombat");
           console.log("Skill | ", skill);
           updateData[item.id] = skill;
         }

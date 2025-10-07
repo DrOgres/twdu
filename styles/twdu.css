@@ -171,28 +171,29 @@ input[type=search] {
     position: absolute;
     z-index: 9999;
   }
+  .chat-message {
+    background: url(/systems/twdu/assets/images/background.webp) no-repeat;
+    background-size: cover;
+  }
+  .chat-message .flavor-text {
+    color: hsl(355, 53%, 31%) !important;
+  }
+  .chat-message.whisper {
+    background: url(/systems/twdu/assets/images/background_whisper.webp) no-repeat;
+  }
+  .chat-message.blind {
+    background: url(/systems/twdu/assets/images/background_blind.webp) no-repeat;
+  }
+  .chat-message.blind .message-content {
+    filter: saturate(20%) grayscale(0.95) brightness(120%);
+  }
+  .chat-message.blind img {
+    filter: saturate(20%) grayscale(0.95) brightness(120%);
+  }
+  .chat-input {
+    background: hsl(53, 14%, 75%);
+  }
 }
-.chat-message {
-  z-index: 8888;
-  background: url(/systems/twdu/assets/images/background.webp) no-repeat;
-  background-size: cover;
-}
-.chat-message .flavor-text {
-  color: hsl(355, 53%, 31%) !important;
-}
-
-.chat-message.whisper {
-  filter: sepia(0.6) brightness(85%);
-}
-
-.chat-message.blind {
-  filter: saturate(20%) grayscale(0.95) brightness(120%);
-}
-
-.chat-input {
-  background: hsl(53, 14%, 75%);
-}
-
 .window-title,
 .header-button {
   color: hsl(53, 10%, 68%) !important;
@@ -448,7 +449,9 @@ button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate {
   color: hsl(353, 24%, 85%);
 }
 
-button, .sound-control, .inactive {
+button,
+.sound-control,
+.inactive {
   background-color: hsl(53, 10%, 68%);
   color: hsl(57, 15%, 26%);
 }

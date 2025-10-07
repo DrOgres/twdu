@@ -126,36 +126,40 @@ input[type="search"] {
     -1px 1px 0 $header-0, 1px 1px 0 $header-0;
 }
 
-
-
 @layer blocks.ui {
-    #context-menu {
-      position: absolute;
-      z-index: 9999;
+  #context-menu {
+    position: absolute;
+    z-index: 9999;
+  }
+
+  .chat-message {
+    background: url(/systems/twdu/assets/images/background.webp) no-repeat;
+    background-size: cover;
+
+    .flavor-text {
+      color: $highlight-2 !important;
+    }
+  }
+  .chat-message.whisper {
+    background: url(/systems/twdu/assets/images/background_whisper.webp)
+      no-repeat;
+    // filter: sepia(0.6) brightness(85%);
+  }
+
+  .chat-message.blind {
+    background: url(/systems/twdu/assets/images/background_blind.webp) no-repeat;
+
+    .message-content {
+      filter: saturate(20%) grayscale(0.95) brightness(120%);
+    }
+    img {
+      filter: saturate(20%) grayscale(0.95) brightness(120%);
     }
   }
 
-
-.chat-message {
-  z-index: 8888;
-  background: url(/systems/twdu/assets/images/background.webp) no-repeat;
-  background-size: cover;
-
-
-  .flavor-text {
-    color: $highlight-2 !important;
+  .chat-input {
+    background: $neutral-2;
   }
-}
-.chat-message.whisper {
-  filter: sepia(0.6) brightness(85%);
-}
-
-.chat-message.blind {
-  filter: saturate(20%) grayscale(0.95) brightness(120%);
-}
-
-.chat-input {
-  background: $neutral-2;
 }
 
 .window-title,
@@ -420,26 +424,28 @@ button,
   background-color: $neutral-2;
 }
 
-.playlist-sounds{
+.playlist-sounds {
   color: $neutral-3;
 }
 
-button.control-icon.active{
-   background-color: $highlight-1;
-  color: $highlight-5;
-}
-
-button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate.inactive{
-  background-color: $neutral-3;
-  color: $header-1;
-}
-
-button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate{
+button.control-icon.active {
   background-color: $highlight-1;
   color: $highlight-5;
 }
 
-button, .sound-control, .inactive{
+button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate.inactive {
+  background-color: $neutral-3;
+  color: $header-1;
+}
+
+button.inline-control.sound-control.icon.fa-solid.fa-arrows-rotate {
+  background-color: $highlight-1;
+  color: $highlight-5;
+}
+
+button,
+.sound-control,
+.inactive {
   background-color: $neutral-3;
   color: $header-1;
 }

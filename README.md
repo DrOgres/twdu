@@ -7,6 +7,10 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 ## Release Notes:
 
+Release 4.0.3
+- Fixed ranged combat for gear [#93](https://github.com/DrOgres/twdu/issues/93)
+- French Localization update for item types in creation menu 
+
 Release 4.0.2
 - Fixed context menu for chat cards postitioned under other cards [#87](https://github.com/DrOgres/twdu/issues/87)
 - CSS color improved slightly in dark mode until such time as we can do a full rework of css for new foundry [#88](https://github.com/DrOgres/twdu/issues/88)
