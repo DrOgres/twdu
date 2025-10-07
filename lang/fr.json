@@ -223,6 +223,19 @@
         "Actor.challenge": "Épreuve",
         "Actor.haven": "Refuge",
         "Actor.npc": "PNJ",
-        "Actor.animal": "Animal"
+        "Actor.animal": "Animal",
+        "Item.weapon": "Arme",
+        "Item.armor": "Protection",
+        "Item.gear": "Équipement",
+        "Item.tinyItem": "Objet minuscule",
+        "Item.project": "Projet",
+        "Item.talent": "Talent",
+        "Item.criticalInjury": "Blessure critique",
+        "Item.vehicle": "Véhicule",
+        "Item.issue": "Problème",
+        "Item.rumor": "Rumeur",
+        "Item.challenges": "Épreuves",
+        "Item.endgame": "Dénouement",
+        "Item.faction": "Faction"
     }
 }
