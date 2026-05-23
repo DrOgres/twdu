@@ -69,7 +69,7 @@ export async function displayThreatLevel() {
 
   
 
-  messageData.content = await renderTemplate(
+  messageData.content = await foundry.applications.handlebars.renderTemplate(
     "systems/twdu/templates/ui/threat-level.html",
     { threatLevel: threatLevel }
   );
@@ -80,10 +80,12 @@ export async function displayThreatLevel() {
 // show a UI dialog to allow the GM to set the threat level
 export async function threatLevelDialog() {
  
-  ThreatLevel.render(true);
+  ThreatLevel.render({ force: true });
 }
 
-export class ThreatLevelDisplay extends Application {
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
+export class ThreatLevelDisplay extends HandlebarsApplicationMixin(ApplicationV2) {
   static initialize() {
     this.threatLevel = new ThreatLevelDisplay();
   }
@@ -94,47 +96,44 @@ export class ThreatLevelDisplay extends Application {
 
   static render() {
   
-    this.threatLevel.render(true);
+    this.threatLevel.render({ force: true });
   }
 
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
+  static DEFAULT_OPTIONS = {
       id: "threat-level-display",
-      template: "/systems/twdu/templates/ui/threat-level-display.html",
-      top: 100,
-      left: 120,
-      height: 200,
-      width: 275,
-      zIndex: 100,
-      popOut: true,
-      resizable: false,
-      minimizable: false,
-      title: "Threat Level",
-    });
+      position: { top: 100, left: 120, height: 200, width: 275 },
+      window: {
+        title: "Threat Level",
+        resizable: false,
+        minimizable: false,
+      },
+    actions: {
+      increase: () => increaseThreatLevel(1),
+      decrease: () => decreaseThreatLevel(1),
+    },
+  };
+
+  static PARTS = {
+    sheet: { template: "systems/twdu/templates/ui/threat-level-display.html" },
+  };
+
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    this.element.querySelector(".threat-level-up")?.addEventListener("click", () => increaseThreatLevel(1));
+    this.element.querySelector(".threat-level-down")?.addEventListener("click", () => decreaseThreatLevel(1));
   }
 
-  constructor() {
-    super();
-  }
-
-  // activateListeners(html)
-
-  activateListeners(html) {
-    super.activateListeners(html);
-    html.find(".threat-level-up").click((event) => increaseThreatLevel(1));
-    html.find(".threat-level-down").click((event) => decreaseThreatLevel(1));
-  }
-
-  getData() {
-    return {
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    return foundry.utils.mergeObject(context, {
       threatLevel: getThreatLevel(),
       gm: game.user.isGM,
-    };
+    }, { inplace: false });
   }
 
   update() {
     if (this.rendered) {
-      this.render(true);
+      this.render({ force: true });
     }
   }
 }

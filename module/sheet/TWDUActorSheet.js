@@ -2,36 +2,61 @@ import ChatMessageTWDU, { buildChatCard } from "../util/chat.js";
 import { prepareRollDialog, rollClockTest } from "../util/roll.js";
 import { twdu } from "../config.js";
 
-export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
-  // constructor(object, options={}) {
-  //   console.log("TWDU | TWDUActorSheet: ", object);
-  //   super(object, options);
-  // }
+const { ActorSheetV2 } = foundry.applications.sheets;
+const { HandlebarsApplicationMixin } = foundry.applications.api;
 
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twdu", "sheet", "actor"],
-      resizable: true,
-      tabs: [
-        {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "main",
-        },
-      ],
-    });
+export default class TWDUActorSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+  static draggedItem = null;
+  activeTab = "main";
+  editors = {};
+
+  static DEFAULT_OPTIONS = {
+    tag: "div",
+    classes: ["twdu", "sheet", "actor"],
+    position: { width: 800, height: 800 },
+    window: { resizable: true },
+    form: {
+      handler: async function (event, form, formData) {
+        const submitData = this._prepareSubmitData(event, form, formData);
+        await this._processSubmitData(event, form, submitData);
+      },
+      submitOnChange: true,
+      closeOnSubmit: false,
+    },
+    dragDrop: [{ dragSelector: ".item-list .item", dropSelector: ".sheet-container" }],
+  };
+
+  static PARTS = {
+    sheet: {
+      template: "systems/twdu/templates/sheets/character-sheet.hbs",
+    },
+  };
+
+  get object() {
+    return this.document;
   }
 
-  get template() {
-    return `systems/twdu/templates/sheets/${this.actor.type}-sheet.hbs`;
+  get form() {
+    return this.element?.querySelector("form") ?? null;
   }
 
-  async getData() {
+  _toggleDisabled(disabled) {
+    const form = this.form;
+    if (!form) return;
+    for (const element of form.elements) element.disabled = disabled;
+    for (const img of form.querySelectorAll("img[data-edit]")) {
+      img.classList.toggle("disabled", disabled);
+    }
+  }
+
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
     const source = this.actor.toObject();
     const actorData = this.actor.toObject(false);
 
-    const context = {
+    Object.assign(context, {
       actor: actorData,
+      cssClass: this.constructor.DEFAULT_OPTIONS.classes.join(" "),
       source: source.system,
       system: actorData.system,
       flags: this.actor.flags,
@@ -52,7 +77,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
       maxpop: 0,
       portrait: true,
       user: game.user,
-    };
+    });
     // console.log("TWDU | context: ", context);
     context.config = CONFIG.twdu;
     //console.log("TWDU | context.config: ", context.config);
@@ -269,8 +294,150 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     // console.log("TWDU | setPortrait: ", context.portrait);
   }
 
+  _getFormFieldValue(name) {
+    const field = this.form?.elements.namedItem(name);
+    if (!field) return undefined;
+    if (field instanceof RadioNodeList) return field.value;
+    return field.value;
+  }
+
+  _getCurrentSystemNumber(path, fallback = 0) {
+    const formValue = this._getFormFieldValue(`system.${path}`);
+    const value =
+      formValue ?? foundry.utils.getProperty(this.actor.system, path) ?? fallback;
+    const number = Number(value);
+    return Number.isFinite(number) ? number : fallback;
+  }
+
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    this._activateEditors();
+    this._activateFormListeners();
+    this.activateListeners($(this.element));
+    this._activateSheetTab(this.activeTab);
+  }
+
+  _activateEditors() {
+    this.editors = {};
+    for (const div of this.element.querySelectorAll(".editor-content[data-edit]")) {
+      this._activateEditor(div);
+    }
+  }
+
+  async activateEditor(name, options = {}, initialContent = "") {
+    const editor = this.editors[name];
+    if (!editor) throw new Error(`${name} is not a registered editor name!`);
+    options = foundry.utils.mergeObject(editor.options, options);
+    if (!options.fitToSize) options.height = options.target.offsetHeight;
+    if (editor.hasButton) editor.button.style.display = "none";
+    const instance = editor.instance =
+      await foundry.applications.ux.TextEditor.implementation.create(
+        options,
+        initialContent || editor.initial
+      );
+    options.target.closest(".editor")?.classList.add(options.engine ?? "prosemirror");
+    editor.changed = false;
+    editor.active = true;
+    return instance;
+  }
+
+  async saveEditor(name, { remove = true, preventRender } = {}) {
+    const editor = this.editors[name];
+    if (!editor?.instance) throw new Error(`${name} is not an active editor name!`);
+    editor.active = false;
+    const event = new Event("submit", { cancelable: true });
+    await this._onLegacyFormSubmit(event, { preventRender });
+
+    if (remove) {
+      editor.instance.destroy();
+      editor.instance = null;
+      if (editor.hasButton) editor.button.style.display = "block";
+      this.render({ force: true });
+    }
+    editor.changed = false;
+  }
+
+  _activateEditor(div) {
+    const name = div.dataset.edit;
+    const engine = div.dataset.engine || "prosemirror";
+    const collaborate = div.dataset.collaborate === "true";
+    const button = div.previousElementSibling;
+    const hasButton = button?.classList.contains("editor-edit") ?? false;
+    const wrap = div.parentElement.parentElement;
+    const wc = div.closest(".window-content");
+    const heights = [wrap.offsetHeight, wc ? wc.offsetHeight : null];
+    if (div.offsetHeight > 0) heights.push(div.offsetHeight);
+    const height = Math.min(...heights.filter((h) => Number.isFinite(h)));
+
+    const options = {
+      target: div,
+      fieldName: name,
+      save_onsavecallback: () => this.saveEditor(name),
+      height,
+      engine,
+      collaborate,
+    };
+    if (engine === "prosemirror") {
+      options.plugins = this._configureProseMirrorPlugins(name, { remove: hasButton });
+    } else if (!(engine in CONFIG.TextEditor.engines)) {
+      console.warn(`Unrecognized text editor engine '${engine}'`);
+      return;
+    }
+
+    const initial = foundry.utils.getProperty(this.object, name);
+    const editor = (this.editors[name] = {
+      options,
+      target: name,
+      button,
+      hasButton,
+      instance: null,
+      active: !hasButton,
+      changed: false,
+      initial,
+    });
+
+    const activate = () => {
+      editor.initial = foundry.utils.getProperty(this.object, name);
+      this.activateEditor(name, {}, editor.initial);
+    };
+    if (hasButton) button.onclick = activate;
+    else activate();
+  }
+
+  _configureProseMirrorPlugins(name, { remove = true } = {}) {
+    const { defaultSchema, plugins } = foundry.prosemirror;
+    return {
+      menu: plugins.ProseMirrorMenu.build(defaultSchema, {
+        destroyOnSave: remove,
+        onSave: () => this.saveEditor(name, { remove }),
+      }),
+      keyMaps: plugins.ProseMirrorKeyMaps.build(defaultSchema, {
+        onSave: () => this.saveEditor(name, { remove }),
+      }),
+    };
+  }
+
+  _activateFormListeners() {
+    const form = this.form;
+    if (!form) return;
+    form.addEventListener("change", this._onLegacyFormSubmit.bind(this));
+    form.addEventListener("submit", this._onLegacyFormSubmit.bind(this));
+  }
+
+  async _onLegacyFormSubmit(event) {
+    event.preventDefault();
+    if (!this.isEditable) return;
+    const form = this.form;
+    if (!form) return;
+    const formData = new foundry.applications.ux.FormDataExtended(form, {
+      editors: this.editors,
+    });
+    const submitData = this._prepareSubmitData(event, form, formData);
+    await this._processSubmitData(event, form, submitData);
+  }
+
   activateListeners(html) {
-    super.activateListeners(html);
+    html.find("img[data-edit]").click(this._onEditImage.bind(this));
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
     html.find(".equip").click(this._onEquipClick.bind(this));
     html
@@ -289,7 +456,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     html.find(".show-details").click(this._onShowDetails.bind(this));
     // drag and drop
     html.find(".sheet-container").on("drop", this._onItemDrop.bind(this));
-    html.find(".draggable").on("drag", this._onItemDrag.bind(this));
+    html.find(".draggable").on("dragstart", this._onItemDrag.bind(this));
     //item clocks
     html.find(".item-clock").click(this._onIncreaseClock.bind(this));
     html.find(".item-clock").contextmenu(this._onDecreaseClock.bind(this));
@@ -297,6 +464,40 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     // challenge sheet listeners
     html.find(".set-fate").change(this._onSetFate.bind(this));
     html.find(".set-source").change(this._onSetSource.bind(this));
+    html.find(".sheet-tabs [data-tab]").click(this._onTabClick.bind(this));
+  }
+
+  _onTabClick(event) {
+    event.preventDefault();
+    this._activateSheetTab(event.currentTarget.dataset.tab);
+  }
+
+  _activateSheetTab(tabName = "main") {
+    this.activeTab = tabName;
+    const root = this.element;
+    if (!root) return;
+
+    for (const tab of root.querySelectorAll(".sheet-body .tab[data-tab]")) {
+      const active = tab.dataset.tab === tabName;
+      tab.classList.toggle("active", active);
+      tab.style.display = active ? "" : "none";
+    }
+
+    for (const link of root.querySelectorAll(".sheet-tabs [data-tab]")) {
+      link.classList.toggle("active", link.dataset.tab === tabName);
+    }
+  }
+
+  _onEditImage(event) {
+    event.preventDefault();
+    const attr = event.currentTarget.dataset.edit;
+    const current = foundry.utils.getProperty(this.actor, attr);
+    new foundry.applications.apps.FilePicker({
+      type: "image",
+      current,
+      callback: (path) => this.actor.update({ [attr]: path }),
+      document: this.actor,
+    }).render({ force: true });
   }
 
   _onSetSource(event) {
@@ -394,15 +595,12 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
   }
 
   _onItemDrag(event) {
-    // console.log("TWDU | _onItemDrag: ", event);
-    event.preventDefault();
-    // console.log("TWDU | _onItemDrag: ", event);
-    game.data.item = this.actor.getEmbeddedDocument(
+    const item = this.actor.getEmbeddedDocument(
       "Item",
       event.currentTarget.closest(".item").dataset.itemId
     );
-
-    // console.log("TWDU | _onItemDrag: ", game.data.item);
+    TWDUActorSheet.draggedItem = item;
+    event.originalEvent?.dataTransfer?.setData("text/plain", JSON.stringify(item.toDragData()));
   }
 
   //prevent sidebar triggering this code?
@@ -410,14 +608,14 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     event.preventDefault();
     //  console.log("TWDU | _onItemDrop: ", event);
     let actor = this.actor;
-    let item = game.data.item;
+    let item = TWDUActorSheet.draggedItem;
     //  console.log("TWDU | _onItemDrop item: ", item);
     if (item === undefined || item === null) {
       return;
     }
     actor.createEmbeddedDocuments("Item", [item]);
     //  console.log("TWDU | _onItemDrop actor: ", actor.id);
-    let storedItem = game.data.item;
+    let storedItem = TWDUActorSheet.draggedItem;
     if (storedItem === null) {
       return;
     }
@@ -435,12 +633,11 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     //  console.log("TWDU | storedItem: ", storedItem);
     //  console.log("TWDU | item: ", item);
 
-    game.data.item = null;
+    TWDUActorSheet.draggedItem = null;
     storedItem = null;
     item = null;
     //  console.log("TWDU | storedItem: ", storedItem);
     //  console.log("TWDU | item: ", item);
-    //  console.log("TWDU | game.data.item: ", game.data.item);
     return;
   }
 
@@ -556,8 +753,10 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
           options.attName =
             "twdu." +
             this.actor.system.attributes[target.dataset.attribute].label;
-          options.attributeDefault =
-            this.actor.system.attributes[target.dataset.attribute].value;
+          options.attributeDefault = this._getCurrentSystemNumber(
+            `attributes.${target.dataset.attribute}.value`,
+            this.actor.system.attributes[target.dataset.attribute].value
+          );
         }
         break;
       case "skill":
@@ -585,13 +784,18 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
             options.testName = game.i18n.localize(target.dataset.test);
             options.skillKey = target.dataset.skill;
             options.skillName = game.i18n.localize(target.dataset.test);
-            options.skillDefault =
-              this.actor.system.skills[target.dataset.skill].value;
+            options.skillDefault = this._getCurrentSystemNumber(
+              `skills.${target.dataset.skill}.value`,
+              this.actor.system.skills[target.dataset.skill].value
+            );
             // get the attribute for the skill and set the default and name
 
             let abv = this.actor.system.skills[target.dataset.skill].attribute;
             options.attName = "twdu." + this.actor.system.attributes[abv].label;
-            options.attributeDefault = this.actor.system.attributes[abv].value;
+            options.attributeDefault = this._getCurrentSystemNumber(
+              `attributes.${abv}.value`,
+              this.actor.system.attributes[abv].value
+            );
           }
         }
         break;
@@ -610,8 +814,10 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
           // let skill = item.system.skill.split(".")[1];
           // console.log("TWDU | skill: ", skill);
           if (options.actorType === "character") {
-            options.skillDefault =
-              this.actor.system.skills[options.skillName].value;
+            options.skillDefault = this._getCurrentSystemNumber(
+              `skills.${options.skillKey}.value`,
+              this.actor.system.skills[options.skillKey].value
+            );
             // console.log("TWDU | skillDefault: ", options.skillDefault);
           } else {
             let skillLevel = this.actor.system.skills[options.skillName].level;
@@ -630,9 +836,12 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
             }
           }
           if (options.actorType === "character") {
-            let abv = this.actor.system.skills[options.skillName].attribute;
+            let abv = this.actor.system.skills[options.skillKey].attribute;
             options.attName = "twdu." + this.actor.system.attributes[abv].label;
-            options.attributeDefault = this.actor.system.attributes[abv].value;
+            options.attributeDefault = this._getCurrentSystemNumber(
+              `attributes.${abv}.value`,
+              this.actor.system.attributes[abv].value
+            );
           }
 
           if (item.system.isExplosive) {
@@ -699,7 +908,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     // console.log("TWDU | _onItemEdit: ", event);
     const div = $(event.currentTarget).parents(".item");
     const item = this.actor.items.get(div.data("itemId"));
-    item.sheet.render(true);
+    item.sheet.render({ force: true });
   }
 
   _onShowActor(event) {
@@ -707,7 +916,7 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
     // console.log("TWDU | _onShowActor: ", event);
     const actorID = event.currentTarget.dataset.actorId;
     const actor = game.actors.get(actorID);
-    actor.sheet.render(true);
+    actor.sheet.render({ force: true });
   }
 
   _onActorDelete(event) {
@@ -749,13 +958,13 @@ export default class TWDUActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     const div = $(event.currentTarget).parents(".item");
     this.actor.deleteEmbeddedDocuments("Item", [div.data("itemId")]);
-    div.slideUp(200, () => this.render(false));
+    div.slideUp(200, () => this.render({ force: false }));
   }
 
   _onItemCreate(event) {
     event.preventDefault();
     let header = event.currentTarget;
-    let data = duplicate(header.dataset);
+    let data = foundry.utils.duplicate(header.dataset);
 
     data["name"] = `New ${data.type.capitalize()}`;
     this.actor.createEmbeddedDocuments("Item", [data]);

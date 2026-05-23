@@ -93,9 +93,16 @@ input[type="search"] {
   width: min(100%, 900px);
 }
 
-.window-app .window-content {
+.window-app .window-content,
+.application.twdu .window-content,
+.application .window-content:has(.twdu) {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+}
+
+.application.twdu.sheet.actor .window-content,
+.application .window-content:has(.twdu.sheet.actor) {
+  overflow: auto;
 }
 
 .intro {
@@ -200,6 +207,7 @@ a:hover {
   font-weight: normal;
 
   .item.active {
+    padding: 8px;
     color: $neutral-1;
     text-shadow: 1px 1px 2px $shadow-1;
     background-color: $header-bg-1;
@@ -235,6 +243,7 @@ h1 {
   font-family: "Ash", sans-serif;
   font-size: 2rem;
   font-weight: bold;
+  color: $header-1;
   border: none;
 
   input {
@@ -281,6 +290,19 @@ textarea {
   background-color: transparent;
   color: $header-1;
   font-family: "Nu Gothic", sans-serif;
+  resize: none;
+}
+
+.twdu textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.twdu.item-sheet b + textarea,
+.twdu.sheet.item b + textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 select {
@@ -301,6 +323,50 @@ optgroup {
   color: $header-1;
   background: $header-bg-2;
   border-radius: 0;
+}
+
+.twdu input,
+.twdu select,
+.twdu textarea,
+.application .window-content:has(.twdu) input,
+.application .window-content:has(.twdu) select,
+.application .window-content:has(.twdu) textarea {
+  color: $header-1 !important;
+  -webkit-text-fill-color: $header-1;
+}
+
+.twdu input::placeholder,
+.twdu textarea::placeholder,
+.application .window-content:has(.twdu) input::placeholder,
+.application .window-content:has(.twdu) textarea::placeholder {
+  color: hsl(36, 11%, 43%) !important;
+  -webkit-text-fill-color: hsl(36, 11%, 43%);
+  opacity: 1;
+}
+
+.twdu h1 input,
+.application .window-content:has(.twdu) h1 input {
+  color: $neutral-1 !important;
+  -webkit-text-fill-color: $neutral-1;
+}
+
+.dialog .window-content .twdu.roll-dialog input,
+.dialog .window-content .twdu.roll-dialog select,
+.dialog .window-content .twdu.roll-dialog textarea,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog input,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog select,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog textarea {
+  color: $white !important;
+  -webkit-text-fill-color: $white;
+}
+
+.dialog .window-content .twdu.roll-dialog option,
+.dialog .window-content .twdu.roll-dialog optgroup,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog option,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog optgroup {
+  color: $header-1;
+  -webkit-text-fill-color: $header-1;
+  background: hsl(36, 11%, 85%);
 }
 
 .ds-1 {

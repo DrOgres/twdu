@@ -138,9 +138,16 @@ input[type=search] {
   width: min(100%, 900px);
 }
 
-.window-app .window-content {
+.window-app .window-content,
+.application.twdu .window-content,
+.application .window-content:has(.twdu) {
   background: url(/systems/twdu/assets/images/background.webp) no-repeat;
   background-size: cover;
+}
+
+.application.twdu.sheet.actor .window-content,
+.application .window-content:has(.twdu.sheet.actor) {
+  overflow: auto;
 }
 
 .intro {
@@ -231,6 +238,7 @@ a:hover {
   font-weight: normal;
 }
 .tabs .item.active {
+  padding: 8px;
   color: hsl(53, 14%, 15%);
   text-shadow: 1px 1px 2px hsla(353, 45%, 30%, 0.3);
   background-color: hsla(36, 11%, 43%, 0.5);
@@ -263,6 +271,7 @@ h1 {
   font-family: "Ash", sans-serif;
   font-size: 2rem;
   font-weight: bold;
+  color: hsl(57, 15%, 26%);
   border: none;
 }
 h1 input {
@@ -304,6 +313,19 @@ textarea {
   background-color: transparent;
   color: hsl(57, 15%, 26%);
   font-family: "Nu Gothic", sans-serif;
+  resize: none;
+}
+
+.twdu textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.twdu.item-sheet b + textarea,
+.twdu.sheet.item b + textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 select {
@@ -324,6 +346,50 @@ optgroup {
   color: hsl(57, 15%, 26%);
   background: hsla(36, 11%, 53%, 0.3);
   border-radius: 0;
+}
+
+.twdu input,
+.twdu select,
+.twdu textarea,
+.application .window-content:has(.twdu) input,
+.application .window-content:has(.twdu) select,
+.application .window-content:has(.twdu) textarea {
+  color: hsl(57, 15%, 26%) !important;
+  -webkit-text-fill-color: hsl(57, 15%, 26%);
+}
+
+.twdu input::placeholder,
+.twdu textarea::placeholder,
+.application .window-content:has(.twdu) input::placeholder,
+.application .window-content:has(.twdu) textarea::placeholder {
+  color: hsl(36, 11%, 43%) !important;
+  -webkit-text-fill-color: hsl(36, 11%, 43%);
+  opacity: 1;
+}
+
+.twdu h1 input,
+.application .window-content:has(.twdu) h1 input {
+  color: hsl(53, 14%, 15%) !important;
+  -webkit-text-fill-color: hsl(53, 14%, 15%);
+}
+
+.dialog .window-content .twdu.roll-dialog input,
+.dialog .window-content .twdu.roll-dialog select,
+.dialog .window-content .twdu.roll-dialog textarea,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog input,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog select,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog textarea {
+  color: hsl(0, 0%, 100%) !important;
+  -webkit-text-fill-color: hsl(0, 0%, 100%);
+}
+
+.dialog .window-content .twdu.roll-dialog option,
+.dialog .window-content .twdu.roll-dialog optgroup,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog option,
+.application .window-content:has(.twdu.roll-dialog) .twdu.roll-dialog optgroup {
+  color: hsl(57, 15%, 26%);
+  -webkit-text-fill-color: hsl(57, 15%, 26%);
+  background: hsl(36, 11%, 85%);
 }
 
 .ds-1 {
@@ -1228,7 +1294,15 @@ li .document, li .folder, .document-type .actors, li .update {
   border-bottom: 1px solid red;
   padding: 0.2rem 0.5rem;
 }
+.full-size .editor-edit {
+  height: 250px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1.1rem;
+}
 .full-size .editor {
+  position: relative;
   height: 250px;
 }
 .full-size .editor-content {
@@ -1279,6 +1353,7 @@ a.content-link {
   text-transform: uppercase;
   font-size: 1rem;
   font-family: "Nu Gothic", sans-serif;
+  color: inherit;
 }
 
 .subsubheader {
@@ -1286,6 +1361,38 @@ a.content-link {
   text-transform: uppercase;
   font-size: 0.8rem;
   font-family: "Nu Gothic", sans-serif;
+  color: hsl(57, 15%, 26%);
+}
+
+.twdu .health-stress-block {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) minmax(9rem, 1fr);
+  width: 100%;
+}
+
+.twdu .health,
+.twdu .stress {
+  min-width: 0;
+}
+
+.twdu .health-select select {
+  width: 100%;
+  min-width: 0;
+}
+
+.twdu .stress > .flex-row {
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.twdu .stress > .flex-row > a {
+  flex: 0 0 auto;
+}
+
+.twdu .stress input[name="system.stress.value"] {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 50px;
 }
 
 .group {
@@ -1301,6 +1408,16 @@ a.content-link {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.twdu h4.group-header {
+  background: hsl(53, 14%, 15%);
+  color: hsl(53, 10%, 68%);
+}
+
+.twdu div.group-header {
+  background: hsl(53, 14%, 15%);
+  color: hsl(53, 10%, 68%);
 }
 
 .skill:last-child {
@@ -1339,7 +1456,9 @@ a.content-link {
   background-color: hsla(36, 11%, 63%, 0.2);
 }
 
-.window-app, .window-app .window-content {
+.window-app, .window-app .window-content,
+.application.twdu, .application.twdu .window-content,
+.application .window-content:has(.twdu) {
   color: hsl(57, 15%, 26%);
 }
 
@@ -1450,6 +1569,38 @@ header.journal-page-header h1 {
 
 .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-number, .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-index {
   color: hsl(57, 15%, 55%);
+}
+
+.window-resize-handle {
+  inset: auto 1px 1px auto !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  overflow: visible !important;
+}
+
+.window-resize-handle::before {
+  content: "\25E2" !important;
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: hsl(355, 53%, 31%);
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: right;
+  pointer-events: none;
+}
+
+.window-resize-handle::after {
+  content: none !important;
 }
 
 :root {

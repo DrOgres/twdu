@@ -8,27 +8,19 @@ export default class ChatMessageTWDU extends foundry.documents.ChatMessage {
       button[i].addEventListener('click', _onPush);
     }
 
-    const damageButton = html.querySelectorAll(".dice-button.apply-damage");
-     for (let i = 0; i<damageButton.length; i++){
-      damageButton[i].addEventListener('click', _onApplyDamage);
-    }
-
   }
 
 
   static hideChatActionButtons = function (message, html, data) {
-  const card = html.querySelectorAll(".twdu.chat-card");
+    const card = html.querySelector(".twdu.chat-card");
+    if (!card) return;
 
-  if (card.length > 0) {
-    let user = game.actors.get(card.attr("data-owner-id"));
-    if (user && !user.isOwner) {
+    const actor = game.actors.get(card.dataset.ownerId);
+    if (actor?.isOwner) return;
 
-      const buttons = card.find(".push");
-      buttons.each((_i, btn) => {
-        btn.style.display = "none";
-      });
+    for (const button of card.querySelectorAll(".push")) {
+      button.style.display = "none";
     }
-  }
 };
 }
 
@@ -66,7 +58,6 @@ export async function buildChatCard(type, item, chatOptions = {}) {
   let chatData = {
     speaker: ChatMessage.getSpeaker(),
     user: game.user.id,
-    rollMode: game.settings.get("core", "rollMode"),
   };
 
   if (isPrivate) {

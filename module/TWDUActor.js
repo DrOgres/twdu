@@ -15,10 +15,10 @@ export default class TWDUActor extends Actor {
       "prototypeToken.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
       "prototypeToken.name": `${data.name}`,
       "prototypeToken.bar1": { attribute: "health" },
-      "prototypeToken.bar2": { attribute: "None" },
+      "prototypeToken.bar2": { attribute: null },
       "prototypeToken.actorLink": true,
-      "prototypeToken.sight.enabled": "false",
-      "prototypeToken.sight.range": "100",
+      "prototypeToken.sight.enabled": false,
+      "prototypeToken.sight.range": 100,
     };
     if (game.settings.get("twdu", "defaultTokenSettings")) {
       switch (data.type) {
@@ -26,7 +26,7 @@ export default class TWDUActor extends Actor {
           tokenProto["prototypeToken.bar2"] = { attribute: "stress" };
           break;
         case "haven":
-          tokenProto["prototypeToken.bar1"] = { attribute: "None" };
+          tokenProto["prototypeToken.bar1"] = { attribute: null };
           break;
         default:
           break;
