@@ -1,5 +1,7 @@
 import { YearZeroRoll } from "./yzur.js";
 
+const { DialogV2 } = foundry.applications.api;
+
 export function prepareRollDialog(options) {
   // create a dialog for the roll,
   // options:
@@ -39,7 +41,11 @@ export function prepareRollDialog(options) {
 
   let stressDice = 0;
   if (actor.type === "character") {
-    stressDice = actor.system.stress.value;
+    stressDice =
+      options.sheet._getCurrentSystemNumber?.(
+        "stress.value",
+        actor.system.stress.value
+      ) ?? actor.system.stress.value;
   }
 
   let dialogHtml = "";
@@ -299,9 +305,9 @@ export function prepareRollDialog(options) {
     "bonus"
   );
 
-  let d = new Dialog(
+  let d = new DialogV2(
     {
-      title: game.i18n.localize("twdu.ROLL.TEST") + ": " + options.testName,
+      window: { title: game.i18n.localize("twdu.ROLL.TEST") + ": " + options.testName },
       content: buildDivHtmlDialog(
         `
             <div class="roll-fields pi-8 mb-1">
@@ -315,12 +321,15 @@ export function prepareRollDialog(options) {
             </div>
             `
       ),
-      buttons: {
-        roll: {
-          icon: '<i class="fas fa-check"></i>',
+      buttons: [
+        {
+          action: "roll",
+          icon: "fas fa-check",
           label: game.i18n.localize("twdu.ROLL.ROLL"),
-          callback: (html) => {
+          default: true,
+          callback: (_event, _button, dialog) => {
             // console.log("TWDU | rolled", options);
+            const html = $(dialog.element);
             let attribute = options.attributeDefault;
             let skill = options.skillDefault;
             let bonus = html.find("#bonus")[0].value;
@@ -378,18 +387,18 @@ export function prepareRollDialog(options) {
             );
           },
         },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
+        {
+          action: "cancel",
+          icon: "fas fa-times",
           label: game.i18n.localize("twdu.ROLL.CANCEL"),
           callback: () => {},
         },
-      },
+      ],
       default: "roll",
       close: () => {},
-    },
-    { width: "407", height: "auto" }
+    }
   );
-  d.render(true);
+  d.render({ force: true });
 }
 
 function parseCriticalInjuries(actor) {
@@ -448,61 +457,15 @@ export function roll(
   rollDice(type, sheet, dicePool);
 }
 
-Hooks.on("renderChatLog", (app, html, data) => {
-  // console.log("Chat Log Rendered", app, html, data);
-  // console.log("HTML length", html);
-  let div = document.createElement("div");
-  // the html in the div is represented with [object HTMLElement] so we need to convert it to a string
-  let htmlString = html.outerHTML;
-  // console.log("HTML String", htmlString);
-  div.innerHTML = htmlString;
-  // console.log("Div", div);
-  for (let element of div.getElementsByClassName("dice-button")) {
-    // console.log("Element", element);
-    if (element.classList.contains("push")) {
-      // console.log("contains push in element")
-      element.addEventListener("click", (e)=> {
-        this._onPush(e);
-      });
-      // console.log(element);
-    } else if (element.classList.contains("apply-damage")) {
-    element.addEventListener("click", _onApplyDamage);
-    }
-  }
-});
-
-async function _onPush(event) {
-  // console.log(event);
-  event.preventDefault();
-
-  // Get the message.
-  let chatCard = event.currentTarget.closest(".chat-message");
-  let messageId = chatCard.dataset.messageId;
-  let message = game.messages.get(messageId);
-  let actor = game.actors.get(message.speaker.actor);
-  let newStress = actor.system.stress.value + 1;
-  await actor.update({ "system.stress.value": newStress });
-
-  // Copy the roll.
-  let roll = message.rolls[0].duplicate();
-
-  // Delete the previous message.
-  await message.delete();
-
-  // add the stress dice to the roll
-  await roll.addDice(1, "stress");
-  // Push the roll and send it.
-  await roll.push({ async: true });
-  await roll.toMessage();
-}
-
 async function rollDice(type, sheet, numberOfDice) {
   let actor = game.actors.get(sheet.object._id);
   let token = actor.prototypeToken.texture.src;
 
   let stressDice = 0;
   if (actor.type === "character" && type !== "armor") {
-    stressDice = actor.system.stress.value;
+    stressDice =
+      sheet._getCurrentSystemNumber?.("stress.value", actor.system.stress.value) ??
+      actor.system.stress.value;
   }
 
   let formula = numberOfDice + "ds" + " + " + stressDice + "dz";

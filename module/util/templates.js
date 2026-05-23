@@ -14,14 +14,22 @@ export const preloadHandlebarsTemplates = async function () {
 
     // sheet templates
     "systems/twdu/templates/sheets/character-sheet.hbs",
+    "systems/twdu/templates/sheets/item-sheet-v2.hbs",
     "systems/twdu/templates/sheets/gear-sheet.hbs",
     "systems/twdu/templates/sheets/vehicle-sheet.hbs",
     "systems/twdu/templates/sheets/weapon-sheet.hbs",
     "systems/twdu/templates/sheets/armor-sheet.hbs",
+    "systems/twdu/templates/sheets/animal-sheet.hbs",
     "systems/twdu/templates/sheets/challenge-sheet.hbs",
+    "systems/twdu/templates/sheets/challenges-sheet.hbs",
     "systems/twdu/templates/sheets/criticalInjury-sheet.hbs",
+    "systems/twdu/templates/sheets/endgame-sheet.hbs",
+    "systems/twdu/templates/sheets/faction-sheet.hbs",
     "systems/twdu/templates/sheets/haven-sheet.hbs",
+    "systems/twdu/templates/sheets/issue-sheet.hbs",
+    "systems/twdu/templates/sheets/npc-sheet.hbs",
     "systems/twdu/templates/sheets/project-sheet.hbs",
+    "systems/twdu/templates/sheets/rumor-sheet.hbs",
     "systems/twdu/templates/sheets/talent-sheet.hbs",
     "systems/twdu/templates/sheets/tinyItem-sheet.hbs",
 

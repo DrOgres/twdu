@@ -1,9 +1,7 @@
 import TWDUItemSheet from "./sheet/TWDUItemSheet.js";
-// import TWDUActorSheet from "./sheet/TWDUActorSheet.js";
 import TWDUActor from "./TWDUActor.js";
 import { preloadHandlebarsTemplates } from "./util/templates.js";
 import { twdu } from "../module/config.js";
-import FoundryOverrides from "./util/overrides.js";
 import { increaseThreatLevel, decreaseThreatLevel } from "./util/threat.js";
 import { YearZeroRollManager } from "./util/yzur.js";
 import { ThreatLevelDisplay } from "./util/threat.js";
@@ -15,7 +13,6 @@ import TWDUActorSheetAnimal from "./sheet/TWDUActorSheetAnimal.js";
 import TWDUActorSheetHaven from "./sheet/TWDUActorSheetHaven.js";
 import TWDUActorSheetChallenge from "./sheet/TWDUActorSheetChallenge.js";
 import ChatMessageTWDU from "./util/chat.js";
-// import TWDUActorSheetPCv2 from "./sheet/TWDUActorSheetPCv2.js";
 
 Hooks.once("init", async function () {
   console.log("TWDU | Initializing TWDU");
@@ -53,31 +50,27 @@ Hooks.once("init", async function () {
     },
   ]);
 
-  foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+  const { ActorSheetV2, ItemSheetV2 } = foundry.applications.sheets;
+  const { DocumentSheetConfig } = foundry.applications.apps;
 
-  foundry.documents.collections.Items.registerSheet("twdu", TWDUItemSheet, { makeDefault: true });
+  try {
+    DocumentSheetConfig.unregisterSheet(foundry.documents.Item, "core", ItemSheetV2);
+  } catch (_error) {
+    // Core sheet availability can vary between Foundry builds.
+  }
 
-  foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-  //TODO set up sheets for each actor type to be able to set default options correctly for each type
-  // Actors.registerSheet("twdu", TWDUActorSheet, { makeDefault: true });
+  DocumentSheetConfig.registerSheet(foundry.documents.Item, "twdu", TWDUItemSheet, { makeDefault: true });
 
-  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
-  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
-  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
-  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
-  foundry.documents.collections.Actors.registerSheet("twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
-
-
-
-  // Actors.registerSheet("dnd5e", ActorSheet5eCharacter, {
-  //   types: ["character"],
-  //   label: "DND5E.SheetClassCharacterLegacy"
-  // });
-  // DocumentSheetConfig.registerSheet(Actor, "dnd5e", ActorSheet5eCharacter2, {
-  //   types: ["character"],
-  //   makeDefault: true,
-  //   label: "DND5E.SheetClassCharacter"
-  // });
+  try {
+    DocumentSheetConfig.unregisterSheet(foundry.documents.Actor, "core", ActorSheetV2);
+  } catch (_error) {
+    // Core sheet availability can vary between Foundry builds.
+  }
+  DocumentSheetConfig.registerSheet(foundry.documents.Actor, "twdu", TWDUActorSheetPC, { types: ["character"], makeDefault: true, label: "TWDU.SheetClassCharacter" });
+  DocumentSheetConfig.registerSheet(foundry.documents.Actor, "twdu", TWDUActorSheetNPC, { types: ["npc"], makeDefault: true, label: "TWDU.SheetClassNPC" });
+  DocumentSheetConfig.registerSheet(foundry.documents.Actor, "twdu", TWDUActorSheetAnimal, { types: ["animal"], makeDefault: true, label: "TWDU.SheetClassAnimal" });
+  DocumentSheetConfig.registerSheet(foundry.documents.Actor, "twdu", TWDUActorSheetHaven, { types: ["haven"], makeDefault: true, label: "TWDU.SheetClassHaven" });
+  DocumentSheetConfig.registerSheet(foundry.documents.Actor, "twdu", TWDUActorSheetChallenge, { types: ["challenge"], makeDefault: true, label: "TWDU.SheetClassChallenge" });
 
   // "Actor": {
   //   "types": [
@@ -203,9 +196,7 @@ Handlebars.registerHelper('lookupOrDefault', function (object, propertyName, def
 });
   
 Hooks.on("renderPause", (_app, html) => {
-  html
-    .find("img")
-    .attr("src", "systems/twdu/assets/images/misc/hand.png");
+  html.querySelector("img")?.setAttribute("src", "systems/twdu/assets/images/misc/hand.png");
 });
 
 Handlebars.registerHelper('lowercase', function (string){
@@ -230,7 +221,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
       order: 90,
       title: "CONTROL.addThreatLevel",
       visible: game.user.isGM,
-      onClick: ()=> increaseThreatLevel(1),
+      onChange: () => increaseThreatLevel(1),
        button: true
     }
 
@@ -240,7 +231,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
       order: 91,
       title: "CONTROL.subThreatLevel",
       visible: game.user.isGM,
-      onClick: ()=> decreaseThreatLevel(1),
+      onChange: () => decreaseThreatLevel(1),
        button: true
     }
 
@@ -252,7 +243,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
       visible: game.settings.get("twdu", "threatLevelVisibility")
         ? true
         : game.user.isGM,
-      onClick: () => {
+      onChange: () => {
         ThreatLevelDisplay.render();
       },
        button: true
@@ -332,12 +323,11 @@ Hooks.once("diceSoNiceReady", (dice3d) => {
 
 Hooks.on('preCreateToken', async (document, tokenData, options, userID) => {
 
-  const actor = game.actors.get(tokenData.actorId);
-  const actorId = actor.id;
-  console.log("test | preCreateToken", document, actor, actorId);
+  const actor = game.actors.get(tokenData.actorId ?? document.actorId);
+  if (!actor) return;
   
   if (actor.type === 'npc') {
-    document.update({_id: actorId , disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
+    document.updateSource({ disposition: CONST.TOKEN_DISPOSITIONS.HOSTILE, actorLink: false });
   }
 });
 
@@ -357,5 +347,4 @@ Hooks.on('dropActorSheetData', async (actor, sheet, data) => {
 
 Hooks.once("ready", async function () {
   migrate();
-  //FoundryOverrides.override();
 });

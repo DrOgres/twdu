@@ -1,29 +1,27 @@
 import Clock from "../util/clock.js";
 
+const { ItemSheetV2 } = foundry.applications.sheets;
+const { HandlebarsApplicationMixin } = foundry.applications.api;
 
-export default class TWDUItemSheet extends foundry.appv1.sheets.ItemSheet {
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twdu", "sheet", "item", "item-sheet"],
-      width: 550,
-      // height: 489 + 'max-content',
-      // height: 566 - 'max-content',
-      height: 370 - "max-content",
-      tabs: [
-        {
-          navSelector: ".sheet-tabs",
-          contentSelector: ".sheet-body",
-          initial: "general",
-        },
-      ],
-    });
-  }
+export default class TWDUItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
+  static DEFAULT_OPTIONS = {
+    tag: "div",
+    classes: ["twdu", "sheet", "item", "item-sheet"],
+    position: { width: 550, height: "auto" },
+    window: { resizable: true },
+    form: {
+      handler: async function (event, form, formData) {
+        const submitData = this._prepareSubmitData(event, form, formData);
+        await this._processSubmitData(event, form, submitData);
+      },
+      submitOnChange: true,
+      closeOnSubmit: false,
+    },
+  };
 
-
-
-  get template() {
-    return `systems/twdu/templates/sheets/${this.item.type}-sheet.hbs`;
-  }
+  static PARTS = {
+    sheet: { template: "systems/twdu/templates/sheets/item-sheet-v2.hbs" },
+  };
 
   async itemClock() {
     // Only item types that have a clock should return a clock
@@ -44,28 +42,76 @@ export default class TWDUItemSheet extends foundry.appv1.sheets.ItemSheet {
     //return new Clock();
   }
 
-  async getData() {
-    const data = super.getData();
+  get object() {
+    return this.document;
+  }
+
+  get form() {
+    return this.element?.querySelector("form") ?? null;
+  }
+
+  _toggleDisabled(disabled) {
+    const form = this.form;
+    if (!form) return;
+    for (const element of form.elements) element.disabled = disabled;
+    for (const img of form.querySelectorAll("img[data-edit]")) {
+      img.classList.toggle("disabled", disabled);
+    }
+  }
+
+  async _prepareContext(options) {
+    const data = await super._prepareContext(options);
     const source = this.item.toObject();
     data.config = CONFIG.twdu;
+    data.cssClass = this.constructor.DEFAULT_OPTIONS.classes.join(" ");
+    data.item = this.item;
+    data.data = source;
     data.source = source;
     data.user = game.user;
-    console.log(data.user);
-    
-    this.itemClock().then((clock) => {
-      console.log("TWDU | clock: ", clock);
-      data.clock = clock;
-      console.log("TWDU | data: ", data);
-
-    });
-    console.log("TWDU | data: ", data);
+    data.sheetTemplate = `systems/twdu/templates/sheets/${this.item.type}-sheet.hbs`;
+    data.clock = await this.itemClock();
     return data;
   }
 
+  async _onRender(context, options) {
+    await super._onRender(context, options);
+    this._activateFormListeners();
+    this.activateListeners($(this.element));
+  }
+
+  _activateFormListeners() {
+    const form = this.form;
+    if (!form) return;
+    form.addEventListener("change", this._onLegacyFormSubmit.bind(this));
+    form.addEventListener("submit", this._onLegacyFormSubmit.bind(this));
+  }
+
+  async _onLegacyFormSubmit(event) {
+    event.preventDefault();
+    if (!this.isEditable) return;
+    const form = this.form;
+    if (!form) return;
+    const formData = new foundry.applications.ux.FormDataExtended(form);
+    const submitData = this._prepareSubmitData(event, form, formData);
+    await this._processSubmitData(event, form, submitData);
+  }
+
   activateListeners(html) {
-    super.activateListeners(html);
+    html.find("img[data-edit]").click(this._onEditImage.bind(this));
     html.find(".toggle-boolean").click(this._onToggleClick.bind(this));
     html.find(".type-change").click(this._onTypeChange.bind(this));
+  }
+
+  _onEditImage(event) {
+    event.preventDefault();
+    const attr = event.currentTarget.dataset.edit;
+    const current = foundry.utils.getProperty(this.item, attr);
+    new foundry.applications.apps.FilePicker({
+      type: "image",
+      current,
+      callback: (path) => this.item.update({ [attr]: path }),
+      document: this.item,
+    }).render({ force: true });
   }
 
   // force sheet update when type changes

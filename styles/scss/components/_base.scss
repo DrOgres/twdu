@@ -157,6 +157,38 @@ a.content-link{
   text-transform: uppercase;
   font-size: 0.8rem;
   font-family: 'Nu Gothic', sans-serif;
+  color: $header-1;
+}
+
+.twdu .health-stress-block{
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) minmax(9rem, 1fr);
+  width: 100%;
+}
+
+.twdu .health,
+.twdu .stress{
+  min-width: 0;
+}
+
+.twdu .health-select select{
+  width: 100%;
+  min-width: 0;
+}
+
+.twdu .stress > .flex-row{
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.twdu .stress > .flex-row > a{
+  flex: 0 0 auto;
+}
+
+.twdu .stress input[name="system.stress.value"]{
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 50px;
 }
 
 .group{
@@ -172,6 +204,16 @@ a.content-link{
   font-weight: 700;
   text-transform: uppercase;
   
+}
+
+.twdu h4.group-header{
+  background: transparent;
+  color: $header-1;
+}
+
+.twdu div.group-header{
+  background: $neutral-1;
+  color: $neutral-3;
 }
 
 .skill:last-child{
@@ -212,7 +254,9 @@ a.content-link{
   background-color: $header-bg-3;
 }
 
-.window-app, .window-app .window-content{
+.window-app, .window-app .window-content,
+.application.twdu, .application.twdu .window-content,
+.application .window-content:has(.twdu){
   color: $header-1
 }
 
@@ -333,3 +377,35 @@ a.content-link{
  .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-number, .sheet.journal-entry.application .journal-sidebar .toc .page-heading .page-index{
   color: $header-2;
  }
+
+.window-resize-handle{
+  inset: auto 1px 1px auto !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  overflow: visible !important;
+}
+
+.window-resize-handle::before{
+  content: "\25E2" !important;
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  display: block;
+  width: 18px;
+  height: 18px;
+  color: $highlight-2;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: right;
+  pointer-events: none;
+}
+
+.window-resize-handle::after{
+  content: none !important;
+}
