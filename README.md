@@ -6,6 +6,8 @@ The Walking Dead Universe RPG system for Foundry VTT
 
 
 ## Release Notes:
+Release 5.0.0
+- Updated to Foundry v14 thanks [666f78](https://github.com/666f78)
 
 Release 4.0.3
 - Fixed ranged combat for gear [#93](https://github.com/DrOgres/twdu/issues/93)
